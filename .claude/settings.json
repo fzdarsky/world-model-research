@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch",
+      "Bash(curl -sL -o *)",
+      "Bash(gh api:*)"
+    ]
+  }
+}

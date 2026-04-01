@@ -1,14 +1,158 @@
 # Key Players in World Models Research
 
-> Researchers, institutions, and companies working on world models, JEPA, and EBMs
+> Seminal contributors and recognized thought leaders in world models, JEPA, and EBMs
 
-**Last Updated**: 2026-02-26
+**Last Updated**: 2026-04-02
 
 ---
 
 ## Researchers
 
-*Leading individual researchers in the field*
+*Researchers who originated or significantly advanced key concepts*
+
+### Yann LeCun
+
+**About**: Turing Award laureate (2018) and originator of Joint-Embedding Predictive Architecture (JEPA) and the energy-based model framework for self-supervised learning. His 2022 position paper "A Path Towards Autonomous Machine Intelligence" laid out the JEPA vision for world models. Former Chief AI Scientist at Meta FAIR; founded AMI Labs in Jan 2026 to pursue world models as an alternative to the LLM paradigm.
+
+**Focus Areas**: JEPA, self-supervised learning, energy-based models, world models
+
+**Key Work**: I-JEPA, V-JEPA, V-JEPA 2, VL-JEPA, EB-JEPA library; position paper "A Path Towards Autonomous Machine Intelligence" (2022)
+
+**Collaborations**: Meta FAIR (former), AMI Labs (founder)
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=WLN3QrAAAAAJ), [Twitter](https://twitter.com/ylecun)
+
+### Ilya Sutskever
+
+**About**: Co-founder and CEO of Safe Superintelligence Inc. (SSI). Former chief scientist of OpenAI; co-inventor of AlexNet (with Krizhevsky and Hinton). Among the most-cited computer scientists in history (766k+ citations). Advocates a "post-scaling" paradigm shift—new learning methods over bigger models—with emphasis on continual learning, generalization, and JEPA-style architectures as paths to superintelligence.
+
+**Focus Areas**: Safe superintelligence, continual learning, generalization, post-scaling paradigm
+
+**Key Work**: AlexNet (2012), sequence-to-sequence learning (2014), co-founded OpenAI (2015), co-founded SSI (2024); "Big World Hypothesis" framing of continual learning as prerequisite for intelligence
+
+**Collaborations**: [Safe Superintelligence Inc.](players.md#safe-superintelligence-inc-ssi), Geoffrey Hinton, Alex Krizhevsky
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=x04W_mMAAAAJ&hl=en), [Twitter](https://twitter.com/ilyasut), [Homepage](https://www.cs.toronto.edu/~ilya/)
+
+### Adrian Kosowski
+
+**About**: Lead researcher behind the Dragon Hatchling (BDH) architecture at Pathway. Originated the biologically-inspired LLM design that bridges transformers and neuroscience models, demonstrating that scale-free spiking networks with Hebbian learning can match GPT-2 performance while providing built-in interpretability.
+
+**Focus Areas**: BDH, biologically-inspired architectures, spiking neural networks, interpretability
+
+**Key Work**: "The Dragon Hatchling: The Missing Link between the Transformer and Models of the Brain" (2025-09)
+
+**Collaborations**: Pathway, University of Wrocław
+
+**Links**: [GitHub](https://github.com/pathwaycom/bdh)
+
+### Yair Carmon
+
+**About**: ML researcher at Safe Superintelligence Inc. (Tel Aviv office). PhD from Stanford; previously at Tel Aviv University. Background in adversarial robustness and optimization. Relevant as part of SSI's research team pursuing post-scaling approaches to superintelligence.
+
+**Focus Areas**: Machine learning, adversarial robustness, optimization
+
+**Key Work**: Research at SSI (details undisclosed)
+
+**Collaborations**: [Safe Superintelligence Inc.](players.md#safe-superintelligence-inc-ssi)
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=LyA_iI0AAAAJ)
+
+### Fei-Fei Li
+
+**About**: Stanford professor and co-director of the Stanford Human-Centered AI Institute (HAI). Founded [World Labs](players.md#world-labs) to pursue "Spatial Intelligence" — the idea that 3D spatial understanding is the scaffolding for cognition. Creator of ImageNet, which catalyzed the deep learning revolution. Pioneered the Marble model for persistent 3D world reconstruction from multimodal inputs.
+
+**Focus Areas**: Spatial intelligence, 3D world models, computer vision, visual understanding
+
+**Key Work**: ImageNet (2009), World Labs (founded 2024), Marble (3D world model), Stanford HAI (co-director)
+
+**Collaborations**: [World Labs](players.md#world-labs) (founder), Stanford HAI, Stanford SVL
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=rDfyQnIAAAAJ), [Homepage](https://profiles.stanford.edu/fei-fei-li)
+
+### Josh Tenenbaum
+
+**About**: Professor at [MIT CSAIL](players.md#mit-csail) studying how humans acquire commonsense understanding of the physical and social world from remarkably little data. His work on intuitive physics and probabilistic programs of thought has directly influenced world model benchmarks and evaluation methodology.
+
+**Focus Areas**: Commonsense reasoning, intuitive physics, probabilistic programming, cognitive science
+
+**Key Work**: CLEVRER benchmark (counterfactual reasoning in video), BabyAI, probabilistic programs of thought, Bayesian models of cognition
+
+**Collaborations**: [MIT CSAIL](players.md#mit-csail) Embodied Intelligence community
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=rRJ9wTJMUB8C), [Homepage](https://cocosci.mit.edu/)
+
+### Daniela Rus
+
+**About**: Director of [MIT CSAIL](players.md#mit-csail) and leader of the Distributed Robotics Laboratory. Pioneered liquid neural networks and VISTA simulations for safe autonomous driving training. Her "Science of Autonomy" research focuses on scalable multi-robot systems that interact with the physical world.
+
+**Focus Areas**: Distributed robotics, liquid neural networks, autonomous driving simulation, science of autonomy
+
+**Key Work**: Liquid neural networks, VISTA simulation platform, distributed robotics systems
+
+**Collaborations**: [MIT CSAIL](players.md#mit-csail)
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=910z20QAAAAJ), [Homepage](https://www.csail.mit.edu/person/daniela-rus)
+
+### Sergey Levine
+
+**About**: Professor at [UC Berkeley RAIL](players.md#uc-berkeley-rail) and co-founder of [Physical Intelligence](players.md#physical-intelligence-π). Argues that robots will eventually have a data advantage over language models because they can autonomously collect physical experience at low cost. Pioneered offline RL methods that learn from static datasets to provide priors for safe online execution.
+
+**Focus Areas**: Offline RL, robot learning, model-based RL, autonomous data collection
+
+**Key Work**: Offline RL, π0/π0.5 (via [Physical Intelligence](players.md#physical-intelligence-π)), extreme robot designs for bimanual manipulation
+
+**Collaborations**: [Physical Intelligence](players.md#physical-intelligence-π) (co-founder), [UC Berkeley RAIL](players.md#uc-berkeley-rail)
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=8R35rCwAAAAJ), [Homepage](https://people.eecs.berkeley.edu/~svlevine/)
+
+### Yoshua Bengio
+
+**About**: Turing Award laureate (2018), founder and scientific director of [Mila](players.md#mila). Advocates for "System 2" deep learning — architectures that move beyond statistical pattern matching to causal, compositional reasoning. His "Scientist AI" proposal envisions non-agentic world models focused on understanding rather than acting, as a path toward "Scientific and Safe" AGI.
+
+**Focus Areas**: System 2 thinking, causal reasoning, scientific AI, world models for understanding
+
+**Key Work**: "Scientist AI" proposal, GFlowNets, System 2 deep learning position papers
+
+**Collaborations**: [Mila](players.md#mila) (founder), CIFAR
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=kukA0LcAAAAJ), [Homepage](https://yoshuabengio.org/)
+
+### Yarin Gal
+
+**About**: Associate Professor at Oxford and head of the [Oxford OATML](players.md#oxford-oatml) group. Specializes in uncertainty quantification (UQ) for deep learning, applying Bayesian principles to build reliable verification for reasoning models and autonomous systems. His "Deep Ignorance" framework addresses when models should recognize they don't know enough to act.
+
+**Focus Areas**: Uncertainty quantification, Bayesian deep learning, safe AI, verification
+
+**Key Work**: Concrete Dropout, Bayesian deep learning framework, uncertainty-aware verification for LLMs and world models
+
+**Collaborations**: [Oxford OATML](players.md#oxford-oatml)
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=H2BVqkwAAAAJ), [Homepage](https://www.cs.ox.ac.uk/people/yarin.gal/website/)
+
+### Shubham Tulsiani
+
+**About**: Assistant Professor at [CMU Robotics Institute](players.md#cmu-robotics-institute) focusing on "Physical Perception" — leveraging the laws and structures of the physical world as meta-supervisory signals to reduce reliance on human annotation. His work enables robots to build 3D understanding from minimal labeled data by exploiting physical priors.
+
+**Focus Areas**: Physical perception, 3D understanding, self-supervised learning from physics, minimal annotation
+
+**Key Work**: Physical perception research, physics-as-supervision for 3D understanding
+
+**Collaborations**: [CMU Robotics Institute](players.md#cmu-robotics-institute)
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=gPyFsMQAAAAJ), [Homepage](https://shubhtuls.github.io/)
+
+### Alonzo Kelly
+
+**About**: Professor at [CMU Robotics Institute](players.md#cmu-robotics-institute) specializing in how errors accumulate and propagate in world models used for robot navigation. His research on odometry and triangulation error propagation is foundational to understanding when and why world model predictions degrade over time.
+
+**Focus Areas**: Error propagation, odometry, triangulation, mobile robotics, field robotics
+
+**Key Work**: Error propagation analysis for navigation systems, mobile robot localization
+
+**Collaborations**: [CMU Robotics Institute](players.md#cmu-robotics-institute)
+
+**Links**: [Homepage](https://www.ri.cmu.edu/ri-faculty/alonzo-kelly/)
 
 ---
 
@@ -16,12 +160,266 @@
 
 *Universities, research labs, and academic institutions*
 
+### MIT CSAIL
+
+**About**: MIT's Computer Science and Artificial Intelligence Laboratory hosts the Embodied Intelligence community, bringing together researchers working on physically grounded AI. Key groups include [Josh Tenenbaum](players.md#josh-tenenbaum)'s Computational Cognitive Science lab (commonsense reasoning, CLEVRER benchmark) and [Daniela Rus](players.md#daniela-rus)'s Distributed Robotics Laboratory (liquid neural networks, VISTA simulation, multi-robot systems).
+
+**Focus Areas**: Embodied intelligence, commonsense reasoning, intuitive physics, distributed robotics, autonomous driving simulation
+
+**Key Work**: CLEVRER benchmark (counterfactual video reasoning), liquid neural networks, VISTA simulation, Embodied Intelligence Summit
+
+**Key People**: [Josh Tenenbaum](players.md#josh-tenenbaum), [Daniela Rus](players.md#daniela-rus)
+
+**Links**: [Website](https://www.csail.mit.edu/), [Embodied Intelligence](https://www.csail.mit.edu/research/embodied-intelligence-community-research)
+
+### Stanford (SVL / SAIL)
+
+**About**: Stanford's Vision and Learning Lab (SVL) and AI Lab (SAIL) develop methods for robot perception in real-world variability. Key research includes "Motion Intelligence" for humanoid robots (building versatile fundamental skills like manipulation), and the "Common Ground" problem — how to create stable shared representations of physical, social, and mental worlds between humans and AI systems.
+
+**Focus Areas**: Spatial intelligence, motion intelligence, common ground, humanoid robotics, visual understanding
+
+**Key Work**: Motion Intelligence for humanoids, Common Ground research, Stanford HAI AI Index Report
+
+**Key People**: [Fei-Fei Li](players.md#fei-fei-li), Karen Liu
+
+**Links**: [SVL](https://svl.stanford.edu/), [SAIL](https://ai.stanford.edu/), [HAI](https://hai.stanford.edu/)
+
+### UC Berkeley RAIL
+
+**About**: The Robotic AI and Learning Lab, led by [Sergey Levine](players.md#sergey-levine), argues that robots will eventually outpace LLMs in data because they can autonomously collect physical experience cheaply. Pioneered offline RL — learning from static datasets for safe deployment — and "extreme" robot designs (high-speed stacking, bimanual manipulation) that test architectures without hand-engineered crutches. Directly tied to [Physical Intelligence](players.md#physical-intelligence-π).
+
+**Focus Areas**: Offline RL, robot learning, model-based RL, autonomous data collection, bimanual manipulation
+
+**Key Work**: Offline RL methods, π0/π0.5 (via Physical Intelligence), extreme robot manipulation
+
+**Key People**: [Sergey Levine](players.md#sergey-levine)
+
+**Links**: [Website](https://rail.eecs.berkeley.edu/)
+
+### CMU Robotics Institute
+
+**About**: Carnegie Mellon's Robotics Institute has been a birthplace of autonomous vehicle technology since 1984. Current research includes "World Modeling" (temporally abstract world models from offline demonstrations), "Physical Perception" using physics as meta-supervision ([Shubham Tulsiani](players.md#shubham-tulsiani)), and error propagation analysis for navigation ([Alonzo Kelly](players.md#alonzo-kelly)).
+
+**Focus Areas**: World modeling, field robotics, autonomous vehicles, physical perception, error propagation
+
+**Key Work**: World Modeling archive, temporally abstract world models, physical perception, AV technology
+
+**Key People**: [Shubham Tulsiani](players.md#shubham-tulsiani), [Alonzo Kelly](players.md#alonzo-kelly)
+
+**Links**: [Website](https://www.ri.cmu.edu/), [World Modeling](https://www.ri.cmu.edu/research-topic/world-modeling/)
+
+### Oxford OATML
+
+**About**: The Oxford Applied and Theoretical Machine Learning group, led by [Yarin Gal](players.md#yarin-gal), specializes in uncertainty quantification (UQ) for deep learning and world models. Their "Deep Ignorance" framework and Bayesian verification methods address when AI systems should recognize they lack sufficient knowledge to act — critical for safety in world-model-driven autonomous systems.
+
+**Focus Areas**: Uncertainty quantification, Bayesian deep learning, verification, safe AI, autonomous discovery
+
+**Key Work**: Bayesian UQ for LLMs and world models, step-wise verification for reasoning, Deep Ignorance framework
+
+**Key People**: [Yarin Gal](players.md#yarin-gal)
+
+**Links**: [Website](https://oatml.cs.ox.ac.uk/), [Blog](https://oatml.cs.ox.ac.uk/blog.html)
+
+### Mila
+
+**About**: Quebec AI Institute, founded and led by [Yoshua Bengio](players.md#yoshua-bengio). Focuses on "System 2" deep learning — architectures that move beyond statistical correlation to causal reasoning. Bengio's "Scientist AI" proposal envisions non-agentic world models for understanding rather than acting, targeting "Scientific and Safe" AGI through compositional, causal reasoning.
+
+**Focus Areas**: System 2 thinking, causal reasoning, scientific AI, safe AGI, compositional learning
+
+**Key Work**: GFlowNets, System 2 deep learning, Scientist AI proposal
+
+**Key People**: [Yoshua Bengio](players.md#yoshua-bengio)
+
+**Links**: [Website](https://mila.quebec/), [Research](https://mila.quebec/en/publications/)
+
 ---
 
 ## Companies
 
-*Companies working on world models, embodied AI, and related products/research*
+*Companies with major world models initiatives*
+
+### NVIDIA
+
+**About**: Largest industrial investor in world foundation models via the Cosmos platform, announced at CES 2025. Frames world models as "the ChatGPT moment for robotics" — general-purpose video prediction models that serve as digital twins of the physical environment. Trained on 20M hours of real-world data; models released open-weight under permissive licensing. Also expanding into humanoid robotics (GR00T N1), physics simulation (Newton), and industrial AI (Siemens partnership). An investor in SSI.
+
+**Focus Areas**: World foundation models (Cosmos), Physical AI, video prediction, sim2real transfer, autonomous vehicles, robotics, humanoid robots, physics simulation, industrial digital twins
+
+**Key Work**: Cosmos-Predict2.5 (world simulation), Cosmos-Transfer2.5 (sim2real), Cosmos-Reason2 (physical common sense), Cosmos-Tokenizer; GR00T N1 (open VLA foundation model for humanoid robots, dual-system architecture — adopted by 1X, Agility, Figure AI, Boston Dynamics, Unitree, Sanctuary AI); Newton physics engine (co-developed with [Google DeepMind](players.md#google-deepmind) and Disney Research); [Siemens](players.md#siemens) partnership for "Industrial AI Operating System" (CES 2026)
+
+**Collaborations**: 1X, Agility Robotics, Figure AI, Boston Dynamics, Unitree, Sanctuary AI, Skild AI, Uber, Waabi, XPENG, [Siemens](players.md#siemens) (Industrial AI), [Google DeepMind](players.md#google-deepmind) (Newton), Disney Research (Newton), [SSI](players.md#safe-superintelligence-inc-ssi) (investor)
+
+**Links**: [GitHub](https://github.com/nvidia-cosmos), [Cosmos Platform](https://www.nvidia.com/en-us/ai/cosmos/), [Research](https://research.nvidia.com/publication/2025-01_cosmos-world-foundation-model-platform-physical-ai), [Blog](https://blogs.nvidia.com/blog/cosmos-world-foundation-models/)
+
+### Meta AI (FAIR)
+
+**About**: Largest contributor to the JEPA ecosystem, having developed the full progression from I-JEPA (images) to V-JEPA (video) to V-JEPA 2 (world model) to VL-JEPA (vision-language). Under LeCun's leadership at FAIR, Meta built and open-sourced the primary implementations of JEPA-based architectures.
+
+**Focus Areas**: JEPA architectures, self-supervised learning, world models, video understanding
+
+**Key Work**: I-JEPA, V-JEPA, V-JEPA 2, VL-JEPA, EB-JEPA library
+
+**Collaborations**: HKUST, NYU, various academic collaborators
+
+**Links**: [GitHub](https://github.com/facebookresearch), [Blog](https://ai.meta.com/blog/)
+
+### AMI Labs
+
+**About**: Paris-based startup founded by [Yann LeCun](players.md#yann-lecun) (Chairman) in Jan 2026 after leaving Meta FAIR. Raised $1.03B seed round in March 2026 at $3.5B pre-money valuation — the largest European seed round ever. Building JEPA-based world models for industrial, robotic, and healthcare applications as an alternative to the LLM paradigm. Offices in Paris, New York, Montreal, and Singapore.
+
+**Focus Areas**: World models, JEPA, autonomous machine intelligence, robotics, industrial AI, healthcare
+
+**Key Work**: Founded Jan 2026; $1.03B seed round (March 2026); focused on JEPA-based world models for Physical AI
+
+**Key People**: Alex LeBrun (CEO), Laurent Solly (COO, ex-Meta VP Europe), Saining Xie (Chief Science Officer), Pascale Fung (Chief Research & Innovation Officer), Michael Rabbat (VP World Models)
+
+**Collaborations**: NVIDIA (investor), Samsung (investor), Toyota Ventures (investor), Bezos Expeditions (investor)
+
+**Links**: [MIT Tech Review announcement](https://www.technologyreview.com/2026/01/22/1131661/yann-lecuns-new-venture-ami-labs/), [TechCrunch $1B raise](https://techcrunch.com/2026/03/09/yann-lecuns-ami-labs-raises-1-03-billion-to-build-world-models/)
+
+### Safe Superintelligence Inc. (SSI)
+
+**About**: Israeli-American AI research company co-founded by [Ilya Sutskever](players.md#ilya-sutskever), Daniel Gross, and Daniel Levy in June 2024. Single-mission company focused solely on building safe superintelligence — no products, no revenue, pure research. Raised $3B at $32B valuation (as of April 2025). Sutskever advocates a "post-scaling" paradigm, betting on new learning methods (including JEPA-style architectures and continual learning) rather than bigger transformers.
+
+**Focus Areas**: Safe superintelligence, continual learning, generalization, alignment-as-generalization
+
+**Key Work**: No publications (extremely secretive); Sutskever's public statements point to JEPA-style architectures, continual learning, and the "Big World Hypothesis" as research directions
+
+**Collaborations**: Google Cloud (TPU access partnership, April 2025), [Ilya Sutskever](players.md#ilya-sutskever) (CEO), [Yair Carmon](players.md#yair-carmon) (researcher)
+
+**Links**: [Website](https://ssi.inc/), [Wikipedia](https://en.wikipedia.org/wiki/Safe_Superintelligence_Inc.)
+
+### Pathway
+
+**About**: Company behind the Baby Dragon Hatchling (BDH) architecture, a biologically-inspired alternative to transformers. Originated the scale-free spiking network approach to language modeling that demonstrates neuroscience-grounded interpretability while matching transformer performance.
+
+**Focus Areas**: BDH, biologically-inspired AI, interpretable architectures
+
+**Key Work**: Baby Dragon Hatchling (BDH) architecture and open-source implementation
+
+**Collaborations**: Adrian Kosowski (lead researcher), University of Wrocław
+
+**Links**: [GitHub](https://github.com/pathwaycom/bdh), [Website](https://pathway.com)
+
+### OpenAI
+
+**About**: Built Sora/Sora 2, diffusion transformer models for video generation positioned as "teaching AI to understand and simulate the physical world." Sora 2 (Sept 2025) improved physics coherence, but the standalone product was discontinued in March 2026 due to unsustainable compute costs. Illustrates both the ambition and the commercial challenge of pixel-space world simulation at scale.
+
+**Focus Areas**: Video generation, diffusion transformers, physical world simulation
+
+**Key Work**: Sora (Feb 2024), Sora 2 (Sept 2025, improved physics); standalone product discontinued March 2026
+
+**Collaborations**: —
+
+**Links**: [Website](https://openai.com), [Research](https://openai.com/research)
+
+### Google DeepMind
+
+**About**: Leading AI research lab (Alphabet) with multiple world-model-adjacent efforts spanning interactive world models, video generation with physics, and physics engines for robotics. Genie 3 generates interactive 720p/24fps environments from prompts; Veo 3/3.1 produces video with physics simulation; upcoming Veo 3.2 reportedly includes "Artemis" world model engine for explicit 3D physics reasoning.
+
+**Focus Areas**: Interactive world models, video generation, physics simulation, robotics
+
+**Key Work**: Genie 3 (interactive world model, 720p/24fps), Veo 3/3.1 (video generation with physics), Newton physics engine (co-developed with [NVIDIA](players.md#nvidia) and Disney Research), Veo 3.2 / "Artemis" (reported, explicit 3D physics)
+
+**Collaborations**: [NVIDIA](players.md#nvidia) (Newton physics engine), Disney Research (Newton), Waymo (autonomous driving)
+
+**Links**: [Website](https://deepmind.google), [Research](https://deepmind.google/research/)
+
+### Tesla
+
+**About**: Applies world model principles at production scale in its Full Self-Driving (FSD) system. FSD v13/v14 uses Occupancy Networks 2.0 — 3D voxel-based prediction of future occupancy states — as a core world model component within an end-to-end autonomous driving stack. FSD v14 (2026) has 10x more parameters than v13. Not a standalone world model product, but the largest-scale deployment of world-model-based prediction in production vehicles.
+
+**Focus Areas**: Autonomous driving, occupancy prediction, end-to-end learned driving, 3D world modeling
+
+**Key Work**: FSD v13/v14, Occupancy Networks 2.0 (3D voxel-based future prediction)
+
+**Collaborations**: —
+
+**Links**: [Website](https://www.tesla.com), [AI Page](https://www.tesla.com/AI)
+
+### Wayve
+
+**About**: UK-based autonomous driving company that built the GAIA series of generative world models (GAIA-1/2/3, 9B–15B params) for AV development. GAIA-3 (Dec 2025) is purpose-built for evaluation of end-to-end driving systems. Raised $1.5B; deploying robotaxi service with Uber/Nissan (Tokyo pilot, late 2026). [Yann LeCun](players.md#yann-lecun) is an investor.
+
+**Focus Areas**: Generative world models for autonomous driving, end-to-end driving, sim-to-real
+
+**Key Work**: GAIA-1 (2023), GAIA-2 (2024), GAIA-3 (Dec 2025, 15B params, driving system evaluation)
+
+**Collaborations**: Uber, Nissan (robotaxi deployment), [Yann LeCun](players.md#yann-lecun) (investor)
+
+**Links**: [Website](https://wayve.ai), [Research](https://wayve.ai/thinking/)
+
+### Physical Intelligence (π)
+
+**About**: Robotics foundation model company building vision-language-action (VLA) models for general-purpose robot manipulation. π0/π0.5 are not world models per se (policy models, not dynamics predictors), but represent a key consumer of world model outputs — translating scene understanding into dexterous actions. π0.5 (April 2025) enables open-world generalization. Raised $400M+; open-sourced via OpenPI.
+
+**Focus Areas**: VLA foundation models, robot manipulation, open-world generalization
+
+**Key Work**: π0 (2024), π0.5 (April 2025, open-world generalization), OpenPI (open-source release)
+
+**Collaborations**: —
+
+**Links**: [Website](https://www.physicalintelligence.company), [GitHub (OpenPI)](https://github.com/Physical-Intelligence/openpi)
+
+### Siemens
+
+**About**: Industrial conglomerate building "autonomous digital twins" — AI-driven simulations that optimize manufacturing in real time. Partnership with [NVIDIA](players.md#nvidia) (CES 2026) to create an "Industrial AI Operating System" using Omniverse and PhysicsNeMo; first AI-driven adaptive factory in Erlangen, 2026. Applies world model principles under established "digital twin" terminology. PepsiCo digital twin is a reference use case.
+
+**Focus Areas**: Autonomous digital twins, industrial AI, manufacturing optimization, predictive maintenance
+
+**Key Work**: Industrial AI Operating System (with [NVIDIA](players.md#nvidia)), AI-driven adaptive factory (Erlangen, 2026), PepsiCo digital twin
+
+**Collaborations**: [NVIDIA](players.md#nvidia) (Omniverse, PhysicsNeMo), PepsiCo
+
+**Links**: [Website](https://www.siemens.com), [Xcelerator](https://xcelerator.siemens.com)
+
+### Schneider Electric
+
+**About**: Energy management and industrial automation company deploying AI-driven digital twins for autonomous industrial operations. Targets 80% operational autonomy by 2030 across energy and chemicals verticals. Built AI factory power digital twin with ETAP on [NVIDIA](players.md#nvidia) Omniverse. Uses EcoStruxure platform with generative AI co-pilot for automation engineering.
+
+**Focus Areas**: Industrial digital twins, autonomous operations, energy management, process automation
+
+**Key Work**: AI factory power digital twin (with ETAP on Omniverse), EcoStruxure platform with generative AI co-pilot, 80% autonomy target by 2030
+
+**Collaborations**: [NVIDIA](players.md#nvidia) (Omniverse), ETAP
+
+**Links**: [Website](https://www.se.com), [EcoStruxure](https://www.se.com/ww/en/work/campaign/innovation/overview.jsp)
+
+### World Labs
+
+**About**: Founded by [Fei-Fei Li](players.md#fei-fei-li) to pursue "Spatial Intelligence" as the scaffolding for cognition. Their Marble model reconstructs persistent 3D worlds from multimodal inputs (text, images, 360-degree panoramas). The "Chisel" feature enables human-AI co-creation by letting users manually manipulate 3D structures before AI fills in visual details. Targeting VFX pre-visualization, architectural design, and synthetic data generation for robot training.
+
+**Focus Areas**: Spatial intelligence, 3D world reconstruction, persistent 3D worlds, human-AI co-creation
+
+**Key Work**: Marble (multimodal 3D world model), Chisel (interactive 3D editing)
+
+**Collaborations**: [Stanford](players.md#stanford-svl--sail) (via [Fei-Fei Li](players.md#fei-fei-li))
+
+**Links**: [Website](https://www.worldlabs.ai/), [Marble Blog](https://www.worldlabs.ai/blog/marble-world-model)
+
+### Verses AI
+
+**About**: Pursues a biology-inspired approach to world models based on Active Inference and the Free Energy Principle. Their AXIOM (Active eXpanding Inference with Object-centric Models) architecture unifies perception, planning, and control in a single generative model where agents actively seek to resolve epistemic uncertainty. Key differentiator: creates a hierarchy of intelligent agents within a single robot body — every joint is an agent with its own local understanding — enabling recovery from unexpected problems without retraining.
+
+**Focus Areas**: Active Inference, Free Energy Principle, object-centric models, hierarchical agents, embodied AI
+
+**Key Work**: AXIOM (Active Inference for arcade games and robotics), Shared Intelligence framework
+
+**Collaborations**: Karl Friston (scientific advisor, Free Energy Principle originator)
+
+**Links**: [Website](https://www.verses.ai/), [Research](https://www.verses.ai/research)
+
+### Figure AI
+
+**About**: Humanoid robotics company building general-purpose humanoid robots (Figure 01, Figure 02) for manufacturing and logistics. Uses visuomotor transformers that combine conversational AI with bimanual manipulation. Adopter of [NVIDIA](players.md#nvidia) Cosmos and GR00T N1 for synthetic training data generation and robot policy learning.
+
+**Focus Areas**: Humanoid robotics, visuomotor transformers, bimanual manipulation, manufacturing automation
+
+**Key Work**: Figure 01/02 humanoid robots, conversational AI + manipulation integration
+
+**Collaborations**: [NVIDIA](players.md#nvidia) (Cosmos, GR00T N1 adopter), OpenAI (conversational AI integration)
+
+**Links**: [Website](https://www.figure.ai/)
 
 ---
 
-**Note**: Each entry follows the player-entry template from `_templates/player-entry.md`.
+**Note**: Only includes seminal contributors and recognized thought leaders. Each entry follows the player-entry template from `_templates/player-entry.md`.

@@ -33,14 +33,15 @@ When this command is invoked:
    - For projects: Search GitHub via WebSearch
    - For general content: Multi-source search
 3. **Execute searches**:
-   - **arXiv**: Search with topic keywords + filter last 3-6 months
+   - **arXiv + TechRxiv**: Search with topic keywords + filter last 3-6 months
+   - **Google Scholar**: For applied/engineering papers that may not appear on preprint servers
    - **GitHub**: Search repos matching topic with stars>10
-   - **Blogs**: Search company blogs and researcher pages
-   - Use search queries from `research/_tools/preferred-sources.md`
+   - **Blogs**: Search both research lab and applied/industry blogs
+   - Use search queries from `research/_tools/preferred-sources.md` (both architecture and application queries)
 4. **Rank and filter results**:
-   - Relevance to world models research
+   - Relevance to world models research (foundational or applied)
    - Recency (prefer last 6 months for papers)
-   - Quality indicators (citations, stars, author reputation)
+   - Quality indicators (citations, stars, author reputation, real-world deployment evidence)
    - Avoid duplicates already in research documents
 5. **Present findings** to user:
    - Show top 5-10 results
@@ -51,10 +52,10 @@ When this command is invoked:
 
 ## Search Sources Priority
 
-1. **arXiv** - For academic papers
-2. **GitHub** - For open-source projects
-3. **Google Scholar** - For older foundational papers
-4. **Company blogs** - For industry perspectives
+1. **arXiv + TechRxiv** - For research papers (foundational and applied)
+2. **Google Scholar** - For applied/engineering papers, conference proceedings, and older work
+3. **GitHub** - For open-source projects
+4. **Company blogs** - Research labs and applied/industry perspectives
 5. **Researcher pages** - For latest work from key people
 
 Refer to `research/_tools/preferred-sources.md` for specific search queries and sources.

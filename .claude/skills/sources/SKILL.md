@@ -27,21 +27,26 @@ When this command is invoked:
 1. **Read preferred sources** from `research/_tools/preferred-sources.md`
 2. **Check each source category**:
 
-   **arXiv Searches** (Priority 1):
-   - Search each of the arXiv search queries
+   **Preprint Searches — Architectures & Methods** (Priority 1):
+   - Search arXiv and TechRxiv for architecture/method queries (JEPA, EBM, world models, BDH)
    - Filter to last 30 days only
    - Identify papers not yet in publications.md
 
-   **GitHub Organizations** (Priority 2):
+   **Preprint Searches — Applications & Use Cases** (Priority 2):
+   - Search arXiv, TechRxiv, and Google Scholar for application queries (robotics, AV, healthcare, industrial, telecom, scientific discovery)
+   - Filter to last 30 days
+   - Identify applied papers not yet in publications.md
+
+   **GitHub Organizations** (Priority 3):
    - Check listed GitHub orgs for new repos
    - Check for new releases on watched repos
    - Filter to last 30 days
 
-   **Company Blogs** (Priority 3):
-   - Scan recent posts (last 30 days) from company blogs
-   - Look for mentions of JEPA, EBM, world models
+   **Company Blogs — Research Labs & Industry** (Priority 4):
+   - Scan recent posts (last 30 days) from both research lab and applied/industry blogs
+   - Look for mentions of JEPA, EBM, world models, digital twins, Physical AI
 
-   **Researcher Pages** (Priority 4):
+   **Researcher Pages** (Priority 5):
    - Check Google Scholar pages for new publications
    - Check personal websites/blogs for new content
 

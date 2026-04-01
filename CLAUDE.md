@@ -2,19 +2,28 @@
 
 ## Project Purpose
 
-This is a living research notebook tracking AI world models research, with primary focus on:
+This is a living research notebook tracking AI world models research — both foundational and applied — with focus on:
 
+**Architectures & Methods**:
 - **JEPA (Joint-Embedding Predictive Architecture)** - Yann LeCun's self-supervised learning framework
 - **Energy-Based Models (EBMs)** - Models that learn energy landscapes for prediction and generation
 - **Dragon Hatchling (BDH)** - Baby Dragon Hatchling research in world models and autonomous AI
-- **Autonomous agents and robotics applications**
 - **Video prediction and spatial-temporal modeling**
+
+**Applications & Industry Use Cases**:
+- **Robotics** - Manipulation, navigation, task planning with world models
+- **Autonomous vehicles** - Driving, sim-to-real transfer, scene prediction
+- **Healthcare & medical imaging** - Clinical decision support, diagnostic AI
+- **Industrial & manufacturing** - Digital twins, process optimization, predictive maintenance
+- **Telecommunications** - Wireless channel modeling, network optimization
+- **Scientific discovery** - Physics simulation, molecular modeling
+- **Agentic AI** - Autonomous agents, web agents, tool use, planning with world models
 
 ### Goals
 
 1. Maintain current understanding of SOTA research and key players
 2. Track open-source implementations and communities
-3. Identify practical use cases and technical requirements
+3. Identify practical use cases, technical requirements, and industry adoption
 4. Support deliverable creation (one-pagers, investment briefs, PoC planning)
 
 ### Workflow Philosophy
@@ -147,7 +156,7 @@ Organize by **topic**, not chronologically:
 [Papers on world models, DreamerV3, etc.]
 
 ## Applications & Use Cases
-[Papers demonstrating practical applications]
+[Papers demonstrating practical applications — robotics, AV, healthcare, industrial, telecom, scientific discovery]
 
 ## Foundational / Theory
 [Theoretical foundations, surveys, position papers]
@@ -209,16 +218,31 @@ Organize by **industry vertical**:
 # Use Cases
 
 ## Robotics
-[Manipulation, navigation, etc.]
+[Manipulation, navigation, task planning]
 
 ## Autonomous Vehicles
-[Self-driving, planning]
+[Self-driving, path planning, sim-to-real]
+
+## Healthcare & Medical Imaging
+[Diagnostics, clinical decision support, surgical planning]
+
+## Industrial & Manufacturing
+[Digital twins, process optimization, predictive maintenance]
+
+## Telecommunications
+[Wireless channel modeling, network optimization, beam prediction]
 
 ## Gaming & Simulation
-[Game AI, virtual worlds]
+[Game AI, virtual worlds, procedural generation]
+
+## Scientific Discovery
+[Physics simulation, molecular modeling, materials design]
+
+## Agentic AI
+[Autonomous agents, web agents, tool use, planning with world models]
 
 ## Other Applications
-[Healthcare, finance, etc.]
+[Finance, energy, logistics, etc.]
 ```
 
 ## Style Guide

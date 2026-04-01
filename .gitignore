@@ -43,6 +43,9 @@ build/
 *.aux
 *.out
 
+# Downloaded papers (can be re-downloaded)
+research/library/
+
 # Local environment
 .env
 .env.local
