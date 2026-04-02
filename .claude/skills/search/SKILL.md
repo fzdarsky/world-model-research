@@ -1,7 +1,8 @@
 ---
 name: search
 description: Search for papers/projects on a topic and add them
-user-invokable: true
+user-invocable: true
+argument-hint: "<topic>"
 ---
 
 # Search for Research Content
@@ -10,13 +11,13 @@ Search for papers, projects, or other content on a specific topic.
 
 ## Usage
 
-```
+```text
 /search <topic>
 ```
 
 ## Examples
 
-```
+```text
 /search JEPA
 /search energy based models
 /search world models robotics
@@ -37,7 +38,7 @@ When this command is invoked:
    - **Google Scholar**: For applied/engineering papers that may not appear on preprint servers
    - **GitHub**: Search repos matching topic with stars>10
    - **Blogs**: Search both research lab and applied/industry blogs
-   - Use search queries from `research/_tools/preferred-sources.md` (both architecture and application queries)
+   - Use search queries from `research/tools/preferred-sources.md` (both architecture and application queries)
 4. **Rank and filter results**:
    - Relevance to world models research (foundational or applied)
    - Recency (prefer last 6 months for papers)
@@ -58,11 +59,11 @@ When this command is invoked:
 4. **Company blogs** - Research labs and applied/industry perspectives
 5. **Researcher pages** - For latest work from key people
 
-Refer to `research/_tools/preferred-sources.md` for specific search queries and sources.
+Refer to `research/tools/preferred-sources.md` for specific search queries and sources.
 
 ## Output Format
 
-```
+```text
 Found 8 results for "JEPA":
 
 Papers:

@@ -4,13 +4,16 @@
 
 This is a living research notebook tracking AI world models research — both foundational and applied — with focus on:
 
-**Architectures & Methods**:
-- **JEPA (Joint-Embedding Predictive Architecture)** - Yann LeCun's self-supervised learning framework
-- **Energy-Based Models (EBMs)** - Models that learn energy landscapes for prediction and generation
-- **Dragon Hatchling (BDH)** - Baby Dragon Hatchling research in world models and autonomous AI
-- **Video prediction and spatial-temporal modeling**
+**Architectures & Methods** (examples, not exhaustive):
+
+- **Predictive / latent-space models** - JEPA, Dreamer, Energy-Based Models — predict in abstract representation spaces
+- **Generative / pixel-space models** - Cosmos, Genie, GAIA, Sora — generate raw video/image observations
+- **Model-based RL** - DreamerV3, TD-MPC, MBPO — learn dynamics for planning and control
+- **Foundation models for Physical AI** - GR00T, pi0, world foundation models for robotics
+- **Biologically-inspired architectures** - BDH, Active Inference, spiking networks
 
 **Applications & Industry Use Cases**:
+
 - **Robotics** - Manipulation, navigation, task planning with world models
 - **Autonomous vehicles** - Driving, sim-to-real transfer, scene prediction
 - **Healthcare & medical imaging** - Clinical decision support, diagnostic AI
@@ -24,7 +27,7 @@ This is a living research notebook tracking AI world models research — both fo
 1. Maintain current understanding of SOTA research and key players
 2. Track open-source implementations and communities
 3. Identify practical use cases, technical requirements, and industry adoption
-4. Support deliverable creation (one-pagers, investment briefs, PoC planning)
+4. Support synthesis and analysis of research trends
 
 ### Workflow Philosophy
 
@@ -51,8 +54,8 @@ When the user provides a publication URL (paper, blog post, video, etc.):
    - Only include videos from well-known players/institutions
    - Types: talks, interviews, news about key players, tutorials
    - Include key timestamps if valuable sections are identified
-4. **Fill Template**: Use `research/_templates/publication-entry.md` as structure
-   - Add a 32x32 icon behind the title that links to the source. Pick the icon from `research/_templates/icons/` depending on the source type.
+4. **Fill Template**: Use `research/templates/publication-entry.md` as structure
+   - Add a 32x32 icon behind the title that links to the source. Pick the icon from `research/templates/icons/` depending on the source type.
 5. **Add to publications.md**: Insert under appropriate section (see Content Organization below)
 6. **Cross-link**:
    - If paper mentions new researchers/institutions → add to players.md
@@ -77,7 +80,7 @@ When extracting researcher, institution, or company information:
    - Key work (notable papers, projects, products)
    - Collaborations (with other key players)
    - Links (website, GitHub, Google Scholar, Twitter)
-3. **Fill Template**: Use `research/_templates/player-entry.md`
+3. **Fill Template**: Use `research/templates/player-entry.md`
 4. **Add to players.md**: Insert under appropriate section (Researchers | Institutions | Companies)
 5. **Avoid Duplicates**: Check if entry already exists before adding
 
@@ -95,7 +98,7 @@ When the user provides a GitHub URL or project website:
    - Status (Active | Maintained | Archived) - check last commit/release date
    - Stats (stars, forks, number of recent contributors, key contributing companies - to understand community health and controlling companies)
    - Last updated date
-3. **Fill Template**: Use `research/_templates/project-entry.md`
+3. **Fill Template**: Use `research/templates/project-entry.md`
 4. **Add to projects.md**: Insert under appropriate category
 
 ### Adding a Use Case
@@ -109,7 +112,7 @@ When identifying an application or industry use of world models:
    - Technical requirements (functionality it requires, quantitative performance objectives or constraints, etc.)
    - Current solutions (companies/projects working on this)
    - Research gaps (what's missing or needs improvement)
-2. **Fill Template**: Use `research/_templates/use-case-entry.md`
+2. **Fill Template**: Use `research/templates/use-case-entry.md`
 3. **Add to use-cases.md**: Insert under appropriate industry section
 
 ## Search Strategy
@@ -166,6 +169,7 @@ Organize by **topic**, not chronologically:
 ```
 
 **Video Guidelines**:
+
 - Only include videos from well-known researchers, institutions, or reputable channels
 - Types: conference talks, interviews, news coverage, technical tutorials
 - Include duration and key timestamps if applicable
@@ -309,6 +313,16 @@ All content must follow these principles:
 - Links to code if available
 - Performance metrics with dataset context
 
+### 7. Markdown Formatting
+
+Follow standard markdown linting rules (markdownlint). In particular:
+
+- Blank lines before and after headings, fenced code blocks, and lists
+- Language specifier on all fenced code blocks (e.g. ` ```python `, ` ```markdown `, ` ```text `)
+- No trailing whitespace or multiple consecutive blank lines
+
+**After making changes to Markdown files**: Run `npx markdownlint-cli "**/*.md" --ignore node_modules` to check for linting issues. Fix all errors before committing.
+
 ## Quality Standards
 
 Before adding content, verify:
@@ -335,16 +349,6 @@ Before adding content, verify:
 - Use case evolves or new solutions emerge
 - Correcting errors or adding missing information
 
-## Deliverables
-
-When user requests deliverable creation (one-pager, investment brief, PoC plan):
-
-1. **Review all research documents** to gather information
-2. **Synthesize**: Identify patterns, key themes, most important players/papers
-3. **Follow deliverable spec** from PLAN.md (target audience, length, sections)
-4. **Apply style guide**: Same principles apply to deliverables
-5. **Save to deliverables/** directory with descriptive name and date
-
 ## Maintenance Tasks
 
 ### Weekly (If Active)
@@ -361,7 +365,6 @@ When user requests deliverable creation (one-pager, investment brief, PoC plan):
 
 ### As Needed
 
-- Create or update deliverables
 - Reorganize sections if structure becomes unwieldy
 - Add new categories as research expands
 
@@ -380,10 +383,9 @@ See `.claude/skills/` for detailed implementation of each command.
 
 ### Natural Language
 
-1. **Providing URLs**: "Add this paper: https://arxiv.org/abs/..."
+1. **Providing URLs**: "Add this paper: `https://arxiv.org/abs/...`"
 2. **Requesting searches**: "Find recent papers on JEPA"
 3. **Asking for synthesis**: "What are the key themes in EBM research?"
-4. **Creating deliverables**: "Create a one-pager on world models"
 
 ## AI Assistant Role
 
@@ -395,4 +397,4 @@ As AI assistant, your role is to:
 - Cross-link related content
 - Keep documents organized and scannable
 
-When using slash commands, follow the detailed instructions in the skill files (`.claude/skills/add.md`, etc.).
+When using slash commands, follow the detailed instructions in the skill files (`.claude/skills/`).

@@ -1,7 +1,7 @@
 ---
 name: sources
 description: Check preferred sources for new content in last 30 days
-user-invokable: true
+user-invocable: true
 ---
 
 # Check Preferred Sources
@@ -10,13 +10,13 @@ Monitor preferred sources for new research content.
 
 ## Usage
 
-```
+```text
 /sources
 ```
 
 ## Examples
 
-```
+```text
 /sources
 ```
 
@@ -24,7 +24,7 @@ Monitor preferred sources for new research content.
 
 When this command is invoked:
 
-1. **Read preferred sources** from `research/_tools/preferred-sources.md`
+1. **Read preferred sources** from `research/tools/preferred-sources.md`
 2. **Check each source category**:
 
    **Preprint Searches — Architectures & Methods** (Priority 1):
@@ -67,7 +67,7 @@ When this command is invoked:
 
 ## Output Format
 
-```
+```text
 Checked preferred sources (last 30 days):
 
 📄 PAPERS (arXiv)

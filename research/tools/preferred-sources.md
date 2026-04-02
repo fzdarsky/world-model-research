@@ -16,6 +16,7 @@
 ### Search Queries
 
 **Architectures & Methods** (search on arXiv + TechRxiv):
+
 - **JEPA**: `"joint embedding predictive architecture"` OR `"JEPA"`
 - **Energy-Based Models**: `"energy based models"` OR `"energy-based models"`
 - **Dragon Hatchling**: `"baby dragon hatchling"` OR `"BDH"` OR `"dragon hatchling"`
@@ -23,6 +24,7 @@
 - **Self-Supervised**: `"self-supervised learning"` + `"representation"`
 
 **Applications & Use Cases** (search on arXiv + TechRxiv + Google Scholar):
+
 - **Robotics**: `"world models"` + (`"robot"` OR `"manipulation"` OR `"navigation"`)
 - **Autonomous Vehicles**: `"world models"` + (`"autonomous driving"` OR `"self-driving"` OR `"sim-to-real"`)
 - **Healthcare / Medical**: `"world models"` + (`"medical"` OR `"clinical"` OR `"healthcare"`)

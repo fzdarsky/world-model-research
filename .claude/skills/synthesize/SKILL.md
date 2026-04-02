@@ -1,7 +1,7 @@
 ---
 name: synthesize
 description: Review recent additions, identify patterns, organize entries
-user-invokable: true
+user-invocable: true
 ---
 
 # Synthesize Research Insights
@@ -10,13 +10,13 @@ Review recent additions and synthesize insights into key concepts.
 
 ## Usage
 
-```
+```text
 /synthesize
 ```
 
 ## Examples
 
-```
+```text
 /synthesize
 ```
 
@@ -87,7 +87,7 @@ Look for:
 
 ## Output Format
 
-```
+```text
 Synthesis Complete (YYYY-MM-DD)
 
 📊 Papers Reviewed: 12 recent additions

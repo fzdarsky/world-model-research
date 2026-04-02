@@ -467,5 +467,5 @@
 
 ---
 
-**Note**: Each entry follows the project-entry template from `_templates/project-entry.md`.
+**Note**: Each entry follows the project-entry template from `templates/project-entry.md`.
 Entries marked as "Archived" are no longer actively maintained.

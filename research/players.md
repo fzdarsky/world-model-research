@@ -422,4 +422,4 @@
 
 ---
 
-**Note**: Only includes seminal contributors and recognized thought leaders. Each entry follows the player-entry template from `_templates/player-entry.md`.
+**Note**: Only includes seminal contributors and recognized thought leaders. Each entry follows the player-entry template from `templates/player-entry.md`.

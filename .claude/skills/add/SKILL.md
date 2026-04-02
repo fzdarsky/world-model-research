@@ -1,7 +1,8 @@
 ---
 name: add
-description: Add a paper, project, or other research content to the notebook
-user-invokable: true
+description: Add a paper, project, or other research content to the notebook from a URL
+user-invocable: true
+argument-hint: "<url>"
 ---
 
 # Add Research Content
@@ -10,13 +11,13 @@ Add a paper, project, or other research content to the notebook.
 
 ## Usage
 
-```
+```text
 /add <url>
 ```
 
 ## Examples
 
-```
+```text
 /add https://arxiv.org/abs/2602.03604
 /add https://github.com/facebookresearch/jepa
 /add https://ai.meta.com/blog/yann-lecun-ai-model-i-jepa/
@@ -37,7 +38,7 @@ When this command is invoked:
    - For projects: name, description, teck stack, features, status, stats, last update
    - For players: name, type, focus areas, key work, key collaborators, links
    - For use cases: industry, description, technical requirements, solutions, gaps
-4. **Fill the appropriate template** from `research/_templates/`
+4. **Fill the appropriate template** from `research/templates/`
 5. **Add to the correct document**:
    - Publications → `research/publications.md` under appropriate topic section
    - Projects → `research/projects.md` under appropriate category

@@ -10,7 +10,7 @@
 
 *Papers, talks, and videos specifically about JEPA*
 
-### V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.14482)
+### V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.14482)
 
 **Authors/Presenters**: Lorenzo Mur-Labadia, Matthew Muckley, Amir Bar, Mido Assran, Koustuv Sinha, Mike Rabbat, [Yann LeCun](players.md#yann-lecun), Nicolas Ballas, Adrien Bardes
 
@@ -26,7 +26,7 @@
 
 **Relevance to World Models**: Direct successor to V-JEPA 2, addressing its weakness in dense (per-pixel/per-patch) feature quality while maintaining strong global representations. The 20-point robotics improvement demonstrates that dense features matter for world model downstream tasks — global scene understanding alone is insufficient for fine-grained manipulation planning.
 
-### VL-JEPA: Joint Embedding Predictive Architecture for Vision-language [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2512.10942)
+### VL-JEPA: Joint Embedding Predictive Architecture for Vision-language [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2512.10942)
 
 **Authors/Presenters**: Delong Chen, Mustafa Shukor, Theo Moutakanni, Willy Chung, Jade Yu, Tejaswi Kasarla, Yejin Bang, Allen Bolourchi, [Yann LeCun](players.md#yann-lecun), Pascale Fung
 
@@ -42,7 +42,7 @@
 
 **Relevance to World Models**: Demonstrates JEPA's scalability beyond vision to multimodal settings, a key step toward world models that integrate language understanding with visual prediction. Validates that predicting in embedding space (rather than token space) is viable for language tasks.
 
-### LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.19312)
+### LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.19312)
 
 **Authors/Presenters**: Lucas Maes, Quentin Le Lidec, Damien Scieur, [Yann LeCun](players.md#yann-lecun), Randall Balestriero
 
@@ -58,7 +58,7 @@
 
 **Relevance to World Models**: Directly addresses the fragility problem that has limited JEPA adoption for world modeling. By dramatically simplifying the training recipe (2 loss terms vs. 6), LeWM lowers the barrier to building JEPA-based world models from scratch without relying on foundation model encoders.
 
-### Causal-JEPA: Learning World Models through Object-Level Latent Interventions [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.11389)
+### Causal-JEPA: Learning World Models through Object-Level Latent Interventions [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.11389)
 
 **Authors/Presenters**: Heejeong Nam, Quentin Le Lidec, Lucas Maes, [Yann LeCun](players.md#yann-lecun), Randall Balestriero
 
@@ -74,7 +74,7 @@
 
 **Relevance to World Models**: Moves JEPA world models from correlation-based prediction toward causal understanding. The 100x reduction in required latent features for planning suggests object-centric representations are dramatically more efficient for control tasks — a key insight for scaling world models to complex environments.
 
-### What Drives Success in Physical Planning with Joint-Embedding Predictive World Models? [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2512.24497)
+### What Drives Success in Physical Planning with Joint-Embedding Predictive World Models? [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2512.24497)
 
 **Authors/Presenters**: Basile Terver, Tsung-Yen Yang, Jean Ponce, Adrien Bardes, [Yann LeCun](players.md#yann-lecun)
 
@@ -90,7 +90,7 @@
 
 **Relevance to World Models**: Essential reference for practitioners building JEPA-based world models — the first systematic study of which design decisions matter and why. Bridges the gap between JEPA theory and practical world model engineering.
 
-### ACT-JEPA: Novel Joint-Embedding Predictive Architecture for Efficient Policy Representation Learning [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2501.14622)
+### ACT-JEPA: Novel Joint-Embedding Predictive Architecture for Efficient Policy Representation Learning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2501.14622)
 
 **Authors/Presenters**: Aleksandar Vujinovic, Aleksandar Kovacevic
 
@@ -106,7 +106,7 @@
 
 **Relevance to World Models**: Shows JEPA can unify representation learning and policy learning in a single architecture. Rather than training a world model and policy separately, ACT-JEPA learns both jointly — potentially more sample-efficient for robotics applications.
 
-### Intrinsic-Energy Joint Embedding Predictive Architectures Induce Quasimetric Spaces [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.12245)
+### Intrinsic-Energy Joint Embedding Predictive Architectures Induce Quasimetric Spaces [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.12245)
 
 **Authors/Presenters**: Anthony Kobanda, Waris Radji
 
@@ -122,7 +122,7 @@
 
 **Relevance to World Models**: Provides theoretical grounding for using JEPA-style energy functions in planning and goal-reaching tasks. Connects world model representations to quasimetric structure, potentially enabling more principled planning algorithms.
 
-### A Lightweight Library for Energy-Based Joint-Embedding Predictive Architectures (EB-JEPA) [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.03604)
+### A Lightweight Library for Energy-Based Joint-Embedding Predictive Architectures (EB-JEPA) [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.03604)
 
 **Authors/Presenters**: Basile Terver, Randall Balestriero, Megi Dervishi, David Fan, Quentin Garrido, Tushar Nagarajan, Koustuv Sinha, Wancong Zhang, Mike Rabbat, [Yann LeCun](players.md#yann-lecun), Amir Bar
 
@@ -138,7 +138,7 @@
 
 **Relevance to World Models**: Directly addresses world modeling with JEPAs, providing accessible implementations and ablations. The action-conditioned video JEPA example demonstrates world modeling where the model predicts future states from observations and actions, enabling planning toward goal embeddings.
 
-### VJEPA: Variational Joint Embedding Predictive Architectures as Probabilistic World Models [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2601.14354)
+### VJEPA: Variational Joint Embedding Predictive Architectures as Probabilistic World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2601.14354)
 
 **Authors/Presenters**: Yongchao Huang
 
@@ -156,7 +156,7 @@
 
 **Relevance to World Models**: Foundational framework for scalable, uncertainty-aware world models in stochastic control that bridges representation learning with Bayesian filtering without expensive observation reconstruction. Addresses key limitation of deterministic JEPA by incorporating probabilistic semantics essential for planning under uncertainty.
 
-### WirelessJEPA: A Multi-Antenna Foundation Model using Spatio-temporal Wireless Latent Predictions [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2601.20190)
+### WirelessJEPA: A Multi-Antenna Foundation Model using Spatio-temporal Wireless Latent Predictions [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2601.20190)
 
 **Authors/Presenters**: Viet Chu, Omar Mashaal, Hatem Abou-Zeid
 
@@ -174,7 +174,7 @@
 
 **Relevance to World Models**: Domain-specific application demonstrating world model principles—using unsupervised predictive learning to build generalizable representations that transfer across tasks without explicit task engineering. Shows JEPA's applicability beyond vision/language to signal processing domains.
 
-### Le MuMo JEPA: Multi-Modal Self-Supervised Representation Learning with Learnable Fusion Tokens [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.24327)
+### Le MuMo JEPA: Multi-Modal Self-Supervised Representation Learning with Learnable Fusion Tokens [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.24327)
 
 **Authors/Presenters**: Ciem Cornelissen, Sam Leroux, Pieter Simoens
 
@@ -190,7 +190,7 @@
 
 **Relevance to World Models**: Demonstrates that JEPA-style prediction in latent space extends naturally to multi-modal sensor fusion — a requirement for real-world world models that must integrate heterogeneous inputs (camera, LiDAR, thermal) for autonomous driving and robotics.
 
-### EchoJEPA: A Latent Predictive Foundation Model for Echocardiography [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.02603)
+### EchoJEPA: A Latent Predictive Foundation Model for Echocardiography [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.02603)
 
 **Authors/Presenters**: Alif Munim, Adibvafa Fallahpour, Teodora Szasz, Ahmadreza Attarpour, River Jiang, Brana Sooriyakanthan, Maala Sooriyakanthan, Heather Whitney, Jeremy Slivnick, Barry Rubin, Wendy Tsang, Bo Wang
 
@@ -206,7 +206,7 @@
 
 **Relevance to World Models**: Demonstrates JEPA's applicability to medical imaging where the distinction between signal and noise is fundamentally different from natural video. The success of latent prediction over reconstruction validates the JEPA principle that predicting in representation space naturally filters task-irrelevant variation.
 
-### JEPA-MSAC: A Joint-Embedding Predictive Architecture for Multimodal Sensing-Assisted Communications [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.29796)
+### JEPA-MSAC: A Joint-Embedding Predictive Architecture for Multimodal Sensing-Assisted Communications [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.29796)
 
 **Authors/Presenters**: Can Zheng, Jiguang He, Guofa Cai, Nannan Li, Mehdi Bennis, Henk Wymeersch, Merouane Debbah
 
@@ -222,7 +222,7 @@
 
 **Relevance to World Models**: Another domain-specific JEPA application demonstrating the architecture's generality. Learns a predictive world model of wireless environments — capturing how channels, positions, and signals evolve — then reuses representations across multiple downstream tasks without retraining.
 
-### A Wireless World Model for AI-Native 6G Networks [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.25216)
+### A Wireless World Model for AI-Native 6G Networks [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.25216)
 
 **Authors/Presenters**: Ziqi Chen, Yi Ren, Yixuan Huang, Qi Sun, Nan Li, Yuhong Huang, Chih-Lin I, Yifan Li, Liang Xia
 
@@ -238,7 +238,7 @@
 
 **Relevance to World Models**: Builds on WirelessJEPA and JEPA-MSAC by adding multi-modal fusion (CSI + 3D point clouds + trajectories) through MoE, creating a more complete wireless world model. The physics-aware pre-training on synthetic ray-traced data parallels Cosmos's sim-to-real approach but in the wireless domain.
 
-### Tutorial on Joint Embedding Predictive Architectures (JEPA): Foundations, Applications, and Future Directions [<img src="_templates/icons/website.svg" alt="website" height="16">](https://www.techrxiv.org/users/866579/articles/1365143)
+### Tutorial on Joint Embedding Predictive Architectures (JEPA): Foundations, Applications, and Future Directions [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.techrxiv.org/users/866579/articles/1365143)
 
 **Authors/Presenters**: Mehdi Monemi, Maryam Chinipardaz, Mehdi Rasti, Mehdi Bennis
 
@@ -254,7 +254,7 @@
 
 **Relevance to World Models**: Serves as the definitive reference for JEPA architecture — bridging LeCun's theoretical vision with practical implementations. The agentic AI framework section directly maps JEPA to world model-based planning, making explicit the connection between representation learning and autonomous decision-making.
 
-### 14 JEPA Milestones as a Map of AI Progress [<img src="_templates/icons/website.svg" alt="website" height="16">](https://lifeboat.com/blog/2026/03/14-jepa-milestones-as-a-map-of-ai-progress)
+### 14 JEPA Milestones as a Map of AI Progress [<img src="templates/icons/website.svg" alt="website" height="16">](https://lifeboat.com/blog/2026/03/14-jepa-milestones-as-a-map-of-ai-progress)
 
 **Authors/Presenters**: Lifeboat News / TuringPost
 
@@ -276,7 +276,7 @@
 
 *Papers, talks, and videos on EBMs for prediction and generation*
 
-### Autoregressive Language Models are Secretly Energy-Based Models: Insights into the Lookahead Capabilities of Next-Token Prediction [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2512.15605)
+### Autoregressive Language Models are Secretly Energy-Based Models: Insights into the Lookahead Capabilities of Next-Token Prediction [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2512.15605)
 
 **Authors/Presenters**: Mathieu Blondel, Michael E. Sander, Germain Vivier-Ardisson, Tianlin Liu, Vincent Roulet
 
@@ -298,7 +298,7 @@
 
 *Research on Baby Dragon Hatchling models*
 
-### The Dragon Hatchling: The Missing Link between the Transformer and Models of the Brain [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2509.26507)
+### The Dragon Hatchling: The Missing Link between the Transformer and Models of the Brain [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2509.26507)
 
 **Authors/Presenters**: [Adrian Kosowski](players.md#adrian-kosowski), Przemysław Uznański, Jan Chorowski, Zuzanna Stamirowska, Michał Bartoszkiewicz
 
@@ -321,7 +321,7 @@
 
 *Papers on world models, DreamerV3, latent models, etc.*
 
-### VLA-MBPO: Towards Practical World Model-based Reinforcement Learning for Vision-Language-Action Models [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.20607)
+### VLA-MBPO: Towards Practical World Model-based Reinforcement Learning for Vision-Language-Action Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.20607)
 
 **Authors/Presenters**: Zhilong Zhang, Haoxiang Ren, Yihao Sun, Yifei Sheng, Haonan Wang, Haoxin Lin, Zhichao Wu, Pierre-Luc Bacon, Yang Yu
 
@@ -337,7 +337,7 @@
 
 **Relevance to World Models**: Bridges VLA models (strong generalization from language grounding) with world model-based RL (sample-efficient learning). Demonstrates practical integration path where world models serve as safe, cheap training environments for large pretrained robotic policies.
 
-### R2-Dreamer: Redundancy-Reduced World Models without Decoders or Augmentation [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.18202)
+### R2-Dreamer: Redundancy-Reduced World Models without Decoders or Augmentation [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.18202)
 
 **Authors/Presenters**: Naoki Morihira, Amal Nahar, Kartik Bharadwaj, Yasuhiro Kato, Akinobu Hayashi, Tatsuya Harada
 
@@ -353,7 +353,7 @@
 
 **Relevance to World Models**: Advances decoder-free world models by replacing heuristic data augmentation with principled self-supervised regularization. The Barlow Twins connection parallels VICReg in JEPA — both use redundancy reduction to prevent collapse, suggesting convergent design principles across world model architectures.
 
-### NE-Dreamer: Next Embedding Prediction Makes World Models Stronger [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.02765)
+### NE-Dreamer: Next Embedding Prediction Makes World Models Stronger [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.02765)
 
 **Authors/Presenters**: George Bredis, Nikita Balagansky, Daniil Gavrilov, Ruslan Rakhimov
 
@@ -369,7 +369,7 @@
 
 **Relevance to World Models**: Directly implements the JEPA principle — predicting in embedding space rather than pixel space — within the Dreamer family of world models. Demonstrates that next-embedding prediction with temporal transformers is a viable alternative to reconstruction-based world models, with particular advantages for tasks requiring memory and reasoning.
 
-### RLVR-World: Training World Models with Reinforcement Learning [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2505.13934)
+### RLVR-World: Training World Models with Reinforcement Learning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2505.13934)
 
 **Authors/Presenters**: Jialong Wu, Shaofeng Yin, Ningya Feng, Mingsheng Long
 
@@ -385,7 +385,7 @@
 
 **Relevance to World Models**: Introduces RL-based post-training as a complement to supervised pretraining for world models. Rather than learning to predict next tokens/pixels accurately, RLVR optimizes for task-relevant transition quality — a shift that parallels the JEPA philosophy of learning useful representations over faithful reconstruction.
 
-### WorldCompass: Reinforcement Learning for Long-Horizon World Models [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.09022)
+### WorldCompass: Reinforcement Learning for Long-Horizon World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.09022)
 
 **Authors/Presenters**: Zehan Wang, Tengfei Wang, Haiyu Zhang, Xuhui Zuo, Junta Wu, Haoyuan Wang, Wenqiang Sun, Zhenwei Wang, Chenjie Cao, Hengshuang Zhao, Chunchao Guo, Zhou Zhao
 
@@ -401,7 +401,7 @@
 
 **Relevance to World Models**: Directly tackles a core challenge in video-based world models: maintaining consistency and accuracy over long horizons. RL post-training approach is complementary to JEPA-style pretraining and could be applied to JEPA-based world models.
 
-### Reinforcement World Model Learning for LLM-based Agents [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.05842)
+### Reinforcement World Model Learning for LLM-based Agents [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.05842)
 
 **Authors/Presenters**: Xiao Yu, Baolin Peng, Ruize Xu, Yelong Shen, Pengcheng He, Suman Nath, Nikhil Singh, Jiangfeng Gao, Zhou Yu
 
@@ -419,7 +419,7 @@
 
 **Relevance to World Models**: Directly advances world models for textual environments by enabling LLMs to learn action-conditioned dynamics models. Shows that world model learning via RL can be more effective than direct task reward optimization, validating model-based approaches for LLM agents.
 
-### Optimistic World Models: Efficient Exploration in Model-Based Deep Reinforcement Learning [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.10044)
+### Optimistic World Models: Efficient Exploration in Model-Based Deep Reinforcement Learning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.10044)
 
 **Authors/Presenters**: Akshay Mete, Shahid Aamir Sheikh, Tzu-Hsiang Lin, Dileep Kalathil, P. R. Kumar
 
@@ -437,7 +437,7 @@
 
 **Relevance to World Models**: Directly advances world model-based RL by providing principled methodology for efficient exploration. Demonstrates that classical control theory (RBMLE) can be successfully integrated with modern deep world models, offering scalable exploration without expensive uncertainty quantification.
 
-### From Word to World: Can Large Language Models be Implicit Text-based World Models? [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2512.18832)
+### From Word to World: Can Large Language Models be Implicit Text-based World Models? [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2512.18832)
 
 **Authors/Presenters**: Yixia Li, Hongru Wang, Jiahao Qiu, Zhenfei Yin, Dongdong Zhang, Cheng Qian, Zeping Li, Pony Ma, Guanhua Chen, Heng Ji
 
@@ -453,7 +453,7 @@
 
 **Relevance to World Models**: Complements visual/latent world models by evaluating whether LLMs can serve as text-domain world models. The finding that benefits scale with data/model size but break down with insufficient behavioral coverage mirrors challenges in visual world models, suggesting shared principles across modalities.
 
-### Cosmos World Foundation Model Platform for Physical AI [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2501.03575)
+### Cosmos World Foundation Model Platform for Physical AI [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2501.03575)
 
 **Authors/Presenters**: Niket Agarwal, Arslan Ali, Maciej Bala, Yogesh Balaji, Erik Barker, + 72 others ([NVIDIA](players.md#nvidia))
 
@@ -470,7 +470,7 @@
 
 **Relevance to World Models**: Defines the industrial paradigm for world foundation models — general-purpose video prediction models fine-tunable into domain-specific world simulators. Contrasts with JEPA's latent-space approach by operating in video/pixel space, making predictions directly renderable and inspectable but potentially less efficient for planning.
 
-### World Simulation with Video Foundation Models for Physical AI (Cosmos-Predict2.5) [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2511.00062)
+### World Simulation with Video Foundation Models for Physical AI (Cosmos-Predict2.5) [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2511.00062)
 
 **Authors/Presenters**: Arslan Ali, Junjie Bai, Maciej Bala, Yogesh Balaji, Aaron Blakeman, + 83 others ([NVIDIA](players.md#nvidia))
 
@@ -487,7 +487,7 @@
 
 **Relevance to World Models**: Represents the current SOTA for industrial video-based world models. The shift from diffusion to flow-based architecture and integration of physical reasoning (via Cosmos-Reason1) shows convergence toward world models that understand physics, not just generate plausible video. The Sim2Real transfer capability directly enables robotics applications.
 
-### Cosmos-Reason1: From Physical Common Sense to Embodied Reasoning [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2503.15558)
+### Cosmos-Reason1: From Physical Common Sense to Embodied Reasoning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2503.15558)
 
 **Authors/Presenters**: Alisson Azzolini, Junjie Bai, Hannah Brandon, Jiaxin Cao, Prithvijit Chattopadhyay, + 47 others ([NVIDIA](players.md#nvidia))
 
@@ -504,7 +504,7 @@
 
 **Relevance to World Models**: Adds explicit physical reasoning to world models — rather than learning physics implicitly from video prediction, Cosmos-Reason encodes physical common sense as structured knowledge. Complementary to JEPA-style approaches: where JEPA learns physics from prediction, Cosmos-Reason provides explicit physical ontologies that can guide and constrain world model predictions.
 
-### Genie 3: A New Frontier for World Models [<img src="_templates/icons/website.svg" alt="website" height="16">](https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/)
+### Genie 3: A New Frontier for World Models [<img src="templates/icons/website.svg" alt="website" height="16">](https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/)
 
 **Authors/Presenters**: Jack Parker-Holder, Shlomi Fruchter (Google DeepMind)
 
@@ -521,7 +521,7 @@
 
 **Relevance to World Models**: Represents DeepMind's approach to interactive world models — operating in pixel space (like Cosmos) rather than latent space (like JEPA). The real-time interaction capability is a significant engineering achievement, though the minutes-scale consistency horizon and restricted action spaces highlight remaining challenges for using video-based world models as true environment simulators.
 
-### Marble: A Multimodal World Model [<img src="_templates/icons/website.svg" alt="website" height="16">](https://www.worldlabs.ai/blog/marble-world-model)
+### Marble: A Multimodal World Model [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.worldlabs.ai/blog/marble-world-model)
 
 **Authors/Presenters**: [World Labs](players.md#world-labs) ([Fei-Fei Li](players.md#fei-fei-li))
 
@@ -538,7 +538,7 @@
 
 **Relevance to World Models**: Represents the 3D-space paradigm — lifting 2D inputs into persistent 3D structures rather than generating video (Cosmos) or predicting in latent space (JEPA). The Chisel tool's human-in-the-loop editing exemplifies "Spatial Intelligence": combining human structural knowledge with AI visual generation. Adopted by studios for VFX pre-visualization and by researchers for robot training data.
 
-### DreamerV3: Mastering Diverse Domains through World Models [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2301.04104)
+### DreamerV3: Mastering Diverse Domains through World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2301.04104)
 
 **Authors/Presenters**: Danijar Hafner, Jurgis Pasukonis, Jimmy Ba, Timothy Lillicrap
 
@@ -555,7 +555,7 @@
 
 **Relevance to World Models**: The foundational RSSM-based world model architecture and primary baseline for subsequent work (R2-Dreamer, NE-Dreamer, Optimistic DreamerV3). DreamerV3's decoder-reconstruction approach contrasts with JEPA's decoder-free prediction — R2-Dreamer and NE-Dreamer independently converge toward JEPA principles by eliminating the decoder, suggesting reconstruction is unnecessary for effective world modeling.
 
-### AXIOM: Active Inference for Object-Centric World Models [<img src="_templates/icons/website.svg" alt="website" height="16">](https://www.verses.ai/research-blog/axiom-mastering-arcade-games-in-minutes-with-active-inference-and-structure-learning)
+### AXIOM: Active Inference for Object-Centric World Models [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.verses.ai/research-blog/axiom-mastering-arcade-games-in-minutes-with-active-inference-and-structure-learning)
 
 **Authors/Presenters**: [Verses AI](players.md#verses-ai)
 
@@ -578,7 +578,7 @@
 
 *Papers demonstrating practical applications in robotics, autonomous systems, etc.*
 
-### GAIA-1: A Generative World Model for Autonomous Driving [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2309.17080)
+### GAIA-1: A Generative World Model for Autonomous Driving [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2309.17080)
 
 **Authors/Presenters**: Anthony Hu, Lloyd Russell, Hudson Yeo, Zak Murez, George Fedoseev, Alex Mayol Kendall, Jamie Sherrah, [Wayve](players.md#wayve)
 
@@ -595,7 +595,7 @@
 
 **Relevance to World Models**: Demonstrates that autoregressive next-token prediction — the same paradigm behind LLMs — can learn a world model of driving dynamics from raw sensor data. Contrasts with JEPA's latent-space approach: GAIA operates in discrete token space, making it directly inspectable but potentially less efficient for planning. The GAIA-1 to GAIA-3 progression mirrors the broader trend from world model as generator to world model as simulator/evaluator.
 
-### NVIDIA Isaac GR00T N1: Open Foundation Model for Humanoid Robots [<img src="_templates/icons/website.svg" alt="website" height="16">](https://nvidianews.nvidia.com/news/nvidia-isaac-gr00t-n1-open-humanoid-robot-foundation-model-simulation-frameworks)
+### NVIDIA Isaac GR00T N1: Open Foundation Model for Humanoid Robots [<img src="templates/icons/website.svg" alt="website" height="16">](https://nvidianews.nvidia.com/news/nvidia-isaac-gr00t-n1-open-humanoid-robot-foundation-model-simulation-frameworks)
 
 **Authors/Presenters**: [NVIDIA](players.md#nvidia)
 
@@ -612,7 +612,7 @@
 
 **Relevance to World Models**: While not a world model itself, GR00T N1 represents the downstream consumer of world models in robotics — a VLA policy that benefits from synthetic data generated by world simulators (Cosmos, Isaac Sim). The dual-system architecture parallels the MLLM-WM fusion proposed in embodied AI surveys: System 2 provides semantic reasoning while System 1 handles reactive control.
 
-### Oracle-Efficient Safety Verification for Model-Based Robotic Planning via ADMM [<img src="_templates/icons/website.svg" alt="website" height="16">](https://www.techrxiv.org/users/1007321/articles/1389422)
+### Oracle-Efficient Safety Verification for Model-Based Robotic Planning via ADMM [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.techrxiv.org/users/1007321/articles/1389422)
 
 **Authors/Presenters**: Khazretgali Sapenov, Aidos Sapenov
 
@@ -628,7 +628,7 @@
 
 **Relevance to World Models**: Directly addresses a critical deployment barrier: learned world models (including JEPA) are fast but can produce unsafe plans. By combining JEPA planning with simulator verification via ADMM, this work provides a practical safety layer that makes world model-based robotic planning viable in safety-critical settings.
 
-### Progressive Robustness-Aware World Models in Autonomous Driving: A Review and Outlook [<img src="_templates/icons/website.svg" alt="website" height="16">](https://www.techrxiv.org/users/1003906/articles/1364209)
+### Progressive Robustness-Aware World Models in Autonomous Driving: A Review and Outlook [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.techrxiv.org/users/1003906/articles/1364209)
 
 **Authors/Presenters**: Feiyang Jia, Caiyan Jia, Ziying Song, Zhicheng Bao, Lin Liu, Shaoqing Xu, Yan Gong, Lei Yang, Xinyu Zhang, Bin Sun, Xiaoshuai Hao, Long Chen, Yadan Luo
 
@@ -644,7 +644,7 @@
 
 **Relevance to World Models**: Provides the first robustness-centered evaluation framework for driving world models. The three-stage progression mirrors the maturity of the field — from measuring model quality in isolation to assessing real-world deployment readiness. Useful for benchmarking both JEPA-based and video-based (Cosmos, Genie) approaches against robustness criteria.
 
-### NVIDIA Cosmos: Major Platform Release (GTC 2026) [<img src="_templates/icons/website.svg" alt="website" height="16">](https://nvidianews.nvidia.com/news/nvidia-announces-major-release-of-cosmos-world-foundation-models-and-physical-ai-data-tools)
+### NVIDIA Cosmos: Major Platform Release (GTC 2026) [<img src="templates/icons/website.svg" alt="website" height="16">](https://nvidianews.nvidia.com/news/nvidia-announces-major-release-of-cosmos-world-foundation-models-and-physical-ai-data-tools)
 
 **Authors/Presenters**: [NVIDIA](players.md#nvidia)
 
@@ -661,7 +661,7 @@
 
 **Relevance to World Models**: Marks the transition of video-based world models from research to industrial deployment platform. The breadth of industry adoption (humanoid robots, AVs, surgical robots) validates the WFM approach for generating training data at scale. Complements JEPA-based approaches: Cosmos excels at generating inspectable video data while JEPA excels at efficient latent planning.
 
-### The Waymo World Model: A New Frontier for Autonomous Driving Simulation [<img src="_templates/icons/website.svg" alt="website" height="16">](https://waymo.com/blog/2026/02/the-waymo-world-model-a-new-frontier-for-autonomous-driving-simulation/)
+### The Waymo World Model: A New Frontier for Autonomous Driving Simulation [<img src="templates/icons/website.svg" alt="website" height="16">](https://waymo.com/blog/2026/02/the-waymo-world-model-a-new-frontier-for-autonomous-driving-simulation/)
 
 **Authors/Presenters**: Waymo
 
@@ -678,7 +678,7 @@
 
 **Relevance to World Models**: Demonstrates the first production deployment of a video-based world model (Genie 3) for safety-critical autonomous driving simulation. The multi-sensor generation (camera + LiDAR) and controllable scenario generation represent a concrete industrial use case where world models directly improve safety outcomes through comprehensive testing of edge cases.
 
-### Counterfactual World Models via Digital Twin-conditioned Video Diffusion [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2511.17481)
+### Counterfactual World Models via Digital Twin-conditioned Video Diffusion [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2511.17481)
 
 **Authors/Presenters**: Zifan Shen, Alena Maksutova, Dan Zhang, Tobias Weyand
 
@@ -700,7 +700,7 @@
 
 *Theoretical foundations, surveys, position papers*
 
-### Learning to Model the World: A Survey of World Models in Artificial Intelligence [<img src="_templates/icons/website.svg" alt="website" height="16">](https://www.techrxiv.org/doi/full/10.36227/techrxiv.177274570.09578608/v1)
+### Learning to Model the World: A Survey of World Models in Artificial Intelligence [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.techrxiv.org/doi/full/10.36227/techrxiv.177274570.09578608/v1)
 
 **Authors/Presenters**: Jiahua Dong, Qi Lyu, Baichen Liu, Xudong Wang, Wenqi Liang, Duzhen Zhang, Jiahang Tu, Hongliu Li, Hanbin Zhao, Henghui Ding, Yulun Zhang, Zhi Han, Nicu Sebe, Fahad Shahbaz Khan, Salman Khan, Mubarak Shah, Philip Torr, Ming-Hsuan Yang, Dacheng Tao
 
@@ -716,7 +716,7 @@
 
 **Relevance to World Models**: Provides a structured map of the entire world models landscape as of early 2026. The four-branch taxonomy is useful for positioning JEPA (latent space branch) and Cosmos (observation-level branch) relative to each other and to alternatives. Companion [Awesome-World-Models](https://github.com/JiahuaDong/Awesome-World-Models) repo serves as a living index of the field.
 
-### Ilya Sutskever: The End of AI Scaling and the Rise of Safe Superintelligence [<img src="_templates/icons/website.svg" alt="website" height="16">](https://www.the-ai-corner.com/p/ilya-sutskever-safe-superintelligence-agi-2025)
+### Ilya Sutskever: The End of AI Scaling and the Rise of Safe Superintelligence [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.the-ai-corner.com/p/ilya-sutskever-safe-superintelligence-agi-2025)
 
 **Authors/Presenters**: The AI Corner (summary of [Ilya Sutskever](players.md#ilya-sutskever)'s interview with Dwarkesh Patel)
 
@@ -733,7 +733,7 @@
 
 **Relevance to World Models**: Sutskever's emphasis on continual learning, generalization beyond benchmarks, and moving beyond the transformer paradigm aligns directly with the world models research agenda. His framing of AGI as a "superintelligent learner" rather than an "all-knowing oracle" echoes the world models premise: intelligence requires building and updating internal models of the world through experience.
 
-### It's Hard to Feel the AGI [<img src="_templates/icons/website.svg" alt="website" height="16">](https://tensorlabbet.com/2025/11/30/hard-to-feel-agi/)
+### It's Hard to Feel the AGI [<img src="templates/icons/website.svg" alt="website" height="16">](https://tensorlabbet.com/2025/11/30/hard-to-feel-agi/)
 
 **Authors/Presenters**: Taro Langner (Tensor Labbet)
 
@@ -750,7 +750,7 @@
 
 **Relevance to World Models**: The Big World Hypothesis provides a theoretical motivation for world models: static pre-trained models cannot capture the complexity of dynamic environments. The convergence of Sutskever, Karpathy, and LeCun on continual learning as a key missing ingredient validates the world models research direction.
 
-### Superintelligent Agents Pose Catastrophic Risks: Can Scientist AI Offer a Safer Path? [<img src="_templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2502.15657)
+### Superintelligent Agents Pose Catastrophic Risks: Can Scientist AI Offer a Safer Path? [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2502.15657)
 
 **Authors/Presenters**: Yoshua Bengio, Michael Cohen, Damiano Fornasiere, Joumana Ghosn, Pietro Greiner, Matt MacDermott, Sören Mindermann, Adam Oberman, Jesse Richardson, Oliver Richardson, Marc-Antoine Rondeau, Pierre-Luc St-Charles, David Williams-King
 
@@ -767,7 +767,7 @@
 
 **Relevance to World Models**: Directly advocates world models as the core component of safe AI. The Scientist AI proposal — a system that builds accurate internal representations of reality rather than autonomously acting on goals — aligns with the world models vision. Provides a safety-motivated argument for why world models should be developed before (or instead of) autonomous agents.
 
-### Embodied AI: From LLMs to World Models [<img src="_templates/icons/website.svg" alt="website" height="16">](https://www.techrxiv.org/doi/full/10.36227/techrxiv.175977432.27129012/v1)
+### Embodied AI: From LLMs to World Models [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.techrxiv.org/doi/full/10.36227/techrxiv.175977432.27129012/v1)
 
 **Authors/Presenters**: Tongtong Feng, Xin Wang, Wenwu Zhu (Tsinghua University), Yu-Gang Jiang (Fudan University)
 
@@ -783,7 +783,7 @@
 
 **Relevance to World Models**: Provides the clearest side-by-side comparison of the three dominant world model architecture families (RSSM, JEPA, Transformer). The proposed MLLM-WM fusion architecture directly addresses the limitation that world models lack semantic understanding — relevant to bridging JEPA-style physics prediction with language-based task planning.
 
-### Integrating World Models into Vision Language Action and Navigation: A Comprehensive Survey [<img src="_templates/icons/website.svg" alt="website" height="16">](https://www.techrxiv.org/users/1002875/articles/1364568)
+### Integrating World Models into Vision Language Action and Navigation: A Comprehensive Survey [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.techrxiv.org/users/1002875/articles/1364568)
 
 **Authors/Presenters**: (TechRxiv preprint)
 
@@ -807,6 +807,6 @@
 
 ---
 
-**Note**: Organized by topic, not chronologically. Each entry follows the publication-entry template from `_templates/publication-entry.md`.
+**Note**: Organized by topic, not chronologically. Each entry follows the publication-entry template from `templates/publication-entry.md`.
 
 **Videos**: Only includes videos from well-known researchers, institutions, or reputable channels. Types: conference talks, interviews, news coverage, technical tutorials.

@@ -156,5 +156,5 @@
 
 ---
 
-**Note**: Each entry follows the use-case-entry template from `_templates/use-case-entry.md`.
+**Note**: Each entry follows the use-case-entry template from `templates/use-case-entry.md`.
 Use cases include technical requirements, current solutions, and research gaps.

@@ -2,8 +2,14 @@
   "permissions": {
     "allow": [
       "WebFetch",
+      "WebSearch",
+      "Bash(tree *)",
+      "Bash(ls *)",
+      "Bash(find *)",
+      "Bash(wc *)",
       "Bash(curl -sL -o *)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "Bash(npx markdownlint-cli:*)"
     ]
   }
 }
