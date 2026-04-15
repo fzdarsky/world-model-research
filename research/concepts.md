@@ -186,6 +186,16 @@ World models are internal representations of environment dynamics that enable ag
 - **Latent-space** (JEPA): Efficient planning and control for robotics. AMI Labs commercializing. Research community producing accessible tooling (EB-JEPA, stable-worldmodel, LeWM).
 - **3D-space** ([World Labs](players.md#world-labs) Marble): Persistent 3D world reconstruction from multimodal inputs. Human-AI co-creation via Chisel editing. Adopted for VFX, architecture, and robot training data generation. Distinct from pixel-space (generates navigable 3D structures, not video) and latent-space (outputs are directly inspectable and editable).
 
+**Embodied AI architecture taxonomy** (a16z framing, complementary to world model paradigms):
+
+The a16z "Frontier Systems for the Physical World" essay proposes a three-way classification for how physical AI systems acquire world knowledge:
+
+- **Vision-Language-Action (VLA) Models**: Scale pretrained vision-language models (internet images + text) with action decoders. *Examples*: [Physical Intelligence](players.md#physical-intelligence-π) π0/π0.5, [NVIDIA](players.md#nvidia) GR00T N1
+- **World Action Models (WAMs)**: Build on video diffusion transformers, inheriting physical dynamics priors from video prediction. The world model is embedded in the video backbone — jointly predicts future frames and actions through shared denoising. *Examples*: [NVIDIA](players.md#nvidia) DreamZero (14B params, 2x generalization vs. VLAs), planned GR00T N2
+- **Native Embodied Foundation Models**: Train from scratch on physical interaction data (wearables, teleoperation) rather than internet images. *Examples*: [Generalist AI](players.md#generalist-ai) GEN-1 (500K hours of wearable data, 99% task success)
+
+*Key insight*: WAMs represent a fusion of world models and policy learning — treating video generation as an implicit visual planner that guides action production. This contrasts with modular approaches where world model and policy are trained separately.
+
 **Emerging alternative paradigm**: [Active Inference](concepts.md#active-inference) ([Verses AI](players.md#verses-ai) AXIOM) — unifies perception, planning, and control via the Free Energy Principle. Object-centric, hierarchical agent structure. Theoretically distinct from all three paradigms above but with potential complementarity. See dedicated Active Inference section below.
 
 **Convergence signals**:

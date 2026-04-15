@@ -292,6 +292,23 @@
 
 **Relevance to World Models**: Bridges autoregressive and energy-based frameworks theoretically, suggesting that next-token predictors implicitly learn energy landscapes. Relevant to understanding how world models might plan ahead using energy-based formulations rather than explicit rollouts.
 
+### Kona 1.0: Energy-Based Reasoning Model [<img src="templates/icons/website.svg" alt="website" height="16">](https://logicalintelligence.com/kona-ebms-energy-based-models)
+
+**Authors/Presenters**: Eve Bodnia, [Logical Intelligence](players.md#logical-intelligence)
+
+**Date**: 2026-01
+
+**Summary**: First commercial Energy-Based Reasoning Model (EBRM) designed for constraint satisfaction in critical systems. Unlike autoregressive LLMs that predict likely next tokens, Kona maps candidate solutions onto an energy landscape and navigates to minimum-energy (valid) states. Non-autoregressive at the trace level — generates complete reasoning traces simultaneously using continuous vector tokens rather than discrete tokens.
+
+**Key Findings**:
+
+- 96.2% Sudoku solve rate in 313ms average vs. 2% for leading LLMs (GPT-5.2, Claude Opus, Gemini, DeepSeek) taking up to 90 seconds — runs on single NVIDIA H100
+- Non-autoregressive architecture enables bidirectional optimization — can revise any section of a reasoning trace without regenerating long prefixes
+- Continuous latent space reasoning with dense vector tokens enables gradient-based refinement impossible with discrete token representations
+- Aleph (orchestration layer) achieved near-perfect score on PutnamBench formal mathematics benchmark
+
+**Relevance to World Models**: First commercial implementation of EBM principles for reasoning, with [Yann LeCun](players.md#yann-lecun) as Founding Chair of Technical Research Board. Shares key properties with JEPA: continuous latent space, non-autoregressive generation, energy minimization. Where JEPA learns representations via prediction, Kona applies EBM principles to constraint satisfaction — complementary applications of the same paradigm. Validates LeCun's thesis that energy-based approaches offer advantages over autoregressive models for tasks requiring global coherence.
+
 ---
 
 ## Dragon Hatchling (BDH)
@@ -320,6 +337,59 @@
 ## World Models & Model-Based RL
 
 *Papers on world models, DreamerV3, latent models, etc.*
+
+### DreamZero: World Action Models are Zero-shot Policies [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.15922)
+
+**Authors/Presenters**: Seonghyeon Ye, Yunhao Ge, Jim Fan, Yuke Zhu ([NVIDIA](players.md#nvidia) GEAR Lab)
+
+**Date**: 2026-02
+
+**Summary**: Introduces World Action Models (WAMs), a 14B-parameter architecture that jointly predicts video frames and robot actions through a shared denoising objective built on a pretrained video diffusion backbone (Wan2.1-I2V). Unlike VLAs trained on static image-text pairs, WAMs learn physical dynamics by predicting future world states and using video as a dense representation of how the world evolves.
+
+**Key Findings**:
+
+- 62.2% average task progress on seen tasks vs. 27.4% for pretrained VLAs; 39.5% vs. 16.3% on unseen tasks — 2x better generalization
+- Cross-embodiment transfer: 12 minutes of human video yields >42% improvement on unseen tasks; adapts to new robot (YAM) with 30 minutes of play data
+- Diverse training data outperforms repetitive demonstrations — key insight reverses conventional robotics wisdom
+- DreamZero-Flash achieves single-step inference at ~150ms via decoupled noise schedules; 38x speedup through system/implementation/model optimizations
+- GR00T N2 (planned end 2026) will be built on DreamZero architecture
+
+**Relevance to World Models**: Establishes World Action Models as a new architecture family alongside VLAs and JEPA-based world models. WAMs treat video generation as an implicit visual planner guiding action production — the world model is embedded in the video diffusion backbone rather than being a separate component. Jim Fan characterizes this as the "GPT-2 moment" for robotics.
+
+### π*0.6 and RECAP: A VLA that Learns from Experience [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.pi.website/blog/pistar06)
+
+**Authors/Presenters**: [Physical Intelligence](players.md#physical-intelligence-π)
+
+**Date**: 2025-11
+
+**Summary**: Introduces RECAP (RL with Experience & Corrections via Advantage-conditioned Policies), a method enabling VLAs to improve through reinforcement learning without policy gradients. Addresses the fundamental challenge that imitation-only training leads to compounding errors in physical environments. π*0.6 trained with RECAP achieves >90% success rates on complex manipulation tasks.
+
+**Key Findings**:
+
+- Converts RL to conditional supervised learning — avoids computing log-probabilities required by standard RL (PPO, SAC), which flow matching models don't provide
+- Three-stage learning: demonstrations → expert corrections during errors → autonomous practice with value function feedback
+- Value functions solve credit assignment — identifies whether failures originated from early missteps or later actions
+- More than doubles throughput on espresso making, box assembly; reduces failure rate by 2x+ on laundry folding
+- Enables continuous autonomous operation for extended periods with >90% success rates
+
+**Relevance to World Models**: Demonstrates RL post-training for embodied AI that parallels RLVR-World and WorldCompass. RECAP solves the credit assignment problem critical for long-horizon tasks where world model predictions must identify which past actions caused future failures. Limitation: cannot discover globally optimal policies — only improves within the behavioral distribution of training data.
+
+### GEN-1: Scaling Embodied Foundation Models to Mastery [<img src="templates/icons/website.svg" alt="website" height="16">](https://generalistai.com/blog/apr-02-2026-GEN-1)
+
+**Authors/Presenters**: [Generalist AI](players.md#generalist-ai)
+
+**Date**: 2026-04
+
+**Summary**: Native embodied foundation model trained from scratch on 500K+ hours of real-world physical interaction data captured via low-cost wearable "data hands" (UMIs) worn by humans — no robot data or internet images in base pretraining. Achieves 99% success rates on production tasks vs. 64% for GEN-0, completing tasks 3x faster with 10x less task-specific data.
+
+**Key Findings**:
+
+- Wearable-first data collection bypasses robotics data bottleneck — captures human reflexes and micro-corrections more efficiently than teleoperation
+- 99% success demonstrated across vacuum servicing (200+ reps), box folding (200+ reps), phone packing (100+ reps), block packing (1800+ reps)
+- Requires only ~1 hour of robot-specific data for new task adaptation
+- Full system redesign vs. VLA approach — "large multimodal model that emits actions in real-time" with inference harnessing components
+
+**Relevance to World Models**: Represents a third paradigm beyond VLAs (internet pretraining + action decoder) and WAMs (video diffusion backbone). Generalist trains on physical interaction data from wearables, suggesting that world dynamics can be learned directly from human movement without intermediate video or simulation. If validated at scale, could offer a more data-efficient path to physical AI than video-based world models.
 
 ### VLA-MBPO: Towards Practical World Model-based Reinforcement Learning for Vision-Language-Action Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.20607)
 

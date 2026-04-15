@@ -300,6 +300,18 @@
 
 **Links**: [GitHub](https://github.com/pathwaycom/bdh), [Website](https://pathway.com)
 
+### Logical Intelligence
+
+**About**: AI company building Energy-Based Reasoning Models (EBRMs) as an alternative to LLMs for critical systems. Their flagship model Kona 1.0 uses energy minimization rather than next-token prediction, operating in continuous latent space with non-autoregressive trace generation. [Yann LeCun](players.md#yann-lecun) serves as Founding Chair of the Technical Research Board, directly connecting Logical Intelligence to the JEPA/EBM research lineage.
+
+**Focus Areas**: Energy-based reasoning, constraint satisfaction, mathematical verification, deterministic AI for critical systems
+
+**Key Work**: Kona 1.0 (EBRM for reasoning, 2026-01), Aleph (verified coding AI, near-perfect PutnamBench score)
+
+**Collaborations**: [Yann LeCun](players.md#yann-lecun) (Founding Chair), Pantera Capital (investor)
+
+**Links**: [Website](https://logicalintelligence.com/), [Kona Technical](https://logicalintelligence.com/kona-ebms-energy-based-models), [Blog](https://logicalintelligence.com/blog/energy-based-models-for-reasoning)
+
 ### OpenAI
 
 **About**: Built Sora/Sora 2, diffusion transformer models for video generation positioned as "teaching AI to understand and simulate the physical world." Sora 2 (Sept 2025) improved physics coherence, but the standalone product was discontinued in March 2026 due to unsustainable compute costs. Illustrates both the ambition and the commercial challenge of pixel-space world simulation at scale.
@@ -419,6 +431,42 @@
 **Collaborations**: [NVIDIA](players.md#nvidia) (Cosmos, GR00T N1 adopter), OpenAI (conversational AI integration)
 
 **Links**: [Website](https://www.figure.ai/)
+
+### Generalist AI
+
+**About**: Robotics foundation model company pursuing a "native embodied" approach — training directly on physical interaction data from wearable devices rather than internet images or teleoperation. GEN-1 (April 2026) achieves 99% success rates on production manipulation tasks, trained on 500K+ hours of human movement data captured via low-cost "data hands" (UMIs). Represents an alternative paradigm to VLAs (internet pretraining) and WAMs (video diffusion).
+
+**Focus Areas**: Native embodied foundation models, wearable data collection, production robotics, manipulation
+
+**Key Work**: GEN-0 (Nov 2025), GEN-1 (April 2026, 99% reliability, 3x faster than SOTA)
+
+**Collaborations**: Early access partners in manufacturing and logistics
+
+**Links**: [Website](https://generalistai.com/), [GEN-1 Blog](https://generalistai.com/blog/apr-02-2026-GEN-1)
+
+### Periodic Labs
+
+**About**: Building autonomous "AI scientists" — closed-loop self-driving laboratories where AI agents propose hypotheses, run physical experiments, and analyze results with minimal human intervention. Raised $300M seed (Oct 2025) led by Andreessen Horowitz with backing from Jeff Bezos, Eric Schmidt, Jeff Dean, NVentures. Founders William Fedus and Ekin Dogus Çubuk cite contributions to ChatGPT, GNoME, and MatterGen.
+
+**Focus Areas**: Autonomous science, self-driving labs, materials discovery, physical AI for scientific research
+
+**Key Work**: AI scientist platform for materials discovery (high-temperature superconductors, chip designs)
+
+**Collaborations**: a16z, Felicis, DST Global, Accel, NVentures (investors)
+
+**Links**: [Website](https://periodic.com/)
+
+### Medra
+
+**About**: Building autonomous self-driving labs for drug discovery — integrating AI with robotic laboratory automation in closed-loop systems that design, execute, and learn from biological experiments. Raised $52M; signed agreement with Genentech for early drug discovery. Platform executes wet lab protocols autonomously, with experimental data feeding back to improve AI predictions.
+
+**Focus Areas**: Autonomous drug discovery, self-driving labs, laboratory robotics, closed-loop experimentation
+
+**Key Work**: Medra Platform (autonomous robotic system for biological experiments), Genentech partnership
+
+**Collaborations**: Genentech (drug discovery partnership)
+
+**Links**: [Website](https://www.medra.ai/)
 
 ---
 

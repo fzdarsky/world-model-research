@@ -120,6 +120,14 @@
 - **Toyota Research Institute**: https://www.tri.global/research — Robotics, autonomous systems
 - **Siemens Technology**: https://www.siemens.com/global/en/company/stories.html — Digital twins, industrial AI
 
+### VC & Investor Perspectives
+
+Useful for identifying emerging companies, investment signals, and market framing — not technical research, but valuable for tracking where capital is flowing and how the opportunity is being framed.
+
+- **a16z (Andreessen Horowitz)**: https://a16z.com/news-content/ — Physical AI, robotics, infrastructure. Notable: "Frontier Systems for the Physical World" essay introduced WAM/VLA/Native taxonomy, surfaced Generalist, Periodic Labs, Medra. Lead investor in Periodic Labs ($300M).
+- **Sequoia Capital**: https://www.sequoiacap.com/article/ — AI infrastructure, foundation models
+- **Bessemer Venture Partners**: https://www.bvp.com/atlas — Robotics and AI coverage (e.g., "Can world models unlock general purpose robotics?")
+
 ### Technical Blogs
 
 - **Distill.pub**: https://distill.pub/

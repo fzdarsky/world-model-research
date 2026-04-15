@@ -118,6 +118,18 @@
 
 *Physics simulation, molecular modeling, materials design*
 
+### Autonomous Self-Driving Laboratories
+
+**Industry**: Pharmaceuticals | Materials Science | Chemistry
+
+**Description**: World models power "self-driving labs" — autonomous systems that generate hypotheses, design experiments, execute them robotically, analyze results, and iterate in closed loops with minimal human intervention. [Periodic Labs](players.md#periodic-labs) ($300M raised) builds AI scientists for materials discovery (superconductors, chip designs). [Medra](players.md#medra) ($52M) applies autonomous experimentation to drug discovery in partnership with Genentech. The approach addresses the "data bottleneck" in physical sciences: unlike internet text/images, scientific data must be generated through expensive physical experiments.
+
+**Technical Requirements**: Robotic laboratory automation (liquid handling, synthesis, characterization). Multi-modal sensing beyond vision (spectroscopy, chromatography, mass spectrometry). Closed-loop integration of hypothesis → experiment → analysis. Long-horizon planning across experiment sequences (days to weeks). Domain-specific world models that predict experimental outcomes under physical/chemical constraints.
+
+**Current Solutions**: [Periodic Labs](players.md#periodic-labs) (AI scientist platform for materials discovery); [Medra](players.md#medra) Platform (autonomous drug discovery with Genentech); Emerald Cloud Lab (cloud laboratory infrastructure); academic self-driving labs (MIT, Berkeley, Toronto)
+
+**Research Gaps**: Scientific data is sparse compared to internet-scale datasets — data efficiency is critical. Experimental "credit assignment" over long horizons (which early decision caused a late failure?). Integrating symbolic scientific knowledge (equations, constraints) with learned world models. Regulatory pathway for AI-designed drugs and materials is undefined. Transfer across scientific domains (chemistry → biology → materials) untested.
+
 ---
 
 ## Agentic AI
