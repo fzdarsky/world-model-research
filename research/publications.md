@@ -2,7 +2,7 @@
 
 > Collection of papers, talks, videos, and blog posts on world models, JEPA, EBMs, and BDH
 
-**Last Updated**: 2026-04-02
+**Last Updated**: 2026-05-07
 
 ---
 
@@ -41,6 +41,23 @@
 - 1.6B parameter model supports open-vocabulary classification, text-to-video retrieval, and discriminative VQA without architectural modification
 
 **Relevance to World Models**: Demonstrates JEPA's scalability beyond vision to multimodal settings, a key step toward world models that integrate language understanding with visual prediction. Validates that predicting in embedding space (rather than token space) is viable for language tasks.
+
+### VLA-JEPA: Enhancing Vision-Language-Action Model with Latent World Model [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.10098)
+
+**Authors/Presenters**: Jingwen Sun, Wenyao Zhang, Zekun Qi, Shaojie Ren, Zezhi Liu, Hanxin Zhu, Guangzhong Sun, Xin Jin, Zhibo Chen
+
+**Date**: 2026-02
+
+**Summary**: JEPA-style pretraining framework for VLA policies using leakage-free state prediction — a target encoder produces latent representations from future frames while the student sees only current observation. Addresses the core VLA limitation that latent-action objectives anchor to pixel variation rather than action-relevant state transitions.
+
+**Key Findings**:
+
+- Leakage-free design: future information used solely as supervision targets, never as input — prevents shortcuts that bypass dynamics learning
+- Uses V-JEPA2 encoder + predictor as latent world model; Qwen3-VL-2B as VLM backbone
+- Two-stage recipe (JEPA pretraining → action-head fine-tuning) eliminates multi-stage complexity of prior approaches
+- Consistent gains on LIBERO, LIBERO-Plus, SimplerEnv, and real-world manipulation in generalization and robustness
+
+**Relevance to World Models**: Directly integrates JEPA world models into VLA training, addressing the key criticism that VLAs lack causal understanding of dynamics. By predicting in latent space rather than pixel space, VLA-JEPA learns abstractions robust to camera motion and irrelevant background changes — the same property that makes JEPA world models effective for planning.
 
 ### LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.19312)
 
@@ -269,6 +286,150 @@
 - Underlying principle across all variants: predicting in latent space rather than pixel space enables efficient learning across diverse modalities
 
 **Relevance to World Models**: Provides a concise lineage of JEPA development, useful for understanding how the architecture has evolved toward world modeling. ThinkJEPA's integration of VLM reasoning with JEPA dynamics prediction represents the latest convergence of language understanding and physical world modeling.
+
+### BiJEPA: Bi-directional Joint Embedding Predictive Architecture for Symmetric Representation Learning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.00049)
+
+**Authors/Presenters**: Yongchao Huang
+
+**Date**: 2026-02
+
+**Summary**: Extends JEPA with cycle-consistent bidirectional prediction between data segments. Introduces norm regularization on representation vectors to prevent "Representation Explosion" — a collapse mode specific to symmetric prediction architectures. Validated across synthetic signals, chaotic systems, and image data.
+
+**Key Findings**:
+
+- Bidirectional prediction captures informative signal in the inverse relationship, enabling more complete representation learning
+- Identifies "Representation Explosion" as a primary failure mode of bi-directional SSL — norm regularization prevents this while maintaining training stability
+- Successfully learns representations across diverse modalities without collapse; captures structural patterns in chaotic dynamical systems
+
+**Relevance to World Models**: Addresses a gap in standard JEPA: unidirectional prediction may miss structure in the reverse mapping. For world models, bidirectional consistency could improve temporal reasoning — knowing that state B follows A should imply A precedes B. The Representation Explosion failure mode is a new collapse category beyond the collapse modes addressed by VICReg.
+
+### US-JEPA: A Joint Embedding Predictive Architecture for Medical Ultrasound [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.19322)
+
+**Authors/Presenters**: Ashwath Radhachandran, Vedrana Ivezić, Shreeram Athreya, Ronit Anilkumar, Corey W. Arnold, William Speier
+
+**Date**: 2026-02
+
+**Summary**: Applies JEPA to ultrasound imaging, addressing the modality's high noise and speckle patterns that undermine standard self-supervised approaches. Uses Static-teacher Asymmetric Latent Training (SALT) objective with a frozen domain-specific teacher for stable latent targets, avoiding the computational expense of dynamically-updated teachers.
+
+**Key Findings**:
+
+- SALT objective decouples student-teacher optimization while expanding semantic understanding; avoids hyperparameter brittleness of standard JEPA
+- First comprehensive comparison of ultrasound foundation models using UltraBench (multi-organ, multi-pathology dataset)
+- Achieves competitive or superior performance vs. domain-specific and universal vision models under linear probing for classification
+
+**Relevance to World Models**: Extends JEPA to medical imaging domain where EchoJEPA already showed promise. The SALT objective addresses a practical barrier: standard JEPA's EMA-updated teachers are computationally expensive and sensitive to hyperparameters. If SALT transfers to other domains, it could simplify JEPA deployment for world models in healthcare applications.
+
+### Polymer-JEPA: Joint Embedding Predictive Architecture for Polymer Molecular Graphs [<img src="templates/icons/website.svg" alt="website" height="16">](https://pubs.rsc.org/en/content/articlelanding/2026/dd/d5dd00308c)
+
+**Authors/Presenters**: Francesco Piccoli, Gabriel Vogel, Jana M. Weber
+
+**Date**: 2026-01
+
+**Summary**: Applies JEPA self-supervised pretraining to polymer molecular graphs. Pretrained on conjugated copolymer photocatalysts, then fine-tuned on downstream tasks including electron affinity prediction and phase behavior classification in diblock copolymers.
+
+**Key Findings**:
+
+- JEPA-based pretraining enhances downstream performance, particularly when labeled data is scarce
+- Cross-domain fine-tuning shows promise — method extracts generalizable knowledge across different polymer classes
+- Reduces dependence on extensive labeled datasets by leveraging unlabeled polymer structures
+
+**Relevance to World Models**: Demonstrates JEPA's applicability beyond vision/video to molecular graph domains. For scientific discovery use cases (materials science, drug discovery), this suggests JEPA-style self-supervised learning can build useful representations from unlabeled molecular data — complementing domain-specific world models like those from Periodic Labs and Medra.
+
+### Graph-JEPA: Graph-level Representation Learning with Joint-Embedding Predictive Architectures [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2309.16014)
+
+**Authors/Presenters**: Geri Skenderi, Hang Li, Jiliang Tang, Marco Cristani
+
+**Date**: 2023-09 (revised 2025-01, TMLR)
+
+**Summary**: Extends JEPA to graph-level representation learning through masked subgraph prediction. Introduces a hyperbolic prediction objective that maps encoded subgraphs to coordinates on the unit hyperbola, capturing implicit hierarchical structure in graph concepts without contrastive samples or reconstruction.
+
+**Key Findings**:
+
+- Predicts latent representations of masked subgraphs from context subgraphs, avoiding contrastive negative/positive samples
+- Hyperbolic coordinate prediction endows representations with implicit hierarchy — captures tree-like and scale-free structures common in real-world graphs
+- Strong downstream performance on graph classification, regression, and non-isomorphic graph discrimination
+
+**Relevance to World Models**: Extends JEPA beyond grid-structured data (images, video, spectrograms) to arbitrary graph topologies. Relevant for world models operating on relational data — molecular dynamics, knowledge graphs, social networks, or scene graphs in robotics where entities and relationships matter more than pixel arrangements.
+
+### Brain-JEPA: Brain Dynamics Foundation Model with Gradient Positioning and Spatiotemporal Masking [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2409.19407)
+
+**Authors/Presenters**: Zijian Dong, Ruilin Li, Yilei Wu, Thuan Tinh Nguyen, Joanna Su Xian Chong, Fang Ji, Nathanael Ren Jie Tong, Christopher Li Hsian Chen, Juan Helen Zhou
+
+**Date**: 2024-09 (NeurIPS 2024 Spotlight)
+
+**Summary**: Foundation model for fMRI brain dynamics using JEPA with two domain-specific innovations: Brain Gradient Positioning (functional coordinate system for ROI encoding) and Spatiotemporal Masking (handles heterogeneous fMRI time-series patches). Achieves SOTA on demographic prediction, disease diagnosis/prognosis, and trait assessment.
+
+**Key Findings**:
+
+- Brain Gradient Positioning establishes a functional coordinate system for brain parcellation, improving positional encoding of Regions of Interest
+- Spatiotemporal masking samples targets from three regions: Cross-ROI, Cross-Time, and Double-Cross — tailored to fMRI's unique characteristics
+- Superior generalizability across ethnic populations; strong off-the-shelf linear probing performance
+
+**Relevance to World Models**: Demonstrates JEPA's adaptability to complex spatiotemporal biomedical data where standard positional encodings fail. The functional coordinate system approach could transfer to other domains with non-Euclidean structure — network traffic, multi-sensor systems, or distributed robotics where "position" is functional rather than spatial.
+
+### EEG-VJEPA: Adapting Video JEPA for Brain Signal Analysis [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2507.03633)
+
+**Authors/Presenters**: Amirabbas Hojjati, Lu Li, Ibrahim Hameed, Anis Yazidi, Pedro G. Lind, Rabindra Khadka
+
+**Date**: 2025-07 (revised 2026-03)
+
+**Summary**: First application of V-JEPA to EEG classification by treating brain signals as video-like sequences. Combines predictive accuracy with interpretability — learns physiologically relevant spatial and temporal patterns that support human-AI collaboration in clinical diagnostics.
+
+**Key Findings**:
+
+- Treats EEG as video: channels as spatial dimension, time as temporal — enables direct application of V-JEPA's spatiotemporal masking
+- Outperforms SOTA on Temple University Hospital (TUH) Abnormal EEG dataset
+- Produces interpretable embeddings capturing physiologically meaningful patterns, not just classification accuracy
+
+**Relevance to World Models**: Validates the "treat X as video" strategy for applying V-JEPA to sequential multi-channel data. The interpretability finding is significant: JEPA's latent predictions appear to capture domain-relevant structure (brain dynamics) rather than arbitrary features — a property essential for clinical world models where decisions must be explainable.
+
+### A-JEPA: Joint-Embedding Predictive Architecture Can Listen [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2311.15830)
+
+**Authors/Presenters**: Zhengcong Fei, Mingyuan Fan, Junshi Huang
+
+**Date**: 2023-11 (revised 2024-01)
+
+**Summary**: Adapts I-JEPA to audio spectrograms with a curriculum masking strategy progressing from easy to hard predictions. Introduces time-frequency aware masking that accounts for temporal and spectral correlations specific to audio, plus regularized masking during fine-tuning for improved downstream adaptation.
+
+**Key Findings**:
+
+- Curriculum masking: starts with easier predictions, progressively increases difficulty — mirrors human learning patterns
+- Time-frequency aware masking exploits audio-specific structure (harmonic relationships, temporal continuity) vs. random block masking
+- SOTA on multiple audio and speech classification tasks, outperforming externally supervised pre-training approaches
+
+**Relevance to World Models**: First successful audio JEPA, demonstrating the architecture generalizes beyond vision. The curriculum strategy addresses a practical training challenge: audio has stronger local correlations than images, making random masking too easy early in training. Relevant for world models incorporating audio — robotics, autonomous vehicles, smart environments.
+
+### Audio-JEPA: Joint-Embedding Predictive Architecture for Audio Representation Learning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2507.02915)
+
+**Authors/Presenters**: Ludovic Tuncay, Etienne Labbé, Emmanouil Benetos, Thomas Pellegrini
+
+**Date**: 2025-06 (ICME 2025)
+
+**Summary**: Straightforward JEPA adaptation for audio using Vision Transformer on mel-spectrograms with random patch masking. Matches wav2vec 2.0 and data2vec performance on X-ARES benchmark while using less than 1/5 of their training data — demonstrates JEPA's data efficiency for audio.
+
+**Key Findings**:
+
+- 96.7M trainable parameters (85.4M at inference — predictor discarded); trained on unlabeled AudioSet clips (10s, 32kHz)
+- Competitive with wav2vec 2.0/data2vec across speech, music, and environmental sounds using <20% training data
+- No hyperparameter tuning required — robust default configuration
+
+**Relevance to World Models**: Confirms JEPA's data efficiency advantage extends to audio domain. For embodied AI requiring audio understanding (voice commands, environmental sounds, machinery diagnostics), Audio-JEPA offers a practical foundation model that can be trained on modest data — important for specialized domains where labeled audio is scarce.
+
+### Sat-JEPA-Diff: Bridging Self-Supervised Learning and Generative Diffusion for Remote Sensing [<img src="templates/icons/website.svg" alt="website" height="16">](https://openreview.net/forum?id=WBHfQLbgZR)
+
+**Authors/Presenters**: Kursat Komurcu, Linas Petkevicius
+
+**Date**: 2026-03 (ML4RS @ ICLR 2026)
+
+**Summary**: Hybrid architecture combining I-JEPA embeddings with Stable Diffusion for satellite imagery generation. I-JEPA predicts stable semantic representations that guide a frozen diffusion model via cross-attention, eliminating the "regression to the mean" blur of deterministic methods while avoiding hallucinations of pure generative approaches.
+
+**Key Findings**:
+
+- I-JEPA embeddings serve as structural anchors ensuring synthesized textures maintain geographic accuracy
+- GSSIM: 0.8984, FID: 0.1475 — leading perceptual scores on global Sentinel-2 data
+- Resolves sharp boundaries that deterministic predictors (PredRNN, SimVP) blur
+
+**Relevance to World Models**: Demonstrates a practical JEPA + diffusion hybrid where JEPA provides structure and diffusion provides texture. This division of labor — latent prediction for semantics, generation for appearance — may be a general pattern for world models that need both accurate dynamics and realistic rendering. Directly applicable to earth observation, environmental monitoring, and climate modeling.
 
 ---
 
@@ -731,6 +892,75 @@
 
 **Relevance to World Models**: Marks the transition of video-based world models from research to industrial deployment platform. The breadth of industry adoption (humanoid robots, AVs, surgical robots) validates the WFM approach for generating training data at scale. Complements JEPA-based approaches: Cosmos excels at generating inspectable video data while JEPA excels at efficient latent planning.
 
+### NVIDIA National Robotics Week 2026: Cosmos 3 and GR00T N1.7 [<img src="templates/icons/website.svg" alt="website" height="16">](https://blogs.nvidia.com/blog/national-robotics-week-2026/)
+
+**Authors/Presenters**: [NVIDIA](players.md#nvidia)
+
+**Date**: 2026-04
+
+**Summary**: Major announcements at National Robotics Week 2026 introducing Cosmos 3, Isaac GR00T N1.7, and the Physical AI Data Factory Blueprint. Newton 1.0 physics engine reaches general availability. New simulation tools include Isaac Sim 6.0, Isaac Lab 3.0, OceanSim for underwater robots, and NemoClaw for natural-language robot control.
+
+**Key Findings**:
+
+- GR00T N1.7 Early Access: 3B-parameter VLA built on Cosmos-Reason2-2B backbone with 32-layer DiT for low-level motor control
+- Physical AI Data Factory Blueprint transforms compute into high-quality training data; combines Cosmos WFMs with OSMO operator for unified data curation, augmentation, and evaluation
+- Newton 1.0 physics engine now GA — provides foundation for dexterous robot manipulation
+- Industry adoption: FieldAI, Skild AI using Cosmos for robot brains; Aigen for agriculture (millions of scenarios); surgical robotics for OR automation
+- 10x improved sample efficiency and 2x faster convergence on manipulation tasks using video-action models
+
+**Relevance to World Models**: Confirms NVIDIA's vertical integration strategy: foundation models (Cosmos 3) → simulation (Isaac, Newton) → deployment (GR00T). The Physical AI Data Factory Blueprint formalizes the synthetic data generation pipeline that world models enable, positioning compute as the bottleneck rather than real-world data collection.
+
+### Physical Intelligence π0.7: Compositional Generalization in Robot Policies [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.pi.website/blog)
+
+**Authors/Presenters**: [Physical Intelligence](players.md#physical-intelligence-π)
+
+**Date**: 2026-04
+
+**Summary**: New VLA model demonstrating compositional generalization — combining skills learned in different contexts to solve novel problems the model was never explicitly trained on. Most striking demonstration: successful operation of an air fryer with only 2 relevant training episodes in the entire dataset, suggesting emergent combination of web pretraining with limited robot data.
+
+**Key Findings**:
+
+- Core claim: compositional generalization breaks the rote-memorization pattern of traditional robot training; skills transfer and recombine for unseen tasks
+- Air fryer demo: near-zero direct training examples, yet model succeeds when coached through task in natural language — emergent synthesis of web knowledge + robot experience
+- Matches specialist models on complex manipulation tasks (coffee-making, laundry folding, box assembly) while generalizing beyond training distribution
+- Researcher observation (Ashwin Balakrishna): "The last few months have been the first time where I'm genuinely surprised" — capabilities exceeding what training data would predict
+
+**Relevance to World Models**: Demonstrates that VLA foundation models may be approaching a capability threshold where they generalize compositionally rather than memorizing demonstrations. This changes the value proposition: if policies can remix skills, world models become more valuable for generating diverse scenarios that exercise novel combinations rather than exhaustive coverage of specific tasks.
+
+### RoboWM-Bench, MotionScape, and EgoVerse: New Robotics World Model Benchmarks [<img src="templates/icons/website.svg" alt="website" height="16">](https://github.com/leofan90/Awesome-World-Models)
+
+**Authors/Presenters**: Various (tracked in Awesome-World-Models)
+
+**Date**: 2026-04
+
+**Summary**: Three new benchmarks released in April 2026 for evaluating world models in robotics contexts: RoboWM-Bench (robotic manipulation), MotionScape (dynamic UAV video), and EgoVerse (egocentric human data for robot learning).
+
+**Key Findings**:
+
+- RoboWM-Bench: First standardized benchmark for evaluating world models specifically on robotic manipulation tasks — addresses gap noted in multiple surveys
+- MotionScape: Large-scale real-world UAV video dataset with highly dynamic scenes; stress-tests temporal consistency of world models
+- EgoVerse: Egocentric human dataset from diverse global contexts; supports cross-embodiment transfer research (human → robot)
+- MultiWorld (also April 2026): Scalable multi-agent multi-view video world models for complex environments
+
+**Relevance to World Models**: Addresses a critical gap: standardized benchmarks for measuring world model quality in robotics contexts. Previously, world model quality was evaluated on proxy tasks (video prediction metrics) rather than downstream policy performance. These benchmarks enable direct comparison of architectures (JEPA vs. diffusion vs. autoregressive) on what matters: robot task success.
+
+### Do World Action Models Generalize Better than VLAs? A Robustness Study [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.22078)
+
+**Authors/Presenters**: Zhanguang Zhang, Zhiyuan Li, Behnam Rahmati, et al. (Huawei Technologies, University of Toronto)
+
+**Date**: 2026-03
+
+**Summary**: First systematic robustness comparison between World Action Models (WAMs) and Vision-Language-Action models (VLAs). Evaluates on LIBERO-Plus and RoboTwin 2.0-Plus under visual perturbations (noise, lighting, layout, camera viewpoint, robot initial state). Finds WAMs excel at visual robustness but suffer critical inference latency trade-offs.
+
+**Key Findings**:
+
+- WAMs outperform VLAs on visual perturbations: LingBot-VA achieves 74.2% on RoboTwin 2.0-Plus bimanual tasks vs. π₀.₅ at 58.6%; robustness attributed to spatiotemporal priors from world model backbones
+- Critical trade-off: LingBot-VA inference at 5.2s/step is 83× slower than π₀.₅ (63ms) — even optimized WAMs like GE-Act are 4.8× slower
+- VLAs competitive when trained on diverse data: π₀.₅ reaches 85.7% on LIBERO-Plus vs. Cosmos-Policy at 82.2%
+- Hybrid approaches (MOTUS, VLA-JEPA) provide intermediate solutions — integration method matters as much as presence of spatiotemporal learning
+
+**Relevance to World Models**: Quantifies the robustness-latency trade-off between world model-based and pure VLA approaches. Key insight: WAMs' robustness advantage comes from spatiotemporal priors, but inference cost is currently prohibitive for real-time applications. Suggests hybrid architectures (VLA-JEPA, MOTUS) may offer the best balance — supporting the case for JEPA-style efficient world models over computationally expensive video generation.
+
 ### The Waymo World Model: A New Frontier for Autonomous Driving Simulation [<img src="templates/icons/website.svg" alt="website" height="16">](https://waymo.com/blog/2026/02/the-waymo-world-model-a-new-frontier-for-autonomous-driving-simulation/)
 
 **Authors/Presenters**: Waymo
@@ -747,6 +977,23 @@
 - Three complementary control axes (actions, scene layout, language) enable systematic safety testing and scenario generation
 
 **Relevance to World Models**: Demonstrates the first production deployment of a video-based world model (Genie 3) for safety-critical autonomous driving simulation. The multi-sensor generation (camera + LiDAR) and controllable scenario generation represent a concrete industrial use case where world models directly improve safety outcomes through comprehensive testing of edge cases.
+
+### Nexar BADAS 2.0: Collision Prediction via V-JEPA2 World Model [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.linkedin.com/posts/yann-lecun_badas-20-new-collision-prediction-system-ugcPost-7450523580318216192-X3IC/)
+
+**Authors/Presenters**: Zach Greenberger (Nexar), shared by [Yann LeCun](players.md#yann-lecun)
+
+**Date**: 2025-12
+
+**Summary**: Production collision prediction system built on V-JEPA2 world model architecture, trained on Nexar's fleet data capturing 100+ million miles monthly. Claims to outperform NVIDIA Cosmos and Google Gemini on collision prediction by using latent-space prediction rather than pixel-based approaches.
+
+**Key Findings**:
+
+- V-JEPA2 architecture enables detection, explanation, and generalization for collision scenarios — latent space prediction filters noise better than pixel-based methods for safety-critical decisions
+- Trained exclusively on authentic road footage focusing on long-tail edge cases and rare events, not synthetic data
+- Demo available at badas.nexar.app for public testing
+- Validates that JEPA-style world models can be deployed in production safety systems
+
+**Relevance to World Models**: First public deployment of V-JEPA2 in a production safety-critical application. Confirms the theoretical advantage of latent-space prediction (JEPA) over pixel-space generation (Cosmos, Gemini) for real-time decision systems where filtering irrelevant detail matters more than visual fidelity. The "explanation" capability suggests interpretable intermediate representations — a key requirement for safety certification.
 
 ### Counterfactual World Models via Digital Twin-conditioned Video Diffusion [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2511.17481)
 
@@ -785,6 +1032,92 @@
 - Cross-institution author list (Oxford, NTU, UCF, Fudan, SJTU) provides broad perspective spanning computer vision, robotics, and AI safety communities
 
 **Relevance to World Models**: Provides a structured map of the entire world models landscape as of early 2026. The four-branch taxonomy is useful for positioning JEPA (latent space branch) and Cosmos (observation-level branch) relative to each other and to alternatives. Companion [Awesome-World-Models](https://github.com/JiahuaDong/Awesome-World-Models) repo serves as a living index of the field.
+
+### Physically Native World Models: A Hamiltonian Perspective on Generative World Modeling [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2605.00412)
+
+**Authors/Presenters**: Sen Cui, Jingheng Ma
+
+**Date**: 2026-05
+
+**Summary**: Proposes Hamiltonian World Models as a physics-grounded alternative to current approaches. Argues the bottleneck in world modeling is not generation quality but whether futures are physically meaningful and useful for action. Encodes observations into structured latent phase space evolving through Hamiltonian-inspired dynamics.
+
+**Key Findings**:
+
+- Current approaches (2D video-generative, 3D scene-centric, JEPA-like latent) still struggle with physically reliable, action-controllable, long-horizon stable predictions
+- Proposes Hamiltonian structure with control, dissipation, and residual terms for interpretability and data efficiency
+- Acknowledges practical challenges: friction, contact forces, non-conservative dynamics, deformable objects
+- Positions physics-native design as prerequisite for embodied decision-making, not just visual fidelity
+
+**Relevance to World Models**: Provides theoretical critique of current world model paradigms from a physics perspective. The argument that "futures must be physically meaningful, not just visually plausible" challenges the video-generation-first approach of Cosmos/Genie. Complements JEPA's latent-space efficiency with explicit physics structure. Early-stage but may influence future architectures.
+
+### Safety, Security, and Cognitive Risks in World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2604.01346)
+
+**Authors/Presenters**: Manoj Parmar
+
+**Date**: 2026-04
+
+**Summary**: First comprehensive risk analysis of world models as learned environment simulators. Introduces formal definitions for trajectory persistence and representational risk, develops a five-profile attacker taxonomy unified with MITRE ATLAS and OWASP LLM frameworks. Demonstrates empirical attacks on GRU-based RSSM architecture achieving 2.26x amplification with 59.5% reward reduction.
+
+**Key Findings**:
+
+- Three risk categories: adversarial attacks (data poisoning, latent representation corruption, rollout error exploitation), alignment challenges (goal misgeneralization, deceptive behavior, reward hacking), human-factors issues (automation bias, miscalibrated trust, planning hallucination)
+- Validates attacks across architectures: stochastic RSSM proxy and real DreamerV3 checkpoints
+- Proposes mitigations spanning adversarial hardening, alignment engineering, regulatory compliance (NIST AI RMF, EU AI Act), and human-factors design
+- Argues world models require rigor equivalent to flight-control or medical device standards
+
+**Relevance to World Models**: Essential reading for anyone deploying world models in safety-critical domains. The paper makes explicit what the robotics and AV communities implicitly know: world models that drive real-world actions create novel attack surfaces. The MITRE ATLAS integration provides a structured vocabulary for security analysis that was previously absent from world models literature.
+
+### Beyond Generative AI: World Models for Clinical Prediction, Counterfactuals, and Planning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2511.16333)
+
+**Authors/Presenters**: Mohammad Areeb Qazi, Maryam Nadeem, Mohammad Yaqub
+
+**Date**: 2025-11
+
+**Summary**: First focused review of world models in healthcare, covering medical imaging and diagnostics, disease progression modeling, and robotic surgery/surgical planning. Introduces a four-level capability framework: L1 temporal prediction, L2 action-conditioned prediction, L3 counterfactual rollouts for decision support, L4 planning/control.
+
+**Key Findings**:
+
+- Healthcare-specific capability rubric: L1 (predict future state), L2 (predict given intervention), L3 (counterfactual "what-if"), L4 (closed-loop planning) — most current work is L1-L2; L3-L4 remain open challenges
+- Identifies critical gaps limiting clinical reliability: under-specified action spaces, weak validation methods, incomplete multimodal state representation, insufficient uncertainty calibration
+- Proposes integration of generative backbones with causal/mechanical foundations for safer clinical decision support
+
+**Relevance to World Models**: Provides a healthcare-specific framework for evaluating world model maturity. The L1-L4 capability ladder is useful for positioning EchoJEPA (L1-L2), MeWM (L2-L3), and future clinical world models. Highlights that healthcare requires causal structure beyond correlational prediction — a gap that Causal-JEPA and similar approaches may address.
+
+### Yann LeCun: Self-Supervised Learning, JEPA, World Models, and the Future of AI [<img src="templates/icons/youtube.svg" alt="youtube" height="16">](https://www.youtube.com/watch?v=yUmDRxV0krg)
+
+**Authors/Presenters**: [Yann LeCun](players.md#yann-lecun) (NYU & Meta)
+
+**Date**: 2025-09
+
+**Duration**: ~60:00
+
+**Summary**: Special lecture at NYU's "Geometry of Machine Learning" series articulating why world models — not LLMs — are the path to human-level AI. Argues that video contains orders of magnitude more structure than text, making it a richer learning signal. Presents V-JEPA 2 results demonstrating robot control from just 62 hours of unlabeled observation video.
+
+**Key Findings**:
+
+- Core thesis: "The world is unpredictable. If you try to build a generative model that predicts every detail of the future, it will fail. JEPA learns abstract representations and makes predictions in that abstract space, ignoring unpredictable details"
+- V-JEPA 2 trained on "equivalent of a century of video data" learns physical world model; transfers to robot control with 80% success on novel "move the cup" task (vs. 15% for Octo baseline) using only 62 hours of robot observation
+- LLMs structurally limited: "We're absolutely never going to get to human level AI by just training on text" — video provides richer structure through redundancy
+- Timeline estimate: "something close to human intelligence or maybe dog intelligence within five to 10 years" (most optimistic); likely unknown obstacles remain
+
+**Relevance to World Models**: Primary source for LeCun's complete articulation of the world models thesis. Key insight: JEPA's latent-space prediction naturally filters unpredictable details (textures, shadows, reflections) while capturing predictable dynamics (physics, object permanence). The V-JEPA 2 robot results demonstrate concrete progress from theory to deployment.
+
+### Beyond Language Models: Yann LeCun's World Models and the Future of AI in Healthcare [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.onhealthcare.tech/p/beyond-language-models-yann-lecuns)
+
+**Authors/Presenters**: Thoughts on Healthcare Markets & Technology (Substack)
+
+**Date**: 2025-06
+
+**Summary**: Position piece arguing for a paradigm shift from language-based AI to world models in healthcare. Cites LeCun's critique that LLMs require 400,000 years of text equivalent to achieve basic competency, while children develop sophisticated understanding through 16,000 hours of visual experience. Proposes world models as foundation for patient monitoring, diagnostic imaging, surgical planning, and drug discovery.
+
+**Key Findings**:
+
+- V-JEPA demonstrates ability to detect physically impossible events in video sequences — applicable to detecting anomalies in medical imaging and physiological data
+- Eight healthcare application domains: patient monitoring (early warning), diagnostic imaging (3D understanding), surgical assistance (real-time adaptation), treatment planning, drug discovery (molecular modeling), mental health (behavioral observation), rehabilitation (movement analysis), chronic disease management (trajectory prediction)
+- Key barrier: transition requires substantial technical infrastructure, regulatory navigation, and market adoption — current healthcare AI investments concentrate on LLMs
+- Health tech entrepreneurs advised to develop LLM solutions while preparing for world model emergence
+
+**Relevance to World Models**: Provides healthcare-specific articulation of LeCun's world models thesis. The eight application domains serve as a roadmap for healthcare world model development. The observation that V-JEPA's "physically impossible event detection" translates to medical anomaly detection connects JEPA's theoretical properties to concrete clinical value.
 
 ### Ilya Sutskever: The End of AI Scaling and the Rise of Safe Superintelligence [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.the-ai-corner.com/p/ilya-sutskever-safe-superintelligence-agi-2025)
 
@@ -873,7 +1206,24 @@
 
 ## Recent Additions
 
-*Last synthesized: 2026-04-02 — no pending entries*
+*Last synthesized: 2026-05-05*
+
+### Meta Acquires Assured Robot Intelligence (ARI) [<img src="templates/icons/website.svg" alt="website" height="16">](https://thetechportal.com/2026/05/01/meta-acquires-assured-robot-intelligence-to-strengthen-robotics-and-physical-ai-capabilities-report/)
+
+**Authors/Presenters**: The Tech Portal
+
+**Date**: 2026-05
+
+**Summary**: Meta acquired Assured Robot Intelligence (ARI), a robotics startup specializing in learning-based control systems that help robots adapt in real-world settings. Co-founders Lerrel Pinto and Xiaolong Wang join Meta Superintelligence Labs and Meta Robotics Studio.
+
+**Key Findings**:
+
+- ARI focuses on motion planning, real-time decision-making, and whole-body coordination — critical for humanoid robots
+- Strengthens Meta's physical AI capabilities despite LeCun's departure to AMI Labs
+- Strategic move as humanoid robotics market projected to grow from $2-3B (mid-2020s) to ~$250B by 2035
+- Team integrates into Meta Robotics Studio (established 2025)
+
+**Relevance to World Models**: Signals Meta's continued investment in physical AI despite losing LeCun. ARI's learning-based control systems (adapting through environmental interaction) align with world model principles. Meta now has both LLM/VLM strength (Llama) and physical AI foundations — positioning for embodied AI that combines language understanding with physical world modeling.
 
 ---
 

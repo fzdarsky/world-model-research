@@ -2,7 +2,7 @@
 
 > Seminal contributors and recognized thought leaders in world models, JEPA, and EBMs
 
-**Last Updated**: 2026-04-02
+**Last Updated**: 2026-04-23
 
 ---
 
@@ -252,11 +252,11 @@
 
 ### Meta AI (FAIR)
 
-**About**: Largest contributor to the JEPA ecosystem, having developed the full progression from I-JEPA (images) to V-JEPA (video) to V-JEPA 2 (world model) to VL-JEPA (vision-language). Under LeCun's leadership at FAIR, Meta built and open-sourced the primary implementations of JEPA-based architectures.
+**About**: Largest contributor to the JEPA ecosystem, having developed the full progression from I-JEPA (images) to V-JEPA (video) to V-JEPA 2 (world model) to VL-JEPA (vision-language). Post-LeCun departure (Jan 2026), Meta continues physical AI investment through Meta Superintelligence Labs and Meta Robotics Studio. Acquired Assured Robot Intelligence (ARI) in May 2026 for learning-based robot control.
 
-**Focus Areas**: JEPA architectures, self-supervised learning, world models, video understanding
+**Focus Areas**: JEPA architectures, self-supervised learning, world models, video understanding, physical AI, robotics
 
-**Key Work**: I-JEPA, V-JEPA, V-JEPA 2, VL-JEPA, EB-JEPA library
+**Key Work**: I-JEPA, V-JEPA, V-JEPA 2, VL-JEPA, EB-JEPA library; Llama 4 (LLMs); ARI acquisition (robotics)
 
 **Collaborations**: HKUST, NYU, various academic collaborators
 
@@ -467,6 +467,18 @@
 **Collaborations**: Genentech (drug discovery partnership)
 
 **Links**: [Website](https://www.medra.ai/)
+
+### Robbyant (Ant Group)
+
+**About**: Embodied AI division of Ant Group (Alibaba affiliate) building a comprehensive foundation model stack for robotics. The LingBot family covers spatial perception (LingBot-Depth), VLAs (LingBot-VLA), world models (LingBot-World), and video-action models (LingBot-VA). LingBot-VA reportedly outperforms π0.5 by 20% on task success, with 98.5% on LIBERO benchmark (industry record). LingBot-World achieves 16 FPS generation with sub-second interaction latency for real-time interactive simulation.
+
+**Focus Areas**: Embodied AI foundation models, video-action world models, 3D reconstruction, interactive simulation
+
+**Key Work**: LingBot-VA (autoregressive video-action, 20% better than π0.5), LingBot-World (16 FPS interactive simulator), LingBot-Depth (spatial perception), LingBot-Map (streaming 3D reconstruction)
+
+**Collaborations**: vLLM-Omni community (LingBot-VA targeted for P1 integration)
+
+**Links**: [Website](https://technology.robbyant.com/), [GitHub](https://github.com/Robbyant), [LingBot-VA](https://github.com/Robbyant/lingbot-va)
 
 ---
 

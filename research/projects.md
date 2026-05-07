@@ -2,7 +2,7 @@
 
 > GitHub repos, frameworks, libraries, tools, and datasets for world models research
 
-**Last Updated**: 2026-04-01
+**Last Updated**: 2026-05-05
 
 ---
 
@@ -329,44 +329,96 @@
 
 **URL**: [github.com/NVIDIA/Isaac-GR00T](https://github.com/NVIDIA/Isaac-GR00T)
 
-**Description**: NVIDIA's open foundation model (N1.6) for generalist humanoid robot skills. VLA model taking multimodal input (language instructions + camera images) and outputting manipulation actions. Dual-system architecture with fast reactive control and slow deliberative planning.
+**Description**: NVIDIA's open foundation model for generalist humanoid robot skills. VLA model taking multimodal input (language instructions + camera images) and outputting manipulation actions. Dual-system architecture with fast reactive control and slow deliberative planning. Latest version N1.7 (April 2026) built on Cosmos-Reason2-2B backbone with 32-layer DiT for low-level motor control. GR00T N2 (previewed GTC 2026, coming end 2026) will be built on DreamZero WAM architecture with 2x generalization improvement.
 
 **Tech Stack**: Python, PyTorch, CUDA, Isaac Lab, LeRobot integration
 
 **Key Features**:
 
 - Open VLA foundation model for humanoid manipulation with dual-system (reactive + deliberative) architecture
+- N1.7 (April 2026): 3B parameters, Cosmos-Reason2-2B backbone, 32-layer DiT for motor control
+- N2 Preview (GTC 2026): Based on DreamZero WAM architecture; 2x generalization vs VLAs; #1 on MolmoSpaces and RoboArena
 - 40% task success boost from synthetic data (Isaac Lab, MimicGen)
-- Adopted by 1X, Agility, Figure AI, Boston Dynamics, Unitree, Sanctuary AI
-- Fine-tuning support for custom manipulation tasks
+- Adopted by 1X, Agility, Figure AI, Boston Dynamics, Unitree, Sanctuary AI, Humanoid, LG Electronics, NEURA, Noble Machines
+- LeRobot integration: NVIDIA + HuggingFace collaboration integrating Isaac/GR00T into LeRobot framework
+- Big 4 industrial robotics (ABB, FANUC, YASKAWA, KUKA) integrating Omniverse + Isaac for virtual commissioning
 - NVIDIA Open Model License (commercial use permitted)
 
 **Status**: Active
 
 **Stats**: 6,568 stars, 1,095 forks, 34 contributors (NVIDIA)
 
-**Last Updated**: 2026-03
+**Last Updated**: 2026-05
 
-### OpenPI: Open-Source pi0 VLA Foundation Model
+### OpenPI: Open-Source π0 VLA Foundation Models
 
 **URL**: [github.com/Physical-Intelligence/openpi](https://github.com/Physical-Intelligence/openpi)
 
-**Description**: Physical Intelligence's open-source implementation of the pi0 VLA foundation model for general-purpose robot manipulation. Enables fine-tuning and deployment of robot policies that take language instructions and visual observations as input and produce motor actions. Supports multiple robot platforms out of the box.
+**Description**: Physical Intelligence's open-source VLA foundation models for general-purpose robot manipulation. Includes model variants: π0 (flow-based VLA), π0-FAST (autoregressive VLA using FAST action tokenizer), π0.5 (knowledge insulation for open-world generalization), and π0.7 (April 2026, compositional generalization). Pre-trained on 10K+ hours of robot data across 7 platforms and 68 tasks. Fine-tuning requires only 1-20 hours of data for new tasks.
+
+**Tech Stack**: Python, JAX (native), PyTorch (HuggingFace port via LeRobot)
+
+**Key Features**:
+
+- Model variants: π0 (flow-based), π0-FAST (autoregressive), π0.5 (open-world), π0.7 (compositional generalization)
+- π0.7 (April 2026): Demonstrates compositional generalization — combines skills from different contexts to solve novel problems; air fryer demo with only 2 training episodes
+- Pre-trained on 10K+ hours across 7 robot platforms, 68 tasks
+- 1-20 hours of data sufficient for fine-tuning to new tasks
+- Multi-platform support: ALOHA, DROID, and custom robots
+- HuggingFace/LeRobot PyTorch port available for those preferring PyTorch over JAX
+- vLLM-Omni targeting OpenPI-style WebSocket API as standard robotics interface ([RFC #1987](https://github.com/vllm-project/vllm-omni/issues/1987))
+
+**Status**: Active
+
+**Stats**: 11,484 stars, 1,817 forks (Physical Intelligence)
+
+**Last Updated**: 2026-04
+
+### DreamZero: World Action Model for Zero-Shot Robot Policies
+
+**URL**: [github.com/dreamzero0/dreamzero](https://github.com/dreamzero0/dreamzero)
+
+**Description**: NVIDIA's 14B-parameter World Action Model (WAM) that jointly predicts video frames and robot actions through shared denoising on a pretrained video diffusion backbone. Unlike VLAs trained on static image-text, WAMs learn physical dynamics from video, achieving 2x better generalization to unseen tasks. DreamZero-Flash achieves single-step inference at ~150ms via decoupled noise schedules (38x speedup). Cross-embodiment transfer adapts to new robots with 30 minutes of play data. GR00T N2 (planned end 2026) will be built on DreamZero architecture.
+
+**Tech Stack**: Python, PyTorch, CUDA
+
+**Key Features**:
+
+- 14B-param WAM jointly predicting video + actions via shared denoising
+- 2x better generalization than VLAs on unseen tasks (39.5% vs 16.3% task progress)
+- DreamZero-Flash: single-step inference at ~150ms (38x speedup)
+- Cross-embodiment: adapts to new robots with 30 min of play data
+- P0 priority in vLLM-Omni world model support ([RFC #1987](https://github.com/vllm-project/vllm-omni/issues/1987))
+- Apache 2.0 licensed
+
+**Status**: Active
+
+**Stats**: 1,740 stars, 135 forks (NVIDIA)
+
+**Last Updated**: 2026-04
+
+### LingBot-VA: Causal Video-Action World Model for Robot Control
+
+**URL**: [github.com/Robbyant/lingbot-va](https://github.com/robbyant/lingbot-va)
+
+**Description**: Autoregressive diffusion framework from Robbyant (Ant Group) that learns frame prediction and policy execution simultaneously. Features Mixture-of-Transformers (MoT) architecture with shared latent space for vision and action tokens, closed-loop rollout with ground-truth observations, and asynchronous inference pipeline parallelizing action prediction and motor execution. Reportedly outperforms π0.5 by 20% on task success rate.
 
 **Tech Stack**: Python, PyTorch
 
 **Key Features**:
 
-- Open implementation of pi0 VLA for general-purpose robot manipulation
-- Fine-tuning pipeline for adapting to custom robot setups and tasks
-- Multi-robot platform support out of the box
-- Active community with extensive documentation
+- Autoregressive video-action world modeling: "deduce while acting"
+- 20% higher task success rate vs π0.5
+- 90%+ success on RoboTwin 2.0 two-arm collaborative benchmark
+- 98.5% on LIBERO long-sequence lifelong learning benchmark (industry record)
+- Asynchronous inference pipeline for efficient robot control
+- Part of LingBot family: LingBot-Depth, LingBot-VLA, LingBot-World, LingBot-VA
 
 **Status**: Active
 
-**Stats**: 10,992 stars, 1,681 forks, 29 contributors (Physical Intelligence)
+**Stats**: (Robbyant / Ant Group)
 
-**Last Updated**: 2026-03
+**Last Updated**: 2026-04
 
 ### NE-Dreamer: Next Embedding Prediction for World Models
 
@@ -432,6 +484,58 @@
 **Stats**: 181 stars, 28 forks, 8 contributors (Galilai group — academic; lead contributors: Lucas Maes, Quentin Llavador, Randall Balestriero)
 
 **Last Updated**: 2026-02
+
+---
+
+## Inference & Serving
+
+*Frameworks and APIs for serving world models*
+
+### vLLM-Omni: Omni-Modality Model Serving
+
+**URL**: [github.com/vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni)
+
+**Description**: Extension of vLLM for omni-modality model inference and serving, supporting text, image, video, and audio I/O plus non-autoregressive architectures including Diffusion Transformers (DiT). Reduces job completion time by up to 91.4% vs baselines. Active RFC (#1987) for world model support targeting robotics (DreamZero, Pi0, OpenVLA, GR00T) and interactive video (Genie 3, LingBot-World, Matrix Game) with stateful multi-turn sessions and action I/O.
+
+**Tech Stack**: Python, PyTorch, CUDA, vLLM core
+
+**Key Features**:
+
+- Omni-modality: text, image, video, audio I/O
+- Diffusion Transformer (DiT) support for parallel generation
+- Disaggregated stage execution for any-to-any model architectures
+- 91.4% reduction in job completion time vs baselines
+- World Model RFC: targeting OpenPI-style WebSocket API and LeRobot gRPC API as standard robotics interfaces
+- Apache 2.0 licensed
+
+**Status**: Active
+
+**Stats**: 4,439 stars, 819 forks (vLLM Project)
+
+**Last Updated**: 2026-04
+
+### LeRobot: End-to-End Learning for Robotics
+
+**URL**: [github.com/huggingface/lerobot](https://github.com/huggingface/lerobot)
+
+**Description**: HuggingFace's framework for making AI for robotics more accessible with end-to-end learning. Provides models, datasets, and tools including a gRPC-based PolicyServer/RobotClient architecture for distributed inference. Supports imitation learning (ACT, Diffusion, VQ-BeT), RL (HIL-SERL, TDMPC), and VLA models (π0-FAST, π0.5, GR00T N1.5, SmolVLA). Emerging as a de facto standard API for robotics model serving.
+
+**Tech Stack**: Python, PyTorch, gRPC, HuggingFace Hub
+
+**Key Features**:
+
+- PolicyServer/RobotClient gRPC architecture (~5x faster than REST)
+- Asynchronous inference: robot acts while next chunk computes (~2x task completion speedup)
+- Multiple policy architectures: ACT, Diffusion, VQ-BeT, TDMPC, π0, GR00T N1.5
+- Hardware-agnostic interface from low-cost arms (SO-100) to humanoids
+- Dataset ecosystem on HuggingFace Hub
+- vLLM-Omni targeting LeRobot API compatibility
+
+**Status**: Active
+
+**Stats**: 23,488 stars, 4,328 forks (HuggingFace)
+
+**Last Updated**: 2026-04
 
 ---
 
