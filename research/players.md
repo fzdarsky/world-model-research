@@ -154,6 +154,54 @@
 
 **Links**: [Homepage](https://www.ri.cmu.edu/ri-faculty/alonzo-kelly/)
 
+### Chelsea Finn
+
+**About**: Associate Professor at [Stanford (SVL / SAIL)](players.md#stanford-svl--sail) in Computer Science and Electrical Engineering, co-founder of [Physical Intelligence](players.md#physical-intelligence-π). Leads the IRIS lab (Intelligence through Robotic Interaction at Scale). Pioneer in meta-learning for robotics and few-shot adaptation. Recent work focuses on world models as scalable alternatives to real-world robot testing.
+
+**Focus Areas**: Robot learning, meta-learning, world models for manipulation, few-shot adaptation, generalist policies
+
+**Key Work**: MAML (model-agnostic meta-learning), Ctrl-World (controllable world model for manipulation), RoboReward (vision-language reward models), co-founder of [Physical Intelligence](players.md#physical-intelligence-π) (π0 VLA)
+
+**Collaborations**: [Physical Intelligence](players.md#physical-intelligence-π) (co-founder), [Stanford (SVL / SAIL)](players.md#stanford-svl--sail), [Sergey Levine](players.md#sergey-levine)
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=vfPE6hgAAAAJ), [Homepage](https://ai.stanford.edu/~cbfinn/)
+
+### Pieter Abbeel
+
+**About**: Professor at [UC Berkeley](players.md#uc-berkeley-rail), co-founder of Covariant (robot learning for warehouses). Early advocate for deep RL in robotics — his lab's work on learning from demonstrations and sim-to-real transfer helped establish the field. Co-authored the comprehensive "World Model for Robot Learning" survey (2026) that unifies the fragmented world model literature for robotics.
+
+**Focus Areas**: Robot learning, deep RL, sim-to-real transfer, world models for robotics, foundation models
+
+**Key Work**: World Model for Robot Learning survey (2026, with Jitendra Malik), apprenticeship learning, Covariant (co-founder), deep RL for robot manipulation
+
+**Collaborations**: [UC Berkeley RAIL](players.md#uc-berkeley-rail), [Jitendra Malik](players.md#jitendra-malik), Covariant
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=X4Qth8YAAAAJ), [Homepage](https://people.eecs.berkeley.edu/~pabbeel/)
+
+### Jitendra Malik
+
+**About**: Professor at UC Berkeley and Research Director at Meta. Pioneer in computer vision — his work on visual recognition, 3D shape understanding, and embodied perception spans four decades. Co-authored the comprehensive "World Model for Robot Learning" survey (2026) that bridges vision, world models, and robot policy learning.
+
+**Focus Areas**: Computer vision, 3D understanding, embodied perception, world models for robotics
+
+**Key Work**: World Model for Robot Learning survey (2026, with Pieter Abbeel), visual recognition foundations, Mesh R-CNN, embodied perception
+
+**Collaborations**: [UC Berkeley RAIL](players.md#uc-berkeley-rail), [Pieter Abbeel](players.md#pieter-abbeel), Meta AI
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=oY9R5YQAAAAJ), [Homepage](https://people.eecs.berkeley.edu/~malik/)
+
+### Demis Hassabis
+
+**About**: CEO of [Google DeepMind](players.md#google-deepmind), Nobel Prize in Chemistry (2024, with John Jumper for AlphaFold). Created AlphaGo, AlphaFold, and oversees Gemini. Publicly frames world models as the critical next step toward a universal AI assistant — plans to extend Gemini into a world model capable of planning and simulating physical dynamics.
+
+**Focus Areas**: AGI, world models as path to universal AI, physics simulation, scientific discovery, game-playing AI
+
+**Key Work**: AlphaGo/AlphaZero, AlphaFold (Nobel Prize 2024), Genie 3 (interactive world model), Gemini, vision for Gemini as world model
+
+**Collaborations**: [Google DeepMind](players.md#google-deepmind)
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=dYpPMQEAAAAJ), [Homepage](https://www.demishassabis.com/)
+
 ---
 
 ## Research Institutions
@@ -180,7 +228,7 @@
 
 **Key Work**: Motion Intelligence for humanoids, Common Ground research, Stanford HAI AI Index Report
 
-**Key People**: [Fei-Fei Li](players.md#fei-fei-li), Karen Liu
+**Key People**: [Fei-Fei Li](players.md#fei-fei-li), [Chelsea Finn](players.md#chelsea-finn), Karen Liu
 
 **Links**: [SVL](https://svl.stanford.edu/), [SAIL](https://ai.stanford.edu/), [HAI](https://hai.stanford.edu/)
 
@@ -192,7 +240,7 @@
 
 **Key Work**: Offline RL methods, π0/π0.5 (via Physical Intelligence), extreme robot manipulation
 
-**Key People**: [Sergey Levine](players.md#sergey-levine)
+**Key People**: [Sergey Levine](players.md#sergey-levine), [Pieter Abbeel](players.md#pieter-abbeel), [Jitendra Malik](players.md#jitendra-malik)
 
 **Links**: [Website](https://rail.eecs.berkeley.edu/)
 
@@ -326,15 +374,15 @@
 
 ### Google DeepMind
 
-**About**: Leading AI research lab (Alphabet) with multiple world-model-adjacent efforts spanning interactive world models, video generation with physics, and physics engines for robotics. Genie 3 generates interactive 720p/24fps environments from prompts; Veo 3/3.1 produces video with physics simulation; upcoming Veo 3.2 reportedly includes "Artemis" world model engine for explicit 3D physics reasoning.
+**About**: Leading AI research lab (Alphabet) with multiple world-model-adjacent efforts spanning interactive world models, video generation with physics, robotics foundation models, and physics engines. Genie 3 generates interactive 720p/24fps environments from prompts; Veo 3/3.1 produces video with physics simulation; Gemini Robotics provides VLA foundation models for robot control.
 
-**Focus Areas**: Interactive world models, video generation, physics simulation, robotics
+**Focus Areas**: Interactive world models, video generation, physics simulation, robotics foundation models
 
-**Key Work**: Genie 3 (interactive world model, 720p/24fps), Veo 3/3.1 (video generation with physics), Newton physics engine (co-developed with [NVIDIA](players.md#nvidia) and Disney Research), Veo 3.2 / "Artemis" (reported, explicit 3D physics)
+**Key Work**: Genie 3 (interactive world model, 720p/24fps), Veo 3/3.1 (video generation with physics), Gemini Robotics 1.5/On-Device (VLA foundation model, ~250ms latency, 50Hz via action chunking), Gemini Robotics-ER 1.6 (embodied reasoning, spatial understanding, instrument reading with Boston Dynamics), Newton physics engine (co-developed with [NVIDIA](players.md#nvidia) and Disney Research)
 
-**Collaborations**: [NVIDIA](players.md#nvidia) (Newton physics engine), Disney Research (Newton), Waymo (autonomous driving)
+**Collaborations**: [NVIDIA](players.md#nvidia) (Newton physics engine), Disney Research (Newton), Waymo (autonomous driving), Boston Dynamics (Gemini Robotics-ER instrument reading), Apptronik (Apollo humanoid integration)
 
-**Links**: [Website](https://deepmind.google), [Research](https://deepmind.google/research/)
+**Links**: [Website](https://deepmind.google), [Research](https://deepmind.google/research/), [Gemini Robotics](https://deepmind.google/models/gemini-robotics/)
 
 ### Tesla
 

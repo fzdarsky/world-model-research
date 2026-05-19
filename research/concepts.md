@@ -2,8 +2,8 @@
 
 > Deep dives into fundamental concepts underlying AI world models
 
-**Last Updated**: 2026-04-02
-**Last Synthesized**: 2026-04-01
+**Last Updated**: 2026-05-18
+**Last Synthesized**: 2026-05-18
 
 ---
 
@@ -170,6 +170,8 @@ World models are internal representations of environment dynamics that enable ag
 
 ### World Model Technical Details
 
+**Five functional roles** (Abbeel & Malik et al. 2026 survey): World models serve robotics across policy learning, planning, simulation, evaluation, and data generation. This taxonomy clarifies that world models are not monolithic — a single model may serve multiple roles, and different architectures suit different roles. JEPA excels at planning; pixel-space models (Cosmos) excel at data generation. Ctrl-World (Finn et al. 2026) demonstrates the evaluation role: ranking policy performance via imagined rollouts without real-world testing, with synthetic trajectories improving policy success by 44.7%.
+
 **Decoder-free trend**: R2-Dreamer and NE-Dreamer both eliminate pixel reconstruction, predicting in embedding space instead. This parallels JEPA's core principle and suggests convergent design across the field. Both use redundancy reduction (Barlow Twins, predictive alignment) to prevent collapse — the same challenge JEPA addresses with VICReg.
 
 **RL post-training**: Emerging paradigm where world models are first pre-trained (self-supervised) then post-trained with RL for task-relevant quality. RLVR-World (+30.7% accuracy), WorldCompass (long-horizon improvement), and RWML (sim-to-real gap rewards) demonstrate this across text, video, and embodied domains.
@@ -178,7 +180,7 @@ World models are internal representations of environment dynamics that enable ag
 
 **Physical reasoning**: Cosmos-Reason1 adds explicit physical common sense via hierarchical ontology (space, time, physics). Complementary to JEPA's implicit physics learning — explicit ontologies can guide and constrain predictions. The proposed MLLM-WM fusion architecture (Feng et al. 2025) combines language grounding with physics simulation.
 
-### World Models Current State (as of 2026-04)
+### World Models Current State (as of 2026-05)
 
 **Three paradigms crystallizing**:
 
@@ -211,7 +213,18 @@ The a16z "Frontier Systems for the Physical World" essay proposes a three-way cl
 - Telecommunications: WirelessJEPA, JEPA-MSAC, Wireless World Model for 6G — 3 papers in 3 months
 - Healthcare: EchoJEPA (18M echocardiograms, 300K patients)
 - Autonomous vehicles: Waymo World Model, DWM robustness framework, Le MuMo JEPA sensor fusion
-- Agentic AI: LLM-based world models for web agents (RLVR-World, RWML)
+- Agentic AI: AWM (synthetic environments for agent RL), WebWorld (web agent training), "Agentic World Modeling" survey (400+ works). World models for digital agents emerging as distinct subfield — governed by digital rather than physical laws
+- Industrial / Digital Twins: Two papers (2601.01321, 2603.17420) chart the digital twin → world model transition. Key insight: digital twins mirror and monitor; world models internalize dynamics for autonomous reasoning. Four-stage lifecycle (Modeling → Mirroring → Intervention → Autonomous Management) maps to world model capability levels
+
+**Competing capability taxonomies** (as of 2026-05):
+
+- **Our primer**: L1-L4 (representation → prediction → action-conditioned → planning/control)
+- **Agentic World Modeling** (Chu et al. 2026): L1 Predictor → L2 Simulator → L3 Evolver. L3 "Evolver" directly addresses the continual learning gap — world models that self-correct
+- **Healthcare survey** (2511.16333): L1-L4 similar to ours, applied to clinical prediction
+- **Robot Learning survey** (2605.00080): Five functional roles (policy learning, planning, simulation, evaluation, data generation) — orthogonal to capability levels
+- **Governing laws axis** (Chu et al. 2026): Physical, digital, social, scientific — recognizes that world models for web agents face fundamentally different constraints than those for robotics
+
+**Google's convergence bet**: Hassabis (2025-05) explicitly frames extending Gemini 2.5 Pro into a world model — betting on LLM→WM integration rather than purpose-built WM architectures. If realized, validates the thesis that LLMs and world models converge. Contrasts with Meta's JEPA-centric approach (purpose-built architecture for physical world modeling).
 
 **Open challenges**:
 
