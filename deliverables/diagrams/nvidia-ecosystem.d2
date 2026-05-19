@@ -1,0 +1,149 @@
+direction: right
+
+# Pipelines wrapper
+pipelines: "" {
+  direction: down
+  style.fill: transparent
+  style.stroke: transparent
+
+  # Training Pipeline (blue theme - matches VLA in robotics diagram)
+  training: "Training Pipeline" {
+    direction: right
+    width: 700
+    style: {
+      stroke: "#1976d2"
+      stroke-width: 2
+      fill: "#e3f2fd"
+    }
+
+    isaac_sim: "Isaac Sim\n(Simulation)" {
+      width: 120
+      height: 60
+      style: {
+        fill: "#1976d2"
+        font-color: white
+      }
+    }
+
+    cosmos: "Cosmos Predict\n(Synthetic Data)" {
+      width: 120
+      height: 60
+      style: {
+        fill: "#1976d2"
+        font-color: white
+      }
+    }
+
+    groot: "GR00T N1\n(Foundation Model)" {
+      width: 160
+      height: 60
+      style: {
+        fill: "#1976d2"
+        font-color: white
+      }
+    }
+
+    physics_nemo: "PhysicsNeMo\n(Physics)" {
+      width: 120
+      height: 60
+      style: {
+        fill: "#1976d2"
+        font-color: white
+      }
+    }
+
+    isaac_sim -> cosmos: "generates"
+    cosmos -> groot: "trains"
+    physics_nemo -> groot: "constrains"
+  }
+
+  # Deployment Pipeline (green theme - matches WAM in robotics diagram)
+  deployment: "Deployment Pipeline" {
+    direction: right
+    width: 700
+    style: {
+      stroke: "#388e3c"
+      stroke-width: 2
+      fill: "#e8f5e9"
+    }
+
+    groot_deploy: "GR00T\n(Robot Policy)" {
+      width: 120
+      height: 60
+      style: {
+        fill: "#388e3c"
+        font-color: white
+      }
+    }
+
+    isaac_ros: "Isaac ROS\n(Middleware)" {
+      width: 120
+      height: 60
+      style: {
+        fill: "#388e3c"
+        font-color: white
+      }
+    }
+
+    jetson: "Jetson\n(Edge HW)" {
+      width: 120
+      height: 60
+      style: {
+        fill: "#388e3c"
+        font-color: white
+      }
+    }
+
+    groot_deploy -> isaac_ros: "deploys to"
+    isaac_ros -> jetson: "runs on"
+  }
+
+  # Digital Twins (orange theme - matches JEPA in robotics diagram)
+  digital_twins: "Digital Twins" {
+    direction: right
+    width: 700
+    style: {
+      stroke: "#f57c00"
+      stroke-width: 2
+      fill: "#fff3e0"
+    }
+
+    sensor_data: "Sensor Data" {
+      width: 120
+      height: 60
+      style: {
+        fill: "#f57c00"
+        font-color: white
+      }
+    }
+
+    physics_nemo_dt: "PhysicsNeMo\n(Modeling)" {
+      width: 120
+      height: 60
+      style: {
+        fill: "#f57c00"
+        font-color: white
+      }
+    }
+
+    omniverse: "Omniverse\n(Visualization)" {
+      width: 120
+      height: 60
+      style: {
+        fill: "#f57c00"
+        font-color: white
+      }
+    }
+
+    sensor_data -> physics_nemo_dt: "feeds"
+    physics_nemo_dt -> omniverse: "visualizes"
+  }
+
+  # Cross-pipeline connections
+  training.groot -> deployment.groot_deploy: "exports" {
+    style.stroke-dash: 3
+  }
+  deployment.jetson -> digital_twins.sensor_data: "produces" {
+    style.stroke-dash: 3
+  }
+}

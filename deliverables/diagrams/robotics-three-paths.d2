@@ -1,0 +1,174 @@
+direction: right
+
+title: "Three Architectural Paths to Robot Actions" {
+  near: top-center
+  shape: text
+  style: {
+    font-size: 28
+    bold: true
+  }
+}
+
+rows: "" {
+  direction: down
+  style.fill: transparent
+  style.stroke: transparent
+
+  # VLA Path (row 1)
+  vla: "VLA  (~50ms • Limited physics • Language grounding)" {
+    direction: right
+    width: 850
+    style.fill: "#e3f2fd"
+    style.stroke: "#1976d2"
+    style.stroke-width: 2
+
+    input: "Image +\nLanguage" {
+      shape: circle
+      width: 80
+      height: 80
+      style.fill: "#90caf9"
+    }
+
+    vlm: "Vision-Language\nModel" {
+      shape: rectangle
+      width: 120
+      height: 60
+      style.fill: "#1976d2"
+      style.font-color: white
+    }
+
+    decoder: "Action\nDecoder" {
+      shape: rectangle
+      width: 120
+      height: 60
+      style.fill: "#1976d2"
+      style.font-color: white
+    }
+
+    robot: "Robot" {
+      shape: hexagon
+      width: 120
+      height: 60
+      style.fill: "#64b5f6"
+    }
+
+    spacer: "" {
+      shape: rectangle
+      width: 120
+      height: 60
+      style.opacity: 0
+    }
+
+    input -> vlm -> decoder -> robot
+    robot -> spacer: "" {
+      style.opacity: 0
+    }
+  }
+
+  # WAM Path (row 2)
+  wam: "WAM  (~150ms • Good physics • Joint prediction)" {
+    direction: right
+    width: 850
+    style.fill: "#e8f5e9"
+    style.stroke: "#388e3c"
+    style.stroke-width: 2
+
+    input: "Video" {
+      shape: circle
+      width: 80
+      height: 80
+      style.fill: "#a5d6a7"
+    }
+
+    diff: "Video Diffusion\n(predicts future\n+ action)" {
+      shape: rectangle
+      width: 120
+      height: 60
+      style.fill: "#388e3c"
+      style.font-color: white
+    }
+
+    robot: "Robot" {
+      shape: hexagon
+      width: 120
+      height: 60
+      style.fill: "#66bb6a"
+    }
+
+    spacer1: "" {
+      shape: rectangle
+      width: 120
+      height: 60
+      style.opacity: 0
+    }
+
+    spacer2: "" {
+      shape: rectangle
+      width: 120
+      height: 60
+      style.opacity: 0
+    }
+
+    input -> diff -> robot
+    robot -> spacer1: "" {
+      style.opacity: 0
+    }
+    spacer1 -> spacer2: "" {
+      style.opacity: 0
+    }
+  }
+
+  # JEPA-Planning Path (row 3)
+  jepa: "JEPA-Planning  (~100-500ms • Good physics • Noise filtering)" {
+    direction: right
+    width: 850
+    style.fill: "#fff3e0"
+    style.stroke: "#f57c00"
+    style.stroke-width: 2
+
+    input: "Video" {
+      shape: circle
+      width: 80
+      height: 80
+      style.fill: "#ffcc80"
+    }
+
+    encoder: "Encoder" {
+      shape: rectangle
+      width: 120
+      height: 60
+      style.fill: "#f57c00"
+      style.font-color: white
+    }
+
+    planning: "Latent\nPlanning" {
+      shape: rectangle
+      width: 120
+      height: 60
+      style.fill: "#f57c00"
+      style.font-color: white
+    }
+
+    action: "Action\nSelection" {
+      shape: rectangle
+      width: 120
+      height: 60
+      style.fill: "#f57c00"
+      style.font-color: white
+    }
+
+    robot: "Robot" {
+      shape: hexagon
+      width: 120
+      height: 60
+      style.fill: "#ffa726"
+    }
+
+    input -> encoder -> planning -> action -> robot
+    planning -> planning: "rollouts" {
+      style.stroke-dash: 3
+      style.border-radius: 50
+      label.near: top-center
+    }
+  }
+}

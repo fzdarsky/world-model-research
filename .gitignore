@@ -46,6 +46,9 @@ build/
 # Downloaded papers (can be re-downloaded)
 research/library/
 
+# Superpowers planning/specs
+docs/superpowers/
+
 # Local environment
 .env
 .env.local
