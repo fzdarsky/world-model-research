@@ -1124,6 +1124,23 @@
 
 *Theoretical foundations, surveys, position papers*
 
+### DINOv3 [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2508.10104)
+
+**Authors/Presenters**: Oriane Siméoni, Huy V. Vo, Maximilian Seitzer, Federico Baldassarre, Maxime Oquab, Cijo Jose, Vasil Khalidov, Marc Szafraniec, Seungeun Yi, Michaël Ramamonjisoa, Francisco Massa, Daniel Haziza, Luca Wehrstedt, Jianyuan Wang, Timothée Darcet, Théo Moutakanni, Leonel Sentana, Claire Roberts, Andrea Vedaldi, Jamie Tolan, John Brandt, Camille Couprie, Julien Mairal, Hervé Jégou, Patrick Labatut, Piotr Bojanowski
+
+**Date**: 2025-08
+
+**Summary**: Third-generation self-supervised vision foundation model from Meta FAIR. Scales to 7B parameters on 1.7B images (7x model / 12x data vs. DINOv2) and introduces Gram Anchoring — a method that prevents dense feature degradation during long training schedules, a known but previously unsolved issue. First SSL model to consistently outperform weakly-supervised counterparts across both classification and dense prediction tasks.
+
+**Key Findings**:
+
+- Gram Anchoring solves the problem where global representations (classification) keep improving with longer training but dense features (segmentation, detection) degrade — anchoring feature map Gram matrices stabilizes local structure
+- Post-hoc strategies enhance flexibility: resolution adaptation, distillation to smaller architectures (ViT-S/B/L/H+, ConvNeXt), and text alignment without retraining
+- Outperforms SigLIP 2 and Perception Encoder on classification; significantly widens the gap on dense prediction tasks — all with frozen backbone weights
+- Model suite includes a satellite backbone trained on MAXAR imagery, extending SSL to remote sensing domains
+
+**Relevance to World Models**: DINOv3 is a joint-embedding (not predictive) model — it aligns representations of augmented views via teacher-student distillation, whereas JEPA predicts representations of unseen content. Both lineages originate from Meta FAIR / LeCun's group and share the principle of learning in representation space rather than pixel space. DINOv3's frozen features serve as strong visual encoders for downstream world models (cf. DINO-WM baseline), and its Gram Anchoring insight — that dense feature quality requires explicit stabilization — is relevant to JEPA models that also produce dense spatial representations.
+
 ### Learning to Model the World: A Survey of World Models in Artificial Intelligence [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.techrxiv.org/doi/full/10.36227/techrxiv.177274570.09578608/v1)
 
 **Authors/Presenters**: Jiahua Dong, Qi Lyu, Baichen Liu, Xudong Wang, Wenqi Liang, Duzhen Zhang, Jiahang Tu, Hongliu Li, Hanbin Zhao, Henghui Ding, Yulun Zhang, Zhi Han, Nicu Sebe, Fahad Shahbaz Khan, Salman Khan, Mubarak Shah, Philip Torr, Ming-Hsuan Yang, Dacheng Tao
@@ -1449,6 +1466,7 @@
 
 *Last synthesized: 2026-05-21*
 
+- DINOv3 (Foundational / Theory)
 - Introducing Gemini Omni (Strategy)
 - Google's Gemini Omni Turns Images, Audio, and Text into Video (Strategy)
 - Google I/O 2026: Gemini Omni and the Rise of World Modeling (Strategy)

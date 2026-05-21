@@ -44,12 +44,19 @@ When this command is invoked:
    - Projects → `research/projects.md` under appropriate category
    - Players → `research/players.md` under appropriate type
    - Use cases → `research/use-cases.md` under appropriate industry
-6. **Cross-link** if needed:
+6. **Download PDF to library** (for arXiv and other paper URLs):
+   - Download the PDF to `research/library/` using curl
+   - Naming convention: `{arxiv-id}-{slugified-short-title}.pdf` (e.g., `2508.10104-dinov3.pdf`)
+   - For arXiv papers, the PDF URL is `https://arxiv.org/pdf/{id}.pdf`
+   - For non-arXiv papers with a direct PDF link, download using that link
+   - Verify the download is a valid PDF (check file size > 10KB)
+   - Skip this step for non-paper content (GitHub projects, player pages, etc.)
+7. **Cross-link** if needed:
    - New researchers mentioned → add to players.md (only seminal contributors / thought leaders)
    - New use cases identified → add to use-cases.md
    - Related concepts → note in concepts.md
    - If any authors/presenters already exist in players.md, link their names: `[Name](players.md#anchor)`
-7. **Confirm** with user what was added and where
+8. **Confirm** with user what was added and where
 
 ## Style Guide Compliance
 
