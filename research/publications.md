@@ -1389,13 +1389,69 @@
 
 **Relevance to World Models**: Clarifies a common misreading of Google's strategy. Hassabis is not simply extending Gemini into a world model — he describes a portfolio where Gemini handles language/reasoning, Genie handles world simulation, and SIMA handles embodied action. Convergence is at the system level, not the architecture level. The "physics-grade" accuracy standard and Newton's-law benchmarks are notable — sets a higher bar than visual realism for world model evaluation.
 
+### Introducing Gemini Omni [<img src="templates/icons/website.svg" alt="website" height="16">](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/)
+
+**Authors/Presenters**: Koray Kavukcuoglu (CTO, [Google DeepMind](players.md#google-deepmind))
+
+**Date**: 2026-05
+
+**Summary**: Official announcement of Gemini Omni, a native multimodal model that processes text, images, audio, and video in a single unified token space to generate and iteratively edit video. Positioned explicitly as a world model — not a video generator — with claimed intuitive physics understanding. Fuses capabilities from Gemini (reasoning), Veo (video generation), Nano Banana (image editing), and Project Genie (interactive world simulation) into one architecture.
+
+**Key Findings**:
+
+- Unified architecture processes all modalities in single token space rather than routing through separate pipelines — eliminates "temporal drift" from frame-stitching approaches
+- Claims intuitive understanding of physics (gravity, kinetic energy, fluid dynamics, spatial awareness); demo showed marble navigating complex chain-reaction track with physically plausible behavior
+- Multi-turn conversational editing with persistent scene state — edits build on prior context, maintaining character consistency and physics continuity
+- Two variants: Omni Flash (launched May 2026) and Omni Pro (planned, contingent on "step change above Flash"); replaces Veo in consumer Gemini app but Veo 3.1 persists on Vertex AI/API
+- SynthID pixel-level watermark (non-optional, imperceptible) and C2PA Content Credentials on all generated video; digital avatar feature requires identity verification onboarding
+
+**Relevance to World Models**: Concrete realization of [Hassabis's 2025 vision](https://blog.google/technology/google-deepmind/gemini-universal-ai-assistant) to extend Gemini into a world model. Validates the system-level convergence thesis — Omni integrates Gemini (language/reasoning), Genie (world simulation), and Veo (visual rendering) rather than building a purpose-built WM architecture. The unified token space approach contrasts with both JEPA's latent-space prediction and NVIDIA Cosmos's diffusion-based generation. No technical paper, benchmarks, or architecture details disclosed — claims of physics understanding remain unverified against the "physics-grade" standard Hassabis set in his April 2026 interview.
+
+### Google's Gemini Omni Turns Images, Audio, and Text into Video [<img src="templates/icons/website.svg" alt="website" height="16">](https://techcrunch.com/2026/05/19/googles-gemini-omni-turns-images-audio-and-text-into-video-and-thats-just-the-start/)
+
+**Authors/Presenters**: TechCrunch (Kyle Wiggers)
+
+**Date**: 2026-05
+
+**Summary**: News coverage of Gemini Omni launch with key quotes from Sundar Pichai and DeepMind's Nicole Brichtova. Pichai frames the shift: "With world models, AI is moving from predicting text to simulating reality." Brichtova distinguishes Omni from Veo: "the next step towards combining the intelligence of Gemini with the rendering capabilities of our media models."
+
+**Key Findings**:
+
+- Pichai quote positions world models as the successor paradigm to language models: "from predicting text to simulating reality"
+- Brichtova clarifies Omni is not a Veo update but a fusion of reasoning + rendering: merges Gemini intelligence with media generation capabilities
+- Cross-modal reasoning demonstrated: given "claymation explainer of protein folding," generated stop-motion video with accurate scientific narration about amino acids, alpha helices, beta sheets — showing simultaneous visual and factual reasoning
+- 10-second clip limit at launch described as "deliberate deployment cap to manage compute demand," not a model limitation
+- Competitive context: OpenAI's Sora app now defunct; Luma AI building unified model for agentic creative workflows
+
+**Relevance to World Models**: The Pichai quote ("from predicting text to simulating reality") is the clearest framing yet of world models as the next paradigm shift after LLMs — from a CEO of one of the three companies capable of sustaining frontier AI capex. The protein-folding demo is notable: it requires both physical simulation (claymation physics) and factual reasoning (biology) simultaneously, suggesting the unified architecture may offer advantages over modality-specific pipelines. However, no quantitative comparison with existing world models (Cosmos, Genie 3) is provided.
+
+### Google I/O 2026: Gemini Omni and the Rise of World Modeling [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.efficientlyconnected.com/google-io-2026-gemini-omni-world-modeling/)
+
+**Authors/Presenters**: Efficiently Connected
+
+**Date**: 2026-05
+
+**Summary**: Enterprise-focused analysis of Gemini Omni's implications for industrial applications. Frames Omni as a potential "simulation substrate" replacing purpose-built physical modeling software. Details the TPU 8t/8i hardware split enabling the model, and warns of significant vendor lock-in risks for enterprises adopting Omni for simulation workloads.
+
+**Key Findings**:
+
+- Positions Omni as enterprise simulation substrate for pharma, climate science, automotive engineering, and manufacturing — domains relying on expensive physical prototyping cycles
+- TPU 8t (training): global cluster exceeding 1M TPUs via JAX/Pathways, compresses training from months to weeks; TPU 8i (inference): 1,500 tokens/sec on flash models — first time Google splits TPU into training vs. inference specialized chips
+- Token economics: enterprises processing ~1T tokens/day could achieve >$1B annual savings; CIOs reportedly exhausting annual token budgets before fiscal midpoint
+- Lock-in warning: anchoring simulation pipelines to Omni + TPU v8 creates "multi-year architectural rebuild" migration cost — more severe than traditional software vendor lock-in
+- Competitive thesis: as text-based reasoning benchmarks converge across vendors, physical simulation accuracy and multimodal throughput become the differentiating axis — favoring vertically integrated hyperscalers
+
+**Relevance to World Models**: Provides the enterprise adoption lens missing from Google's announcement. The framing of world models as "simulation substrates" connects to our digital twin and industrial use cases. The TPU 8t/8i split is architecturally significant — purpose-built inference hardware for world models suggests Google expects persistent, high-throughput world model inference as a primary workload, not occasional generation. The lock-in analysis is a practical concern for any organization evaluating world model platforms (Cosmos vs. Omni vs. purpose-built).
+
 ---
 
 ## Recent Additions
 
-*Last synthesized: 2026-05-19*
+*Last synthesized: 2026-05-21*
 
-*No unsynthesized additions.*
+- Introducing Gemini Omni (Strategy)
+- Google's Gemini Omni Turns Images, Audio, and Text into Video (Strategy)
+- Google I/O 2026: Gemini Omni and the Rise of World Modeling (Strategy)
 
 ---
 

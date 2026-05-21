@@ -374,15 +374,15 @@
 
 ### Google DeepMind
 
-**About**: Leading AI research lab (Alphabet) with multiple world-model-adjacent efforts spanning interactive world models, video generation with physics, robotics foundation models, and physics engines. Genie 3 generates interactive 720p/24fps environments from prompts; Veo 3/3.1 produces video with physics simulation; Gemini Robotics provides VLA foundation models for robot control.
+**About**: Leading AI research lab (Alphabet) with multiple world-model-adjacent efforts spanning interactive world models, video generation with physics, robotics foundation models, and physics engines. Gemini Omni (May 2026) fuses Gemini reasoning, Veo video generation, and Genie world simulation into a unified multimodal model explicitly positioned as a world model. Genie 3 generates interactive 720p/24fps environments from prompts; Gemini Robotics provides VLA foundation models for robot control.
 
-**Focus Areas**: Interactive world models, video generation, physics simulation, robotics foundation models
+**Focus Areas**: Interactive world models, unified multimodal generation, physics simulation, robotics foundation models
 
-**Key Work**: Genie 3 (interactive world model, 720p/24fps), Veo 3/3.1 (video generation with physics), Gemini Robotics 1.5/On-Device (VLA foundation model, ~250ms latency, 50Hz via action chunking), Gemini Robotics-ER 1.6 (embodied reasoning, spatial understanding, instrument reading with Boston Dynamics), Newton physics engine (co-developed with [NVIDIA](players.md#nvidia) and Disney Research)
+**Key Work**: Gemini Omni (unified multimodal world model, Flash launched May 2026), Genie 3 (interactive world model, 720p/24fps), Veo 3/3.1 (video generation with physics, now subsumed by Omni in consumer products), Gemini Robotics 1.5/On-Device (VLA foundation model, ~250ms latency, 50Hz via action chunking), Gemini Robotics-ER 1.6 (embodied reasoning, spatial understanding, instrument reading with Boston Dynamics), Newton physics engine (co-developed with [NVIDIA](players.md#nvidia) and Disney Research)
 
 **Collaborations**: [NVIDIA](players.md#nvidia) (Newton physics engine), Disney Research (Newton), Waymo (autonomous driving), Boston Dynamics (Gemini Robotics-ER instrument reading), Apptronik (Apollo humanoid integration)
 
-**Links**: [Website](https://deepmind.google), [Research](https://deepmind.google/research/), [Gemini Robotics](https://deepmind.google/models/gemini-robotics/)
+**Links**: [Website](https://deepmind.google), [Research](https://deepmind.google/research/), [Gemini Omni](https://deepmind.google/models/gemini-omni/), [Gemini Robotics](https://deepmind.google/models/gemini-robotics/)
 
 ### Tesla
 
