@@ -74,7 +74,7 @@ In contrast, **Vision-Language-Action models** (VLAs) like π0, NVIDIA GR00T N1,
 
 **Can LLMs become world models?** Google DeepMind's Gemini Omni (May 2026) is the most direct attempt. It fuses Gemini's reasoning, Veo's video generation, and Genie's world simulation into a single multimodal model: processing text, images, audio, and video in one token space. Pichai frames the shift as "from predicting text to simulating reality," a strategic pivot from DeepMind's earlier portfolio approach (separate systems for reasoning, simulation, and action) toward architectural unification.
 
-The caveat: Omni's world model credentials are unverified. No technical paper or benchmarks exist. Hassabis himself set a "physics-grade" bar; models must follow Newton's laws accurately, not just produce visually plausible video. Whether Omni meets this standard is unknown. Until quantitative evaluation exists, it belongs in the "claimed" category.
+The caveat: Omni's world model credentials are unverified. No technical paper or benchmarks exist. Hassabis himself set a "physics-grade" bar — models must follow Newton's laws accurately, not just produce visually plausible video. Whether Omni meets this standard is unknown. Until quantitative evaluation exists, it belongs in the "claimed" category.
 
 **JEPA as cross-domain principle:** The Joint-Embedding Predictive Architecture (JEPA) originated in vision (V-JEPA) but has proven surprisingly versatile. Researchers have adapted it to healthcare diagnostics (EchoJEPA), materials science (Polymer-JEPA), and wireless telecommunications (WirelessJEPA), demonstrating that the core idea — predict in embedding space rather than raw observations — generalizes beyond video to any domain with temporal or spatial structure. See sidebars for detailed applications.
 
@@ -117,6 +117,8 @@ Not all world models are equally capable. A useful framework from healthcare AI 
 **WAMs: Designed for L3-L4.** World Action Models represent the first architecture explicitly designed to reach L3-L4 in real-world robotics. DreamZero unifies world modeling and action generation, enabling the model to simulate multiple action trajectories ("what if I grasp here vs. there?") and select the best one before execution — the definition of L3-L4. At ~150ms inference, it's fast enough for 7-10 Hz manipulation control. NVIDIA's GR00T N2 (planned late 2026) bets on this architecture, integrating Cosmos as the world model backbone. The caveat: DreamZero claims 2x generalization over VLAs in research settings, but neither it nor GR00T N2 is production-deployed yet. WAMs are architecturally significant as the path to L4, even without deployment validation.
 
 **Key limitations:** Video-based models maintain consistency for minutes at most. Latent-space models accumulate prediction error over long rollouts. Systematic causal reasoning remains nascent. These gaps explain why world models excel at synthetic data generation (L1-L2) but haven't yet displaced traditional planning systems for real-world robotics.
+
+**The L4 workaround in practice:** Current JEPA-based planners sidestep long-horizon planning rather than solving it. Prediction quality degrades beyond short rollouts, so the practical strategy is MPC (Model Predictive Control): plan a short action sequence, execute a few steps, replan. This works for reversible manipulation but cannot anticipate irreversible consequences (cutting, pouring, precision assembly). Early evidence suggests hierarchical planning is the path forward: Hierarchical World Models (Zhang, Terver et al. 2026) decomposes tasks into subgoals at multiple temporal scales, achieving 70% success on real-robot pick-and-place from a single goal image versus 0% for flat planning — and the approach is model-agnostic across V-JEPA-2-AC, DINO-WM, and PLDM.
 
 ### The Continual Learning Gap
 
@@ -169,6 +171,8 @@ Here's how to map requirements to approaches:
 ### Foundation vs Custom
 
 Like LLMs, world models now come in foundation variants. NVIDIA Cosmos (Apache 2.0), Meta's V-JEPA 2, and GR00T N1 offer open weights for fine-tuning to specific domains. The challenge is data: pixel-space models may require millions of domain-specific frames to specialize. JEPA-based models can fine-tune on thousands, making them practical for organizations with limited labeled data.
+
+**A scaling caveat:** Unlike LLMs, bigger is not always better. The JEPA-WMs ablation found that larger models hurt planning performance on simulated tasks but helped on real-world robotic data — task complexity, not parameter count, determines whether scaling pays off.
 
 ## Integration and Ecosystem
 
@@ -260,6 +264,8 @@ Robot manipulation requires completing a perception-prediction-action cycle at 7
 
 **JEPA-based planning** decouples world modeling from action selection: the JEPA model predicts future states in latent space, then a separate policy network or planning algorithm selects actions. This architecture enables sophisticated multi-step planning — simulating dozens of candidate trajectories and selecting the one most likely to succeed — but at the cost of higher latency (100-500ms depending on how many rollouts are evaluated). V-JEPA 2-AC demonstrates this in research settings; BADAS 2.0 (deployed by Nexar for autonomous driving) uses V-JEPA2 predictions to improve real-time decision-making.
 
+**Not all encoders are equal for planning.** Image encoders (DINO) outperform video encoders (V-JEPA) for manipulation planning. DINO's training forces each patch to encode which object it belongs to, producing sharp object-background separation in embedding space. Video encoders optimize for temporal coherence, which doesn't require precise spatial boundaries. For a planner that needs to distinguish "cup here" from "cup there," spatial precision matters more than motion understanding.
+
 **The practical pattern emerging in production robotics: use slow-but-accurate approaches for offline training, then distill into fast VLAs for real-time deployment.** The workflow: train a JEPA-based planner to solve manipulation tasks by simulating thousands of trajectories per grasp. Record the successful action sequences. Train a VLA to imitate those JEPA-planned trajectories using behavioral cloning. The result: a VLA that executes at 50ms but has inherited physics knowledge from the world model that generated its training data. This distillation strategy lets you have both speed and understanding — the VLA doesn't *contain* a world model, but it was shaped by one.
 
 **Who's deploying what today:** VLAs dominate production robotics. Figure AI's Figure 02, Unitree's G1, 1X's NEO, and Agility's Digit use VLA-style architectures based on GR00T N1 or Physical Intelligence's π0. Boston Dynamics partners with multiple providers, including Google DeepMind's Gemini Robotics for inspection tasks. These systems achieve the 7-30 Hz control rates required for stable bipedal locomotion and dexterous manipulation. WAMs remain pre-deployment: NVIDIA has announced GR00T N2 (planned late 2026) will integrate Cosmos as a world model backbone, but no production systems use WAM architectures today. JEPA-based approaches have exactly one confirmed production deployment — BADAS 2.0 — making them the most theoretically promising but least commercially validated path.
@@ -305,6 +311,8 @@ Scientific discovery — materials, drugs, and product design — is where world
 - **Graph-JEPA and Polymer-JEPA** — Molecular and materials science extensions of JEPA principle, showing cross-domain applicability from video to chemical and polymer structures.
 - **NVIDIA Cosmos Platform** — Foundation world model for video prediction, dynamics modeling, and synthetic data generation; Apache 2.0 licensed with 2M+ downloads.
 - **DeepMind GNoME** — Pure learned world model discovering 2.2 million stable crystal structures, with 528 new lithium-ion conductors; validates scale of learned physics representations for materials discovery.
+- **[JEPA-WMs](https://arxiv.org/abs/2512.24497)** (Terver et al. 2025) — Systematic ablation of JEPA-based world models for physical planning; identifies critical design choices for encoder, predictor architecture, rollout training, and planning optimizer.
+- **[Hierarchical World Models](https://arxiv.org/abs/2604.03208)** (Zhang, Terver et al. 2026) — Hierarchical planning with latent world models at multiple temporal scales; achieves 70% real-robot pick-and-place success vs 0% for flat planning.
 
 **Industry Analysis:**
 

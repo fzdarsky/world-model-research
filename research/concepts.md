@@ -22,6 +22,7 @@ Joint-Embedding Predictive Architecture is Yann LeCun's framework for self-super
 3. **Latent-space prediction**: Predictor network maps context embeddings to predicted target embeddings. AdaLN-zero architecture identified as critical design choice (JEPA-WMs ablation study)
 4. **Regularization**: Prevents representation collapse. VICReg-style (variance-invariance-covariance), SIGReg, or Gaussian latent regularization (LeWorldModel's 2-term approach)
 5. **Energy minimization**: Compatible (context, target) pairs receive low energy; incompatible pairs receive high energy
+6. **Encoder selection shapes planning utility**: The encoder's pretraining objective determines what the representation encodes, which directly affects downstream planning. DINO-style self-distillation (local-global crop matching) forces each patch token to encode spatial identity — "this patch belongs to the cup, not the table" — producing representations with strong object-background separation. Video-predictive encoders (V-JEPA) optimize for temporal coherence, which can be solved without fine-grained object boundaries. The JEPA-WMs ablation found DINO consistently outperforms V-JEPA encoders for manipulation planning, because the planner needs to distinguish target objects from surroundings in embedding space. This is a proxy objective effect: temporal prediction doesn't demand the spatial precision that planning requires
 
 **Collapse Prevention** — the central engineering challenge:
 
@@ -71,8 +72,8 @@ Joint-Embedding Predictive Architecture is Yann LeCun's framework for self-super
 **Open questions**:
 
 - Optimal latent dimensionality remains unclear across papers and domains
-- Scaling laws for JEPA-based world models not yet established (unlike LLMs)
-- Long-horizon consistency in multi-step rollouts still challenging
+- Scaling laws for JEPA-based world models not yet established (unlike LLMs). Worse, the JEPA-WMs ablation shows scaling is *non-monotonic*: larger encoders and deeper predictors hurt performance on simulated environments (larger embedding spaces make it harder for planning optimizers to distinguish nearby states) but consistently improve performance on real-world data (DROID). This suggests scaling benefits depend on task complexity, not a universal "bigger is better" law
+- Long-horizon consistency in multi-step rollouts still challenging. The JEPA-WMs ablation found that multi-step rollout training beyond 2 steps *degrades* performance in simulation (though real-world DROID data benefits from up to 6 steps). Current practical approach is MPC — short-horizon planning (W^p=2) with frequent replanning — which sidesteps long-horizon prediction rather than solving it. This works for reversible manipulation but breaks down for irreversible actions (cutting, pouring, assembly) where consequences must be anticipated before commitment. **Emerging solution**: Hierarchical Planning with Latent World Models (Zhang, Terver et al. 2026) addresses this by learning world models at multiple temporal scales — a high-level planner generates subgoals via macro-actions, a low-level planner executes short-horizon plans to reach each subgoal. This model-agnostic approach achieves 70% success on real-robot pick-and-place from a single goal image (vs 0% for flat planning), with up to 4x compute reduction. Validates that hierarchical decomposition, not longer rollouts, is the path to long-horizon JEPA planning
 - How to best integrate language reasoning with JEPA's latent prediction (VL-JEPA vs. MLLM-WM fusion)
 
 ---

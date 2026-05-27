@@ -22,6 +22,18 @@
 
 **Links**: [Google Scholar](https://scholar.google.com/citations?user=WLN3QrAAAAAJ), [Twitter](https://twitter.com/ylecun)
 
+### Adrien Bardes
+
+**About**: Research Scientist at Meta FAIR and key architect of the JEPA ecosystem. Creator of VICReg — the variance-invariance-covariance regularization technique that solved collapse prevention for joint-embedding architectures and became the dominant regularization approach in JEPA variants. Co-author on V-JEPA 2, V-JEPA 2.1, VL-JEPA, JEPA-WMs ablation, and Hierarchical World Models.
+
+**Focus Areas**: Self-supervised learning, JEPA, VICReg, world models for planning
+
+**Key Work**: VICReg (ICLR 2022), VICRegL (NeurIPS 2022), V-JEPA 2, V-JEPA 2.1, VL-JEPA, JEPA-WMs ablation study, Hierarchical Planning with Latent World Models
+
+**Collaborations**: [Yann LeCun](players.md#yann-lecun), Meta FAIR, NYU, Jean Ponce (Inria/ENS)
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=SvRU8F8AAAAJ), [Website](https://adrien987k.github.io/), [GitHub](https://github.com/Adrien987k)
+
 ### Ilya Sutskever
 
 **About**: Co-founder and CEO of Safe Superintelligence Inc. (SSI). Former chief scientist of OpenAI; co-inventor of AlexNet (with Krizhevsky and Hinton). Among the most-cited computer scientists in history (766k+ citations). Advocates a "post-scaling" paradigm shift—new learning methods over bigger models—with emphasis on continual learning, generalization, and JEPA-style architectures as paths to superintelligence.

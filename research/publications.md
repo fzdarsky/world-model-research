@@ -107,6 +107,23 @@
 
 **Relevance to World Models**: Essential reference for practitioners building JEPA-based world models — the first systematic study of which design decisions matter and why. Bridges the gap between JEPA theory and practical world model engineering.
 
+### Hierarchical Planning with Latent World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2604.03208)
+
+**Authors/Presenters**: Wancong Zhang, Basile Terver, Artem Zholus, Soham Chitnis, Harsh Sutaria, Mido Assran, Amir Bar, Randall Balestriero, [Adrien Bardes](players.md#adrien-bardes), [Yann LeCun](players.md#yann-lecun), Nicolas Ballas
+
+**Date**: 2026-04
+
+**Summary**: Addresses the long-horizon planning limitation identified in the JEPA-WMs ablation study by learning latent world models at multiple temporal scales and performing hierarchical MPC across those scales. A high-level planner produces subgoals via macro-actions; a low-level planner executes short-horizon plans to reach them — all in a shared latent space without learned policies or skill libraries.
+
+**Key Findings**:
+
+- Achieves 70% success on real-robot pick-and-place from a single goal image, vs 0% for flat V-JEPA-2-AC planner — demonstrates that hierarchy is necessary, not optional, for multi-step manipulation
+- Model-agnostic: consistently improves three diverse latent world models (V-JEPA-2-AC, DINO-WM, PLDM) across navigation and manipulation domains
+- Up to 4x reduction in planning-time compute compared to flat planners, because the high-level planner prunes the search space before low-level refinement
+- Code and weights available via [HWM_PLDM](https://github.com/kevinghst/HWM_PLDM)
+
+**Relevance to World Models**: Direct follow-up to the JEPA-WMs ablation by the same research group. Validates that hierarchical planning — decomposing long tasks into short sub-goals — is the practical path to L4 closed-loop planning with JEPA world models, rather than extending single-level rollout horizons. The model-agnostic design suggests this is a general solution for latent-space planners, not architecture-specific.
+
 ### ACT-JEPA: Novel Joint-Embedding Predictive Architecture for Efficient Policy Representation Learning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2501.14622)
 
 **Authors/Presenters**: Aleksandar Vujinovic, Aleksandar Kovacevic

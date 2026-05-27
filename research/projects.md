@@ -76,6 +76,27 @@
 
 **Last Updated**: 2026-02
 
+### HWM: Hierarchical Planning with Latent World Models
+
+**URL**: [github.com/kevinghst/HWM_PLDM](https://github.com/kevinghst/HWM_PLDM)
+
+**Description**: Code and pretrained weights for hierarchical MPC with latent world models. Implements two-level planning (macro-action subgoal generation + short-horizon execution) across multiple world model backbones (V-JEPA-2-AC, DINO-WM, PLDM) for navigation and manipulation tasks.
+
+**Tech Stack**: Python, PyTorch
+
+**Key Features**:
+
+- Model-agnostic hierarchical planning layer that plugs into existing latent world models
+- Multi-temporal-scale predictor training with macro-action encoding
+- Evaluated on real-robot Franka manipulation, Push-T, and maze navigation
+- Achieves 70% success on real-robot pick-and-place (vs 0% for flat planner)
+
+**Status**: Active
+
+**Stats**: 113 stars, 14 forks, NYU + Meta AI Research
+
+**Last Updated**: 2026-05
+
 ### LeWorldModel (LeWM): Stable End-to-End JEPA from Pixels
 
 **URL**: [github.com/lucas-maes/le-wm](https://github.com/lucas-maes/le-wm)
