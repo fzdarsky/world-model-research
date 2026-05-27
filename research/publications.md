@@ -448,6 +448,87 @@
 
 **Relevance to World Models**: Demonstrates a practical JEPA + diffusion hybrid where JEPA provides structure and diffusion provides texture. This division of labor — latent prediction for semantics, generation for appearance — may be a general pattern for world models that need both accurate dynamics and realistic rendering. Directly applicable to earth observation, environmental monitoring, and climate modeling.
 
+### I-JEPA: Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2301.08243)
+
+**Authors/Presenters**: Mahmoud Assran, Quentin Duval, Ishan Misra, Piotr Bojanowski, Pascal Vincent, Michael Rabbat, [Yann LeCun](players.md#yann-lecun), Nicolas Ballas
+
+**Date**: 2023-01 (ICCV 2023)
+
+**Summary**: Foundational paper introducing the Image-based Joint-Embedding Predictive Architecture. Predicts representations of masked target blocks from a single context block in latent space, learning semantic image representations without hand-crafted data augmentations or pixel-level reconstruction.
+
+**Key Findings**:
+
+- Masking strategy is the critical design choice: sufficiently large target blocks (for semantic content) combined with spatially distributed context blocks (for informative prediction)
+- Achieves strong downstream performance across linear classification, object counting, and depth prediction — without any augmentation-based invariances
+- Highly scalable: ViT-Huge/14 trains on ImageNet using 16 A100 GPUs in under 72 hours
+
+**Relevance to World Models**: The paper that launched the JEPA family. Demonstrates that predicting in representation space rather than pixel space naturally captures semantic structure while filtering irrelevant detail — the core principle underlying all subsequent JEPA world models. Every entry in this section traces its lineage to this architecture.
+
+### MC-JEPA: A Joint-Embedding Predictive Architecture for Self-Supervised Learning of Motion and Content Features [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2307.12698)
+
+**Authors/Presenters**: Adrien Bardes, Jean Ponce, [Yann LeCun](players.md#yann-lecun)
+
+**Date**: 2023-07
+
+**Summary**: Extends I-JEPA to video by learning separate motion and content features through two prediction pathways operating on the same joint-embedding architecture. The motion pathway predicts optical flow representations while the content pathway predicts semantic frame features, enabling the model to disentangle what moves from what things are.
+
+**Key Findings**:
+
+- Dual prediction pathways: motion predictor targets optical flow embeddings, content predictor targets frame-level semantic embeddings — both in latent space
+- Motion features capture fine-grained temporal dynamics; content features capture scene semantics — combined features outperform either alone
+- Demonstrates JEPA's extensibility from images to video while maintaining the non-generative, augmentation-free design
+
+**Relevance to World Models**: Bridge between I-JEPA (images) and V-JEPA (video). The explicit motion-content decomposition presages world models that separately model dynamics (how things change) and state (what things are) — a design principle that recurs in Causal-JEPA's object-centric approach and NE-Dreamer's temporal transformer.
+
+### V-JEPA: Revisiting Feature Prediction for Learning Visual Representations from Video [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2404.08471)
+
+**Authors/Presenters**: [Adrien Bardes](players.md#adrien-bardes), Quentin Garrido, Jean Ponce, Xinlei Chen, Michael Rabbat, [Yann LeCun](players.md#yann-lecun), Mahmoud Assran, Nicolas Ballas
+
+**Date**: 2024-02 (ICLR 2025)
+
+**Summary**: Extends I-JEPA from images to video, learning visual representations purely through feature prediction in latent space — no pretrained encoders, text, negative examples, or pixel reconstruction. Trained on 2M videos from public datasets, producing versatile frozen representations that perform well on both motion and appearance tasks.
+
+**Key Findings**:
+
+- ViT-H/16 achieves 81.9% on Kinetics-400, 72.2% on Something-Something-v2, and 77.9% on ImageNet1K using only frozen backbone features
+- Demonstrates that video feature prediction alone — without contrastive pairs or pixel-level supervision — learns representations capturing both temporal dynamics and spatial semantics
+- Multi-block spatiotemporal masking strategy adapted from I-JEPA's image masking to video's temporal dimension
+
+**Relevance to World Models**: The foundational video JEPA that establishes feature prediction from video as a viable self-supervised paradigm. All subsequent video JEPA world models (V-JEPA 2, V-JEPA 2.1, VLA-JEPA, EchoJEPA) build on this architecture. The key insight — that latent video prediction naturally captures physical dynamics — makes V-JEPA the bridge between SSL representation learning and world modeling.
+
+### V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2506.09985)
+
+**Authors/Presenters**: Mahmoud Assran, [Adrien Bardes](players.md#adrien-bardes), David Fan, Quentin Garrido, Russell Howes, Mojtaba Komeili, Matthew Muckley, Ammar Rizvi, Claire Roberts, Koustuv Sinha, Artem Zholus, + 14 others, Franziska Meier, [Yann LeCun](players.md#yann-lecun), Michael Rabbat, Nicolas Ballas
+
+**Date**: 2025-06
+
+**Summary**: Scales V-JEPA to internet-scale pretraining on 1M+ hours of video, then post-trains an action-conditioned world model (V-JEPA 2-AC) using only 62 hours of unlabeled robot video. Achieves SOTA on video understanding, action anticipation, and zero-shot robotic planning from a single self-supervised foundation.
+
+**Key Findings**:
+
+- 77.3% top-1 on Something-Something-v2 (motion understanding); 39.7 Recall@5 on Epic-Kitchens-100 (action anticipation), surpassing task-specific models
+- After LLM alignment, achieves 84.0 on PerceptionTest and 76.9 on TempCompass video QA at 8B scale
+- V-JEPA 2-AC deployed zero-shot on Franka arms in two labs for pick-and-place — no environment-specific data, no task-specific training, no reward functions
+- Progressive resolution training strategy enables efficient pretraining beyond short 16-frame clips
+
+**Relevance to World Models**: Validates the complete JEPA world model pipeline: internet-scale SSL → action-conditioned latent world model → zero-shot robotic control via MPC. The 62-hour robot data requirement for V-JEPA 2-AC is remarkably low, demonstrating that SSL pretraining on general video provides most of the physics understanding needed for manipulation. Direct predecessor to V-JEPA 2.1.
+
+### seq-JEPA: Autoregressive Predictive Learning of Invariant-Equivariant World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2505.03176)
+
+**Authors/Presenters**: Hafez Ghaemi, Eilif Muller, Shahab Bakhtiari
+
+**Date**: 2025-05 (NeurIPS 2025)
+
+**Summary**: Resolves the invariance-equivariance trade-off in JEPA through architectural inductive biases rather than additional loss terms. Processes sequences of observations paired with transformation embeddings, automatically separating invariant aggregate representations (for classification) from equivariant encoder outputs (for spatial reasoning).
+
+**Key Findings**:
+
+- Architectural separation: autoregressor outputs are action-invariant (capturing what persists); encoder outputs are equivariant (capturing how things change) — no dual predictors or extra losses required
+- Strong performance on both equivariance-demanding tasks (spatial reasoning, path integration) and invariance-demanding tasks (classification) without sacrificing either
+- Excels at sequence aggregation tasks requiring integration across multiple observations, such as path integration and predictive learning across eye movements
+
+**Relevance to World Models**: Addresses a fundamental tension in JEPA world models: planners need invariant state representations (to recognize goals) while dynamics models need equivariant representations (to predict how actions change state). seq-JEPA's architectural solution — separating these automatically — offers a principled design for world models that must serve both recognition and prediction.
+
 ---
 
 ## Energy-Based Models
@@ -616,6 +697,74 @@
 - Decoder-free design removes computational burden of pixel-level reconstruction while improving representation quality
 
 **Relevance to World Models**: Directly implements the JEPA principle — predicting in embedding space rather than pixel space — within the Dreamer family of world models. Demonstrates that next-embedding prediction with temporal transformers is a viable alternative to reconstruction-based world models, with particular advantages for tasks requiring memory and reasoning.
+
+### DINO-WM: World Models on Pre-trained Visual Features Enable Zero-shot Planning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2310.15848)
+
+**Authors/Presenters**: Gaoyue Zhou, Hengkai Pan, [Yann LeCun](players.md#yann-lecun), Lerrel Pinto
+
+**Date**: 2023-10 (ICML 2025)
+
+**Summary**: Learns visual dynamics models in DINOv2 feature space rather than pixel space, predicting future spatial patch features from offline trajectories. At test time, optimizes action sequences so predicted features match goal observation features, achieving zero-shot goal-reaching without expert demonstrations, reward functions, or inverse models.
+
+**Key Findings**:
+
+- Zero-shot behavioral solutions at test time through action sequence optimization in frozen DINOv2 feature space — no task-specific training required
+- Outperforms prior SOTA across arbitrarily configured mazes, push manipulation with varied object shapes, and multi-particle scenarios
+- Feature-space world modeling sidesteps pixel-level prediction difficulty while preserving spatial structure needed for control
+- Task-agnostic: same world model serves diverse goal-reaching tasks by treating goal features as prediction targets
+
+**Relevance to World Models**: Establishes DINOv2 features as a strong foundation for world models, demonstrating that frozen SSL representations contain sufficient structure for dynamics learning and planning. Frequently used as a baseline alongside V-JEPA-2-AC in subsequent work (JEPA-WMs, Hierarchical Planning). The zero-shot planning capability validates the JEPA principle that predicting in representation space enables effective control without reconstruction.
+
+### DINO-world: Back to the Features — DINO as a Foundation for Video World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2507.19468)
+
+**Authors/Presenters**: Federico Baldassarre, Marc Szafraniec, Basile Terver, Vasil Khalidov, Francisco Massa, [Yann LeCun](players.md#yann-lecun), Patrick Labatut, Maximilian Seitzer, Piotr Bojanowski
+
+**Date**: 2025-07
+
+**Summary**: Generalist video world model that predicts future frames in DINOv2 latent space. Trains a future predictor on large-scale uncurated video to learn temporal dynamics across driving, indoor scenes, and simulated environments. Fine-tunable with observation-action trajectories for action-conditioned planning via latent trajectory simulation.
+
+**Key Findings**:
+
+- Outperforms previous models on video prediction benchmarks including segmentation and depth forecasting
+- Demonstrates strong understanding of intuitive physics from uncurated video training alone
+- Action-conditioned variant enables planning by simulating candidate trajectories in latent space
+- Generalist capability across diverse scene types without domain-specific engineering
+
+**Relevance to World Models**: Scales the DINO-WM approach from task-specific to generalist video world modeling. Where DINO-WM learns dynamics from offline trajectories per environment, DINO-world trains on diverse uncurated video at scale — closer to the V-JEPA 2 paradigm of learning general physics from internet video, but using DINOv2 rather than JEPA as the feature backbone.
+
+### DINO-Foresight: Looking into the Future with DINO [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2412.11673)
+
+**Authors/Presenters**: Efstathios Karypidis, Ioannis Kakogeorgiou, Spyros Gidaris, Nikos Komodakis
+
+**Date**: 2024-12 (NeurIPS 2025)
+
+**Summary**: Forecasts future VFM features using a masked feature transformer trained in self-supervised fashion. Predicts temporal evolution of frozen DINOv2 features, then applies off-the-shelf task-specific heads (segmentation, depth, surface normals) for future-frame scene understanding — no pixel-level prediction needed.
+
+**Key Findings**:
+
+- Forecasts semantically rich VFM features rather than low-level pixels or VAE latents, inheriting strong scene understanding from the frozen encoder
+- Task-agnostic prediction: same predicted features serve semantic segmentation, depth estimation, and surface normal prediction via pluggable heads
+- Two-stage training at progressive resolutions (224×448 → 448×896) for efficiency
+- Code and models released at [github.com/Sta8is/DINO-Foresight](https://github.com/Sta8is/DINO-Foresight)
+
+**Relevance to World Models**: Complements DINO-WM and DINO-world by focusing on dense scene understanding from predicted features rather than control/planning. The pluggable task-head design validates that future VFM features are general enough for diverse downstream tasks — the same predicted latent serves segmentation, depth, and normals. Particularly relevant for autonomous driving where multiple perception outputs are needed from a single world model.
+
+### Learning Abstract World Models with a Group-Structured Latent Space [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2506.01529)
+
+**Authors/Presenters**: Thomas Delliaux, Nguyen-Khanh Vu, Vincent François-Lavet, Elise van der Pol, Emmanuel Rachelson
+
+**Date**: 2025-06
+
+**Summary**: Imposes geometric priors on latent world model representations by structuring the latent space using group theory. Leverages known rotational and translational symmetries — including in first-person 3D views — to encode environment invariances, yielding simpler, more disentangled representations with better transition model predictions and downstream RL performance.
+
+**Key Findings**:
+
+- Group-structured latent spaces yield better transition model predictions than fully unstructured approaches across multiple environments
+- Produces simpler and more disentangled representations compared to baselines
+- Framework permits embedding additional unstructured information alongside known symmetries — not all-or-nothing
+- Full code released for reproducibility
+
+**Relevance to World Models**: Addresses a fundamental question: what structure should a world model's latent space have? Rather than learning structure entirely from data (JEPA, Dreamer) or imposing full physics (Hamiltonian models), this approach injects known geometric symmetries while allowing data-driven learning for everything else. Complementary to Causal-JEPA's object-centric structure and the Hamiltonian world models' physics-based structure.
 
 ### RLVR-World: Training World Models with Reinforcement Learning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2505.13934)
 
@@ -786,6 +935,57 @@
 
 **Relevance to World Models**: Represents the 3D-space paradigm — lifting 2D inputs into persistent 3D structures rather than generating video (Cosmos) or predicting in latent space (JEPA). The Chisel tool's human-in-the-loop editing exemplifies "Spatial Intelligence": combining human structural knowledge with AI visual generation. Adopted by studios for VFX pre-visualization and by researchers for robot training data.
 
+### PlaNet: Learning Latent Dynamics for Planning from Pixels [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/1811.04551)
+
+**Authors/Presenters**: Danijar Hafner, Timothy Lillicrap, Ian Fischer, Ruben Villegas, David Ha, Honglak Lee
+
+**Date**: 2019-06 (ICML 2019)
+
+**Summary**: Introduces the Deep Planning Network (PlaNet), a purely model-based agent that learns environment dynamics from pixels and plans entirely in latent space. Proposes the Recurrent State-Space Model (RSSM) — a latent dynamics model combining deterministic and stochastic transitions — trained with a multi-step variational objective called latent overshooting.
+
+**Key Findings**:
+
+- Introduces the RSSM architecture: deterministic recurrent path for long-term memory combined with stochastic latent variables for multi-modal predictions — the foundation later refined by DreamerV1/V2/V3
+- Latent overshooting objective enforces consistency of multi-step predictions in latent space, improving planning accuracy beyond single-step training
+- Solves continuous control tasks from pixels (DeepMind Control Suite) with 50x fewer environment interactions than model-free methods (D4PG, A3C)
+- Plans online using Cross-Entropy Method (CEM) in latent space — no policy network required, demonstrating that accurate dynamics models suffice for control
+
+**Relevance to World Models**: The foundational latent dynamics model that originated the entire Dreamer lineage. PlaNet's RSSM architecture — deterministic + stochastic state transitions — became the standard template for model-based RL from pixels. DreamerV1 added learned behaviors (actor-critic in latent space), DreamerV2 introduced discrete latents, and DreamerV3 achieved domain generality, but all build on PlaNet's core insight: planning in learned latent spaces is more sample-efficient than model-free RL and more tractable than pixel-space prediction.
+
+### Dreamer: Dream to Control — Learning Behaviors by Latent Imagination [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/1912.01603)
+
+**Authors/Presenters**: [Danijar Hafner](players.md#danijar-hafner), Timothy Lillicrap, Jimmy Ba, Mohammad Norouzi
+
+**Date**: 2019-12 (ICLR 2020)
+
+**Summary**: First model-based agent to learn behaviors entirely via latent imagination — trains an actor-critic within imagined trajectories generated by PlaNet's RSSM world model, replacing PlaNet's cross-entropy method (CEM) planning with learned policy and value functions. Backpropagates analytic value gradients through imagined rollouts, avoiding the high variance of policy-gradient estimators.
+
+**Key Findings**:
+
+- Replaces PlaNet's online CEM planning with an actor-critic trained on imagined latent trajectories — amortizes planning into a learned policy, enabling faster inference
+- Analytic gradient propagation through learned dynamics yields lower-variance updates than model-free policy gradients or shooting-based planning
+- Outperforms PlaNet, A3C, and D4PG on 20 continuous-control tasks in data efficiency, wall-clock time, and final performance
+- Establishes the three-component Dreamer architecture (world model + actor + critic) that persists through DreamerV2 and DreamerV3
+
+**Relevance to World Models**: The critical bridge between PlaNet (planning-only) and DreamerV3 (general-purpose agent). Demonstrates that learned world models are useful not just for planning but for training policies via imagination — a key insight enabling the Dreamer lineage (PlaNet → Dreamer → DreamerV2 → DreamerV3) to scale to increasingly complex domains.
+
+### DreamerV2: Mastering Atari with Discrete World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2010.02193)
+
+**Authors/Presenters**: [Danijar Hafner](players.md#danijar-hafner), Timothy Lillicrap, Mohammad Norouzi, Jimmy Ba
+
+**Date**: 2020-10 (ICLR 2021)
+
+**Summary**: Replaces Dreamer's continuous latent representations with categorical variables (32 classes x 32 variables), achieving the first human-level Atari performance from a world model agent. Introduces KL balancing to stabilize latent dynamics training by separately weighting prior and posterior KL terms.
+
+**Key Findings**:
+
+- Discrete latent representations (categorical posteriors) outperform Gaussian latents on Atari — discrete variables better capture the multimodal, discontinuous dynamics of game environments
+- KL balancing (weighting prior vs. posterior KL terms at 0.8/0.2) prevents posterior collapse while keeping the prior informative, stabilizing long-horizon imagination
+- First world-model agent to reach human-level performance on the 55-game Atari benchmark (200M frames), surpassing IQN and Rainbow with equivalent compute
+- Generalizes to continuous control (humanoid locomotion from pixels), demonstrating the architecture is not Atari-specific
+
+**Relevance to World Models**: Solves the representation bottleneck in the Dreamer lineage — continuous Gaussians struggled with discrete, multimodal environments like Atari. The discrete latent + KL balancing innovations carry directly into DreamerV3, which further generalizes them with symlog predictions and free bits. Validates that world-model-based RL can compete with the best model-free methods on their home turf.
+
 ### DreamerV3: Mastering Diverse Domains through World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2301.04104)
 
 **Authors/Presenters**: Danijar Hafner, Jurgis Pasukonis, Jimmy Ba, Timothy Lillicrap
@@ -802,6 +1002,57 @@
 - RSSM architecture decomposes state into deterministic (temporal memory) and stochastic (uncertainty) components, enabling multi-step imagination for policy optimization
 
 **Relevance to World Models**: The foundational RSSM-based world model architecture and primary baseline for subsequent work (R2-Dreamer, NE-Dreamer, Optimistic DreamerV3). DreamerV3's decoder-reconstruction approach contrasts with JEPA's decoder-free prediction — R2-Dreamer and NE-Dreamer independently converge toward JEPA principles by eliminating the decoder, suggesting reconstruction is unnecessary for effective world modeling.
+
+### TD-MPC2: Scalable, Robust World Models for Continuous Control [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2310.16828)
+
+**Authors/Presenters**: Nicklas Hansen, Hao Su, Xiaolong Wang
+
+**Date**: 2023-10 (ICLR 2024)
+
+**Summary**: Model-based RL method that performs trajectory optimization in the latent space of a learned implicit (decoder-free) world model using temporal difference learning. Scales to 104 continuous control tasks across 4 domains with a single hyperparameter configuration, and trains a single 317M-parameter agent on 80 tasks spanning multiple embodiments and action spaces.
+
+**Key Findings**:
+
+- Decoder-free world model with TD-based value learning and latent-space planning — an alternative to DreamerV3's RSSM + actor-critic architecture that avoids pixel reconstruction entirely
+- Single set of hyperparameters works across 104 tasks in DMControl, Meta-World, Maniskill2, and MyoSuite — comparable domain generality to DreamerV3's 150+ tasks
+- Scaling analysis demonstrates that agent capabilities improve with model and data size, training a single 317M-parameter multi-task agent across 80 tasks with different embodiments
+- Local trajectory optimization (MPC) in latent space rather than amortized policy learning — provides planning flexibility at inference time at the cost of per-step computation
+
+**Relevance to World Models**: The primary alternative to DreamerV3 for model-based RL benchmarking. Where DreamerV3 uses RSSM dynamics with decoder reconstruction, TD-MPC2 uses implicit (decoder-free) world models with TD learning — arriving at decoder-free representations independently of JEPA. The scaling results (317M multi-task agent) parallel foundation model trends in world modeling. Referenced alongside DreamerV3 as baseline in R2-Dreamer and NE-Dreamer.
+
+### Object-Centric Learning with Slot Attention [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2006.15055)
+
+**Authors/Presenters**: Francesco Locatello, Dirk Weissenborn, Thomas Unterthiner, Aravindh Mahendran, Georg Heigold, Jakob Uszkoreit, Alexey Dosovitskiy, Thomas Kipf
+
+**Date**: 2020-06 (NeurIPS 2020)
+
+**Summary**: Introduces Slot Attention, an architectural module that decomposes perceptual input into a set of object-centric representations called slots. Slots compete via iterative attention to bind to different objects in a scene without explicit supervision, enabling unsupervised object discovery and compositional generalization to unseen object combinations.
+
+**Key Findings**:
+
+- Iterative competitive attention mechanism: slots are initialized randomly and refined over multiple rounds, each slot attending to different spatial regions — produces object-level decomposition without segmentation labels
+- Exchangeable slot representations — slots have no fixed ordering, allowing the model to handle variable numbers of objects and generalize compositionally
+- Interfaces with standard perceptual backbones (CNNs, later ViTs) as a modular component, enabling integration into larger architectures for downstream tasks
+- Demonstrates unsupervised object discovery and supervised property prediction with generalization to novel object compositions
+
+**Relevance to World Models**: Foundational building block for object-centric world models. SlotFormer extends slots to video prediction, Causal-JEPA applies object-level masking using slot-based decomposition, and AXIOM builds hierarchical world models with object-centric representations. The core insight — that scenes should be modeled as compositions of objects rather than monolithic feature vectors — is increasingly central to world models that require causal reasoning and compositional understanding.
+
+### TesserAct: Learning 4D Embodied World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2504.20995)
+
+**Authors/Presenters**: Haoyu Zhen, Qiao Sun, Hongxin Zhang, Junyan Li, Siyuan Zhou, Yilun Du, Chuang Gan
+
+**Date**: 2025-04
+
+**Summary**: Predicts the dynamic evolution of 3D scenes over time in response to agent actions by jointly generating RGB, depth, and surface normal (RGB-DN) video from a fine-tuned video generation model, then lifting outputs into coherent 4D scene representations. Augments existing robot manipulation datasets with geometric channels using off-the-shelf depth/normal estimators, avoiding the need for 3D ground truth.
+
+**Key Findings**:
+
+- RGB-DN joint prediction captures detailed shape, configuration, and temporal changes beyond what 2D video models provide — enables learning of accurate inverse dynamics models
+- Converts generated multi-modal video directly into 4D scene representations supporting novel view synthesis for embodied environments
+- Policy learning from 4D predictions significantly outperforms policies derived from prior video-based world models
+- Practical pipeline: no 3D ground truth or physics engines required — standard robot videos augmented with off-the-shelf depth/normal models suffice
+
+**Relevance to World Models**: Represents a third paradigm for embodied world models alongside latent-space (JEPA/Dreamer) and pixel-space (Cosmos/DreamZero) approaches: **4D scene-space** prediction. Trades the efficiency of latent prediction for explicit geometric structure — more expensive per inference, but enables spatial reasoning (novel views, 3D understanding) that flat video or latent models cannot provide. Occupies similar ground to Marble (World Labs) but for robotics manipulation rather than creative content. The depth + normal augmentation strategy demonstrates that 3D-aware world models can be bootstrapped from standard 2D video datasets.
 
 ### AXIOM: Active Inference for Object-Centric World Models [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.verses.ai/research-blog/axiom-mastering-arcade-games-in-minutes-with-active-inference-and-structure-learning)
 
