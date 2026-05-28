@@ -59,6 +59,24 @@
 
 **Relevance to World Models**: Directly integrates JEPA world models into VLA training, addressing the key criticism that VLAs lack causal understanding of dynamics. By predicting in latent space rather than pixel space, VLA-JEPA learns abstractions robust to camera motion and irrelevant background changes — the same property that makes JEPA world models effective for planning.
 
+### When Does LeJEPA Learn a World Model? [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2605.26379)
+
+**Authors/Presenters**: David Klindt, [Yann LeCun](players.md#yann-lecun), Randall Balestriero
+
+**Date**: 2026-05
+
+**Summary**: Proves that LeJEPA (alignment loss + Gaussian regularization) achieves linear identifiability — recovering latent variables up to orthogonal rotation from nonlinear observations — if and only if latents follow a Gaussian distribution under stationary additive-noise transitions. Forward proof uses Hermite polynomial decomposition showing every nonlinear component contributes strictly less temporal correlation than the linear map; converse eliminates all non-Gaussian alternatives. All four theorems formally verified in Lean 4 with Mathlib.
+
+**Key Findings**:
+
+- Gaussian uniqueness: among stationary additive-noise worlds, Gaussian is the *only* latent distribution enabling linear identifiability — non-Gaussian distributions break the guarantee
+- Approximate identifiability degrades gracefully: when objectives are only ε- and δ-approximately satisfied, deviation from rotation is bounded by an explicit function of (ε, δ)
+- Linear identifiability suffices for optimal planning: for O(n)-invariant costs, optimal value functions and action sequences in learned latent space exactly match those in true latent space
+- SIGReg and VICReg maintain R² > 0.999 up to N=1024 dimensions; InfoNCE degrades significantly at scale under fixed kernel width
+- Distributional ablation across generalized-normal family confirms recovery peaks sharply at α=2 (Gaussian), validating the uniqueness theorem
+
+**Relevance to World Models**: Provides the missing theoretical guarantee for LeWorldModel's empirically successful recipe. Proves that Gaussian regularization is not merely convenient but *necessary* — no other distribution class yields identifiable latent recovery. Theorem 4 (optimal planning) directly connects identifiability to world model utility: if the learned latent space is a rotation of the true one, planning in it is provably optimal. The Lean 4 formalization sets a new standard for rigor in world model theory.
+
 ### LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.19312)
 
 **Authors/Presenters**: Lucas Maes, Quentin Le Lidec, Damien Scieur, [Yann LeCun](players.md#yann-lecun), Randall Balestriero
