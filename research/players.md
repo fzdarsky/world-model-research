@@ -34,6 +34,18 @@
 
 **Links**: [Google Scholar](https://scholar.google.com/citations?user=SvRU8F8AAAAJ), [Website](https://adrien987k.github.io/), [GitHub](https://github.com/Adrien987k)
 
+### Randall Balestriero
+
+**About**: Research Scientist at Meta FAIR leading the Galilai group. Originated LeJEPA and SIGReg — a Gaussian regularization approach that replaces the EMA teacher-student paradigm used in V-JEPA with explicit distributional constraints on the latent space. Co-developed LeWorldModel, the first JEPA trained stably end-to-end from raw pixels with only two loss terms. His group's theoretical work (with Klindt) proved that Gaussian regularization is necessary and sufficient for linear identifiability in JEPA-style architectures — the first formal guarantee connecting JEPA training to provably correct latent recovery.
+
+**Focus Areas**: LeJEPA, SIGReg, identifiability theory, self-supervised learning, world models
+
+**Key Work**: LeJEPA (2025), SIGReg, LeWorldModel (2026-03), "When Does LeJEPA Learn a World Model?" identifiability theory (2026-05), Le MuMo JEPA multimodal extension (2026-03)
+
+**Collaborations**: [Yann LeCun](players.md#yann-lecun), Meta FAIR (Galilai group), David Klindt, Lucas Maes
+
+**Links**: [Google Scholar](https://scholar.google.com/citations?user=osi2F5IAAAAJ), [GitHub](https://github.com/galilai-group)
+
 ### Ilya Sutskever
 
 **About**: Co-founder and CEO of Safe Superintelligence Inc. (SSI). Former chief scientist of OpenAI; co-inventor of AlexNet (with Krizhevsky and Hinton). Among the most-cited computer scientists in history (766k+ citations). Advocates a "post-scaling" paradigm shift—new learning methods over bigger models—with emphasis on continual learning, generalization, and JEPA-style architectures as paths to superintelligence.

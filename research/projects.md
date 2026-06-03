@@ -194,6 +194,28 @@
 
 **Last Updated**: 2025-09
 
+### Cosmos 3: Unified Omnimodal World Model
+
+**URL**: [github.com/nvidia/Cosmos](https://github.com/nvidia/Cosmos)
+
+**Description**: NVIDIA's unified omnimodal world model platform combining vision-language reasoning, video/audio generation, and action prediction in a single Mixture-of-Transformers architecture. Supersedes the separate Predict/Transfer/Reason model repos with a unified framework supporting text, image, video, audio, and action modalities.
+
+**Tech Stack**: Python, PyTorch, Hugging Face Diffusers, vLLM, vLLM-Omni, Qwen3-VL (base for Nano/Super)
+
+**Key Features**:
+
+- Three model scales: Edge (4B), Nano (16B), Super (64B) with dual-tower MoT architecture
+- Five open model checkpoints: Super, Nano, Super-Text2Image, Super-Image2Video, Nano-Policy-DROID
+- Five curated synthetic datasets (PhyxSim, RobotSim, DriveSim, SynHuman, Warehouse) on HuggingFace
+- Cosmos-HUE evaluation benchmark for Physical AI video generation
+- OpenMDW-1.1 License (open weights, commercial use permitted)
+
+**Status**: Active
+
+**Stats**: 8,500 stars, 543 forks, 84 watchers (NVIDIA)
+
+**Last Updated**: 2026-06
+
 ### Cosmos-Predict2.5: World Simulation Foundation Model
 
 **URL**: [github.com/nvidia-cosmos/cosmos-predict2.5](https://github.com/nvidia-cosmos/cosmos-predict2.5)

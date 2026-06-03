@@ -545,7 +545,41 @@
 - Strong performance on both equivariance-demanding tasks (spatial reasoning, path integration) and invariance-demanding tasks (classification) without sacrificing either
 - Excels at sequence aggregation tasks requiring integration across multiple observations, such as path integration and predictive learning across eye movements
 
-**Relevance to World Models**: Addresses a fundamental tension in JEPA world models: planners need invariant state representations (to recognize goals) while dynamics models need equivariant representations (to predict how actions change state). seq-JEPA's architectural solution — separating these automatically — offers a principled design for world models that must serve both recognition and prediction.
+**Relevance to World Models**: Addresses a fundamental tension in JEPA world models: planners need invariant state representations (to recognize goals) while dynamics models need equivariant representations (to predict how actions change state). seq-JEPA's architectural solution -- separating these automatically -- offers a principled design for world models that must serve both recognition and prediction.
+
+### DLLM-JEPA: Joint Embedding Predictive Architectures for Masked Diffusion Language Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2606.00091)
+
+**Authors/Presenters**: Sangdae Nam
+
+**Date**: 2026-05
+
+**Summary**: Pairs JEPA with masked-diffusion language models, exploiting bidirectional attention to generate two semantically distinct views via different masking rates without explicit paired data. Cuts training FLOPs by 33% vs. LLM-JEPA while improving accuracy across all evaluated tasks and architectures.
+
+**Key Findings**:
+
+- Diffusion LMs are a more natural substrate for JEPA than autoregressive LMs: bidirectional attention natively provides multi-view structure, eliminating the need for text-code pairs or two gradient-carrying passes
+- Consistent gains: up to +18.7pp on LLaDA-8B GSM8K and +11.4pp on Dream-7B GSM8K, with positive results on Spider, NL-RX-SYNTH, and Django
+- Dual-win property: simultaneously raises task accuracy while reducing catastrophic forgetting (held-out Wikitext loss below pre-trained baseline)
+- Mechanistic insight via layer-wise probing reveals "geometric-functional drift dissociation" concentrated in middle transformer layers
+
+**Relevance to World Models**: Extends JEPA from vision into language, demonstrating that the predict-in-embedding-space principle generalizes beyond video. The finding that diffusion models are a better substrate for JEPA than autoregressive models parallels the Cosmos 3 MoT design insight: different generation mechanisms suit different modalities. Accepted at SPIGM Workshop, ICML 2026.
+
+### Demo-JEPA: One-shot Cross-Embodiment Imitation [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2605.20811)
+
+**Authors/Presenters**: Jingyang He, Guangrun Li, Jieyu Zhang, Chengkai Hou, Zhengping Che, Shanghang Zhang
+
+**Date**: 2026-05
+
+**Summary**: Reframes cross-embodiment imitation as latent goal-conditioned planning within a JEPA-based world model. Rather than reproducing demonstrated actions (which are embodiment-specific), demonstrations are treated as implicit specifications of future goals. Uses V-JEPA 2.1 as the action-conditioned world model for the target embodiment.
+
+**Key Findings**:
+
+- Decouples demonstration intent from execution: translates source visual demonstrations into target-compatible latent trajectories in a shared predictive representation space
+- No shared action spaces, heuristic retargeting, or large-scale multi-embodiment co-training required
+- Matches specialized in-domain planners on RLBench; generalizes to unseen tasks and embodiment configurations where prior methods fail
+- Gains increase with distribution shift, showing robustness of latent goal inference for cross-embodiment transfer
+
+**Relevance to World Models**: Demonstrates JEPA world models as a practical bridge for cross-embodiment robotics. The insight that demonstrations should specify "what state to realize" rather than "what actions to take" leverages JEPA's latent-space prediction to sidestep the action-space alignment problem. Directly builds on V-JEPA 2.1, extending the JEPA lineage into multi-robot deployment scenarios.
 
 ---
 
@@ -1105,7 +1139,24 @@
 - Demonstrates world models as environment generators for agentic AI, not just state predictors
 - Code available at Snowflake-Labs/agent-world-model
 
-**Relevance to World Models**: Extends world models beyond physical simulation into digital agent environments. The key insight — that world models are more valuable for training data synthesis than inference-time search — aligns with the L1-L2 data amplification role. Contrasts with physical world models (JEPA, Cosmos) by operating in discrete, tool-based action spaces rather than continuous control.
+**Relevance to World Models**: Extends world models beyond physical simulation into digital agent environments. The key insight -- that world models are more valuable for training data synthesis than inference-time search -- aligns with the L1-L2 data amplification role. Contrasts with physical world models (JEPA, Cosmos) by operating in discrete, tool-based action spaces rather than continuous control.
+
+### Latent Geometry Beyond Search: Amortizing Planning in World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2605.08732)
+
+**Authors/Presenters**: Hoang Nguyen, Xiaohao Xu, Xiaonan Huang
+
+**Date**: 2026-05
+
+**Summary**: Demonstrates that well-structured latent spaces in JEPA-style world models encode sufficient local structure to replace iterative online planning with a lightweight learned mapping. Proposes Goal-Conditioned Inverse Dynamics Model (GC-IDM) that maps (current latent, goal latent, horizon) directly to the next action, achieving 100-130x cost reduction per decision vs. CEM-based planning.
+
+**Key Findings**:
+
+- Built on pretrained LeWorldModel with latent geometry regularized for smoothness and uniformity
+- GC-IDM matches or exceeds CEM in 7 of 8 environment-protocol settings across navigation, manipulation, and continuous control
+- 100-130x cheaper per decision than iterative planning (CEM, MPPI, iCEM, gradient-based)
+- Core insight: "much of the structure recovered by test-time planning is already locally encoded in the latent representation"
+
+**Relevance to World Models**: Directly addresses the "planning tax" identified in JEPA-based world models -- the dominant computational cost has shifted from dynamics prediction to search over action sequences. If latent geometry is sufficiently structured (as in LeWorldModel), planning can be amortized into a single forward pass. This challenges the assumption that online search is necessary for world-model-based control and offers a path to real-time JEPA planning without MPC overhead.
 
 ---
 
@@ -1232,6 +1283,41 @@
 - 10x improved sample efficiency and 2x faster convergence on manipulation tasks using video-action models
 
 **Relevance to World Models**: Confirms NVIDIA's vertical integration strategy: foundation models (Cosmos 3) → simulation (Isaac, Newton) → deployment (GR00T). The Physical AI Data Factory Blueprint formalizes the synthetic data generation pipeline that world models enable, positioning compute as the bottleneck rather than real-world data collection.
+
+### Cosmos 3: Omnimodal World Models for Physical AI [<img src="templates/icons/filetype-pdf.svg" alt="pdf" height="16">](https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf)
+
+**Authors/Presenters**: [NVIDIA](players.md#nvidia) Cosmos Lab (138 pages, 100+ contributors)
+
+**Date**: 2026-06
+
+**Summary**: Introduces Cosmos 3, a family of omnimodal world models that unify vision-language understanding, video/audio generation, and action prediction within a single Mixture-of-Transformers (MoT) architecture. Subsumes previously separate model classes (VLMs, video generators, world simulators, VLAs) into one framework operating across language, image, video, audio, and action modalities. Three scales: Edge (4B), Nano (16B), Super (64B).
+
+**Key Findings**:
+
+- Dual-tower MoT architecture: autoregressive "reasoner" tower (causal self-attention for language/vision understanding) paired with diffusion-based "generator" tower (bidirectional attention for video/audio/action denoising), sharing parameters through dual-stream joint attention where DM tokens attend to AR context but not vice versa
+- Unified action representation maps heterogeneous embodiments (single-arm robots, dual-arm, humanoids, autonomous vehicles) into compact geometric vectors (3D translation + 6D rotation + grasp state), enabling cross-embodiment transfer
+- Three action generation modes — forward dynamics (predict future video from actions), inverse dynamics (infer actions from video), and joint video-action policy — all as different masking configurations of the same model
+- SOTA across open models: #1 on Artificial Analysis T2I and I2V leaderboards, PAI-Bench, R-Bench, Physics-IQ, RoboLab, and RoboArena; competitive with Gemini 3.1 Pro on general VLM benchmarks while outperforming on robotics/driving/smart-infrastructure domains
+- Open release under OpenMDW-1.1 license: code, model weights, five curated synthetic datasets (PhyxSim, RobotSim, DriveSim, SynHuman, Warehouse), and Cosmos-HUE evaluation benchmark
+
+**Relevance to World Models**: Represents the most ambitious unification of world model capabilities to date — collapsing the VLM → video generator → VLA pipeline into a single model. The MoT architecture is a direct answer to the modality-mismatch problem: language works well with autoregressive decoding, but images/video/audio benefit from denoising, so the dual-tower design keeps both mechanisms without forcing a single generation paradigm. Architecturally distinct from JEPA (which operates in latent space without generation) and from prior Cosmos versions (which used separate models). The cross-embodiment action representation and three action modes position Cosmos 3 as a general-purpose backbone for Physical AI agents.
+
+### Develop Physical AI Reasoning, World, and Action Models with NVIDIA Cosmos 3 [<img src="templates/icons/website.svg" alt="website" height="16">](https://developer.nvidia.com/blog/develop-physical-ai-reasoning-world-and-action-models-with-nvidia-cosmos-3/)
+
+**Authors/Presenters**: Asawaree Bhide, Alexander Schwarz ([NVIDIA](players.md#nvidia))
+
+**Date**: 2026-05
+
+**Summary**: Developer-focused blog post detailing practical workflows for using Cosmos 3 in Physical AI applications. Covers post-training recipes for action-aware models, inference optimization (NVFP4 quantization for 2x speedup, vLLM-Omni serving, Efficient Video Sampling), and NIM microservice deployment. Accompanies six open synthetic datasets on HuggingFace.
+
+**Key Findings**:
+
+- Post-training workflow: SFT adapts Cosmos 3 to custom video datasets; action post-training enables three modes — forward dynamics (predict future from actions), inverse dynamics (infer actions from video), and policy (predict actions from observations + task prompt)
+- Inference stack: vLLM-Omni for generator serving with continuous batching and tensor parallelism; NVFP4 (4-bit) quantization achieves 2x speedup; Efficient Video Sampling prunes redundant video token chunks
+- Six curated synthetic datasets released: RobotSim, PhyxSim, Spatial Reasoning, SynHuman, DriveSim, Warehouse Operations — all on HuggingFace for post-training
+- Cosmos-HUE evaluation benchmark decomposes generated videos into atomic binary verification questions across semantic alignment, physical laws, geometric reasoning, and visual integrity
+
+**Relevance to World Models**: Provides the practical complement to the Cosmos 3 technical report — the "how to use it" rather than the "how it works." The action post-training recipes are particularly significant: they show how a single pre-trained world model can be specialized for forward simulation (synthetic data), inverse dynamics (learning from demonstrations), or direct policy learning, without architectural changes. The NVFP4 quantization enabling Nano on workstation GPUs (RTX PRO 6000) is notable for making world model inference accessible outside datacenters.
 
 ### Physical Intelligence π0.7: Compositional Generalization in Robot Policies [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.pi.website/blog)
 
@@ -1402,13 +1488,47 @@
 - Strategic move as humanoid robotics market projected to grow from $2-3B (mid-2020s) to ~$250B by 2035
 - Team integrates into Meta Robotics Studio (established 2025)
 
-**Relevance to World Models**: Signals Meta's continued investment in physical AI despite losing LeCun. ARI's learning-based control systems (adapting through environmental interaction) align with world model principles. Meta now has both LLM/VLM strength (Llama) and physical AI foundations — positioning for embodied AI that combines language understanding with physical world modeling.
+**Relevance to World Models**: Signals Meta's continued investment in physical AI despite losing LeCun. ARI's learning-based control systems (adapting through environmental interaction) align with world model principles. Meta now has both LLM/VLM strength (Llama) and physical AI foundations -- positioning for embodied AI that combines language understanding with physical world modeling.
+
+### Goal-VLA: Image-Generative VLMs as Object-Centric World Models for Zero-shot Robot Manipulation [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2506.23919)
+
+**Authors/Presenters**: Haonan Chen, Jingxiang Guo, Bangjun Wang, Tianrui Zhang, Xuchuan Huang, Boren Zheng, Yiwen Hou, Chenrui Tie, Jiajun Deng, Lin Shao
+
+**Date**: 2026-03
+
+**Summary**: Zero-shot manipulation framework that uses image-generative VLMs as object-centric world models. Rather than fine-tuning VLMs into action-prediction models (standard VLA approach), Goal-VLA generates desired goal-state images from language instructions, then derives target object poses for execution via a training-free low-level policy.
+
+**Key Findings**:
+
+- Object state representation as the "golden interface" naturally separating manipulation into high-level (goal generation) and low-level (pose-based control) policies
+- Reflection-through-Synthesis process iteratively validates and refines generated goal images before physical execution
+- Generalizes across diverse tasks, objects, and environments (simulated and real) without task-specific training; deploys zero-shot on different robot embodiments
+- Sidesteps the VLA data bottleneck: instruction-vision-action data is too limited to cover diverse scenarios, so Goal-VLA avoids fine-tuning VLMs into action predictors
+
+**Relevance to World Models**: Reframes image-generative VLMs as world models for robotics -- predicting what the world should look like after successful manipulation. The object-centric decomposition offers an alternative to end-to-end VLAs (which lack world modeling) and to latent-space planners (whose predictions are not inspectable). Contrasts with JEPA-based planning: Goal-VLA operates in pixel space (generating goal images) while JEPA plans in latent space, but both treat prediction-before-action as the core capability.
 
 ---
 
 ## Foundational / Theory
 
 *Theoretical foundations, surveys, position papers*
+
+### Do LLMs Build Spatial World Models? Evidence from Grid-World Maze Tasks [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2604.10690)
+
+**Authors/Presenters**: Weijiang Li, Yilin Zhu, Rajarshi Das, Parijat Dube
+
+**Date**: 2026-04
+
+**Summary**: Probes whether LLMs develop internal spatial world models by evaluating them on controlled grid-world maze tasks requiring multi-step planning and spatial abstraction. Finds that LLMs do not build robust spatial world models -- spatial reasoning is representation-dependent, not format-invariant, and models treat questions independently rather than building cumulative spatial knowledge.
+
+**Key Findings**:
+
+- Gemini-2.5-Flash achieves 80-86% accuracy on smaller mazes with tokenized adjacency representations but drops to 16-34% with visual grid formats (2-5x gap)
+- Models achieve 96-99% semantic coverage in reasoning traces yet fail at consistent spatial computation
+- Chain-of-thought prompting helps surface reasoning but does not overcome fundamental spatial limitations
+- Central finding: LLMs exhibit representation-specific and prompting-dependent reasoning that succeeds only under narrow conditions
+
+**Relevance to World Models**: Provides empirical evidence that LLMs do not form genuine internal spatial representations, challenging assumptions about deploying foundation models for spatial planning in robotics and navigation. Supports the thesis that purpose-built world models (JEPA, Dreamer) remain necessary for physical AI -- LLMs can reason about spatial concepts in language but cannot simulate spatial dynamics. Relevant to the ongoing debate about whether LLMs can become world models (cf. Hassabis/Gemini Omni claims).
 
 ### DINOv3 [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2508.10104)
 
@@ -1756,6 +1876,13 @@
 - Introducing Gemini Omni (Strategy)
 - Google's Gemini Omni Turns Images, Audio, and Text into Video (Strategy)
 - Google I/O 2026: Gemini Omni and the Rise of World Modeling (Strategy)
+- Cosmos 3: Omnimodal World Models for Physical AI (World Models)
+- Develop Physical AI with NVIDIA Cosmos 3 (World Models)
+- DLLM-JEPA (JEPA)
+- Demo-JEPA (JEPA)
+- Amortizing Planning in World Models (World Models & Model-Based RL)
+- Goal-VLA (Applications & Use Cases)
+- Do LLMs Build Spatial World Models? (Foundational / Theory)
 
 ---
 

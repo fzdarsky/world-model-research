@@ -2,7 +2,7 @@
 
 > Deep dives into fundamental concepts underlying AI world models
 
-**Last Updated**: 2026-05-18
+**Last Updated**: 2026-06-02
 **Last Synthesized**: 2026-05-18
 
 ---
@@ -50,7 +50,7 @@ Joint-Embedding Predictive Architecture is Yann LeCun's framework for self-super
 
 **vs. Autoregressive Models** (GPT, LLMs): Autoregressive models predict next tokens sequentially. JEPA predicts representations of masked regions in parallel. However, Blondel et al. (2025) proved an explicit bijection between ARMs and EBMs, suggesting autoregressive models implicitly learn energy landscapes — the paradigms are more connected than they appear.
 
-**vs. Diffusion/Flow Models** (Cosmos, Genie): Diffusion/flow models generate in pixel space — producing inspectable video outputs. JEPA operates in latent space — more efficient for planning (48x faster, per LeWorldModel) but outputs are not directly visualizable. The two approaches are complementary: Cosmos for synthetic data generation, JEPA for efficient planning and control.
+**vs. Diffusion/Flow Models** (Cosmos, Genie): Diffusion/flow models generate in pixel space — producing inspectable video outputs. JEPA operates in latent space — more efficient for planning (48x faster, per LeWorldModel) but outputs are not directly visualizable. Historically complementary (Cosmos for synthetic data, JEPA for planning), though Cosmos 3's dual-tower MoT architecture now integrates autoregressive latent reasoning alongside diffusion-based generation, blurring the boundary.
 
 ### JEPA Current State (as of 2026-04)
 
@@ -142,7 +142,7 @@ World models are internal representations of environment dynamics that enable ag
 
 **Four-branch taxonomy** (Dong et al. 2026 survey):
 
-1. **Observation-level generative** (Cosmos, Genie): Generate future observations (video frames) directly. Inspectable outputs, useful for synthetic data generation, but computationally expensive for planning. Cosmos-Predict2.5 uses flow-based architecture at 2B/14B parameters; Genie 3 enables real-time interactive world generation at 720p/24fps.
+1. **Observation-level generative** (Genie, Cosmos-Predict2.5): Generate future observations (video frames) directly. Inspectable outputs, useful for synthetic data generation, but computationally expensive for planning. Genie 3 enables real-time interactive world generation at 720p/24fps. *Note*: Cosmos 3 transcends this category — its MoT architecture pairs autoregressive reasoning with diffusion-based generation, unifying observation-level generation with latent-space understanding and action prediction in one model.
 2. **Latent space** (JEPA, Dreamer family): Predict in learned representation space. Efficient for planning (up to 48x faster than observation-level), filter task-irrelevant variation, but outputs are not directly visualizable. JEPA is the primary architecture; DreamerV3/NE-Dreamer/R2-Dreamer are RL-focused variants.
 3. **RL-based** (DreamerV3, Optimistic World Models): Task-optimized world models trained within RL loops. Optimistic World Models integrate classical adaptive control (RBMLE) with deep RL for efficient exploration. RLVR-World applies RL post-training to optimize for transition quality rather than maximum likelihood.
 4. **Object-centric** (Causal-JEPA): Operate on object-level representations rather than pixel patches. Enable compositional reasoning and causal understanding. Causal-JEPA achieves comparable planning with 1% of the latent features required by patch-based models.
@@ -168,6 +168,7 @@ World models are internal representations of environment dynamics that enable ag
 3. **Temporal Processing** — mechanism for state transition and future rollout:
    - *Sequential (Autoregressive)*: Frame-by-frame generation, high local consistency but prone to geometric drift over long horizons. Examples: Genie 3, GAIA-1
    - *Global (Diffusion/Flow)*: Predict distribution of possible futures in one or more steps, better global structural stability. Examples: Sora, GAIA-2, Cosmos-Predict2.5
+   - *Hybrid (AR + Diffusion)*: Dual-tower architectures that use autoregressive decoding for reasoning/language and diffusion for continuous modalities (video, audio, action) within shared attention. Examples: Cosmos 3 MoT
 
 ### World Model Technical Details
 
@@ -185,7 +186,7 @@ World models are internal representations of environment dynamics that enable ag
 
 **Three paradigms crystallizing**:
 
-- **Pixel-space** (Cosmos, Genie): Industrial deployment for synthetic data generation, scenario simulation. NVIDIA Cosmos adopted by Agility, Figure AI, 1X, Uber, Waabi. Waymo uses Genie 3-based world model for AV simulation.
+- **Pixel-space** (Cosmos-Predict2.5, Genie): Industrial deployment for synthetic data generation, scenario simulation. Waymo uses Genie 3-based world model for AV simulation. *Note*: Cosmos 3 (2026-06) now straddles pixel-space and latent-space — its reasoner tower performs autoregressive understanding while its generator tower produces video/audio/action via diffusion, collapsing the VLM → video generator → VLA pipeline into one model. Adopted by Agile Robots, Doosan, Samsung, Li Auto, Skild AI.
 - **Latent-space** (JEPA): Efficient planning and control for robotics. AMI Labs commercializing. Research community producing accessible tooling (EB-JEPA, stable-worldmodel, LeWM).
 - **3D-space** ([World Labs](players.md#world-labs) Marble): Persistent 3D world reconstruction from multimodal inputs. Human-AI co-creation via Chisel editing. Adopted for VFX, architecture, and robot training data generation. Distinct from pixel-space (generates navigable 3D structures, not video) and latent-space (outputs are directly inspectable and editable).
 
@@ -197,15 +198,16 @@ The a16z "Frontier Systems for the Physical World" essay proposes a three-way cl
 - **World Action Models (WAMs)**: Build on video diffusion transformers, inheriting physical dynamics priors from video prediction. The world model is embedded in the video backbone — jointly predicts future frames and actions through shared denoising. *Examples*: [NVIDIA](players.md#nvidia) DreamZero (14B params, 2x generalization vs. VLAs), planned GR00T N2
 - **Native Embodied Foundation Models**: Train from scratch on physical interaction data (wearables, teleoperation) rather than internet images. *Examples*: [Generalist AI](players.md#generalist-ai) GEN-1 (500K hours of wearable data, 99% task success)
 
-*Key insight*: WAMs represent a fusion of world models and policy learning — treating video generation as an implicit visual planner that guides action production. This contrasts with modular approaches where world model and policy are trained separately.
+*Key insight*: WAMs represent a fusion of world models and policy learning — treating video generation as an implicit visual planner that guides action production. Cosmos 3 takes this further: its three action modes (forward dynamics, inverse dynamics, policy) make a single model simultaneously a VLM, WAM, and VLA depending on input-output configuration — collapsing the a16z taxonomy's first two categories.
 
 **Emerging alternative paradigm**: [Active Inference](concepts.md#active-inference) ([Verses AI](players.md#verses-ai) AXIOM) — unifies perception, planning, and control via the Free Energy Principle. Object-centric, hierarchical agent structure. Theoretically distinct from all three paradigms above but with potential complementarity. See dedicated Active Inference section below.
 
 **Convergence signals**:
 
 - Decoder-free Dreamer variants converge toward JEPA principles
+- Cosmos 3 MoT unifies VLM, video generator, and VLA in a single architecture — the most concrete demonstration that pixel-space and latent-space paradigms are merging rather than competing
 - RL post-training applicable to both paradigms
-- Physical reasoning (Cosmos-Reason) could enhance either approach
+- Physical reasoning (Cosmos-Reason) could enhance either approach; Cosmos 3 subsumes Cosmos-Reason into its reasoner tower
 - ARM-EBM bijection suggests autoregressive and energy-based approaches are theoretically unified
 - Counterfactual reasoning emerging as new frontier (CWMDT combines digital twins + diffusion + LLM causal reasoning)
 
@@ -295,7 +297,7 @@ The dominant regularization technique in JEPA architectures. Prevents representa
 
 ### World Foundation Models (WFMs)
 
-NVIDIA's framing: general-purpose world models pre-trained on massive data, fine-tunable for domain-specific applications. Analogous to LLMs but for physical world simulation. Cosmos is the primary implementation. Contrasts with JEPA's approach of training domain-specific models from scratch (though AMI Labs may change this with scaled JEPA WFMs).
+NVIDIA's framing: general-purpose world models pre-trained on massive data, fine-tunable for domain-specific applications. Analogous to LLMs but for physical world simulation. Cosmos 3 (2026-06) is the latest implementation — a 4B/16B/64B omnimodel handling text, image, video, audio, and action via Mixture-of-Transformers. Contrasts with JEPA's approach of training domain-specific models from scratch (though AMI Labs may change this with scaled JEPA WFMs).
 
 ### Physical AI
 
