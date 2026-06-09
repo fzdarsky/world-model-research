@@ -2,7 +2,7 @@
 
 > Collection of papers, talks, videos, and blog posts on world models, JEPA, EBMs, and BDH
 
-**Last Updated**: 2026-05-07
+**Last Updated**: 2026-06-09
 
 ---
 
@@ -581,6 +581,40 @@
 
 **Relevance to World Models**: Demonstrates JEPA world models as a practical bridge for cross-embodiment robotics. The insight that demonstrations should specify "what state to realize" rather than "what actions to take" leverages JEPA's latent-space prediction to sidestep the action-space alignment problem. Directly builds on V-JEPA 2.1, extending the JEPA lineage into multi-robot deployment scenarios.
 
+### ThinkJEPA: Empowering Latent World Models with Large Vision-Language Reasoning Model [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.22281)
+
+**Authors/Presenters**: Haichao Zhang, Yijiang Li, Shwai He, Tushar Nagarajan, Mingfei Chen, Jianglin Lu, Ang Li, Yun Fu
+
+**Date**: 2026-03
+
+**Summary**: Dual-path embodied prediction framework pairing a VLM "thinker" (cortex-like semantic reasoner) with a JEPA "controller" (cerebellum-like dynamics predictor). The VLM branch samples frames at a larger temporal stride for long-horizon intent; the dense JEPA branch captures fine-grained motion and interaction cues. A hierarchical pyramid module transfers multi-layer VLM representations into guidance features compatible with latent prediction.
+
+**Key Findings**:
+
+- Dual-temporal pathway: dense JEPA frames model fine-grained dynamics while sparse VLM frames provide knowledge-rich semantic guidance — neither branch alone matches the combined system
+- Hierarchical pyramid representation extraction aggregates multi-layer VLM features into guidance compatible with latent prediction, avoiding the language-output bottleneck of standalone VLMs
+- Uses Qwen3-VL (Thinking) as VLM thinker and V-JEPA 2 predictor as dynamics backbone
+- Outperforms both VLM-only and JEPA-predictor baselines on hand-manipulation trajectory prediction with more robust long-horizon rollout behavior
+
+**Relevance to World Models**: Addresses a fundamental limitation of JEPA world models: dense prediction from short observation windows biases predictors toward local extrapolation, missing long-horizon semantic context. ThinkJEPA's solution — VLM as reasoning layer atop JEPA dynamics — parallels the dual-system architecture seen in GR00T N1 and Gemini Robotics but at the world model level rather than the policy level. Code available at [ThinkJEPA](https://github.com/Hai-chao-Zhang/ThinkJEPA).
+
+### LLM-JEPA: Large Language Models Meet Joint Embedding Predictive Architectures [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2509.14252)
+
+**Authors/Presenters**: Hai Huang, [Yann LeCun](players.md#yann-lecun), [Randall Balestriero](players.md#randall-balestriero)
+
+**Date**: 2025-09 (ICLR 2026 Poster)
+
+**Summary**: First adaptation of JEPA-style embedding-space training objectives to large language models. Proposes a hybrid objective combining standard LLM loss (preserving generative capabilities) with a joint embedding prediction task (improving abstraction), using a tied-weights predictor via a special [PRED] token that reuses the LLM's internal weights. Applicable to both finetuning and pretraining.
+
+**Key Findings**:
+
+- Outperforms standard LLM training objectives across Llama3, OpenELM, Gemma2, and Olmo families on NL-RX, GSM8K, Spider, and RottenTomatoes
+- Striking resistance to overfitting: baseline model performance plateaus and degrades during LoRA finetuning while LLM-JEPA continues to improve with more epochs
+- Benefits transfer downstream: models pretrained with LLM-JEPA show improved performance on subsequent finetuning tasks even when using a standard objective
+- Minimal architectural overhead: tied-weights predictor and custom attention mask enable efficient computation in a single forward pass
+
+**Relevance to World Models**: Extends JEPA from vision into language, complementing DLLM-JEPA's diffusion-LM approach with a direct LLM integration. The overfitting resistance is particularly notable — it suggests embedding-space objectives provide a regularization effect absent from token-level prediction, potentially relevant to world models that must generalize beyond training distributions. From LeCun and Balestriero's group at Meta FAIR / Galilai. Code at [llm-jepa](https://github.com/galilai-group/llm-jepa).
+
 ---
 
 ## Energy-Based Models
@@ -886,6 +920,23 @@
 
 **Relevance to World Models**: Directly advances world model-based RL by providing principled methodology for efficient exploration. Demonstrates that classical control theory (RBMLE) can be successfully integrated with modern deep world models, offering scalable exploration without expensive uncertainty quantification.
 
+### World4RL: Diffusion World Models for Policy Refinement with Reinforcement Learning for Robotic Manipulation [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2509.19080)
+
+**Authors/Presenters**: Zhennan Jiang, Kai Liu, Yuxin Qin, Shuai Tian, Yupeng Zheng, Mingcai Zhou, Chao Yu, Haoran Li, Dongbin Zhao
+
+**Date**: 2025-09 (revised 2026-03)
+
+**Summary**: Framework using diffusion-based world models as high-fidelity simulators for refining imitation-learning-initialized manipulation policies entirely in imagination, avoiding costly real-world interaction and sim-to-real gaps from traditional simulators. Pre-trains a diffusion world model on multi-task datasets to capture diverse dynamics, then performs direct end-to-end policy optimization within the frozen world model.
+
+**Key Findings**:
+
+- 16% absolute improvement in simulation and 25% in real-robot settings over baselines — significantly higher success rates compared to imitation learning alone
+- Two-hot action encoding scheme tailored for robotic manipulation improves modeling fidelity over standard continuous encoding
+- End-to-end policy optimization within frozen world model — uses world model for direct RL rather than only planning, distinguishing it from MPC-based approaches
+- Training entirely in imagination eliminates real-world interaction during refinement while maintaining sim-to-real transfer quality
+
+**Relevance to World Models**: Demonstrates diffusion models as a viable backbone for world model-based policy improvement in robotics. Contrasts with JEPA-based approaches (which plan in latent space via MPC) and with VLA-MBPO (which uses multimodal LMs as world model backbone) — World4RL uses diffusion models for direct RL-based policy optimization rather than planning. The frozen-world-model approach parallels Ctrl-World's use of world models as training environments rather than inference-time planners.
+
 ### From Word to World: Can Large Language Models be Implicit Text-based World Models? [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2512.18832)
 
 **Authors/Presenters**: Yixia Li, Hongru Wang, Jiahao Qiu, Zhenfei Yin, Dongdong Zhang, Cheng Qian, Zeping Li, Pony Ma, Guanhua Chen, Heng Ji
@@ -1158,6 +1209,25 @@
 
 **Relevance to World Models**: Directly addresses the "planning tax" identified in JEPA-based world models -- the dominant computational cost has shifted from dynamics prediction to search over action sequences. If latent geometry is sufficiently structured (as in LeWorldModel), planning can be amortized into a single forward pass. This challenges the assumption that online search is necessary for world-model-based control and offers a path to real-time JEPA planning without MPC overhead.
 
+### GENE-26.5: Advancing Robotic Manipulation to Human Level [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.genesis.ai/blog/gene-26-5-advancing-robotic-manipulation-to-human-level)
+
+**Authors/Presenters**: [Genesis AI](players.md#genesis-ai)
+
+**Date**: 2026-05
+
+**Type**: Blog Post
+
+**Summary**: Introduces GENE-26.5, a full-stack robotics foundation model for human-level dexterous manipulation. Uses flow matching (not autoregressive, not JEPA) across language, vision, proprioception, tactile sensing, and action modalities. Demonstrates 20-step cooking, in-air Rubik's Cube solving, lab automation, and wire harnessing with <1 hour of task-specific data per new skill. Custom middleware reduces tracking error from 20mm to 2mm and joint delay from 80ms to 9ms.
+
+**Key Findings**:
+
+- Flow-matching architecture across 5 modalities (language, vision, proprioception, tactile, action) — a distinct approach from VLAs (autoregressive) and WAMs (video diffusion)
+- Sensor-equipped data glove with 1:1:1 mapping (human hand → glove → robot hand) at 100x lower cost and 5x more usable data than alternatives
+- Full-stack integration: model + hardware + simulation (Genesis World) + data engine. Comparable vertical integration strategy to NVIDIA but for dexterous manipulation
+- No independent benchmarks or paper published — demos are impressive but unverified
+
+**Relevance to World Models**: GENE-26.5 represents a third architectural paradigm for robotics (flow matching) alongside VLAs (π0, GR00T) and WAMs (DreamZero). Its tight coupling with Genesis World simulation creates a sim-to-real pipeline similar to NVIDIA's but with a cross-platform compiler (Quadrants) targeting AMD ROCm and Apple Metal in addition to CUDA — a concrete example of hardware-neutral simulation. The full-stack approach (model + hardware + simulation + data) raises the same vertical integration questions as NVIDIA's stack.
+
 ---
 
 ## Applications & Use Cases
@@ -1335,6 +1405,23 @@
 - Researcher observation (Ashwin Balakrishna): "The last few months have been the first time where I'm genuinely surprised" — capabilities exceeding what training data would predict
 
 **Relevance to World Models**: Demonstrates that VLA foundation models may be approaching a capability threshold where they generalize compositionally rather than memorizing demonstrations. This changes the value proposition: if policies can remix skills, world models become more valuable for generating diverse scenarios that exercise novel combinations rather than exhaustive coverage of specific tasks.
+
+### MolmoSpaces: A Large-Scale Open Ecosystem for Robot Navigation and Manipulation [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.11337)
+
+**Authors/Presenters**: Yejin Kim, Wilbert Pumacay, Omar Rayyan, Max Argus, Winson Han, Eli VanderBilt, Jordi Salvador, et al. (Allen Institute for AI)
+
+**Date**: 2026-02
+
+**Summary**: Fully open ecosystem for large-scale benchmarking of robot policies, combining 230k+ diverse indoor environments, 130k annotated object assets (48k manipulable with 42M precomputed stable grasps), and an 8-task benchmark suite spanning static/mobile manipulation, navigation, and multi-room long-horizon tasks. Simulator-agnostic design supports MuJoCo, Isaac Sim, and ManiSkill.
+
+**Key Findings**:
+
+- Strong sim-to-real correlation (R = 0.96, ρ = 0.98), validating that simulation performance transfers meaningfully to real-world outcomes
+- Benchmark identifies key policy sensitivities to prompt phrasing, initial joint positions, and camera occlusion — practical failure modes often missed by smaller benchmarks
+- Environments span handcrafted (iTHOR), procedurally generated (ProcTHOR), and LLM-generated (Holodeck) scenes, covering the long tail of everyday spatial configurations
+- Supports Franka FR3 and Rainbow Robotics RB-Y1 robots; includes iPhone-based teleoperation via TeleDex app
+
+**Relevance to World Models**: Provides the evaluation infrastructure world models need to prove real-world utility. The 230k-environment scale and sim-to-real correlation make it a credible benchmark for comparing world model approaches (JEPA vs. diffusion vs. WAM) on downstream robot task success rather than proxy video metrics. Already used as a primary benchmark by NVIDIA GR00T N2.
 
 ### RoboWM-Bench, MotionScape, and EgoVerse: New Robotics World Model Benchmarks [<img src="templates/icons/website.svg" alt="website" height="16">](https://github.com/leofan90/Awesome-World-Models)
 
@@ -1866,6 +1953,43 @@
 
 **Relevance to World Models**: Provides the enterprise adoption lens missing from Google's announcement. The framing of world models as "simulation substrates" connects to our digital twin and industrial use cases. The TPU 8t/8i split is architecturally significant — purpose-built inference hardware for world models suggests Google expects persistent, high-throughput world model inference as a primary workload, not occasional generation. The lock-in analysis is a practical concern for any organization evaluating world model platforms (Cosmos vs. Omni vs. purpose-built).
 
+### Genesis AI has gone full stack [<img src="templates/icons/website.svg" alt="website" height="16">](https://techcrunch.com/2026/05/06/khosla-backed-robotics-startup-genesis-ai-has-gone-full-stack-demo-shows/)
+
+**Authors/Presenters**: TechCrunch
+
+**Date**: 2026-05
+
+**Type**: Blog Post
+
+**Summary**: Coverage of [Genesis AI](players.md#genesis-ai)'s GENE-26.5 launch and full-stack thesis. Genesis raised $105M seed (Eclipse, Khosla Ventures, Bpifrance, Schmidt, Daniela Rus, Vladlen Koltun). Founded Dec 2024 by Zhou Xian (PhD CMU) and Théophile Gervet (ex-Mistral). Genesis World simulation platform (29K GitHub stars) provides open-source multi-physics simulation with cross-platform compilation (CUDA, ROCm, Metal). Company plans to unveil its first general-purpose robot.
+
+**Key Findings**:
+
+- $105M seed is one of the largest French seed rounds ever, matching Mistral AI — signals significant investor appetite for full-stack robotics
+- Full-stack ownership (model + hardware + simulation + data) mirrors NVIDIA's vertical integration strategy but from a startup posture
+- Genesis World 1.0 achieves 0.90 Pearson correlation with real hardware across 14 tasks; Quadrants compiler targets multiple GPU vendors (unlike NVIDIA-only Isaac Sim)
+- Still R&D phase: no commercial deployments, no revenue, no independent benchmarks
+
+**Relevance to World Models**: Genesis AI illustrates a third vertical integration strategy (after NVIDIA and Google) for physical AI — one built on open-source simulation (Apache 2.0) with hardware-neutral compilation. For Red Hat's platform implications, the Quadrants compiler targeting ROCm/Metal alongside CUDA demonstrates that hardware-neutral world model simulation is architecturally feasible, not just aspirational. Genesis World's scale (29K stars) makes it a relevant simulation platform alongside NVIDIA Omniverse/Isaac Sim.
+
+### The State of AI in the Enterprise [<img src="templates/icons/filetype-pdf.svg" alt="pdf" height="16">](https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html)
+
+**Authors/Presenters**: Deloitte AI Institute (Beena Ammanath, Jim Rowan, Nitin Mittal, Costi Perricos)
+
+**Date**: 2026-01
+
+**Summary**: Seventh annual enterprise AI survey (3,235 senior leaders across 24 countries, August–September 2025). Covers adoption trajectories for generative, agentic, and physical AI. Reports that 58% of enterprises already deploy physical AI in some form, projected to reach 80% within two years, with Asia Pacific leading early implementation.
+
+**Key Findings**:
+
+- Physical AI types with greatest expected enterprise impact: intelligent security/monitoring (21%), collaborative robotics (20%), digital twins (19%), IoT-driven retail (16%), autonomous logistics (13%)
+- 74% of companies plan to deploy agentic AI within two years; only 21% have mature governance models for autonomous agents
+- Adoption most advanced in manufacturing, logistics, and defense; warehousing identified as earliest enterprise adopter driven by labor market pressures
+- 36% of surveyed companies expect at least 10% of jobs fully automated within one year; 82% within three years
+- Insufficient worker skills cited as biggest barrier to AI workflow integration
+
+**Relevance to World Models**: Primary industry data source for physical AI enterprise adoption. The 21% figure for intelligent security/monitoring as the top physical AI type suggests world model-based anomaly detection has near-term market pull. The 58→80% adoption trajectory and SI-dominated go-to-market channel (Deloitte, Accenture, Siemens, Schneider) are key inputs for platform strategy.
+
 ---
 
 ## Recent Additions
@@ -1881,8 +2005,11 @@
 - DLLM-JEPA (JEPA)
 - Demo-JEPA (JEPA)
 - Amortizing Planning in World Models (World Models & Model-Based RL)
+- The State of AI in the Enterprise — Deloitte 2026 (Strategy)
 - Goal-VLA (Applications & Use Cases)
 - Do LLMs Build Spatial World Models? (Foundational / Theory)
+- GENE-26.5: Advancing Robotic Manipulation to Human Level (World Models & Model-Based RL)
+- Genesis AI has gone full stack (Strategy)
 
 ---
 

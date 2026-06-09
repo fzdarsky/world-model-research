@@ -516,6 +516,18 @@
 
 **Links**: [Website](https://generalistai.com/), [GEN-1 Blog](https://generalistai.com/blog/apr-02-2026-GEN-1)
 
+### Genesis AI
+
+**About**: Full-stack robotics company building general-purpose robots with human-level physical manipulation. Founded Dec 2024 by Zhou Xian (PhD CMU) and Théophile Gervet (ex-Mistral) in Paris; offices in Paris, San Carlos CA, and London. Raised $105M seed — one of the largest French seeds ever, matching Mistral's. Backers include Eclipse, Khosla Ventures, Bpifrance, Eric Schmidt, Daniela Rus, Vladlen Koltun. Owns the full stack: foundation model (GENE), dexterous hands, simulation (Genesis World), and data engine (sensor gloves + egocentric video).
+
+**Focus Areas**: Full-stack robotics, dexterous manipulation, flow-matching foundation models, physics simulation, sim-to-real transfer
+
+**Key Work**: GENE-26.5 (flow-matching foundation model for manipulation, May 2026 — 20-step cooking, Rubik's Cube solving, lab automation); Genesis World 1.0 (open-source multi-physics simulation, 29K GitHub stars, Apache 2.0); Quadrants compiler (cross-platform: CUDA, ROCm, Metal, Vulkan, x86/ARM64); Nyx renderer (path-traced, noise-free 1080p in <4ms)
+
+**Collaborations**: —
+
+**Links**: [Website](https://www.genesis.ai), [GitHub](https://github.com/Genesis-Embodied-AI), [Blog](https://www.genesis.ai/blog/gene-26-5-advancing-robotic-manipulation-to-human-level)
+
 ### Periodic Labs
 
 **About**: Building autonomous "AI scientists" — closed-loop self-driving laboratories where AI agents propose hypotheses, run physical experiments, and analyze results with minimal human intervention. Raised $300M seed (Oct 2025) led by Andreessen Horowitz with backing from Jeff Bezos, Eric Schmidt, Jeff Dean, NVentures. Founders William Fedus and Ekin Dogus Çubuk cite contributions to ChatGPT, GNoME, and MatterGen.

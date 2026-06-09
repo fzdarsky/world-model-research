@@ -2,7 +2,7 @@
 
 > GitHub repos, frameworks, libraries, tools, and datasets for world models research
 
-**Last Updated**: 2026-05-05
+**Last Updated**: 2026-06-09
 
 ---
 
@@ -159,6 +159,27 @@
 **Stats**: (Meta AI Research)
 
 **Last Updated**: 2025-04
+
+### ThinkJEPA: VLM-Guided Latent World Models
+
+**URL**: [github.com/Hai-chao-Zhang/ThinkJEPA](https://github.com/Hai-chao-Zhang/ThinkJEPA)
+
+**Description**: Dual-path embodied prediction framework combining a VLM "thinker" (Qwen3-VL-Thinking) with a JEPA "controller" (V-JEPA 2 predictor) for trajectory prediction. VLM provides long-horizon semantic guidance via hierarchical pyramid features; JEPA branch handles fine-grained dynamics.
+
+**Tech Stack**: Python 3.10/3.11, PyTorch 2.10.0, Qwen3-VL, V-JEPA 2 (bundled subtree), EgoDex dataset, HuggingFace, DDP multi-GPU training
+
+**Key Features**:
+
+- Dual-temporal pathway: dense JEPA frames + sparse VLM frames with hierarchical pyramid guidance transfer
+- Pre-extracted Qwen3-VL feature cache available on HuggingFace (haichaozhang/cache)
+- Bundled V-JEPA 2 subtree and EgoDex data helpers
+- BSD-3-Clause-based custom license with attribution requirements
+
+**Status**: Active
+
+**Stats**: 38 stars, 5 forks, 1 contributor
+
+**Last Updated**: 2026-03
 
 ---
 
@@ -528,6 +549,28 @@
 
 **Last Updated**: 2026-02
 
+### Genesis World: Multi-Physics Simulation Platform
+
+**URL**: [github.com/Genesis-Embodied-AI/genesis-world](https://github.com/Genesis-Embodied-AI/genesis-world)
+
+**Description**: Open-source simulation platform for physical AI combining a unified multi-physics engine, photo-realistic renderer (Nyx), and cross-platform compiler (Quadrants) behind a Pythonic API. Started as an academic project (Dec 2024), now backed by [Genesis AI](../research/players.md#genesis-ai). Sim-to-real correlation of 0.90 Pearson across 14 tasks.
+
+**Tech Stack**: Python, Quadrants compiler (CUDA, ROCm, Metal, Vulkan, x86/ARM64), Nyx renderer
+
+**Key Features**:
+
+- Unified multi-physics: Rigid, FEM, MPM, Particle (PBD/SPH), uipc, explicit coupler, SAP — all sharing one scene and state
+- Quadrants compiler: Python kernels JIT-compiled to CUDA, AMD ROCm, Apple Metal, Vulkan, x86/ARM64 via LLVM (forked from Taichi, June 2025)
+- Nyx renderer: real-time path-traced, noise-free 1080p in <4ms; 45% smaller reality gap (FID) than next-best simulator
+- Up to 4.6x runtime speedup and 10x startup speedup vs. initial release
+- Scales from laptop to datacenter GPUs
+
+**Status**: Active
+
+**Stats**: 29.2K stars, 2.8K forks, multi-contributor ([Genesis AI](../research/players.md#genesis-ai) + community)
+
+**Last Updated**: 2026-06
+
 ---
 
 ## Inference & Serving
@@ -586,6 +629,29 @@
 
 *Relevant datasets for training and evaluation*
 
+### MolmoSpaces
+
+**URL**: [github.com/allenai/molmospaces](https://github.com/allenai/molmospaces)
+
+**Description**: Large-scale open ecosystem for benchmarking robot navigation and manipulation policies. Provides 230k+ indoor environments, 130k annotated objects (48k manipulable with 42M stable grasps), and an 8-task benchmark suite. Simulator-agnostic across MuJoCo, Isaac Sim, and ManiSkill.
+
+**Tech Stack**: Python, MuJoCo, NVIDIA Isaac Sim, ManiSkill, PyTorch, cuRobo, Open3D
+
+**Key Features**:
+
+- 230k+ environments (handcrafted iTHOR, procedural ProcTHOR, LLM-generated Holodeck)
+- 130k annotated object assets with 42M precomputed stable grasps
+- MolmoSpaces-Bench: 8-task suite (pick, open, close, etc.) for standardized evaluation
+- Sim-to-real correlation R = 0.96, ρ = 0.98
+- Scripted data generation pipelines, grasp generation, iPhone teleoperation (TeleDex)
+- Supports Franka FR3 and Rainbow Robotics RB-Y1 robots
+
+**Status**: Active
+
+**Stats**: 347 stars, 45 forks; Allen Institute for AI (Ai2)
+
+**Last Updated**: 2026-05 (v0.1.0)
+
 ---
 
 ## Utilities & Tools
@@ -611,6 +677,27 @@
 **Stats**: 165 stars, 3 forks, 3 contributors
 
 **Last Updated**: 2026-03
+
+### Awesome-World-Model-for-Robotics-Policy: Robot Learning Survey Companion
+
+**URL**: [github.com/NTUMARS/Awesome-World-Model-for-Robotics-Policy](https://github.com/NTUMARS/Awesome-World-Model-for-Robotics-Policy)
+
+**Description**: Curated list of world model research for robotic policy learning, companion to the survey "World Model for Robot Learning: A Comprehensive Survey" (arXiv:2605.00080). Policy-centric taxonomy covering world models as policies (IDM-style, single-backbone, MoE/MoT, unified VLA, latent-space), as simulators (for RL, evaluation), and for video generation.
+
+**Tech Stack**: Markdown (curated list)
+
+**Key Features**:
+
+- Policy-centric organization: categorizes by how world models integrate with robot policies
+- Covers 100+ papers with links to arXiv, code, project pages, and HuggingFace resources
+- Tracks latest entries including GigaBrain, X-WAM, Cortex 2.0, Persistent Robot World Models
+- Multi-institutional authorship: NTU, UC Berkeley, Stanford, U. Tokyo, Oxford, ETH Zurich, Princeton, Harvard
+
+**Status**: Active
+
+**Stats**: 581 stars, 10 forks, 33 commits
+
+**Last Updated**: 2026-05
 
 ---
 
