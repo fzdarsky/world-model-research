@@ -1,6 +1,6 @@
 # Publications
 
-> Collection of papers, talks, videos, and blog posts on world models, JEPA, EBMs, and BDH
+> Papers, talks, videos, and blog posts on Physical AI — world models, robot learning, sim-to-real, and related topics
 
 **Last Updated**: 2026-06-09
 
@@ -1989,6 +1989,36 @@
 - Insufficient worker skills cited as biggest barrier to AI workflow integration
 
 **Relevance to World Models**: Primary industry data source for physical AI enterprise adoption. The 21% figure for intelligent security/monitoring as the top physical AI type suggests world model-based anomaly detection has near-term market pull. The 58→80% adoption trajectory and SI-dominated go-to-market channel (Deloitte, Accenture, Siemens, Schneider) are key inputs for platform strategy.
+
+---
+
+## Robot Foundation Models
+
+*VLA, WAM, and policy learning architectures*
+
+---
+
+## Sim-to-Real Transfer
+
+*Domain adaptation, style transfer, sim-to-real pipelines*
+
+---
+
+## Digital Twins & Simulation
+
+*Digital twin architectures, simulation methods, synthetic data generation*
+
+---
+
+## Sensor Fusion & Perception
+
+*Multi-modal perception, point cloud processing, spatial understanding*
+
+---
+
+## Physical AI Deployment
+
+*Edge inference, fleet management, production deployment of physical AI*
 
 ---
 
