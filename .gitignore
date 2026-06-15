@@ -49,6 +49,15 @@ research/library/
 # Superpowers planning/specs
 docs/superpowers/
 
+# Claude Code local settings
+.claude/
+
 # Local environment
 .env
 .env.local
+
+# Deliverables — only the primer and diagrams are tracked
+deliverables/*.md
+!deliverables/world-models-primer.md
+deliverables/presentations/
+deliverables/archive/
