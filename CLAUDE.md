@@ -58,10 +58,10 @@ When the user provides a publication URL (paper, blog post, video, etc.):
    - Add a 32x32 icon behind the title that links to the source. Pick the icon from `research/templates/icons/` depending on the source type.
 5. **Add to publications.md**: Insert under appropriate section (see Content Organization below)
 6. **Cross-link**:
-   - If paper mentions new researchers/institutions → add to players.md
+   - If paper mentions new researchers/institutions → add to ecosystem.md
    - If paper describes new use cases → add to use-cases.md
    - If paper presents new concept → note in concepts.md
-   - If any authors/presenters already exist in players.md, link their names: `[Name](players.md#anchor)`
+   - If any authors/presenters already exist in ecosystem.md, link their names: `[Name](ecosystem.md#anchor)`
 
 ### Adding a Player
 
@@ -80,8 +80,8 @@ When extracting researcher, institution, or company information:
    - Key work (notable papers, projects, products)
    - Collaborations (with other key players)
    - Links (website, GitHub, Google Scholar, Twitter)
-3. **Fill Template**: Use `research/templates/player-entry.md`
-4. **Add to players.md**: Insert under appropriate section (Researchers | Institutions | Companies)
+3. **Fill Template**: Use `research/templates/ecosystem-entry.md`
+4. **Add to ecosystem.md**: Insert under appropriate section (Big Tech | Startups | OSS Communities | Research Labs)
 5. **Avoid Duplicates**: Check if entry already exists before adding
 
 ### Adding a Project
@@ -174,21 +174,24 @@ Organize by **topic**, not chronologically:
 - Types: conference talks, interviews, news coverage, technical tutorials
 - Include duration and key timestamps if applicable
 
-### players.md Structure
+### ecosystem.md Structure
 
-Organize by **type**:
+Organize by **player type**:
 
 ```markdown
-# Key Players in World Models Research
+# Ecosystem
 
-## Researchers
-[Individual researchers]
+## Big Tech
+[Established tech companies with Physical AI initiatives — with solution sub-entries]
 
-## Research Institutions
-[Universities, research labs]
+## Startups
+[Venture-backed companies building Physical AI products]
 
-## Companies
-[Companies working on world models, embodied AI]
+## OSS Communities
+[Open-source communities and foundations]
+
+## Research Labs
+[Universities and research institutions — with key researchers grouped under their labs]
 ```
 
 ### projects.md Structure

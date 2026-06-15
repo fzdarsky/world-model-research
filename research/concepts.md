@@ -158,11 +158,11 @@ World models are internal representations of environment dynamics that enable ag
 1. **Representation Dimensionality** — the domain in which predictions are computed:
    - *Pixel-space (Visual Simulators)*: Sora, Genie 3, GAIA-2 — high-fidelity video output, indispensable for human-in-the-loop training and visual verification, but computationally intensive
    - *Latent-space (Abstract Dynamics)*: JEPA family, DreamerV3 — compressed embedding spaces, optimized for planning efficiency (up to 48x faster), ignore irrelevant visual variation (lighting, shadows)
-   - *3D-space (Geometric Reconstructors)*: [World Labs](players.md#world-labs) Marble, InfiniCube — lift 2D inputs into persistent 3D layouts (Gaussian splats, meshes), serve as structural foundations for VR/AR and game engines
+   - *3D-space (Geometric Reconstructors)*: [World Labs](ecosystem.md#world-labs) Marble, InfiniCube — lift 2D inputs into persistent 3D layouts (Gaussian splats, meshes), serve as structural foundations for VR/AR and game engines
 
 2. **Functional Coupling** — how tightly the world model is integrated with decision-making:
-   - *Decision-coupled*: Intrinsically linked to a controller/policy; purpose is MBRL or MPC. Examples: [Tesla](players.md#tesla) FSD, [Wayve](players.md#wayve) AV 2.0
-   - *Foundation/General-purpose*: Broad physical knowledge repositories fine-tunable for diverse tasks. Examples: [NVIDIA](players.md#nvidia) Cosmos, [Google DeepMind](players.md#google-deepmind) Genie 3
+   - *Decision-coupled*: Intrinsically linked to a controller/policy; purpose is MBRL or MPC. Examples: [Tesla](ecosystem.md#tesla) FSD, [Wayve](ecosystem.md#wayve) AV 2.0
+   - *Foundation/General-purpose*: Broad physical knowledge repositories fine-tunable for diverse tasks. Examples: [NVIDIA](ecosystem.md#nvidia) Cosmos, [Google DeepMind](ecosystem.md#google-deepmind) Genie 3
    - *Observational*: Learn representations from passive observation without action conditioning; used as pre-trained backbones. Examples: I-JEPA, early V-JEPA variants
 
 3. **Temporal Processing** — mechanism for state transition and future rollout:
@@ -188,19 +188,19 @@ World models are internal representations of environment dynamics that enable ag
 
 - **Pixel-space** (Cosmos-Predict2.5, Genie): Industrial deployment for synthetic data generation, scenario simulation. Waymo uses Genie 3-based world model for AV simulation. *Note*: Cosmos 3 (2026-06) now straddles pixel-space and latent-space — its reasoner tower performs autoregressive understanding while its generator tower produces video/audio/action via diffusion, collapsing the VLM → video generator → VLA pipeline into one model. Adopted by Agile Robots, Doosan, Samsung, Li Auto, Skild AI.
 - **Latent-space** (JEPA): Efficient planning and control for robotics. AMI Labs commercializing. Research community producing accessible tooling (EB-JEPA, stable-worldmodel, LeWM).
-- **3D-space** ([World Labs](players.md#world-labs) Marble): Persistent 3D world reconstruction from multimodal inputs. Human-AI co-creation via Chisel editing. Adopted for VFX, architecture, and robot training data generation. Distinct from pixel-space (generates navigable 3D structures, not video) and latent-space (outputs are directly inspectable and editable).
+- **3D-space** ([World Labs](ecosystem.md#world-labs) Marble): Persistent 3D world reconstruction from multimodal inputs. Human-AI co-creation via Chisel editing. Adopted for VFX, architecture, and robot training data generation. Distinct from pixel-space (generates navigable 3D structures, not video) and latent-space (outputs are directly inspectable and editable).
 
 **Embodied AI architecture taxonomy** (a16z framing, complementary to world model paradigms):
 
 The a16z "Frontier Systems for the Physical World" essay proposes a three-way classification for how physical AI systems acquire world knowledge:
 
-- **Vision-Language-Action (VLA) Models**: Scale pretrained vision-language models (internet images + text) with action decoders. *Examples*: [Physical Intelligence](players.md#physical-intelligence-π) π0/π0.5, [NVIDIA](players.md#nvidia) GR00T N1
-- **World Action Models (WAMs)**: Build on video diffusion transformers, inheriting physical dynamics priors from video prediction. The world model is embedded in the video backbone — jointly predicts future frames and actions through shared denoising. *Examples*: [NVIDIA](players.md#nvidia) DreamZero (14B params, 2x generalization vs. VLAs), planned GR00T N2
-- **Native Embodied Foundation Models**: Train from scratch on physical interaction data (wearables, teleoperation) rather than internet images. *Examples*: [Generalist AI](players.md#generalist-ai) GEN-1 (500K hours of wearable data, 99% task success)
+- **Vision-Language-Action (VLA) Models**: Scale pretrained vision-language models (internet images + text) with action decoders. *Examples*: [Physical Intelligence](ecosystem.md#physical-intelligence-pi) π0/π0.5, [NVIDIA](ecosystem.md#nvidia) GR00T N1
+- **World Action Models (WAMs)**: Build on video diffusion transformers, inheriting physical dynamics priors from video prediction. The world model is embedded in the video backbone — jointly predicts future frames and actions through shared denoising. *Examples*: [NVIDIA](ecosystem.md#nvidia) DreamZero (14B params, 2x generalization vs. VLAs), planned GR00T N2
+- **Native Embodied Foundation Models**: Train from scratch on physical interaction data (wearables, teleoperation) rather than internet images. *Examples*: [Generalist AI](ecosystem.md#generalist-ai) GEN-1 (500K hours of wearable data, 99% task success)
 
 *Key insight*: WAMs represent a fusion of world models and policy learning — treating video generation as an implicit visual planner that guides action production. Cosmos 3 takes this further: its three action modes (forward dynamics, inverse dynamics, policy) make a single model simultaneously a VLM, WAM, and VLA depending on input-output configuration — collapsing the a16z taxonomy's first two categories.
 
-**Emerging alternative paradigm**: [Active Inference](concepts.md#active-inference) ([Verses AI](players.md#verses-ai) AXIOM) — unifies perception, planning, and control via the Free Energy Principle. Object-centric, hierarchical agent structure. Theoretically distinct from all three paradigms above but with potential complementarity. See dedicated Active Inference section below.
+**Emerging alternative paradigm**: [Active Inference](concepts.md#active-inference) ([Verses AI](ecosystem.md#verses-ai) AXIOM) — unifies perception, planning, and control via the Free Energy Principle. Object-centric, hierarchical agent structure. Theoretically distinct from all three paradigms above but with potential complementarity. See dedicated Active Inference section below.
 
 **Convergence signals**:
 
@@ -247,7 +247,7 @@ Active Inference is a biology-inspired framework for world models based on Karl 
 
 ### Active Inference Technical Details
 
-[Verses AI](players.md#verses-ai)'s AXIOM (Active eXpanding Inference with Object-centric Models) is the primary implementation:
+[Verses AI](ecosystem.md#verses-ai)'s AXIOM (Active eXpanding Inference with Object-centric Models) is the primary implementation:
 
 - **Unified perception-planning-control**: A single generative model handles all three, unlike modular architectures that separate world model from policy
 - **Hierarchical agent architecture**: Every joint in a robot body is an agent with its own local world model. "Shared intelligence" emerges from coordination rather than centralized control
@@ -265,7 +265,7 @@ Active Inference is a biology-inspired framework for world models based on Karl 
 
 ### Active Inference Current State (as of 2026-04)
 
-Emerging paradigm with strong theoretical foundations but limited scale demonstrations. [Verses AI](players.md#verses-ai) reported AXIOM outperforming [Google DeepMind](players.md#google-deepmind) on Atari "Gameworld 10k" challenge. The hierarchical agent architecture is a fundamentally different approach to robot control — if validated at scale, it could complement JEPA (for representation learning) and Cosmos (for synthetic data) as a third paradigm for embodied AI. Karl Friston's involvement provides deep neuroscience grounding. Key open question: whether the framework can scale to complex, high-dimensional real-world tasks beyond arcade games and simple robotics.
+Emerging paradigm with strong theoretical foundations but limited scale demonstrations. [Verses AI](ecosystem.md#verses-ai) reported AXIOM outperforming [Google DeepMind](ecosystem.md#google-deepmind) on Atari "Gameworld 10k" challenge. The hierarchical agent architecture is a fundamentally different approach to robot control — if validated at scale, it could complement JEPA (for representation learning) and Cosmos (for synthetic data) as a third paradigm for embodied AI. Karl Friston's involvement provides deep neuroscience grounding. Key open question: whether the framework can scale to complex, high-dimensional real-world tasks beyond arcade games and simple robotics.
 
 ---
 

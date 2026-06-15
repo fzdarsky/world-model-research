@@ -12,7 +12,7 @@
 
 ### V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.14482)
 
-**Authors/Presenters**: Lorenzo Mur-Labadia, Matthew Muckley, Amir Bar, Mido Assran, Koustuv Sinha, Mike Rabbat, [Yann LeCun](players.md#yann-lecun), Nicolas Ballas, Adrien Bardes
+**Authors/Presenters**: Lorenzo Mur-Labadia, Matthew Muckley, Amir Bar, Mido Assran, Koustuv Sinha, Mike Rabbat, [Yann LeCun](ecosystem.md#yann-lecun), Nicolas Ballas, Adrien Bardes
 
 **Date**: 2026-03
 
@@ -28,7 +28,7 @@
 
 ### VL-JEPA: Joint Embedding Predictive Architecture for Vision-language [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2512.10942)
 
-**Authors/Presenters**: Delong Chen, Mustafa Shukor, Theo Moutakanni, Willy Chung, Jade Yu, Tejaswi Kasarla, Yejin Bang, Allen Bolourchi, [Yann LeCun](players.md#yann-lecun), Pascale Fung
+**Authors/Presenters**: Delong Chen, Mustafa Shukor, Theo Moutakanni, Willy Chung, Jade Yu, Tejaswi Kasarla, Yejin Bang, Allen Bolourchi, [Yann LeCun](ecosystem.md#yann-lecun), Pascale Fung
 
 **Date**: 2025-12 (revised 2026-02)
 
@@ -61,7 +61,7 @@
 
 ### When Does LeJEPA Learn a World Model? [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2605.26379)
 
-**Authors/Presenters**: David Klindt, [Yann LeCun](players.md#yann-lecun), Randall Balestriero
+**Authors/Presenters**: David Klindt, [Yann LeCun](ecosystem.md#yann-lecun), Randall Balestriero
 
 **Date**: 2026-05
 
@@ -79,7 +79,7 @@
 
 ### LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.19312)
 
-**Authors/Presenters**: Lucas Maes, Quentin Le Lidec, Damien Scieur, [Yann LeCun](players.md#yann-lecun), Randall Balestriero
+**Authors/Presenters**: Lucas Maes, Quentin Le Lidec, Damien Scieur, [Yann LeCun](ecosystem.md#yann-lecun), Randall Balestriero
 
 **Date**: 2026-03
 
@@ -95,7 +95,7 @@
 
 ### Causal-JEPA: Learning World Models through Object-Level Latent Interventions [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.11389)
 
-**Authors/Presenters**: Heejeong Nam, Quentin Le Lidec, Lucas Maes, [Yann LeCun](players.md#yann-lecun), Randall Balestriero
+**Authors/Presenters**: Heejeong Nam, Quentin Le Lidec, Lucas Maes, [Yann LeCun](ecosystem.md#yann-lecun), Randall Balestriero
 
 **Date**: 2026-02
 
@@ -111,7 +111,7 @@
 
 ### What Drives Success in Physical Planning with Joint-Embedding Predictive World Models? [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2512.24497)
 
-**Authors/Presenters**: Basile Terver, Tsung-Yen Yang, Jean Ponce, Adrien Bardes, [Yann LeCun](players.md#yann-lecun)
+**Authors/Presenters**: Basile Terver, Tsung-Yen Yang, Jean Ponce, Adrien Bardes, [Yann LeCun](ecosystem.md#yann-lecun)
 
 **Date**: 2025-12 (revised 2026-01)
 
@@ -127,7 +127,7 @@
 
 ### Hierarchical Planning with Latent World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2604.03208)
 
-**Authors/Presenters**: Wancong Zhang, Basile Terver, Artem Zholus, Soham Chitnis, Harsh Sutaria, Mido Assran, Amir Bar, Randall Balestriero, [Adrien Bardes](players.md#adrien-bardes), [Yann LeCun](players.md#yann-lecun), Nicolas Ballas
+**Authors/Presenters**: Wancong Zhang, Basile Terver, Artem Zholus, Soham Chitnis, Harsh Sutaria, Mido Assran, Amir Bar, Randall Balestriero, [Adrien Bardes](ecosystem.md#adrien-bardes), [Yann LeCun](ecosystem.md#yann-lecun), Nicolas Ballas
 
 **Date**: 2026-04
 
@@ -176,7 +176,7 @@
 
 ### A Lightweight Library for Energy-Based Joint-Embedding Predictive Architectures (EB-JEPA) [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.03604)
 
-**Authors/Presenters**: Basile Terver, Randall Balestriero, Megi Dervishi, David Fan, Quentin Garrido, Tushar Nagarajan, Koustuv Sinha, Wancong Zhang, Mike Rabbat, [Yann LeCun](players.md#yann-lecun), Amir Bar
+**Authors/Presenters**: Basile Terver, Randall Balestriero, Megi Dervishi, David Fan, Quentin Garrido, Tushar Nagarajan, Koustuv Sinha, Wancong Zhang, Mike Rabbat, [Yann LeCun](ecosystem.md#yann-lecun), Amir Bar
 
 **Date**: 2026-02
 
@@ -301,7 +301,7 @@
 **Key Findings**:
 
 - Systematic formulation of JEPA components with cross-referencing to existing implementations across image, audio, video, point-cloud, and multimodal modalities
-- Framework for realizing [Yann LeCun](players.md#yann-lecun)'s agentic AI vision: multi-level JEPA predictor as latent-space world model integrated with actor training for mode-2 planning and control
+- Framework for realizing [Yann LeCun](ecosystem.md#yann-lecun)'s agentic AI vision: multi-level JEPA predictor as latent-space world model integrated with actor training for mode-2 planning and control
 - Surveys emerging JEPA applications in 6G networks, identifying this as a nascent but promising research direction
 
 **Relevance to World Models**: Serves as the definitive reference for JEPA architecture — bridging LeCun's theoretical vision with practical implementations. The agentic AI framework section directly maps JEPA to world model-based planning, making explicit the connection between representation learning and autonomous decision-making.
@@ -468,7 +468,7 @@
 
 ### I-JEPA: Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2301.08243)
 
-**Authors/Presenters**: Mahmoud Assran, Quentin Duval, Ishan Misra, Piotr Bojanowski, Pascal Vincent, Michael Rabbat, [Yann LeCun](players.md#yann-lecun), Nicolas Ballas
+**Authors/Presenters**: Mahmoud Assran, Quentin Duval, Ishan Misra, Piotr Bojanowski, Pascal Vincent, Michael Rabbat, [Yann LeCun](ecosystem.md#yann-lecun), Nicolas Ballas
 
 **Date**: 2023-01 (ICCV 2023)
 
@@ -484,7 +484,7 @@
 
 ### MC-JEPA: A Joint-Embedding Predictive Architecture for Self-Supervised Learning of Motion and Content Features [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2307.12698)
 
-**Authors/Presenters**: Adrien Bardes, Jean Ponce, [Yann LeCun](players.md#yann-lecun)
+**Authors/Presenters**: Adrien Bardes, Jean Ponce, [Yann LeCun](ecosystem.md#yann-lecun)
 
 **Date**: 2023-07
 
@@ -500,7 +500,7 @@
 
 ### V-JEPA: Revisiting Feature Prediction for Learning Visual Representations from Video [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2404.08471)
 
-**Authors/Presenters**: [Adrien Bardes](players.md#adrien-bardes), Quentin Garrido, Jean Ponce, Xinlei Chen, Michael Rabbat, [Yann LeCun](players.md#yann-lecun), Mahmoud Assran, Nicolas Ballas
+**Authors/Presenters**: [Adrien Bardes](ecosystem.md#adrien-bardes), Quentin Garrido, Jean Ponce, Xinlei Chen, Michael Rabbat, [Yann LeCun](ecosystem.md#yann-lecun), Mahmoud Assran, Nicolas Ballas
 
 **Date**: 2024-02 (ICLR 2025)
 
@@ -516,7 +516,7 @@
 
 ### V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2506.09985)
 
-**Authors/Presenters**: Mahmoud Assran, [Adrien Bardes](players.md#adrien-bardes), David Fan, Quentin Garrido, Russell Howes, Mojtaba Komeili, Matthew Muckley, Ammar Rizvi, Claire Roberts, Koustuv Sinha, Artem Zholus, + 14 others, Franziska Meier, [Yann LeCun](players.md#yann-lecun), Michael Rabbat, Nicolas Ballas
+**Authors/Presenters**: Mahmoud Assran, [Adrien Bardes](ecosystem.md#adrien-bardes), David Fan, Quentin Garrido, Russell Howes, Mojtaba Komeili, Matthew Muckley, Ammar Rizvi, Claire Roberts, Koustuv Sinha, Artem Zholus, + 14 others, Franziska Meier, [Yann LeCun](ecosystem.md#yann-lecun), Michael Rabbat, Nicolas Ballas
 
 **Date**: 2025-06
 
@@ -600,7 +600,7 @@
 
 ### LLM-JEPA: Large Language Models Meet Joint Embedding Predictive Architectures [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2509.14252)
 
-**Authors/Presenters**: Hai Huang, [Yann LeCun](players.md#yann-lecun), [Randall Balestriero](players.md#randall-balestriero)
+**Authors/Presenters**: Hai Huang, [Yann LeCun](ecosystem.md#yann-lecun), [Randall Balestriero](ecosystem.md#randall-balestriero)
 
 **Date**: 2025-09 (ICLR 2026 Poster)
 
@@ -639,7 +639,7 @@
 
 ### Kona 1.0: Energy-Based Reasoning Model [<img src="templates/icons/website.svg" alt="website" height="16">](https://logicalintelligence.com/kona-ebms-energy-based-models)
 
-**Authors/Presenters**: Eve Bodnia, [Logical Intelligence](players.md#logical-intelligence)
+**Authors/Presenters**: Eve Bodnia, [Logical Intelligence](ecosystem.md#logical-intelligence)
 
 **Date**: 2026-01
 
@@ -652,7 +652,7 @@
 - Continuous latent space reasoning with dense vector tokens enables gradient-based refinement impossible with discrete token representations
 - Aleph (orchestration layer) achieved near-perfect score on PutnamBench formal mathematics benchmark
 
-**Relevance to World Models**: First commercial implementation of EBM principles for reasoning, with [Yann LeCun](players.md#yann-lecun) as Founding Chair of Technical Research Board. Shares key properties with JEPA: continuous latent space, non-autoregressive generation, energy minimization. Where JEPA learns representations via prediction, Kona applies EBM principles to constraint satisfaction — complementary applications of the same paradigm. Validates LeCun's thesis that energy-based approaches offer advantages over autoregressive models for tasks requiring global coherence.
+**Relevance to World Models**: First commercial implementation of EBM principles for reasoning, with [Yann LeCun](ecosystem.md#yann-lecun) as Founding Chair of Technical Research Board. Shares key properties with JEPA: continuous latent space, non-autoregressive generation, energy minimization. Where JEPA learns representations via prediction, Kona applies EBM principles to constraint satisfaction — complementary applications of the same paradigm. Validates LeCun's thesis that energy-based approaches offer advantages over autoregressive models for tasks requiring global coherence.
 
 ---
 
@@ -662,7 +662,7 @@
 
 ### The Dragon Hatchling: The Missing Link between the Transformer and Models of the Brain [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2509.26507)
 
-**Authors/Presenters**: [Adrian Kosowski](players.md#adrian-kosowski), Przemysław Uznański, Jan Chorowski, Zuzanna Stamirowska, Michał Bartoszkiewicz
+**Authors/Presenters**: [Adrian Kosowski](ecosystem.md#adrian-kosowski), Przemysław Uznański, Jan Chorowski, Zuzanna Stamirowska, Michał Bartoszkiewicz
 
 **Date**: 2025-09
 
@@ -685,7 +685,7 @@
 
 ### DreamZero: World Action Models are Zero-shot Policies [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.15922)
 
-**Authors/Presenters**: Seonghyeon Ye, Yunhao Ge, Jim Fan, Yuke Zhu ([NVIDIA](players.md#nvidia) GEAR Lab)
+**Authors/Presenters**: Seonghyeon Ye, Yunhao Ge, Jim Fan, Yuke Zhu ([NVIDIA](ecosystem.md#nvidia) GEAR Lab)
 
 **Date**: 2026-02
 
@@ -703,7 +703,7 @@
 
 ### π*0.6 and RECAP: A VLA that Learns from Experience [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.pi.website/blog/pistar06)
 
-**Authors/Presenters**: [Physical Intelligence](players.md#physical-intelligence-π)
+**Authors/Presenters**: [Physical Intelligence](ecosystem.md#physical-intelligence-pi)
 
 **Date**: 2025-11
 
@@ -721,7 +721,7 @@
 
 ### GEN-1: Scaling Embodied Foundation Models to Mastery [<img src="templates/icons/website.svg" alt="website" height="16">](https://generalistai.com/blog/apr-02-2026-GEN-1)
 
-**Authors/Presenters**: [Generalist AI](players.md#generalist-ai)
+**Authors/Presenters**: [Generalist AI](ecosystem.md#generalist-ai)
 
 **Date**: 2026-04
 
@@ -786,7 +786,7 @@
 
 ### DINO-WM: World Models on Pre-trained Visual Features Enable Zero-shot Planning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2310.15848)
 
-**Authors/Presenters**: Gaoyue Zhou, Hengkai Pan, [Yann LeCun](players.md#yann-lecun), Lerrel Pinto
+**Authors/Presenters**: Gaoyue Zhou, Hengkai Pan, [Yann LeCun](ecosystem.md#yann-lecun), Lerrel Pinto
 
 **Date**: 2023-10 (ICML 2025)
 
@@ -803,7 +803,7 @@
 
 ### DINO-world: Back to the Features — DINO as a Foundation for Video World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2507.19468)
 
-**Authors/Presenters**: Federico Baldassarre, Marc Szafraniec, Basile Terver, Vasil Khalidov, Francisco Massa, [Yann LeCun](players.md#yann-lecun), Patrick Labatut, Maximilian Seitzer, Piotr Bojanowski
+**Authors/Presenters**: Federico Baldassarre, Marc Szafraniec, Basile Terver, Vasil Khalidov, Francisco Massa, [Yann LeCun](ecosystem.md#yann-lecun), Patrick Labatut, Maximilian Seitzer, Piotr Bojanowski
 
 **Date**: 2025-07
 
@@ -955,7 +955,7 @@
 
 ### Cosmos World Foundation Model Platform for Physical AI [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2501.03575)
 
-**Authors/Presenters**: Niket Agarwal, Arslan Ali, Maciej Bala, Yogesh Balaji, Erik Barker, + 72 others ([NVIDIA](players.md#nvidia))
+**Authors/Presenters**: Niket Agarwal, Arslan Ali, Maciej Bala, Yogesh Balaji, Erik Barker, + 72 others ([NVIDIA](ecosystem.md#nvidia))
 
 **Date**: 2025-01 (revised 2025-07)
 
@@ -972,7 +972,7 @@
 
 ### World Simulation with Video Foundation Models for Physical AI (Cosmos-Predict2.5) [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2511.00062)
 
-**Authors/Presenters**: Arslan Ali, Junjie Bai, Maciej Bala, Yogesh Balaji, Aaron Blakeman, + 83 others ([NVIDIA](players.md#nvidia))
+**Authors/Presenters**: Arslan Ali, Junjie Bai, Maciej Bala, Yogesh Balaji, Aaron Blakeman, + 83 others ([NVIDIA](ecosystem.md#nvidia))
 
 **Date**: 2025-10 (revised 2026-02)
 
@@ -989,7 +989,7 @@
 
 ### Cosmos-Reason1: From Physical Common Sense to Embodied Reasoning [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2503.15558)
 
-**Authors/Presenters**: Alisson Azzolini, Junjie Bai, Hannah Brandon, Jiaxin Cao, Prithvijit Chattopadhyay, + 47 others ([NVIDIA](players.md#nvidia))
+**Authors/Presenters**: Alisson Azzolini, Junjie Bai, Hannah Brandon, Jiaxin Cao, Prithvijit Chattopadhyay, + 47 others ([NVIDIA](ecosystem.md#nvidia))
 
 **Date**: 2025-03 (revised 2025-05)
 
@@ -1023,7 +1023,7 @@
 
 ### Marble: A Multimodal World Model [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.worldlabs.ai/blog/marble-world-model)
 
-**Authors/Presenters**: [World Labs](players.md#world-labs) ([Fei-Fei Li](players.md#fei-fei-li))
+**Authors/Presenters**: [World Labs](ecosystem.md#world-labs) ([Fei-Fei Li](ecosystem.md#fei-fei-li))
 
 **Date**: 2025-11
 
@@ -1057,7 +1057,7 @@
 
 ### Dreamer: Dream to Control — Learning Behaviors by Latent Imagination [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/1912.01603)
 
-**Authors/Presenters**: [Danijar Hafner](players.md#danijar-hafner), Timothy Lillicrap, Jimmy Ba, Mohammad Norouzi
+**Authors/Presenters**: Danijar Hafner, Timothy Lillicrap, Jimmy Ba, Mohammad Norouzi
 
 **Date**: 2019-12 (ICLR 2020)
 
@@ -1074,7 +1074,7 @@
 
 ### DreamerV2: Mastering Atari with Discrete World Models [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2010.02193)
 
-**Authors/Presenters**: [Danijar Hafner](players.md#danijar-hafner), Timothy Lillicrap, Mohammad Norouzi, Jimmy Ba
+**Authors/Presenters**: Danijar Hafner, Timothy Lillicrap, Mohammad Norouzi, Jimmy Ba
 
 **Date**: 2020-10 (ICLR 2021)
 
@@ -1159,7 +1159,7 @@
 
 ### AXIOM: Active Inference for Object-Centric World Models [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.verses.ai/research-blog/axiom-mastering-arcade-games-in-minutes-with-active-inference-and-structure-learning)
 
-**Authors/Presenters**: [Verses AI](players.md#verses-ai)
+**Authors/Presenters**: [Verses AI](ecosystem.md#verses-ai)
 
 **Date**: 2025-06
 
@@ -1167,7 +1167,7 @@
 
 **Key Findings**:
 
-- Reported to outperform [Google DeepMind](players.md#google-deepmind) on Atari "Gameworld 10k" challenge, mastering games in minutes vs. hours for standard RL
+- Reported to outperform [Google DeepMind](ecosystem.md#google-deepmind) on Atari "Gameworld 10k" challenge, mastering games in minutes vs. hours for standard RL
 - Object-centric representations enable compositional reasoning — understands game objects and their relationships rather than raw pixel patterns
 - Hierarchical "Shared Intelligence" allows recovery from unexpected perturbations without retraining, via local prediction error resolution
 - Epistemic foraging drives exploration: agents seek states that maximize information gain, not just reward
@@ -1211,7 +1211,7 @@
 
 ### GENE-26.5: Advancing Robotic Manipulation to Human Level [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.genesis.ai/blog/gene-26-5-advancing-robotic-manipulation-to-human-level)
 
-**Authors/Presenters**: [Genesis AI](players.md#genesis-ai)
+**Authors/Presenters**: [Genesis AI](ecosystem.md#genesis-ai)
 
 **Date**: 2026-05
 
@@ -1236,7 +1236,7 @@
 
 ### GAIA-1: A Generative World Model for Autonomous Driving [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2309.17080)
 
-**Authors/Presenters**: Anthony Hu, Lloyd Russell, Hudson Yeo, Zak Murez, George Fedoseev, Alex Mayol Kendall, Jamie Sherrah, [Wayve](players.md#wayve)
+**Authors/Presenters**: Anthony Hu, Lloyd Russell, Hudson Yeo, Zak Murez, George Fedoseev, Alex Mayol Kendall, Jamie Sherrah, [Wayve](ecosystem.md#wayve)
 
 **Date**: 2023-09
 
@@ -1253,7 +1253,7 @@
 
 ### NVIDIA Isaac GR00T N1: Open Foundation Model for Humanoid Robots [<img src="templates/icons/website.svg" alt="website" height="16">](https://nvidianews.nvidia.com/news/nvidia-isaac-gr00t-n1-open-humanoid-robot-foundation-model-simulation-frameworks)
 
-**Authors/Presenters**: [NVIDIA](players.md#nvidia)
+**Authors/Presenters**: [NVIDIA](ecosystem.md#nvidia)
 
 **Date**: 2025-03
 
@@ -1270,7 +1270,7 @@
 
 ### Gemini Robotics: Bringing AI into the Physical World [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2503.20020)
 
-**Authors/Presenters**: [Google DeepMind](players.md#google-deepmind)
+**Authors/Presenters**: [Google DeepMind](ecosystem.md#google-deepmind)
 
 **Date**: 2025-03 (Gemini Robotics 1.5), updated through 2026-04 (Gemini Robotics-ER 1.6)
 
@@ -1321,7 +1321,7 @@
 
 ### NVIDIA Cosmos: Major Platform Release (GTC 2026) [<img src="templates/icons/website.svg" alt="website" height="16">](https://nvidianews.nvidia.com/news/nvidia-announces-major-release-of-cosmos-world-foundation-models-and-physical-ai-data-tools)
 
-**Authors/Presenters**: [NVIDIA](players.md#nvidia)
+**Authors/Presenters**: [NVIDIA](ecosystem.md#nvidia)
 
 **Date**: 2026-03
 
@@ -1338,7 +1338,7 @@
 
 ### NVIDIA National Robotics Week 2026: Cosmos 3 and GR00T N1.7 [<img src="templates/icons/website.svg" alt="website" height="16">](https://blogs.nvidia.com/blog/national-robotics-week-2026/)
 
-**Authors/Presenters**: [NVIDIA](players.md#nvidia)
+**Authors/Presenters**: [NVIDIA](ecosystem.md#nvidia)
 
 **Date**: 2026-04
 
@@ -1356,7 +1356,7 @@
 
 ### Cosmos 3: Omnimodal World Models for Physical AI [<img src="templates/icons/filetype-pdf.svg" alt="pdf" height="16">](https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf)
 
-**Authors/Presenters**: [NVIDIA](players.md#nvidia) Cosmos Lab (138 pages, 100+ contributors)
+**Authors/Presenters**: [NVIDIA](ecosystem.md#nvidia) Cosmos Lab (138 pages, 100+ contributors)
 
 **Date**: 2026-06
 
@@ -1374,7 +1374,7 @@
 
 ### Develop Physical AI Reasoning, World, and Action Models with NVIDIA Cosmos 3 [<img src="templates/icons/website.svg" alt="website" height="16">](https://developer.nvidia.com/blog/develop-physical-ai-reasoning-world-and-action-models-with-nvidia-cosmos-3/)
 
-**Authors/Presenters**: Asawaree Bhide, Alexander Schwarz ([NVIDIA](players.md#nvidia))
+**Authors/Presenters**: Asawaree Bhide, Alexander Schwarz ([NVIDIA](ecosystem.md#nvidia))
 
 **Date**: 2026-05
 
@@ -1391,7 +1391,7 @@
 
 ### Physical Intelligence π0.7: Compositional Generalization in Robot Policies [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.pi.website/blog)
 
-**Authors/Presenters**: [Physical Intelligence](players.md#physical-intelligence-π)
+**Authors/Presenters**: [Physical Intelligence](ecosystem.md#physical-intelligence-pi)
 
 **Date**: 2026-04
 
@@ -1476,7 +1476,7 @@
 
 ### Nexar BADAS 2.0: Collision Prediction via V-JEPA2 World Model [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.linkedin.com/posts/yann-lecun_badas-20-new-collision-prediction-system-ugcPost-7450523580318216192-X3IC/)
 
-**Authors/Presenters**: Zach Greenberger (Nexar), shared by [Yann LeCun](players.md#yann-lecun)
+**Authors/Presenters**: Zach Greenberger (Nexar), shared by [Yann LeCun](ecosystem.md#yann-lecun)
 
 **Date**: 2025-12
 
@@ -1509,7 +1509,7 @@
 
 ### Ctrl-World: A Controllable Generative World Model for Robot Manipulation [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2510.10125)
 
-**Authors/Presenters**: Yanjiang Guo, Lucy Xiaoyang Shi, Jianyu Chen, [Chelsea Finn](players.md#chelsea-finn)
+**Authors/Presenters**: Yanjiang Guo, Lucy Xiaoyang Shi, Jianyu Chen, [Chelsea Finn](ecosystem.md#chelsea-finn)
 
 **Date**: 2026-03
 
@@ -1522,7 +1522,7 @@
 - Synthesizing successful imagined trajectories for supervised fine-tuning improves policy success by 44.7%
 - Demonstrates world models as practical tools for both policy evaluation and improvement at scale
 
-**Relevance to World Models**: From [Chelsea Finn](players.md#chelsea-finn)'s IRIS lab at Stanford. Demonstrates a concrete, high-impact use of world models for robotics: replacing costly real-world testing with imagination-space rollouts. The 44.7% policy improvement from synthetic data validates the data amplification role emphasized in our primer. Pixel-space approach trades off against JEPA's speed but offers inspectability.
+**Relevance to World Models**: From [Chelsea Finn](ecosystem.md#chelsea-finn)'s IRIS lab at Stanford. Demonstrates a concrete, high-impact use of world models for robotics: replacing costly real-world testing with imagination-space rollouts. The 44.7% policy improvement from synthetic data validates the data amplification role emphasized in our primer. Pixel-space approach trades off against JEPA's speed but offers inspectability.
 
 ### From Digital Twins to World Models: Opportunities, Challenges, and Applications for Mobile Edge General Intelligence [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2603.17420)
 
@@ -1702,7 +1702,7 @@
 
 ### Yann LeCun: Self-Supervised Learning, JEPA, World Models, and the Future of AI [<img src="templates/icons/youtube.svg" alt="youtube" height="16">](https://www.youtube.com/watch?v=yUmDRxV0krg)
 
-**Authors/Presenters**: [Yann LeCun](players.md#yann-lecun) (NYU & Meta)
+**Authors/Presenters**: [Yann LeCun](ecosystem.md#yann-lecun) (NYU & Meta)
 
 **Date**: 2025-09
 
@@ -1738,7 +1738,7 @@
 
 ### Ilya Sutskever: The End of AI Scaling and the Rise of Safe Superintelligence [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.the-ai-corner.com/p/ilya-sutskever-safe-superintelligence-agi-2025)
 
-**Authors/Presenters**: The AI Corner (summary of [Ilya Sutskever](players.md#ilya-sutskever)'s interview with Dwarkesh Patel)
+**Authors/Presenters**: The AI Corner (summary of [Ilya Sutskever](ecosystem.md#ilya-sutskever)'s interview with Dwarkesh Patel)
 
 **Date**: 2025-11
 
@@ -1821,7 +1821,7 @@
 
 ### World Model for Robot Learning: A Comprehensive Survey [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2605.00080)
 
-**Authors/Presenters**: Bohan Hou, Gen Li, Jindou Jia, Tuo An, Xinying Guo, Sicong Leng, Haoran Geng, Yanjie Ze, Tatsuya Harada, Philip Torr, Oier Mees, Marc Pollefeys, Zhuang Liu, Jiajun Wu, [Pieter Abbeel](players.md#pieter-abbeel), [Jitendra Malik](players.md#jitendra-malik), Yilun Du, Jianfei Yang
+**Authors/Presenters**: Bohan Hou, Gen Li, Jindou Jia, Tuo An, Xinying Guo, Sicong Leng, Haoran Geng, Yanjie Ze, Tatsuya Harada, Philip Torr, Oier Mees, Marc Pollefeys, Zhuang Liu, Jiajun Wu, [Pieter Abbeel](ecosystem.md#pieter-abbeel), [Jitendra Malik](ecosystem.md#jitendra-malik), Yilun Du, Jianfei Yang
 
 **Date**: 2026-04
 
@@ -1835,7 +1835,7 @@
 - Connects manipulation, navigation, and autonomous driving applications under a unified framework
 - Includes maintained GitHub repository with datasets, benchmarks, and evaluation protocols
 
-**Relevance to World Models**: The most comprehensive robotics-focused world model survey to date, with senior authorship from [Pieter Abbeel](players.md#pieter-abbeel) and [Jitendra Malik](players.md#jitendra-malik). Useful reference for mapping how JEPA-based world models fit into the broader robot learning ecosystem. The five functional roles framework complements our primer's L1-L4 capability levels.
+**Relevance to World Models**: The most comprehensive robotics-focused world model survey to date, with senior authorship from [Pieter Abbeel](ecosystem.md#pieter-abbeel) and [Jitendra Malik](ecosystem.md#jitendra-malik). Useful reference for mapping how JEPA-based world models fit into the broader robot learning ecosystem. The five functional roles framework complements our primer's L1-L4 capability levels.
 
 ### Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2604.22748)
 
@@ -1863,7 +1863,7 @@
 
 ### Our Vision for Building a Universal AI Assistant [<img src="templates/icons/website.svg" alt="website" height="16">](https://blog.google/technology/google-deepmind/gemini-universal-ai-assistant)
 
-**Authors/Presenters**: [Demis Hassabis](players.md#demis-hassabis) (Google DeepMind)
+**Authors/Presenters**: [Demis Hassabis](ecosystem.md#demis-hassabis) (Google DeepMind)
 
 **Date**: 2025-05
 
@@ -1881,7 +1881,7 @@
 
 ### The Hardest Problem AI Ever Solved [<img src="templates/icons/youtube.svg" alt="youtube" height="16">](https://www.youtube.com/watch?v=C0gErQtnNFE)
 
-**Authors/Presenters**: [Demis Hassabis](players.md#demis-hassabis) (Google DeepMind), interviewed by Cleo Abram (HUGE\* Conversations)
+**Authors/Presenters**: [Demis Hassabis](ecosystem.md#demis-hassabis) (Google DeepMind), interviewed by Cleo Abram (HUGE\* Conversations)
 
 **Date**: 2026-04
 
@@ -1901,7 +1901,7 @@
 
 ### Introducing Gemini Omni [<img src="templates/icons/website.svg" alt="website" height="16">](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/)
 
-**Authors/Presenters**: Koray Kavukcuoglu (CTO, [Google DeepMind](players.md#google-deepmind))
+**Authors/Presenters**: Koray Kavukcuoglu (CTO, [Google DeepMind](ecosystem.md#google-deepmind))
 
 **Date**: 2026-05
 
@@ -1961,7 +1961,7 @@
 
 **Type**: Blog Post
 
-**Summary**: Coverage of [Genesis AI](players.md#genesis-ai)'s GENE-26.5 launch and full-stack thesis. Genesis raised $105M seed (Eclipse, Khosla Ventures, Bpifrance, Schmidt, Daniela Rus, Vladlen Koltun). Founded Dec 2024 by Zhou Xian (PhD CMU) and Théophile Gervet (ex-Mistral). Genesis World simulation platform (29K GitHub stars) provides open-source multi-physics simulation with cross-platform compilation (CUDA, ROCm, Metal). Company plans to unveil its first general-purpose robot.
+**Summary**: Coverage of [Genesis AI](ecosystem.md#genesis-ai)'s GENE-26.5 launch and full-stack thesis. Genesis raised $105M seed (Eclipse, Khosla Ventures, Bpifrance, Schmidt, Daniela Rus, Vladlen Koltun). Founded Dec 2024 by Zhou Xian (PhD CMU) and Théophile Gervet (ex-Mistral). Genesis World simulation platform (29K GitHub stars) provides open-source multi-physics simulation with cross-platform compilation (CUDA, ROCm, Metal). Company plans to unveil its first general-purpose robot.
 
 **Key Findings**:
 

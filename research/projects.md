@@ -553,7 +553,7 @@
 
 **URL**: [github.com/Genesis-Embodied-AI/genesis-world](https://github.com/Genesis-Embodied-AI/genesis-world)
 
-**Description**: Open-source simulation platform for physical AI combining a unified multi-physics engine, photo-realistic renderer (Nyx), and cross-platform compiler (Quadrants) behind a Pythonic API. Started as an academic project (Dec 2024), now backed by [Genesis AI](../research/players.md#genesis-ai). Sim-to-real correlation of 0.90 Pearson across 14 tasks.
+**Description**: Open-source simulation platform for physical AI combining a unified multi-physics engine, photo-realistic renderer (Nyx), and cross-platform compiler (Quadrants) behind a Pythonic API. Started as an academic project (Dec 2024), now backed by [Genesis AI](../research/ecosystem.md#genesis-ai). Sim-to-real correlation of 0.90 Pearson across 14 tasks.
 
 **Tech Stack**: Python, Quadrants compiler (CUDA, ROCm, Metal, Vulkan, x86/ARM64), Nyx renderer
 
@@ -567,7 +567,7 @@
 
 **Status**: Active
 
-**Stats**: 29.2K stars, 2.8K forks, multi-contributor ([Genesis AI](../research/players.md#genesis-ai) + community)
+**Stats**: 29.2K stars, 2.8K forks, multi-contributor ([Genesis AI](../research/ecosystem.md#genesis-ai) + community)
 
 **Last Updated**: 2026-06
 

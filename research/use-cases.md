@@ -14,11 +14,11 @@
 
 **Industry**: Manufacturing | Robotics
 
-**Description**: World models generate large volumes of synthetic training scenarios for robot manipulation policies, reducing the need for expensive and dangerous real-world data collection. A world model (e.g., Cosmos-Predict) generates future visual states conditioned on robot actions; these synthetic rollouts train manipulation policies (e.g., GR00T N1, π0.5) that transfer to real robots. [NVIDIA](players.md#nvidia) claims Cosmos can reduce real-world data collection budgets by up to 60%. V-JEPA 2-AC demonstrated 45% zero-shot grasping success (vs. 8% baseline) after action conditioning with only 62 hours of robot video.
+**Description**: World models generate large volumes of synthetic training scenarios for robot manipulation policies, reducing the need for expensive and dangerous real-world data collection. A world model (e.g., Cosmos-Predict) generates future visual states conditioned on robot actions; these synthetic rollouts train manipulation policies (e.g., GR00T N1, π0.5) that transfer to real robots. [NVIDIA](ecosystem.md#nvidia) claims Cosmos can reduce real-world data collection budgets by up to 60%. V-JEPA 2-AC demonstrated 45% zero-shot grasping success (vs. 8% baseline) after action conditioning with only 62 hours of robot video.
 
 **Technical Requirements**: High-fidelity visual generation at sufficient resolution for manipulation (object textures, gripper contact). Action conditioning — the world model must accept robot action inputs to generate plausible outcomes. Sim-to-real transfer fidelity (Cosmos-Transfer addresses this). GPU clusters for world model inference during policy training; real-time inference for closed-loop deployment.
 
-**Current Solutions**: [NVIDIA](players.md#nvidia) Cosmos + GR00T N1 (adopted by [Figure AI](players.md#figure-ai), Agility, 1X, Boston Dynamics, Unitree); [Physical Intelligence](players.md#physical-intelligence-π) π0.5 (open-world manipulation); V-JEPA 2-AC (zero-shot grasping via JEPA representations)
+**Current Solutions**: [NVIDIA](ecosystem.md#nvidia) Cosmos + GR00T N1 (adopted by [Figure AI](ecosystem.md#figure-ai), Agility, 1X, Boston Dynamics, Unitree); [Physical Intelligence](ecosystem.md#physical-intelligence-pi) π0.5 (open-world manipulation); V-JEPA 2-AC (zero-shot grasping via JEPA representations)
 
 **Research Gaps**: Sim-to-real gap remains significant for contact-rich manipulation (deformable objects, liquids). No standardized benchmark for world model quality as measured by downstream policy performance. Long-horizon multi-step task generation (>30s) still unreliable.
 
@@ -32,11 +32,11 @@
 
 **Industry**: Transport&Logistics
 
-**Description**: World models generate rare, safety-critical driving scenarios (e.g., near-collisions, adverse weather, animal encounters) that are too dangerous or infrequent to capture at scale in real-world driving. Waymo's world model generates multi-sensor outputs (camera + LiDAR) for long-tail events. [Wayve](players.md#wayve)'s GAIA-3 is purpose-built for evaluating end-to-end driving systems by generating controllable, parametrically varied driving scenarios. [Tesla](players.md#tesla)'s FSD v14 uses occupancy networks to predict 3D voxel-based future states.
+**Description**: World models generate rare, safety-critical driving scenarios (e.g., near-collisions, adverse weather, animal encounters) that are too dangerous or infrequent to capture at scale in real-world driving. Waymo's world model generates multi-sensor outputs (camera + LiDAR) for long-tail events. [Wayve](ecosystem.md#wayve)'s GAIA-3 is purpose-built for evaluating end-to-end driving systems by generating controllable, parametrically varied driving scenarios. [Tesla](ecosystem.md#tesla)'s FSD v14 uses occupancy networks to predict 3D voxel-based future states.
 
 **Technical Requirements**: Multi-camera, spatiotemporally consistent video generation (GAIA-2 achieves this). LiDAR point cloud synthesis alongside camera views. Controllable scenario parameters (weather, traffic density, pedestrian behavior). Real-time occupancy prediction for deployment (Tesla FSD). Minutes-scale scenario generation with geometric consistency.
 
-**Current Solutions**: Waymo World Model (Genie 3-based, multi-sensor); [Wayve](players.md#wayve) GAIA-2/3 (controllable multi-view generation); [Tesla](players.md#tesla) FSD v14 (occupancy networks in production); DriveDreamer-2 (LLM-prompted scene generation); HERMES (unified 3D scene understanding)
+**Current Solutions**: Waymo World Model (Genie 3-based, multi-sensor); [Wayve](ecosystem.md#wayve) GAIA-2/3 (controllable multi-view generation); [Tesla](ecosystem.md#tesla) FSD v14 (occupancy networks in production); DriveDreamer-2 (LLM-prompted scene generation); HERMES (unified 3D scene understanding)
 
 **Research Gaps**: Geometric drift in autoregressive generation over long horizons. No industry-standard fidelity metric for generated driving scenarios. Regulatory acceptance of world-model-generated scenarios for safety validation is undefined.
 
@@ -54,7 +54,7 @@
 
 **Technical Requirements**: Foundation-scale training on clinical data (EchoJEPA: 18M studies). Regulatory compliance (FDA/CE marking for clinical use). Uncertainty quantification — clinicians need confidence bounds, not point predictions. Patient privacy preservation during model training. Integration with clinical workflows (PACS, EHR systems).
 
-**Current Solutions**: EchoJEPA (University of Toronto / Vector Institute); MeWM (action-conditioned 3D tumor simulation); Foresight (medical event timeline prediction); [AMI Labs](players.md#ami-labs) (targeting healthcare applications)
+**Current Solutions**: EchoJEPA (University of Toronto / Vector Institute); MeWM (action-conditioned 3D tumor simulation); Foresight (medical event timeline prediction); [AMI Labs](ecosystem.md#ami-labs) (targeting healthcare applications)
 
 **Research Gaps**: Regulatory pathway for world-model-based clinical decision support is undefined. Causal reasoning required for treatment planning (beyond correlation). Limited multi-modal fusion (imaging + genomics + lab results). Generalization across patient populations and imaging equipment.
 
@@ -68,11 +68,11 @@
 
 **Industry**: Manufacturing
 
-**Description**: World models power "autonomous digital twins" that continuously simulate, predict, and optimize manufacturing operations in real time. [Siemens](players.md#siemens) is building the first AI-driven adaptive factory (Erlangen, 2026) using [NVIDIA](players.md#nvidia) Omniverse + PhysicsNeMo for generative physics simulation. [Schneider Electric](players.md#schneider-electric) targets 80% autonomous operations by 2030 across energy and chemicals. PepsiCo digitizes factories as high-fidelity 3D digital twins with Siemens. Industrial players use the term "autonomous digital twins" rather than "world models," but the underlying workload pattern — learn dynamics, predict, plan — is identical.
+**Description**: World models power "autonomous digital twins" that continuously simulate, predict, and optimize manufacturing operations in real time. [Siemens](ecosystem.md#siemens) is building the first AI-driven adaptive factory (Erlangen, 2026) using [NVIDIA](ecosystem.md#nvidia) Omniverse + PhysicsNeMo for generative physics simulation. [Schneider Electric](ecosystem.md#schneider-electric) targets 80% autonomous operations by 2030 across energy and chemicals. PepsiCo digitizes factories as high-fidelity 3D digital twins with Siemens. Industrial players use the term "autonomous digital twins" rather than "world models," but the underlying workload pattern — learn dynamics, predict, plan — is identical.
 
 **Technical Requirements**: Real-time physics simulation coupled to sensor feeds (temperature, pressure, vibration). Predict-then-act loop with safety verification before executing changes. Integration with industrial control systems (PLCs, SCADA). On-premises or sovereign cloud deployment (manufacturing IP sensitivity). Multi-physics simulation (thermal, structural, fluid dynamics).
 
-**Current Solutions**: [Siemens](players.md#siemens) Digital Twin Composer + [NVIDIA](players.md#nvidia) Omniverse (Erlangen factory); [Schneider Electric](players.md#schneider-electric) EcoStruxure + Omniverse (energy/chemicals); PepsiCo factory digital twins (with Siemens)
+**Current Solutions**: [Siemens](ecosystem.md#siemens) Digital Twin Composer + [NVIDIA](ecosystem.md#nvidia) Omniverse (Erlangen factory); [Schneider Electric](ecosystem.md#schneider-electric) EcoStruxure + Omniverse (energy/chemicals); PepsiCo factory digital twins (with Siemens)
 
 **Research Gaps**: Bridging simulation fidelity and real-time update rates for closed-loop control. No standardized interoperability between digital twin platforms. Autonomous decision-making in safety-critical industrial processes requires formal verification. Edge deployment of world models for latency-sensitive manufacturing control.
 
@@ -104,11 +104,11 @@
 
 **Industry**: Gaming & Creative Media
 
-**Description**: World models generate interactive, explorable 3D environments from text prompts, images, or sketches — replacing or augmenting traditional game engines. [Google DeepMind](players.md#google-deepmind)'s Genie 3 generates 720p/24fps interactive environments with "emergent physics" learned from observation (no hardcoded physics libraries). [World Labs](players.md#world-labs)' Marble reconstructs persistent 3D worlds from multimodal inputs with a "Chisel" feature for human-AI co-creation. Used for VFX pre-visualization, game prototyping, and architectural design.
+**Description**: World models generate interactive, explorable 3D environments from text prompts, images, or sketches — replacing or augmenting traditional game engines. [Google DeepMind](ecosystem.md#google-deepmind)'s Genie 3 generates 720p/24fps interactive environments with "emergent physics" learned from observation (no hardcoded physics libraries). [World Labs](ecosystem.md#world-labs)' Marble reconstructs persistent 3D worlds from multimodal inputs with a "Chisel" feature for human-AI co-creation. Used for VFX pre-visualization, game prototyping, and architectural design.
 
 **Technical Requirements**: Real-time generation (24fps minimum for interactivity). Spatial and temporal consistency over minutes of interaction. User control mapping (latent actions → human inputs). 3D persistence (objects maintain state when camera moves away). High visual fidelity (720p+).
 
-**Current Solutions**: [Google DeepMind](players.md#google-deepmind) Genie 3 (interactive, 720p/24fps); [World Labs](players.md#world-labs) Marble (persistent 3D, Chisel editing); Oasis AI (dreamlike interactive worlds); GWM-1 (deterministic spatial coherence)
+**Current Solutions**: [Google DeepMind](ecosystem.md#google-deepmind) Genie 3 (interactive, 720p/24fps); [World Labs](ecosystem.md#world-labs) Marble (persistent 3D, Chisel editing); Oasis AI (dreamlike interactive worlds); GWM-1 (deterministic spatial coherence)
 
 **Research Gaps**: Minutes-scale consistency degrades in autoregressive generation. No standard benchmark for interactive world model quality. Compute costs for real-time high-fidelity generation remain prohibitive for consumer deployment. Social/NPC behavior modeling within generated worlds is rudimentary.
 
@@ -122,11 +122,11 @@
 
 **Industry**: Pharmaceuticals | Materials Science | Chemistry
 
-**Description**: World models power "self-driving labs" — autonomous systems that generate hypotheses, design experiments, execute them robotically, analyze results, and iterate in closed loops with minimal human intervention. [Periodic Labs](players.md#periodic-labs) ($300M raised) builds AI scientists for materials discovery (superconductors, chip designs). [Medra](players.md#medra) ($52M) applies autonomous experimentation to drug discovery in partnership with Genentech. The approach addresses the "data bottleneck" in physical sciences: unlike internet text/images, scientific data must be generated through expensive physical experiments.
+**Description**: World models power "self-driving labs" — autonomous systems that generate hypotheses, design experiments, execute them robotically, analyze results, and iterate in closed loops with minimal human intervention. [Periodic Labs](ecosystem.md#periodic-labs) ($300M raised) builds AI scientists for materials discovery (superconductors, chip designs). [Medra](ecosystem.md#medra) ($52M) applies autonomous experimentation to drug discovery in partnership with Genentech. The approach addresses the "data bottleneck" in physical sciences: unlike internet text/images, scientific data must be generated through expensive physical experiments.
 
 **Technical Requirements**: Robotic laboratory automation (liquid handling, synthesis, characterization). Multi-modal sensing beyond vision (spectroscopy, chromatography, mass spectrometry). Closed-loop integration of hypothesis → experiment → analysis. Long-horizon planning across experiment sequences (days to weeks). Domain-specific world models that predict experimental outcomes under physical/chemical constraints.
 
-**Current Solutions**: [Periodic Labs](players.md#periodic-labs) (AI scientist platform for materials discovery); [Medra](players.md#medra) Platform (autonomous drug discovery with Genentech); Emerald Cloud Lab (cloud laboratory infrastructure); academic self-driving labs (MIT, Berkeley, Toronto)
+**Current Solutions**: [Periodic Labs](ecosystem.md#periodic-labs) (AI scientist platform for materials discovery); [Medra](ecosystem.md#medra) Platform (autonomous drug discovery with Genentech); Emerald Cloud Lab (cloud laboratory infrastructure); academic self-driving labs (MIT, Berkeley, Toronto)
 
 **Research Gaps**: Scientific data is sparse compared to internet-scale datasets — data efficiency is critical. Experimental "credit assignment" over long horizons (which early decision caused a late failure?). Integrating symbolic scientific knowledge (equations, constraints) with learned world models. Regulatory pathway for AI-designed drugs and materials is undefined. Transfer across scientific domains (chemistry → biology → materials) untested.
 

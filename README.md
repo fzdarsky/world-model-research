@@ -22,7 +22,7 @@ Many practical systems combine both — using generative models for synthetic da
 
 **[publications.md](research/publications.md)** - Papers, talks, blog posts, and videos organized by topic: JEPA, EBMs, world models & model-based RL, applications, and foundational theory.
 
-**[players.md](research/players.md)** - Seminal contributors and recognized thought leaders: researchers, institutions, and companies driving world models research and commercialization.
+**[ecosystem.md](research/ecosystem.md)** - Players in Physical AI — Big Tech, startups, OSS communities, and research labs — their solutions, reference architectures, and platform relevance.
 
 **[projects.md](research/projects.md)** - Open-source implementations, frameworks, datasets, and benchmarks: JEPA variants, world model frameworks (Cosmos, Dreamer, etc.), and supporting tools.
 
