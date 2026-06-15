@@ -1,11 +1,25 @@
-## [Use Case Name]
+## <Technical Use Case>
 
-**Industry**: Manufacturing | Transport&Logistics | Energy&Utilities | Healthcare | Telecommunications | Retail | FSI
+**Description**: What this capability pattern is, 1-2 sentences.
 
-**Description**: [Description of the use case, up to 1000 words]
+**Common building blocks** (across all verticals):
 
-**Technical Requirements**: [functional and non-functional requirements, concrete quantitative goals and constraints]
+| Building Block | Role in this use case |
+| -------------- | --------------------- |
+| <Block A>      | Why needed            |
+| <Block B>      | Why needed            |
 
-**Current Solutions**: [Who's doing this]
+### Vertical-Specific Instance: <Industry Name>
 
-**Research Gaps**: [What's missing]
+**Verticals**: Manufacturing | Healthcare & Life Sciences | Energy & Utilities | ...
+
+**Additional building blocks**: Beyond the common ones.
+
+**Vertical-specific requirements**:
+
+- **Functional**: What the solution must do in this vertical context.
+- **Non-functional**: Latency, throughput, safety, reliability, scale targets.
+- **Regulatory**: Applicable frameworks, standards, certifications.
+
+**Current solutions**: Who serves this today (links to ecosystem.md).
+**Gaps**: What's missing or immature.

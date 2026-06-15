@@ -1,15 +1,29 @@
-### [Project Name]
+### <Project Name>
 
-**URL**: [GitHub, Website]
+**URL**: [github.com/...](https://...)
+**Building block(s)**: Links to building-blocks.md.
 
-**Description**: [What it does]
+**Description**: What it does, 1-2 sentences.
+**Tech Stack**: Key technologies and dependencies.
 
-**Tech Stack**: [Technologies it uses or depends on]
+**Key Features**:
 
-**Key Features**: [Notable aspects]
+- ...
 
-**Status**: Active | Maintained | Archived
+**Openness assessment**:
 
-**Stats**: [stars, forks, number of contributors, number of contributing companies]
+| Dimension              | Rating                                                     | Detail                         |
+| ---------------------- | ---------------------------------------------------------- | ------------------------------ |
+| License                | Permissive / Copyleft / Source-available / Proprietary     | Specific license               |
+| Governance             | Foundation / Multi-vendor / Single-vendor / BDFL           | Governing body                 |
+| Contributor diversity  | High / Medium / Low                                        | # orgs, top contributor %      |
+| Community health       | Active / Maintained / Declining / Archived                 | Commit cadence, issue response |
+| Corporate control risk | Low / Medium / High                                        | CLA, single-vendor dominance   |
 
-**Last Updated**: [Date]
+**Maturity**: `Research` | `Early OSS` | `Production-ready` | `Industry standard`
+
+**Competes with**: Other projects in same building block.
+**Complements**: Projects it integrates with.
+
+**Stats**: Stars, forks, contributors, key contributing companies.
+**Last Updated**: YYYY-MM
