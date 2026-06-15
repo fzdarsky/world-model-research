@@ -1,14 +1,14 @@
-# Open Source and Open Data Projects
+# Projects
 
-> GitHub repos, frameworks, libraries, tools, and datasets for world models research
+> Open-source and proprietary implementations organized by building block
 
-**Last Updated**: 2026-06-09
+**Last Updated**: 2026-06-15
 
 ---
 
-## JEPA Implementations
+## Latent World Models
 
-*Projects implementing JEPA variants*
+*Projects that learn predictive models in latent/embedding space rather than pixel space. Includes JEPA variants, decoder-free world models, and other latent predictive architectures.*
 
 ### EB-JEPA: Energy-Based Joint-Embedding Predictive Architectures
 
@@ -31,6 +31,16 @@
 **Stats**: 464 stars, 35 forks, 34 commits (Meta AI Research)
 
 **Last Updated**: 2025-12 (created), actively maintained through 2026-02
+
+**Building block(s)**: [Latent World Models](building-blocks.md#latent-world-models)
+
+**Maturity**: Research
+
+**Competes with**: V-JEPA 2, LeWorldModel
+
+**Complements**: Simulation engines (Genesis, PhysicsNeMo) for downstream deployment
+
+**Openness assessment**: (to be assessed by oss-health skill)
 
 ### V-JEPA 2: Self-Supervised Video Models
 
@@ -55,6 +65,16 @@
 
 **Last Updated**: 2025-06 (released), V-JEPA 2.1 released 2026-03-16
 
+**Building block(s)**: [Latent World Models](building-blocks.md#latent-world-models)
+
+**Maturity**: Early OSS
+
+**Competes with**: EB-JEPA, LeWorldModel, NE-Dreamer
+
+**Complements**: Robot foundation models (GR00T, OpenPI) for downstream manipulation tasks
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
 ### JEPA-WMs: Physical Planning with Joint-Embedding Predictive World Models
 
 **URL**: [github.com/facebookresearch/jepa-wms](https://github.com/facebookresearch/jepa-wms)
@@ -75,6 +95,16 @@
 **Stats**: 160 stars, 17 forks, 1 contributor (Meta AI Research)
 
 **Last Updated**: 2026-02
+
+**Building block(s)**: [Latent World Models](building-blocks.md#latent-world-models)
+
+**Maturity**: Research
+
+**Competes with**: HWM, stable-worldmodel
+
+**Complements**: Simulation engines for environment evaluation
+
+**Openness assessment**: (to be assessed by oss-health skill)
 
 ### HWM: Hierarchical Planning with Latent World Models
 
@@ -97,6 +127,16 @@
 
 **Last Updated**: 2026-05
 
+**Building block(s)**: [Latent World Models](building-blocks.md#latent-world-models)
+
+**Maturity**: Research
+
+**Competes with**: JEPA-WMs, stable-worldmodel
+
+**Complements**: Any latent world model backbone (V-JEPA-2-AC, DINO-WM, PLDM)
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
 ### LeWorldModel (LeWM): Stable End-to-End JEPA from Pixels
 
 **URL**: [github.com/lucas-maes/le-wm](https://github.com/lucas-maes/le-wm)
@@ -117,6 +157,16 @@
 **Stats**: 1,623 stars, 139 forks, 3 contributors (Mila, NYU, Brown)
 
 **Last Updated**: 2026-03
+
+**Building block(s)**: [Latent World Models](building-blocks.md#latent-world-models)
+
+**Maturity**: Research
+
+**Competes with**: EB-JEPA, V-JEPA 2
+
+**Complements**: Simulation engines for control tasks
+
+**Openness assessment**: (to be assessed by oss-health skill)
 
 ### EchoJEPA: Latent Predictive Foundation Model for Echocardiography
 
@@ -139,6 +189,16 @@
 
 **Last Updated**: 2026-02
 
+**Building block(s)**: [Latent World Models](building-blocks.md#latent-world-models)
+
+**Maturity**: Research
+
+**Competes with**: Traditional medical imaging foundation models
+
+**Complements**: Clinical decision support systems, diagnostic AI workflows
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
 ### Locate 3D / 3D-JEPA: Object Localization via Self-Supervised 3D Learning
 
 **URL**: [github.com/facebookresearch/locate-3d](https://github.com/facebookresearch/locate-3d)
@@ -159,6 +219,16 @@
 **Stats**: (Meta AI Research)
 
 **Last Updated**: 2025-04
+
+**Building block(s)**: [Latent World Models](building-blocks.md#latent-world-models)
+
+**Maturity**: Research
+
+**Competes with**: Traditional 3D object detection models
+
+**Complements**: Robot foundation models, AR/VR systems
+
+**Openness assessment**: (to be assessed by oss-health skill)
 
 ### ThinkJEPA: VLM-Guided Latent World Models
 
@@ -181,39 +251,116 @@
 
 **Last Updated**: 2026-03
 
----
+**Building block(s)**: [Latent World Models](building-blocks.md#latent-world-models)
 
-## EBM Libraries & Frameworks
+**Maturity**: Research
 
-*Tools and libraries for Energy-Based Models*
+**Competes with**: V-JEPA 2, LLM-JEPA
 
----
+**Complements**: VLM reasoning models, embodied AI applications
 
-## World Model Frameworks
+**Openness assessment**: (to be assessed by oss-health skill)
 
-*Complete frameworks like DreamerV3, etc.*
+### NE-Dreamer: Next Embedding Prediction for World Models
 
-### Baby Dragon Hatchling (BDH)
+**URL**: [github.com/corl-team/nedreamer](https://github.com/corl-team/nedreamer)
 
-**URL**: [github.com/pathwaycom/bdh](https://github.com/pathwaycom/bdh)
-
-**Description**: Biologically-inspired LLM architecture based on a scale-free network of locally-interacting neuron particles with Hebbian learning. Bridges deep learning and neuroscience while matching GPT-2 performance at 10M–1B parameters.
+**Description**: Decoder-free MBRL agent using a temporal transformer to predict next-step encoder embeddings from latent state sequences. Matches or exceeds DreamerV3 on DeepMind Control Suite with substantial gains on DMLab memory/reasoning tasks.
 
 **Tech Stack**: Python, PyTorch
 
 **Key Features**:
 
-- Scale-free network topology with excitatory/inhibitory neuron dynamics
-- Hebbian working memory via synaptic plasticity with monosemantic properties
-- GPU-optimized state-space formulation
-- Sparse, positive, interpretable activations
-- Active community: MLX port, Burn framework port, dynamic vocabulary extensions
+- Decoder-free architecture — no pixel reconstruction, learns entirely in embedding space
+- Temporal transformer with next-step target shift for predictive sequence modeling
+- Competitive with DreamerV3 on DMC, superior on DMLab memory tasks
+- MIT licensed
 
 **Status**: Active
 
-**Stats**: 3,400+ stars, 211 forks, 5 contributors (Pathway)
+**Stats**: 31 stars, 1 fork, 1 contributor
 
-**Last Updated**: 2025-09
+**Last Updated**: 2026-03
+
+**Building block(s)**: [Latent World Models](building-blocks.md#latent-world-models)
+
+**Maturity**: Research
+
+**Competes with**: DreamerV3, V-JEPA 2
+
+**Complements**: RL training frameworks
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+### RLVR-World: Training World Models with Reinforcement Learning
+
+**URL**: [github.com/thuml/RLVR-World](https://github.com/thuml/RLVR-World)
+
+**Description**: Unified framework applying RL with verifiable rewards (RLVR) to optimize world models for transition prediction metrics. Supports both language-based and video-based world models across text games, web navigation, and robot manipulation. NeurIPS 2025.
+
+**Tech Stack**: Python, PyTorch, Hugging Face Transformers
+
+**Key Features**:
+
+- +30.7% accuracy for text world models (1.5B LLM rivaling GPT-4)
+- +15.1% F1 on web navigation; +18.4% relative on WebArena agent success
+- Covers language and video modalities with unified RLVR post-training paradigm
+- MIT licensed
+
+**Status**: Maintained
+
+**Stats**: 237 stars, 11 forks, 3 contributors (Tsinghua University)
+
+**Last Updated**: 2025-10
+
+**Building block(s)**: [Latent World Models](building-blocks.md#latent-world-models), [Post-Training & Fine-Tuning Pipeline](building-blocks.md#post-training--fine-tuning-pipeline)
+
+**Maturity**: Research
+
+**Competes with**: Standard supervised world model training
+
+**Complements**: Language models, video models, RL frameworks
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+### stable-worldmodel: Reproducible World Model Research & Evaluation
+
+**URL**: [github.com/galilai-group/stable-worldmodel](https://github.com/galilai-group/stable-worldmodel)
+
+**Description**: Standardized library for world model research providing integrated data collection, model training, and evaluation with model predictive control. Analogous to Stable Baselines3 but for world models — ships pre-implemented baselines (DINO-WM, GCBC, HILP, GCIVL, GCIQL) across 16 environments with both zeroth-order and gradient-based planning solvers.
+
+**Tech Stack**: Python 3.10+, PyTorch, HDF5/MP4 datasets, uv package manager, Ruff
+
+**Key Features**:
+
+- Pre-implemented baselines: DINO-WM, GCBC, HILP, GCIVL, GCIQL
+- Planning solvers: zeroth-order (CEM, MPPI) and gradient-based (SGD, Adam, PGD)
+- 16 environments across DeepMind Control Suite, OGBench, PushT, Two-Room
+- Optimized data loading (HDF5/MP4) to reduce CPU bottlenecks and maximize GPU utilization
+- Gymnasium-compatible interface for custom environments
+- `pip install stable-worldmodel`
+
+**Status**: Active
+
+**Stats**: 181 stars, 28 forks, 8 contributors (Galilai group — academic; lead contributors: Lucas Maes, Quentin Llavador, Randall Balestriero)
+
+**Last Updated**: 2026-02
+
+**Building block(s)**: [Latent World Models](building-blocks.md#latent-world-models)
+
+**Maturity**: Early OSS
+
+**Competes with**: JEPA-WMs, HWM
+
+**Complements**: Simulation engines, benchmarking datasets
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+---
+
+## Video Generation / Prediction Models
+
+*Pixel-space generative models that predict future video frames. Includes text-to-world, image-to-world, and video-to-world models.*
 
 ### Cosmos 3: Unified Omnimodal World Model
 
@@ -237,6 +384,16 @@
 
 **Last Updated**: 2026-06
 
+**Building block(s)**: [Video Generation / Prediction Models](building-blocks.md#video-generation--prediction-models)
+
+**Maturity**: Production-ready
+
+**Competes with**: Cosmos-Predict2.5, Genie 2, Sora
+
+**Complements**: Cosmos-Tokenizer, vLLM-Omni for serving
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
 ### Cosmos-Predict2.5: World Simulation Foundation Model
 
 **URL**: [github.com/nvidia-cosmos/cosmos-predict2.5](https://github.com/nvidia-cosmos/cosmos-predict2.5)
@@ -258,6 +415,16 @@
 **Stats**: 855 stars, 94 forks, 14 contributors (NVIDIA)
 
 **Last Updated**: 2026-02
+
+**Building block(s)**: [Video Generation / Prediction Models](building-blocks.md#video-generation--prediction-models)
+
+**Maturity**: Production-ready
+
+**Competes with**: Cosmos 3, Genie 2
+
+**Complements**: Cosmos-Transfer2.5, Cosmos-Reason2, Cosmos-Tokenizer
+
+**Openness assessment**: (to be assessed by oss-health skill)
 
 ### Cosmos-Transfer2.5: World Translation (Sim2Real/Real2Real)
 
@@ -281,49 +448,15 @@
 
 **Last Updated**: 2026-03
 
-### Cosmos-Reason2: Physical AI Common Sense & Embodied Reasoning
+**Building block(s)**: [Video Generation / Prediction Models](building-blocks.md#video-generation--prediction-models), [Sim-to-Real Transfer Pipeline](building-blocks.md#sim-to-real-transfer-pipeline)
 
-**URL**: [github.com/nvidia-cosmos/cosmos-reason2](https://github.com/nvidia-cosmos/cosmos-reason2)
+**Maturity**: Production-ready
 
-**Description**: Multimodal language models for physical common sense understanding and embodied decision-making via chain-of-thought reasoning. Based on Qwen3-VL architecture; #1 open model on Physical AI Bench and Physical Reasoning leaderboards. Serves as reasoning backbone for Cosmos world simulation pipeline.
+**Competes with**: Domain randomization, style transfer techniques
 
-**Tech Stack**: Python, PyTorch, Qwen3-VL, NeMo Framework, Hugging Face
+**Complements**: Cosmos-Predict2.5, simulation engines
 
-**Key Features**:
-
-- 2B and 8B model variants for Physical AI reasoning
-- Chain-of-thought reasoning for physical dynamics understanding without human annotations
-- Trained with Physical AI SFT + RL on hierarchical ontology (space, time, physics)
-- Top-ranked open model on Physical AI Bench leaderboard
-- NVIDIA Open Model License (commercial use permitted)
-
-**Status**: Active
-
-**Stats**: 258 stars, 51 forks, 6 contributors (NVIDIA)
-
-**Last Updated**: 2026-02
-
-### Cosmos-RL: Reinforcement Learning Framework for Physical AI
-
-**URL**: [github.com/nvidia-cosmos/cosmos-rl](https://github.com/nvidia-cosmos/cosmos-rl)
-
-**Description**: Flexible and scalable async post-training framework specialized for RL and SFT in Physical AI applications. Supports training across LLM/VLM, world foundation models, and VLA paradigms with fault-tolerant elastic large-scale training.
-
-**Tech Stack**: Python, PyTorch, CUDA, NeMo Framework
-
-**Key Features**:
-
-- SOTA RL algorithms: GRPO, DAPO for LLM/VLM; FlowGRPO, DDRL, DiffusionNFT for world foundation models; VLA-specific algorithms
-- 6D Parallelism: Sequence, Tensor, Context, Pipeline, FSDP, DDP
-- Dynamic NCCL Process Groups for on-the-fly GPU registration/unregistration enabling fault-tolerant elastic training
-- Native support for OpenVLA, OpenVLA-OFT, PI0.5 series models; integrated with LIBERO and BEHAVIOR-1K simulators
-- Apache 2.0 licensed (code), NVIDIA Open Model License (models)
-
-**Status**: Active
-
-**Stats**: 367 stars, 53 forks (NVIDIA)
-
-**Last Updated**: 2026-03
+**Openness assessment**: (to be assessed by oss-health skill)
 
 ### Cosmos-Tokenizer: Video & Image Neural Tokenizers
 
@@ -345,49 +478,21 @@
 
 **Last Updated**: 2025-02
 
-### Cosmos-Cookbook: Post-Training Recipes & Workflows
+**Building block(s)**: [Video Generation / Prediction Models](building-blocks.md#video-generation--prediction-models)
 
-**URL**: [github.com/nvidia-cosmos/cosmos-cookbook](https://github.com/nvidia-cosmos/cosmos-cookbook)
+**Maturity**: Production-ready
 
-**Description**: Community-driven collection of post-training scripts, proven workflows, and domain-specific adaptations for the NVIDIA Cosmos ecosystem. Includes recipes for robot policy training, action-conditioned model distillation, and fine-tuning Cosmos models for specific Physical AI domains.
+**Competes with**: Other video tokenizers (e.g., MAGVIT)
 
-**Tech Stack**: Python, PyTorch, NeMo Framework, Jupyter notebooks
+**Complements**: Cosmos-Predict2.5, Cosmos 3
 
-**Key Features**:
+**Openness assessment**: (to be assessed by oss-health skill)
 
-- Post-training recipes for robot policy models (RoboCasa, Libero)
-- Action-conditioned distillation guides for Predict2.5
-- Domain-specific adaptation workflows for AV and robotics
-- Community contribution framework for sharing Physical AI workflows
+---
 
-**Status**: Active
+## Robot Foundation Models
 
-**Stats**: 286 stars, 68 forks, 7 contributors (NVIDIA + community)
-
-**Last Updated**: 2026-02
-
-### PhysicsNeMo: Physics-ML Framework for AI Surrogate Models
-
-**URL**: [github.com/NVIDIA/physicsnemo](https://github.com/NVIDIA/physicsnemo)
-
-**Description**: Open-source framework for building, training, and inferring physics-informed ML models. Provides optimized model architectures (neural operators, graph neural networks, diffusion transformers) and scalable data pipelines for scientific/engineering data (point clouds, meshes). Enables AI surrogate models that combine physics-driven causality with simulation data for real-time predictions — the physics simulation layer underlying NVIDIA's autonomous digital twin vision.
-
-**Tech Stack**: Python, PyTorch, CUDA, PyTorch Geometric
-
-**Key Features**:
-
-- Built-in model families: Neural Operators (FNO), Graph Neural Networks, Diffusion Transformers (DiT), Transformers
-- PhysicsNeMo Sym: symbolic PDE integration, domain sampling, physics-informed residual computation
-- PhysicsNeMo CFD: inference recipes for pre-trained CFD models (e.g., DoMINO Automotive Aerodynamics NIM)
-- Domain parallelism for kNN, radius search; distributed training across multi-GPU/multi-node
-- Domain packages: Earth-2 Studio (weather/climate), CFD, Curator (data curation for engineering datasets)
-- Apache 2.0 licensed
-
-**Status**: Active
-
-**Stats**: 2,600+ stars, 629 forks (NVIDIA)
-
-**Last Updated**: 2026-03
+*Foundation models for robot manipulation and navigation. Includes VLAs (Vision-Language-Action models) and World Action Models (WAMs).*
 
 ### Isaac-GR00T: Foundation Model for Generalist Humanoid Robots
 
@@ -414,6 +519,16 @@
 
 **Last Updated**: 2026-05
 
+**Building block(s)**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
+
+**Maturity**: Production-ready
+
+**Competes with**: OpenPI, DreamZero, LingBot-VA
+
+**Complements**: Isaac Lab simulation, LeRobot serving framework, vLLM-Omni
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
 ### OpenPI: Open-Source π0 VLA Foundation Models
 
 **URL**: [github.com/Physical-Intelligence/openpi](https://github.com/Physical-Intelligence/openpi)
@@ -438,6 +553,16 @@
 
 **Last Updated**: 2026-04
 
+**Building block(s)**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
+
+**Maturity**: Production-ready
+
+**Competes with**: Isaac-GR00T, DreamZero, LingBot-VA
+
+**Complements**: LeRobot framework, vLLM-Omni, ALOHA/DROID hardware
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
 ### DreamZero: World Action Model for Zero-Shot Robot Policies
 
 **URL**: [github.com/dreamzero0/dreamzero](https://github.com/dreamzero0/dreamzero)
@@ -460,6 +585,16 @@
 **Stats**: 1,740 stars, 135 forks (NVIDIA)
 
 **Last Updated**: 2026-04
+
+**Building block(s)**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
+
+**Maturity**: Research
+
+**Competes with**: Isaac-GR00T, OpenPI, LingBot-VA
+
+**Complements**: Video generation models, vLLM-Omni
+
+**Openness assessment**: (to be assessed by oss-health skill)
 
 ### LingBot-VA: Causal Video-Action World Model for Robot Control
 
@@ -484,70 +619,61 @@
 
 **Last Updated**: 2026-04
 
-### NE-Dreamer: Next Embedding Prediction for World Models
+**Building block(s)**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
 
-**URL**: [github.com/corl-team/nedreamer](https://github.com/corl-team/nedreamer)
+**Maturity**: Research
 
-**Description**: Decoder-free MBRL agent using a temporal transformer to predict next-step encoder embeddings from latent state sequences. Matches or exceeds DreamerV3 on DeepMind Control Suite with substantial gains on DMLab memory/reasoning tasks.
+**Competes with**: OpenPI, Isaac-GR00T, DreamZero
 
-**Tech Stack**: Python, PyTorch
+**Complements**: Simulation engines, robotics hardware platforms
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+### Cosmos-RL: Reinforcement Learning Framework for Physical AI
+
+**URL**: [github.com/nvidia-cosmos/cosmos-rl](https://github.com/nvidia-cosmos/cosmos-rl)
+
+**Description**: Flexible and scalable async post-training framework specialized for RL and SFT in Physical AI applications. Supports training across LLM/VLM, world foundation models, and VLA paradigms with fault-tolerant elastic large-scale training.
+
+**Tech Stack**: Python, PyTorch, CUDA, NeMo Framework
 
 **Key Features**:
 
-- Decoder-free architecture — no pixel reconstruction, learns entirely in embedding space
-- Temporal transformer with next-step target shift for predictive sequence modeling
-- Competitive with DreamerV3 on DMC, superior on DMLab memory tasks
-- MIT licensed
+- SOTA RL algorithms: GRPO, DAPO for LLM/VLM; FlowGRPO, DDRL, DiffusionNFT for world foundation models; VLA-specific algorithms
+- 6D Parallelism: Sequence, Tensor, Context, Pipeline, FSDP, DDP
+- Dynamic NCCL Process Groups for on-the-fly GPU registration/unregistration enabling fault-tolerant elastic training
+- Native support for OpenVLA, OpenVLA-OFT, PI0.5 series models; integrated with LIBERO and BEHAVIOR-1K simulators
+- Apache 2.0 licensed (code), NVIDIA Open Model License (models)
 
 **Status**: Active
 
-**Stats**: 31 stars, 1 fork, 1 contributor
+**Stats**: 367 stars, 53 forks (NVIDIA)
 
 **Last Updated**: 2026-03
 
-### RLVR-World: Training World Models with Reinforcement Learning
+**Building block(s)**: [Robot Foundation Models](building-blocks.md#robot-foundation-models), [Post-Training & Fine-Tuning Pipeline](building-blocks.md#post-training--fine-tuning-pipeline)
 
-**URL**: [github.com/thuml/RLVR-World](https://github.com/thuml/RLVR-World)
+**Maturity**: Production-ready
 
-**Description**: Unified framework applying RL with verifiable rewards (RLVR) to optimize world models for transition prediction metrics. Supports both language-based and video-based world models across text games, web navigation, and robot manipulation. NeurIPS 2025.
+**Competes with**: Traditional RL frameworks (RLlib, Stable Baselines3)
 
-**Tech Stack**: Python, PyTorch, Hugging Face Transformers
+**Complements**: OpenVLA, OpenPI, Isaac-GR00T, LIBERO/BEHAVIOR-1K simulators
 
-**Key Features**:
+**Openness assessment**: (to be assessed by oss-health skill)
 
-- +30.7% accuracy for text world models (1.5B LLM rivaling GPT-4)
-- +15.1% F1 on web navigation; +18.4% relative on WebArena agent success
-- Covers language and video modalities with unified RLVR post-training paradigm
-- MIT licensed
+---
 
-**Status**: Maintained
+## Robot Middleware
 
-**Stats**: 237 stars, 11 forks, 3 contributors (Tsinghua University)
+*Robot Operating Systems, middleware, and communication layers for robot control and coordination.*
 
-**Last Updated**: 2025-10
+(No current entries — to be populated)
 
-### stable-worldmodel: Reproducible World Model Research & Evaluation
+---
 
-**URL**: [github.com/galilai-group/stable-worldmodel](https://github.com/galilai-group/stable-worldmodel)
+## Simulation Engines
 
-**Description**: Standardized library for world model research providing integrated data collection, model training, and evaluation with model predictive control. Analogous to Stable Baselines3 but for world models — ships pre-implemented baselines (DINO-WM, GCBC, HILP, GCIVL, GCIQL) across 16 environments with both zeroth-order and gradient-based planning solvers.
-
-**Tech Stack**: Python 3.10+, PyTorch, HDF5/MP4 datasets, uv package manager, Ruff
-
-**Key Features**:
-
-- Pre-implemented baselines: DINO-WM, GCBC, HILP, GCIVL, GCIQL
-- Planning solvers: zeroth-order (CEM, MPPI) and gradient-based (SGD, Adam, PGD)
-- 16 environments across DeepMind Control Suite, OGBench, PushT, Two-Room
-- Optimized data loading (HDF5/MP4) to reduce CPU bottlenecks and maximize GPU utilization
-- Gymnasium-compatible interface for custom environments
-- `pip install stable-worldmodel`
-
-**Status**: Active
-
-**Stats**: 181 stars, 28 forks, 8 contributors (Galilai group — academic; lead contributors: Lucas Maes, Quentin Llavador, Randall Balestriero)
-
-**Last Updated**: 2026-02
+*Physics-based simulation platforms for training and evaluating world models and robot policies.*
 
 ### Genesis World: Multi-Physics Simulation Platform
 
@@ -571,11 +697,54 @@
 
 **Last Updated**: 2026-06
 
+**Building block(s)**: [Simulation Engines](building-blocks.md#simulation-engines)
+
+**Maturity**: Early OSS
+
+**Competes with**: Isaac Sim, MuJoCo, PyBullet
+
+**Complements**: Robot foundation models (GR00T, OpenPI), latent world models
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+### PhysicsNeMo: Physics-ML Framework for AI Surrogate Models
+
+**URL**: [github.com/NVIDIA/physicsnemo](https://github.com/NVIDIA/physicsnemo)
+
+**Description**: Open-source framework for building, training, and inferring physics-informed ML models. Provides optimized model architectures (neural operators, graph neural networks, diffusion transformers) and scalable data pipelines for scientific/engineering data (point clouds, meshes). Enables AI surrogate models that combine physics-driven causality with simulation data for real-time predictions — the physics simulation layer underlying NVIDIA's autonomous digital twin vision.
+
+**Tech Stack**: Python, PyTorch, CUDA, PyTorch Geometric
+
+**Key Features**:
+
+- Built-in model families: Neural Operators (FNO), Graph Neural Networks, Diffusion Transformers (DiT), Transformers
+- PhysicsNeMo Sym: symbolic PDE integration, domain sampling, physics-informed residual computation
+- PhysicsNeMo CFD: inference recipes for pre-trained CFD models (e.g., DoMINO Automotive Aerodynamics NIM)
+- Domain parallelism for kNN, radius search; distributed training across multi-GPU/multi-node
+- Domain packages: Earth-2 Studio (weather/climate), CFD, Curator (data curation for engineering datasets)
+- Apache 2.0 licensed
+
+**Status**: Active
+
+**Stats**: 2,600+ stars, 629 forks (NVIDIA)
+
+**Last Updated**: 2026-03
+
+**Building block(s)**: [Simulation Engines](building-blocks.md#simulation-engines), [Physics-Informed ML Frameworks](building-blocks.md#physics-informed-ml-frameworks)
+
+**Maturity**: Production-ready
+
+**Competes with**: Traditional CFD/FEM solvers (ANSYS, OpenFOAM)
+
+**Complements**: Digital twin runtime, autonomous systems
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
 ---
 
-## Inference & Serving
+## Model Serving for Physical AI
 
-*Frameworks and APIs for serving world models*
+*Inference engines, serving frameworks, and APIs for deploying world models and robot policies.*
 
 ### vLLM-Omni: Omni-Modality Model Serving
 
@@ -600,6 +769,16 @@
 
 **Last Updated**: 2026-04
 
+**Building block(s)**: [Model Serving for Physical AI](building-blocks.md#model-serving-for-physical-ai)
+
+**Maturity**: Production-ready
+
+**Competes with**: TensorRT-LLM, TorchServe
+
+**Complements**: OpenPI, Isaac-GR00T, DreamZero, LeRobot
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
 ### LeRobot: End-to-End Learning for Robotics
 
 **URL**: [github.com/huggingface/lerobot](https://github.com/huggingface/lerobot)
@@ -623,11 +802,67 @@
 
 **Last Updated**: 2026-04
 
+**Building block(s)**: [Model Serving for Physical AI](building-blocks.md#model-serving-for-physical-ai)
+
+**Maturity**: Production-ready
+
+**Competes with**: ROS1/ROS2 action servers, custom robot control stacks
+
+**Complements**: OpenPI, Isaac-GR00T, vLLM-Omni
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+---
+
+## Biologically-Inspired Architectures
+
+*Research projects exploring brain-inspired architectures. These don't map directly to a single building block but are tracked as research references.*
+
+### Baby Dragon Hatchling (BDH)
+
+**URL**: [github.com/pathwaycom/bdh](https://github.com/pathwaycom/bdh)
+
+**Description**: Biologically-inspired LLM architecture based on a scale-free network of locally-interacting neuron particles with Hebbian learning. Bridges deep learning and neuroscience while matching GPT-2 performance at 10M–1B parameters.
+
+**Tech Stack**: Python, PyTorch
+
+**Key Features**:
+
+- Scale-free network topology with excitatory/inhibitory neuron dynamics
+- Hebbian working memory via synaptic plasticity with monosemantic properties
+- GPU-optimized state-space formulation
+- Sparse, positive, interpretable activations
+- Active community: MLX port, Burn framework port, dynamic vocabulary extensions
+
+**Status**: Active
+
+**Stats**: 3,400+ stars, 211 forks, 5 contributors (Pathway)
+
+**Last Updated**: 2025-09
+
+**Building block(s)**: Research reference — doesn't map to single building block
+
+**Maturity**: Research
+
+**Competes with**: Traditional transformer architectures
+
+**Complements**: Neuroscience-informed AI research, interpretability tools
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+---
+
+## EBM Libraries & Frameworks
+
+*Energy-based model tools relevant to latent world models and self-supervised learning.*
+
+(No current entries — section reserved for future EBM-specific tools)
+
 ---
 
 ## Datasets & Benchmarks
 
-*Relevant datasets for training and evaluation*
+*Training datasets, evaluation benchmarks, and data collection tools for world models and robot policies.*
 
 ### MolmoSpaces
 
@@ -652,11 +887,21 @@
 
 **Last Updated**: 2026-05 (v0.1.0)
 
+**Building block(s)**: [Datasets & Benchmarks](building-blocks.md#data-annotation--curation-for-physical-ai)
+
+**Maturity**: Early OSS
+
+**Competes with**: Other robot manipulation benchmarks (RLBench, Robosuite)
+
+**Complements**: Simulation engines (Genesis, Isaac Sim, ManiSkill)
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
 ---
 
-## Utilities & Tools
+## Reference Resources
 
-*Supporting tools for research and development*
+*Curated lists, surveys, and reference collections for world models research.*
 
 ### Awesome-World-Models: Curated Survey Companion
 
@@ -677,6 +922,16 @@
 **Stats**: 165 stars, 3 forks, 3 contributors
 
 **Last Updated**: 2026-03
+
+**Building block(s)**: Reference resource — no specific building block
+
+**Maturity**: Research
+
+**Competes with**: Other world model curated lists
+
+**Complements**: Research literature, academic surveys
+
+**Openness assessment**: (to be assessed by oss-health skill)
 
 ### Awesome-World-Model-for-Robotics-Policy: Robot Learning Survey Companion
 
@@ -699,7 +954,47 @@
 
 **Last Updated**: 2026-05
 
+**Building block(s)**: Reference resource — no specific building block
+
+**Maturity**: Research
+
+**Competes with**: Other robotics literature collections
+
+**Complements**: Academic research, robotics surveys
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+### Cosmos-Cookbook: Post-Training Recipes & Workflows
+
+**URL**: [github.com/nvidia-cosmos/cosmos-cookbook](https://github.com/nvidia-cosmos/cosmos-cookbook)
+
+**Description**: Community-driven collection of post-training scripts, proven workflows, and domain-specific adaptations for the NVIDIA Cosmos ecosystem. Includes recipes for robot policy training, action-conditioned model distillation, and fine-tuning Cosmos models for specific Physical AI domains.
+
+**Tech Stack**: Python, PyTorch, NeMo Framework, Jupyter notebooks
+
+**Key Features**:
+
+- Post-training recipes for robot policy models (RoboCasa, Libero)
+- Action-conditioned distillation guides for Predict2.5
+- Domain-specific adaptation workflows for AV and robotics
+- Community contribution framework for sharing Physical AI workflows
+
+**Status**: Active
+
+**Stats**: 286 stars, 68 forks, 7 contributors (NVIDIA + community)
+
+**Last Updated**: 2026-02
+
+**Building block(s)**: [Post-Training & Fine-Tuning Pipeline](building-blocks.md#post-training--fine-tuning-pipeline)
+
+**Maturity**: Early OSS
+
+**Competes with**: Custom post-training pipelines
+
+**Complements**: Cosmos ecosystem (Predict2.5, Reason2, RL)
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
 ---
 
-**Note**: Each entry follows the project-entry template from `templates/project-entry.md`.
-Entries marked as "Archived" are no longer actively maintained.
+**Note**: Openness assessments (corporate control, license restrictions, build-from-source viability) to be performed by future `oss-health` skill.
