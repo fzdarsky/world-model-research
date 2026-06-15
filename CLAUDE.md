@@ -1,33 +1,41 @@
-# AI Assistant Guidelines for World Models Research Notebook
+# AI Assistant Guidelines for Physical AI Platform Intelligence Notebook
 
 ## Project Purpose
 
-This is a living research notebook tracking AI world models research — both foundational and applied — with focus on:
+This is a living research notebook creating **technical intelligence for understanding how an enterprise Linux/Kubernetes platform vendor could build a Physical AI platform and partner ecosystem**.
 
-**Architectures & Methods** (examples, not exhaustive):
+The notebook is organized in two layers:
 
-- **Predictive / latent-space models** - JEPA, Dreamer, Energy-Based Models — predict in abstract representation spaces
-- **Generative / pixel-space models** - Cosmos, Genie, GAIA, Sora — generate raw video/image observations
-- **Model-based RL** - DreamerV3, TD-MPC, MBPO — learn dynamics for planning and control
-- **Foundation models for Physical AI** - GR00T, pi0, world foundation models for robotics
-- **Biologically-inspired architectures** - BDH, Active Inference, spiking networks
+**Platform Intelligence Layer** -- actionable analysis for platform strategy:
 
-**Applications & Industry Use Cases**:
+- **`building-blocks.md`** -- Platform capability map: building blocks with demand matrices, solution landscapes, platform fit assessments
+- **`ecosystem.md`** -- Competitive landscape: Big Tech, startups, OSS communities, research labs with solution-level analysis
+- **`use-cases.md`** -- Technical use cases as primary hierarchy with vertical tags, building-block mappings, regulatory requirements
+- **`projects.md`** -- Open-source and proprietary implementations organized by building block with openness assessments
 
-- **Robotics** - Manipulation, navigation, task planning with world models
-- **Autonomous vehicles** - Driving, sim-to-real transfer, scene prediction
-- **Healthcare & medical imaging** - Clinical decision support, diagnostic AI
-- **Industrial & manufacturing** - Digital twins, process optimization, predictive maintenance
-- **Telecommunications** - Wireless channel modeling, network optimization
-- **Scientific discovery** - Physics simulation, molecular modeling
-- **Agentic AI** - Autonomous agents, web agents, tool use, planning with world models
+**Research Depth Layer** -- foundational understanding that informs platform decisions:
+
+- **`publications.md`** -- Papers, talks, videos, blog posts across Physical AI scope (world models, embodied AI, simulation, robotics foundations)
+- **`concepts.md`** -- Key concepts, architectural patterns, and theoretical foundations
+
+**Scope** includes (examples, not exhaustive):
+
+- **Predictive / latent-space models** -- JEPA, Dreamer, Energy-Based Models
+- **Generative / pixel-space models** -- Cosmos, Genie, GAIA, Sora
+- **Model-based RL** -- DreamerV3, TD-MPC, MBPO
+- **Foundation models for Physical AI** -- GR00T, pi0, world foundation models for robotics
+- **Biologically-inspired architectures** -- BDH, Active Inference, spiking networks
+- **Simulation & digital twins** -- Isaac Sim, Habitat, synthetic data generation
+- **Robotics stacks** -- ROS 2, manipulation frameworks, nav stacks
+- **MLOps / training infrastructure** -- distributed training, data pipelines, model registries
 
 ### Goals
 
-1. Maintain current understanding of SOTA research and key players
-2. Track open-source implementations and communities
-3. Identify practical use cases, technical requirements, and industry adoption
-4. Support synthesis and analysis of research trends
+1. Track players AND startups building Physical AI solutions, understanding competitive dynamics
+2. Understand use cases and derive building-block requirements for an enterprise platform
+3. Assess the open-source landscape for each building block (community health, licensing, vendor control)
+4. Maintain research depth on world model architectures, embodied AI, and simulation
+5. Support synthesis and analysis of research trends and market developments
 
 ### Workflow Philosophy
 
@@ -49,7 +57,7 @@ When the user provides a publication URL (paper, blog post, video, etc.):
    - Duration (for videos, format: MM:SS or HH:MM:SS)
    - 2-3 sentence summary (following style guide)
    - 3-5 key points (technical contributions, methods, results, key insights)
-   - Relevance to world models research
+   - Relevance to Physical AI and platform strategy
 3. **For YouTube Videos**:
    - Only include videos from well-known players/institutions
    - Types: talks, interviews, news about key players, tutorials
@@ -58,29 +66,27 @@ When the user provides a publication URL (paper, blog post, video, etc.):
    - Add a 32x32 icon behind the title that links to the source. Pick the icon from `research/templates/icons/` depending on the source type.
 5. **Add to publications.md**: Insert under appropriate section (see Content Organization below)
 6. **Cross-link**:
-   - If paper mentions new researchers/institutions → add to ecosystem.md
-   - If paper describes new use cases → add to use-cases.md
-   - If paper presents new concept → note in concepts.md
+   - If paper mentions new researchers/institutions/companies with significant contributions, add to ecosystem.md
+   - If paper describes new use cases, add to use-cases.md
+   - If paper presents new concept, note in concepts.md
+   - If paper reveals a new building-block requirement, note in building-blocks.md
    - If any authors/presenters already exist in ecosystem.md, link their names: `[Name](ecosystem.md#anchor)`
+7. **Archive Source**: Save PDF to `research/library/papers/` (see Source Archiving section)
 
-### Adding a Player
+### Adding an Ecosystem Entry
 
-Only add researchers, institutions, or companies that have made **seminal contributions** to the field or are **recognized as thought leaders**. Do not add authors merely because they co-authored a tracked paper.
+Add organizations and key researchers that are **significant players** in the Physical AI ecosystem. This includes Big Tech divisions, funded startups, active OSS communities, and leading research labs. Do not add authors merely because they co-authored a tracked paper.
 
-When extracting researcher, institution, or company information:
+When extracting ecosystem information:
 
 1. **Assess Inclusion**: Only add if the person/organization meets at least one criterion:
-   - Originated or significantly advanced a key concept (JEPA, EBMs, world models, BDH)
-   - Leads a major research group or company in the field
+   - Originated or significantly advanced a key concept or architecture
+   - Leads a major research group, company, or product in the field
    - Has a body of highly-cited, influential work in the area
-2. **Extract Information**:
-   - Name/Organization
-   - About (1-3 sentences: bio, why particularly relevant to the field)
-   - Focus areas (specific topics like "JEPA, self-supervised learning")
-   - Key work (notable papers, projects, products)
-   - Collaborations (with other key players)
-   - Links (website, GitHub, Google Scholar, Twitter)
-3. **Fill Template**: Use `research/templates/ecosystem-entry.md`
+   - Is a funded startup building Physical AI products
+   - Maintains a significant open-source project in scope
+2. **Extract Information**: Follow fields in `research/templates/ecosystem-entry.md` and `research/templates/solution-entry.md`
+3. **Fill Template**: Use `research/templates/ecosystem-entry.md` for the organization; add `research/templates/solution-entry.md` sub-entries for each notable product/solution
 4. **Add to ecosystem.md**: Insert under appropriate section (Big Tech | Startups | OSS Communities | Research Labs)
 5. **Avoid Duplicates**: Check if entry already exists before adding
 
@@ -93,37 +99,62 @@ When the user provides a GitHub URL or project website:
    - Project name
    - URL (GitHub or website)
    - Description (what it does, 1-2 sentences)
+   - Building block(s) it maps to
    - Tech Stack (which technologies does it use or depend on)
    - Key features (what makes it notable)
-   - Status (Active | Maintained | Archived) - check last commit/release date
-   - Stats (stars, forks, number of recent contributors, key contributing companies - to understand community health and controlling companies)
+   - Category: `OSS (community-driven)` | `OSS (single-vendor)` | `Source-available` | `Proprietary`
+   - Status (Active | Maintained | Archived) -- check last commit/release date
+   - Stats (stars, forks, number of recent contributors, key contributing companies -- to understand community health and controlling companies)
    - Last updated date
 3. **Fill Template**: Use `research/templates/project-entry.md`
-4. **Add to projects.md**: Insert under appropriate category
+4. **Add to projects.md**: Insert under appropriate building-block category
+5. **OSS Health Assessment**: For GitHub projects, invoke the `oss-health` specialist skill to generate a detailed community health report
 
 ### Adding a Use Case
 
-When identifying an application or industry use of world models:
+When identifying an application or industry use of Physical AI:
 
 1. **Structure Information**:
    - Use case name
-   - Industry vertical (Manufacturing, Transport&Logistics, Energy&Utilities, Healthcare, Telecommunications, Retail, FSI, etc.)
+   - Vertical tags (Manufacturing, Transport&Logistics, Energy&Utilities, Healthcare, Telecommunications, Retail, FSI, etc.)
    - Description
    - Technical requirements (functionality it requires, quantitative performance objectives or constraints, etc.)
+   - Building-block mapping (which building blocks from building-blocks.md are required, with demand level)
+   - Regulatory requirements (safety certifications, data residency, compliance frameworks)
    - Current solutions (companies/projects working on this)
    - Research gaps (what's missing or needs improvement)
 2. **Fill Template**: Use `research/templates/use-case-entry.md`
-3. **Add to use-cases.md**: Insert under appropriate industry section
+3. **Add to use-cases.md**: Insert under appropriate use-case section
+4. **Cross-reference**: Update building-blocks.md demand matrices if the use case reveals new requirements
+
+### Adding a Building Block
+
+Building blocks represent platform capabilities that multiple use cases require. Only add a new building block when a capability pattern emerges that does not fit existing blocks.
+
+1. **Assess Need**: A new building block is warranted when:
+   - Multiple use cases require the same underlying capability
+   - No existing block covers the functionality
+   - The capability is platform-level (not application-specific)
+2. **Structure Information**:
+   - Block name and description
+   - Demand matrix (which use cases need it, at what level)
+   - Solution landscape (existing tools/frameworks/services that provide it)
+   - Maturity assessment using controlled vocabulary
+   - Platform fit recommendation (`Build` | `Partner` | `Integrate`)
+3. **Fill Template**: Use `research/templates/building-block-entry.md`
+4. **Add to building-blocks.md**: Insert in appropriate position
+5. **Back-link**: Update use-cases.md entries that map to this block
 
 ## Search Strategy
 
-When the user asks to find content on a topic (e.g., "find recent papers on JEPA"):
+When the user asks to find content on a topic (e.g., "find recent papers on JEPA" or "find startups doing sim-to-real"):
 
 1. **Use WebSearch** for:
    - Recent papers and preprints
    - Blog posts and articles
    - News and announcements
    - Industry developments
+   - Startup funding rounds and product launches
 
 2. **Search GitHub** (via WebSearch or direct queries) for:
    - Open-source implementations
@@ -131,13 +162,131 @@ When the user asks to find content on a topic (e.g., "find recent papers on JEPA
    - Popular frameworks
 
 3. **Search arXiv** specifically:
-   - Use search terms like: `"joint embedding predictive architecture"`, `"energy based models"`, `"world models"`, `"dragon hatchling"`
+   - Use search terms like: `"joint embedding predictive architecture"`, `"energy based models"`, `"world models"`, `"physical AI"`, `"embodied AI"`
    - Filter by recent submissions (last 3-6 months)
    - Look for papers from key researchers
 
 4. **Present Findings**: Show user a list of top 5-10 results with titles and brief descriptions, ask which to add
 
 ## Content Organization
+
+### building-blocks.md Structure
+
+Platform capability map organized by functional area:
+
+```markdown
+# Building Blocks
+
+## Simulation & Synthetic Data
+[Physics engines, renderers, scene generators, domain randomization]
+
+## World Model Architectures
+[JEPA, generative models, model-based RL, latent dynamics]
+
+## Training Infrastructure
+[Distributed training, data pipelines, experiment tracking]
+
+## Data Management
+[Datasets, data formats, annotation tools, data versioning]
+
+## Deployment & Inference
+[Model serving, edge deployment, real-time inference]
+
+## Evaluation & Benchmarking
+[Benchmarks, metrics, evaluation frameworks]
+
+## Safety & Alignment
+[Safety verification, sim-to-real validation, uncertainty quantification]
+```
+
+Each block includes a demand matrix (use-case requirements), solution landscape, maturity assessment, and platform fit recommendation.
+
+### ecosystem.md Structure
+
+Organized by **player type** with solution-level competitive analysis:
+
+```markdown
+# Ecosystem
+
+## Big Tech
+[Established tech companies with Physical AI initiatives -- with solution sub-entries]
+
+## Startups
+[Venture-backed companies building Physical AI products]
+
+## OSS Communities
+[Open-source communities and foundations]
+
+## Research Labs
+[Universities and research institutions -- with key researchers grouped under their labs]
+```
+
+Each entry includes solutions/products with competitive positioning, not just organizational profiles.
+
+### use-cases.md Structure
+
+Organized by **technical use case** (primary hierarchy) with vertical tags:
+
+```markdown
+# Use Cases
+
+## Robotic Manipulation
+[Pick-and-place, assembly, dexterous manipulation -- tagged: Manufacturing, Logistics]
+
+## Autonomous Navigation
+[Mobile robots, AGVs, drones -- tagged: Logistics, Agriculture, Mining]
+
+## Autonomous Vehicles
+[Self-driving, path planning, sim-to-real -- tagged: Transport]
+
+## Predictive Maintenance
+[Anomaly detection, remaining useful life, condition monitoring -- tagged: Manufacturing, Energy]
+
+## Digital Twins
+[Process simulation, facility modeling, what-if analysis -- tagged: Manufacturing, Energy, Telecom]
+
+## Medical Imaging & Diagnostics
+[Diagnostics, clinical decision support, surgical planning -- tagged: Healthcare]
+
+## Network Optimization
+[Wireless channel modeling, beam prediction, RAN optimization -- tagged: Telecommunications]
+
+## Scientific Simulation
+[Physics simulation, molecular modeling, materials design -- tagged: Research, Pharma]
+
+## Agentic AI
+[Autonomous agents, web agents, tool use, planning with world models -- tagged: Cross-vertical]
+```
+
+Each use case maps to required building blocks and lists regulatory requirements.
+
+### projects.md Structure
+
+Organized by **building block**:
+
+```markdown
+# Projects
+
+## Simulation & Synthetic Data
+[Isaac Sim, Habitat, MuJoCo, etc.]
+
+## World Model Implementations
+[JEPA implementations, DreamerV3, etc.]
+
+## Training Frameworks
+[Distributed training tools, data loaders]
+
+## Datasets & Benchmarks
+[Relevant datasets and evaluation suites]
+
+## Robotics Frameworks
+[ROS 2, manipulation libraries, planning tools]
+
+## Utilities & Tools
+[Supporting tools, visualization, debugging]
+```
+
+Each project includes openness assessment (category, license, governance model).
 
 ### publications.md Structure
 
@@ -152,14 +301,17 @@ Organize by **topic**, not chronologically:
 ## Energy-Based Models
 [Papers, talks, videos on EBMs]
 
-## Dragon Hatchling (BDH)
-[Research on Baby Dragon Hatchling models]
-
 ## World Models & Model-Based RL
 [Papers on world models, DreamerV3, etc.]
 
-## Applications & Use Cases
-[Papers demonstrating practical applications — robotics, AV, healthcare, industrial, telecom, scientific discovery]
+## Simulation & Synthetic Data
+[Papers on sim-to-real, synthetic data generation, domain randomization]
+
+## Robotics & Embodied AI
+[Papers on robot learning, manipulation, navigation]
+
+## Physical AI Platforms & Infrastructure
+[Papers on training infrastructure, deployment, MLOps for Physical AI]
 
 ## Foundational / Theory
 [Theoretical foundations, surveys, position papers]
@@ -174,83 +326,9 @@ Organize by **topic**, not chronologically:
 - Types: conference talks, interviews, news coverage, technical tutorials
 - Include duration and key timestamps if applicable
 
-### ecosystem.md Structure
+### concepts.md Structure
 
-Organize by **player type**:
-
-```markdown
-# Ecosystem
-
-## Big Tech
-[Established tech companies with Physical AI initiatives — with solution sub-entries]
-
-## Startups
-[Venture-backed companies building Physical AI products]
-
-## OSS Communities
-[Open-source communities and foundations]
-
-## Research Labs
-[Universities and research institutions — with key researchers grouped under their labs]
-```
-
-### projects.md Structure
-
-Organize by **category**:
-
-```markdown
-# Open Source and Open Data Projects
-
-## JEPA Implementations
-[Projects implementing JEPA]
-
-## EBM Libraries & Frameworks
-[EBM-related tools]
-
-## World Model Frameworks
-[DreamerV3, etc.]
-
-## Datasets & Benchmarks
-[Relevant datasets]
-
-## Utilities & Tools
-[Supporting tools]
-```
-
-### use-cases.md Structure
-
-Organize by **industry vertical**:
-
-```markdown
-# Use Cases
-
-## Robotics
-[Manipulation, navigation, task planning]
-
-## Autonomous Vehicles
-[Self-driving, path planning, sim-to-real]
-
-## Healthcare & Medical Imaging
-[Diagnostics, clinical decision support, surgical planning]
-
-## Industrial & Manufacturing
-[Digital twins, process optimization, predictive maintenance]
-
-## Telecommunications
-[Wireless channel modeling, network optimization, beam prediction]
-
-## Gaming & Simulation
-[Game AI, virtual worlds, procedural generation]
-
-## Scientific Discovery
-[Physics simulation, molecular modeling, materials design]
-
-## Agentic AI
-[Autonomous agents, web agents, tool use, planning with world models]
-
-## Other Applications
-[Finance, energy, logistics, etc.]
-```
+Key concepts and architectural patterns across Physical AI scope, not limited to world models.
 
 ## Style Guide
 
@@ -261,24 +339,24 @@ All content must follow these principles:
 **Do**: State facts, cite specific results, use measured language
 **Don't**: Use hype, marketing language, superlatives without evidence
 
-- ❌ "This groundbreaking paper revolutionizes AI..."
-- ✅ "Introduces variance-invariance-covariance regularization, achieving 72.3% on ImageNet without labels"
+- Bad: "This groundbreaking paper revolutionizes AI..."
+- Good: "Introduces variance-invariance-covariance regularization, achieving 72.3% on ImageNet without labels"
 
 ### 2. Concise
 
 **Do**: Dense information, respect reader's time
 **Don't**: Verbose explanations, unnecessary background
 
-- ❌ "The paper explores various approaches and after extensive experimentation, the authors found that..."
-- ✅ "Compares contrastive, predictive, and masked approaches; finds joint-embedding + variance regularization most effective"
+- Bad: "The paper explores various approaches and after extensive experimentation, the authors found that..."
+- Good: "Compares contrastive, predictive, and masked approaches; finds joint-embedding + variance regularization most effective"
 
 ### 3. Pattern-Oriented
 
 **Do**: Highlight connections, relationships, recurring themes
 **Don't**: Treat each paper/project in isolation
 
-- ❌ "This paper uses a transformer architecture"
-- ✅ "Extends V-JEPA's masking strategy to text-image pairs, similar to CLIP but with predictive rather than contrastive loss"
+- Bad: "This paper uses a transformer architecture"
+- Good: "Extends V-JEPA's masking strategy to text-image pairs, similar to CLIP but with predictive rather than contrastive loss"
 
 ### 4. Assume Experience
 
@@ -301,8 +379,8 @@ All content must follow these principles:
 **Do**: Use precise technical terms, cite specific architectures, include key equations
 **Don't**: Vague descriptions, hand-waving
 
-- ❌ "Uses a clever trick to prevent mode collapse"
-- ✅ "Prevents collapse via VICReg regularization: variance preservation (hinge loss), invariance to augmentations (MSE), and covariance decorrelation"
+- Bad: "Uses a clever trick to prevent mode collapse"
+- Good: "Prevents collapse via VICReg regularization: variance preservation (hinge loss), invariance to augmentations (MSE), and covariance decorrelation"
 
 ### 6. Actionable
 
@@ -326,30 +404,95 @@ Follow standard markdown linting rules (markdownlint). In particular:
 
 **After making changes to Markdown files**: Run `npx markdownlint-cli "**/*.md" --ignore node_modules` to check for linting issues. Fix all errors before committing.
 
+### 8. Competitive Analysis Language
+
+When describing solutions, use factual feature comparisons, not marketing language. State what competes with what and on which dimensions.
+
+- Bad: "NVIDIA dominates the simulation market with their industry-leading platform"
+- Good: "Isaac Sim competes with MuJoCo and PyBullet on physics fidelity, GPU acceleration, and sensor simulation; differentiates on photorealistic rendering via RTX"
+
+Use controlled vocabulary for structured fields (see principle 9).
+
+### 9. Controlled Vocabulary Discipline
+
+All fields that may appear in visualizations or comparison tables must use defined controlled values. The vocabularies are:
+
+| Field | Allowed Values |
+| --- | --- |
+| Demand | `required` \| `important` \| `optional` \| `not needed` |
+| Maturity | `Research` \| `Early OSS` \| `Production-ready` \| `Industry standard` |
+| Platform fit | `Build` \| `Partner` \| `Integrate` |
+| Category | `OSS (community-driven)` \| `OSS (single-vendor)` \| `Source-available` \| `Proprietary` |
+| Openness | `OSS-community` \| `OSS-single-vendor` \| `Source-available` \| `Proprietary` |
+| Type (ecosystem) | `Big Tech` \| `Startup` \| `OSS Community` \| `Research Lab` |
+
+Free text for context; structured values for data extraction.
+
 ## Quality Standards
 
 Before adding content, verify:
 
 - [ ] **Accurate extraction**: Information matches source material
 - [ ] **Concise summary**: 2-3 sentences, no fluff
-- [ ] **Clear relevance**: Obvious connection to world models research
+- [ ] **Clear relevance**: Obvious connection to Physical AI or platform strategy
 - [ ] **Proper linking**: Cross-references to related entries
-- [ ] **Style guide adherence**: Follows all 6 principles above
+- [ ] **Building-block cross-references**: Use cases map to building blocks; projects map to building blocks
+- [ ] **Controlled vocabulary compliance**: All structured fields use values from the controlled vocabulary table
+- [ ] **Source archiving**: URL recorded and local copy saved where possible (see Source Archiving)
+- [ ] **Style guide adherence**: Follows all 9 principles above
 - [ ] **No duplicates**: Entry doesn't already exist
+
+## Source Archiving
+
+To ensure long-term availability of referenced materials, archive sources locally.
+
+### Library Structure
+
+```text
+research/library/
+  papers/          # PDF copies of papers
+  screenshots/     # Screenshots of vendor product pages, dashboards
+  diagrams/        # Architecture diagrams, system overviews
+  videos/          # Video bookmarks (index only; large files not stored)
+```
+
+### Naming Convention
+
+Use the format: `YYYY-MM-DD-descriptive-name.ext`
+
+Examples:
+
+- `2025-03-15-v-jepa-2.pdf`
+- `2026-01-10-nvidia-isaac-sim-pricing-page.png`
+- `2025-11-20-dreamerv3-architecture.svg`
+
+### Size Policy
+
+- **PDFs and images**: Store directly in the appropriate directory
+- **Videos > 100 MB**: Do not store the file; instead add a bookmark entry to `research/library/videos/index.md` with URL, title, date, and duration
+
+### When to Archive
+
+- PDF of every tracked paper (when freely available)
+- Screenshots of vendor product pages that inform competitive analysis
+- Architecture diagrams referenced in building-blocks.md or concepts.md
+- Key figures or tables from papers that are frequently referenced
 
 ## When to Update vs. Add
 
 ### Add New Entry When
 
-- First time encountering a paper, project, or player
+- First time encountering a paper, project, or ecosystem player
 - Genuinely new use case or application
-- New development from existing player (e.g., new paper from known researcher)
+- New development from existing player (e.g., new paper, product launch)
+- New building block emerges from use-case analysis
 
 ### Update Existing Entry When
 
-- Project status changes (Active → Archived)
+- Project status changes (Active to Archived)
 - Player changes affiliation or focus
 - Use case evolves or new solutions emerge
+- Building-block maturity or platform fit assessment changes
 - Correcting errors or adding missing information
 
 ## Maintenance Tasks
@@ -363,8 +506,9 @@ Before adding content, verify:
 ### Monthly
 
 - Synthesize new insights into concepts.md
-- Update player affiliations and recent work
+- Update ecosystem affiliations and recent work
 - Archive or update stale use cases
+- Review building-block demand matrices for accuracy
 
 ### As Needed
 
@@ -377,18 +521,24 @@ The user can interact with this notebook through:
 
 ### Slash Commands (Preferred)
 
-- **`/add <url>`** - Add a paper, project, or other content from a URL
-- **`/search <topic>`** - Search for papers/projects on a topic, present results, ask which to add
-- **`/sources`** - Check preferred sources (arXiv, GitHub, blogs) for new content in last 30 days
-- **`/synthesize`** - Review recent additions, identify patterns, update concepts.md, organize entries
+- **`/add <url>`** -- Add a paper, project, ecosystem entry, or other content from a URL
+- **`/search <topic>`** -- Search for papers, projects, startups, or OSS tools on a topic; present results; ask which to add
+- **`/sources`** -- Check preferred sources (arXiv, GitHub, blogs, VC trackers) for new content in last 30 days
+- **`/synthesize`** -- Review recent additions, identify patterns, update concepts.md, organize entries
 
 See `.claude/skills/` for detailed implementation of each command.
+
+**Specialist Skills** (invoked automatically or on request):
+
+- **`oss-health`** -- Assess open-source project community health (contributors, governance, bus factor)
+- **`solution-analyzer`** -- Compare solutions within a building block on feature dimensions
+- **`block-mapper`** -- Derive building-block requirements from a set of use cases
 
 ### Natural Language
 
 1. **Providing URLs**: "Add this paper: `https://arxiv.org/abs/...`"
-2. **Requesting searches**: "Find recent papers on JEPA"
-3. **Asking for synthesis**: "What are the key themes in EBM research?"
+2. **Requesting searches**: "Find startups doing sim-to-real transfer"
+3. **Asking for synthesis**: "What building blocks are needed for robotic manipulation use cases?"
 
 ## AI Assistant Role
 
@@ -396,8 +546,9 @@ As AI assistant, your role is to:
 
 - Fetch and extract information accurately
 - Apply templates consistently
-- Maintain style guide standards
-- Cross-link related content
+- Maintain style guide standards (including controlled vocabulary)
+- Cross-link related content across both layers (platform intelligence and research depth)
 - Keep documents organized and scannable
+- Flag when new building blocks or ecosystem entries may be warranted
 
 When using slash commands, follow the detailed instructions in the skill files (`.claude/skills/`).
