@@ -67,22 +67,48 @@
 
 ### Conference Venues
 
-**Research Conferences**:
+**Academic Research Conferences** — peer-reviewed venues for foundational research:
 
-- **NeurIPS** - Neural Information Processing Systems
-- **ICML** - International Conference on Machine Learning
-- **ICLR** - International Conference on Learning Representations
-- **CoRL** - Conference on Robot Learning
-- **RSS** - Robotics: Science and Systems
+- **NeurIPS** — Neural Information Processing Systems
+- **ICML** — International Conference on Machine Learning
+- **ICLR** — International Conference on Learning Representations
+- **CoRL** — Conference on Robot Learning
+- **RSS** — Robotics: Science and Systems
+- **AAAI** — Association for the Advancement of Artificial Intelligence
 
-**Applied & Industry Conferences**:
+**Practitioner & Applied Conferences** — applied research, benchmarks, systems engineering:
 
-- **CVPR** - Computer Vision and Pattern Recognition (applied vision, autonomous driving)
-- **IROS** - Intelligent Robots and Systems (robotics applications)
-- **ICRA** - International Conference on Robotics and Automation
-- **GTC** - NVIDIA GPU Technology Conference (Cosmos, Physical AI)
-- **IEEE ITSC** - Intelligent Transportation Systems (autonomous vehicles)
-- **MICCAI** - Medical Image Computing and Computer Assisted Intervention
+- **CVPR** — Computer Vision and Pattern Recognition (applied vision, autonomous driving)
+- **IROS** — Intelligent Robots and Systems (robotics applications)
+- **ICRA** — International Conference on Robotics and Automation
+- **IEEE ITSC** — Intelligent Transportation Systems (autonomous vehicles)
+- **MICCAI** — Medical Image Computing and Computer Assisted Intervention
+- **RoboCup Symposium** — benchmark-driven robotics, multi-agent coordination
+- **SIMPAR** — Simulation, Modeling, and Programming for Autonomous Robots
+
+**Industry & Community Conferences** — product announcements, ecosystem signals, partner strategies:
+
+Tier 1 — directly Physical AI:
+
+- **GTC** — NVIDIA GPU Technology Conference (Cosmos, Isaac, GR00T, Physical AI roadmap)
+- **ROSCon** — ROS/ROS 2 community conference (governance, roadmap, ecosystem health)
+- **Automate** — largest North American robotics/automation trade show (A3 Association)
+- **Hannover Messe** — industrial automation, digital twins, OT/IT convergence
+- **CES** — consumer robotics, autonomous vehicles, humanoid demos
+
+Tier 2 — broader with relevant tracks:
+
+- **AWS re:Invent** — RoboMaker, IoT Greengrass, edge inference
+- **Google Cloud Next** — DeepMind integrations, simulation, Vertex AI
+- **Microsoft Build / Ignite** — Project AirSim successor, Azure Digital Twins, IoT
+- **KubeCon + CloudNativeCon** — edge/IoT workloads, MLOps on Kubernetes, device management
+- **Open Source Summit** — Linux Foundation robotics/edge SIGs, governance trends
+
+Tier 3 — niche, useful for specific building blocks:
+
+- **Gazebo Community Meeting** — simulation ecosystem signals, plugin development
+- **ROSCon Japan / ROSCon France** — regional ROS ecosystem adoption signals
+- **Embedded World** — edge hardware, real-time OS, safety-certified runtimes
 
 ---
 
