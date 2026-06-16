@@ -673,15 +673,26 @@
 
 ## Simulation Engines
 
-*Physics-based simulation platforms for training and evaluating world models and robot policies.*
+*Physics-based simulation for training and evaluating world models and robot policies. Organized in three tiers: simulation platforms (user-facing), physics engines (dynamics backends), and rendering engines (visual backends). Dependency fields link the tiers so platform lock-in and technical risk propagate visibly.*
 
-### Genesis World: Multi-Physics Simulation Platform
+### Simulation Platforms
+
+*End-to-end environments combining physics, rendering, and tooling for robot/agent training.*
+
+#### Genesis World: Multi-Physics Simulation Platform
 
 **URL**: [github.com/Genesis-Embodied-AI/genesis-world](https://github.com/Genesis-Embodied-AI/genesis-world)
 
 **Description**: Open-source simulation platform for physical AI combining a unified multi-physics engine, photo-realistic renderer (Nyx), and cross-platform compiler (Quadrants) behind a Pythonic API. Started as an academic project (Dec 2024), now backed by [Genesis AI](../research/ecosystem.md#genesis-ai). Sim-to-real correlation of 0.90 Pearson across 14 tasks.
 
 **Tech Stack**: Python, Quadrants compiler (CUDA, ROCm, Metal, Vulkan, x86/ARM64), Nyx renderer
+
+**Dependencies**:
+
+| Layer            | Engine             | Acceleration                   |
+| ---------------- | ------------------ | ------------------------------ |
+| Physics backend  | Custom (Quadrants) | CUDA, ROCm, Metal, Vulkan, CPU |
+| Rendering engine | Nyx                | CUDA, Vulkan, Metal            |
 
 **Key Features**:
 
@@ -701,13 +712,13 @@
 
 **Maturity**: Early OSS
 
-**Competes with**: Isaac Sim, MuJoCo, PyBullet
+**Competes with**: Isaac Sim, MuJoCo, Newton
 
 **Complements**: Robot foundation models (GR00T, OpenPI), latent world models
 
 **Openness assessment**: (to be assessed by oss-health skill)
 
-### PhysicsNeMo: Physics-ML Framework for AI Surrogate Models
+#### PhysicsNeMo: Physics-ML Framework for AI Surrogate Models
 
 **URL**: [github.com/NVIDIA/physicsnemo](https://github.com/NVIDIA/physicsnemo)
 
@@ -737,6 +748,577 @@
 **Competes with**: Traditional CFD/FEM solvers (ANSYS, OpenFOAM)
 
 **Complements**: Digital twin runtime, autonomous systems
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+#### Newton: GPU-Accelerated Physics Engine for Robotics
+
+**URL**: [github.com/newton-physics/newton](https://github.com/newton-physics/newton)
+
+**Description**: Open-source, extensible physics engine built on NVIDIA Warp and OpenUSD. Joint project of NVIDIA, Google DeepMind, and Disney Research, contributed to the Linux Foundation (September 2025). Newton 1.0 released at GTC 2026. Ships MuJoCo Warp and Kamino rigid-body solvers, Vertex Block Descent for deformables, SDF collision, and hydroelastic contact modeling.
+
+**Tech Stack**: Python, NVIDIA Warp, OpenUSD, CUDA
+
+**Dependencies**:
+
+| Layer            | Engine                       | Acceleration        |
+| ---------------- | ---------------------------- | ------------------- |
+| Physics backend  | MuJoCo Warp, Kamino, VBD     | CUDA (NVIDIA only)  |
+| Rendering engine | (none built-in; via OpenUSD) | —                   |
+
+**Key Features**:
+
+- MuJoCo Warp on RTX PRO 6000: 252x faster than MJX (locomotion), 475x (manipulation)
+- Differentiable physics via NVIDIA Warp — gradients through simulation steps
+- Deformable simulation: cables, cloth, volumetric objects (Vertex Block Descent solver)
+- OpenUSD scene description for asset pipeline integration
+- Linux Foundation governance, Apache 2.0 license
+
+**Status**: Active
+
+**Stats**: ~5.1K stars (NVIDIA + Google DeepMind + Disney Research)
+
+**Last Updated**: 2026-03 (Newton 1.0)
+
+**Building block(s)**: [Simulation Engines](building-blocks.md#simulation-engines)
+
+**Maturity**: Early OSS
+
+**Competes with**: Genesis World, Isaac Sim, MuJoCo (standalone)
+
+**Complements**: Isaac Lab, MuJoCo Playground, OpenUSD ecosystem
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+#### Genie 3 / Project Genie: Generative World Simulator
+
+**URL**: [deepmind.google/models/genie/](https://deepmind.google/models/genie/)
+
+**Description**: Google DeepMind's learned world model generating interactive 3D environments from text prompts at 720p / 24fps. Not a physics engine — a generative simulator producing explorable worlds that respond to user input in real-time. Waymo adopted a fine-tuned version (February 2026). Street View integration announced at Google I/O 2026.
+
+**Tech Stack**: Proprietary (Google infrastructure)
+
+**Dependencies**:
+
+| Layer            | Engine               | Acceleration    |
+| ---------------- | -------------------- | --------------- |
+| Physics backend  | Learned (generative) | Google TPU/GPU  |
+| Rendering engine | Learned (generative) | Google TPU/GPU  |
+
+**Key Features**:
+
+- Text-to-world generation: interactive 3D environments from natural language
+- 720p at 24fps, ~60 second sessions (current limit)
+- Waymo World Model: fine-tuned variant with lidar output at 4x Genie 3 speed
+- Street View integration: simulates real-world locations for robot/agent training
+- Consumer product for Google AI Ultra subscribers; API access for partners
+
+**Status**: Active
+
+**Stats**: Proprietary (Google DeepMind)
+
+**Last Updated**: 2026-05 (Street View integration)
+
+**Building block(s)**: [Simulation Engines](building-blocks.md#simulation-engines), [Video Generation / Prediction Models](building-blocks.md#video-generation--prediction-models)
+
+**Maturity**: Production-ready
+
+**Competes with**: Cosmos-Predict2.5, Genesis World (different paradigm — learned vs. physics-based)
+
+**Complements**: Waymo autonomous driving stack, Google Cloud robotics
+
+**Openness assessment**: Proprietary; no open-source release. Partner access via API only.
+
+#### SAPIEN / ManiSkill: GPU-Parallelized Robotics Simulator
+
+**URL**: [github.com/haosulab/ManiSkill](https://github.com/haosulab/ManiSkill)
+
+**Description**: GPU-parallelized robotics simulator and benchmark framework built on the SAPIEN engine. Provides standardized manipulation and locomotion tasks with parallel environment execution. Powers SimplerEnv and is one of MolmoSpaces' supported backends.
+
+**Tech Stack**: Python, PhysX 5, Vulkan, CUDA
+
+**Dependencies**:
+
+| Layer            | Engine  | Acceleration     |
+| ---------------- | ------- | ---------------- |
+| Physics backend  | PhysX 5 | CUDA (GPU), CPU  |
+| Rendering engine | Vulkan  | Vulkan (GPU)     |
+
+**Key Features**:
+
+- GPU-parallelized environment execution for fast RL training
+- Standardized task suites for manipulation, locomotion, and mobile manipulation
+- Soft-body and articulated object simulation via PhysX 5
+- Gymnasium-compatible API
+- Apache 2.0 licensed
+
+**Status**: Active
+
+**Stats**: ~3K stars, Apache 2.0 (UC San Diego HAOSU Lab + community)
+
+**Last Updated**: 2026-06
+
+**Building block(s)**: [Simulation Engines](building-blocks.md#simulation-engines), [Evaluation & Benchmarking](#evaluation--benchmarking)
+
+**Maturity**: Early OSS
+
+**Competes with**: Isaac Lab, Robosuite, RLBench
+
+**Complements**: MolmoSpaces (as backend), SimplerEnv, PhysX 5
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+#### Webots: General-Purpose Robot Simulator
+
+**URL**: [github.com/cyberbotics/webots](https://github.com/cyberbotics/webots)
+
+**Description**: Open-source general-purpose robot simulator with 200+ pre-built robot models and native ROS 2 integration. Originally developed at EPFL, commercially maintained by Cyberbotics. Strong in education, prototyping, and swarm scenarios. Lower visual fidelity than Isaac Sim or Genesis but runs on modest hardware without GPU.
+
+**Tech Stack**: C++, Python, Java, MATLAB, ROS 2
+
+**Dependencies**:
+
+| Layer            | Engine            | Acceleration |
+| ---------------- | ----------------- | ------------ |
+| Physics backend  | ODE (custom fork) | CPU only     |
+| Rendering engine | WREN (custom)     | OpenGL       |
+
+**Key Features**:
+
+- 200+ pre-built robot models (UR5, ABB, TIAGo, etc.) with standard ROS 2 interfaces
+- `webots_ros2` package: native ROS 2 integration with automatic topic mapping
+- No GPU required — runs on CPU, suitable for CI/CD and cloud-based testing
+- Cross-platform: Linux, macOS, Windows
+- Apache 2.0 licensed
+
+**Status**: Active
+
+**Stats**: ~4.4K stars (Cyberbotics + community)
+
+**Last Updated**: 2026-06
+
+**Building block(s)**: [Simulation Engines](building-blocks.md#simulation-engines), [Robot Middleware](building-blocks.md#robot-middleware)
+
+**Maturity**: Production-ready
+
+**Competes with**: Gazebo (closest competitor — both target ROS 2 production)
+
+**Complements**: ROS 2 ecosystem, CI/CD pipelines
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+#### MuJoCo Playground: Sim-to-Real Training Environments
+
+**URL**: [github.com/google-deepmind/mujoco_playground](https://github.com/google-deepmind/mujoco_playground)
+
+**Description**: Collection of MuJoCo-based training environments and tasks designed for zero-shot sim-to-real transfer. Won RSS 2025 Outstanding Demo Paper. Covers quadrupeds, humanoids, dexterous hands, and robot arms with validated real-world transfer.
+
+**Tech Stack**: Python, MuJoCo, MJX (JAX), CUDA
+
+**Dependencies**:
+
+| Layer            | Engine          | Acceleration        |
+| ---------------- | --------------- | ------------------- |
+| Physics backend  | MuJoCo / MJX    | CUDA (via JAX), CPU |
+| Rendering engine | MuJoCo built-in | OpenGL, EGL         |
+
+**Key Features**:
+
+- Zero-shot sim-to-real demonstrated across multiple embodiments
+- MJX backend for GPU-accelerated parallel training via JAX
+- RSS 2025 Outstanding Demo Paper
+- Pre-configured tasks for locomotion, manipulation, dexterous grasping
+- Apache 2.0 licensed
+
+**Status**: Active
+
+**Stats**: Google DeepMind
+
+**Last Updated**: 2026-05
+
+**Building block(s)**: [Simulation Engines](building-blocks.md#simulation-engines), [Sim-to-Real Transfer Pipeline](building-blocks.md#sim-to-real-transfer-pipeline)
+
+**Maturity**: Early OSS
+
+**Competes with**: Isaac Lab, Genesis World
+
+**Complements**: MuJoCo, Newton (MuJoCo Warp backend), LeRobot
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+### Physics Engines
+
+*Dynamics backends that simulation platforms build on. Ownership and acceleration support here determine platform lock-in risk upstream.*
+
+#### MuJoCo: Multi-Joint Dynamics with Contact
+
+**URL**: [github.com/google-deepmind/mujoco](https://github.com/google-deepmind/mujoco)
+
+**Description**: The most widely used physics engine for robotics research. Originally developed by Emo Todorov, acquired by Google DeepMind and open-sourced (2022). Accurate contact physics for grasping and dexterous manipulation. MJX provides GPU-accelerated parallel simulation via JAX. Over 3,800 citations.
+
+**Tech Stack**: C, Python bindings, MJX (JAX/XLA for GPU)
+
+**Acceleration**: CPU (native), CUDA/TPU (via MJX/JAX)
+
+**Key Features**:
+
+- Most accurate contact physics for grasping and dexterous manipulation
+- MJX: GPU-accelerated via JAX — enables thousands of parallel environments
+- Convex collision geometries (non-convex requires V-HACD decomposition)
+- Native Python bindings, Gymnasium integration
+- Apache 2.0 licensed
+
+**Status**: Active
+
+**Stats**: ~9K stars (Google DeepMind)
+
+**Last Updated**: 2026-06
+
+**Used by**: MuJoCo Playground, Newton (MuJoCo Warp), MolmoSpaces, Robosuite, LIBERO, stable-worldmodel, many research projects
+
+**Category**: OSS (single-vendor) — Google DeepMind controls roadmap
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+#### PhysX 5: GPU-Accelerated Multi-Physics SDK
+
+**URL**: [github.com/NVIDIA-Omniverse/PhysX](https://github.com/NVIDIA-Omniverse/PhysX)
+
+**Description**: NVIDIA's multi-physics SDK. Originally a game physics engine, now the primary physics backend for Omniverse, Isaac Sim, and SAPIEN/ManiSkill. Full GPU source code (500+ CUDA kernels) open-sourced under BSD-3 in April 2025. Supports rigid bodies, soft bodies, fluids, cloth, and inflatables.
+
+**Tech Stack**: C++, CUDA
+
+**Acceleration**: CUDA (GPU), CPU fallback
+
+**Key Features**:
+
+- GPU articulation solver (Featherstone) enabling 4,096+ parallel robot instances
+- Soft body dynamics (FEM), cloth, fluids, inflatables (inherited from NVIDIA Flex)
+- Signed distance field (SDF) collision for complex meshes
+- Full GPU kernel source now open (BSD-3) — theoretically portable to non-NVIDIA hardware, but 500+ CUDA kernels make this impractical
+- BSD-3 license
+
+**Status**: Active
+
+**Stats**: ~3.6K stars (NVIDIA)
+
+**Last Updated**: 2026-05 (PhysX 5.6)
+
+**Used by**: Isaac Sim, Isaac Lab, SAPIEN/ManiSkill, Omniverse, Unity (legacy)
+
+**Category**: OSS (single-vendor) — NVIDIA controls roadmap; CUDA lock-in despite open source
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+#### Bullet / PyBullet: Lightweight Physics Engine
+
+**URL**: [github.com/bulletphysics/bullet3](https://github.com/bulletphysics/bullet3)
+
+**Description**: Lightweight open-source physics engine with Python bindings (PyBullet). Historically important in RL research but declining in usage — no GPU acceleration, no ROS 2 bridge, no photorealistic rendering. Included here because it remains a dependency for some legacy benchmarks and datasets.
+
+**Tech Stack**: C++, Python (PyBullet)
+
+**Acceleration**: CPU only
+
+**Key Features**:
+
+- Rigid body, soft body, and constraint-based dynamics
+- PyBullet: simple Python API popular for RL prototyping
+- Headless mode for server-side training
+- zlib license
+
+**Status**: Maintained (declining)
+
+**Stats**: ~12.5K stars (historical accumulation)
+
+**Last Updated**: 2025 (sporadic commits)
+
+**Used by**: Legacy RL environments, some robotics benchmarks
+
+**Category**: OSS (community-driven) — no single vendor, but also limited active development
+
+### Rendering Engines
+
+*Visual backends that determine photorealism, sensor simulation fidelity, and synthetic data quality. Key differentiator for sim-to-real transfer.*
+
+#### OptiX / RTX Rendering (NVIDIA)
+
+**URL**: [developer.nvidia.com/rtx/ray-tracing/optix](https://developer.nvidia.com/rtx/ray-tracing/optix)
+
+**Description**: NVIDIA's GPU ray tracing engine powering photorealistic rendering in Isaac Sim and Omniverse. Uses RTX hardware acceleration (RT cores) for real-time ray tracing. OptiX is the API layer; RTX is the hardware acceleration technology. Produces the highest-fidelity synthetic sensor data (cameras, LiDAR) but is completely NVIDIA-locked.
+
+**Acceleration**: CUDA + RT cores (NVIDIA RTX GPUs only)
+
+**Key Features**:
+
+- Hardware-accelerated ray tracing via RT cores
+- Photorealistic sensor simulation (cameras, depth, LiDAR)
+- Replicator integration for domain randomization and synthetic data generation
+- Denoising AI for real-time noise-free rendering
+
+**Used by**: Isaac Sim, Omniverse, Gazebo (optional backend via gz-rendering)
+
+**Category**: Proprietary — free to use on NVIDIA hardware, closed source
+
+**Lock-in risk**: High — hardware-locked to NVIDIA RTX GPUs; no alternative implementation
+
+#### Nyx Renderer (Genesis AI)
+
+**URL**: Part of [Genesis World](https://github.com/Genesis-Embodied-AI/genesis-world)
+
+**Description**: Real-time path-traced renderer developed as part of the Genesis World platform. Achieves noise-free 1080p in <4 ms with 45% smaller reality gap (FID) than the next-best simulator renderer. Cross-platform via Quadrants compiler — not locked to NVIDIA hardware.
+
+**Acceleration**: CUDA, Vulkan, Metal (via Quadrants compiler)
+
+**Key Features**:
+
+- Path-traced rendering — physically accurate lighting and reflections
+- <4 ms per frame at 1080p (noise-free)
+- 45% smaller reality gap (FID) vs. next-best simulator
+- Cross-platform: CUDA, Vulkan, Metal — hardware-portable
+
+**Used by**: Genesis World
+
+**Category**: OSS (single-vendor) — Genesis AI; part of Genesis World codebase, Apache 2.0
+
+**Lock-in risk**: Low — multi-backend support via Quadrants
+
+#### OGRE-Next: Open-Source Rendering Backend
+
+**URL**: [github.com/OGRECave/ogre-next](https://github.com/OGRECave/ogre-next)
+
+**Description**: Modular C++ rendering engine, the primary visual backend for Gazebo. OGRE-Next (formerly OGRE 2.x) supports Vulkan, Direct3D, and OpenGL. Version 3.0 "Eris" released 2025; version 4.0 in development with multithreaded shader compilation. Functional for robotics but lacks the photorealism of path-traced renderers (OptiX, Nyx), creating a fidelity gap for sim-to-real transfer of vision-based policies.
+
+**Acceleration**: Vulkan, OpenGL, Direct3D (CPU rasterization fallback)
+
+**Key Features**:
+
+- Multi-backend: Vulkan, OpenGL, Direct3D
+- Rasterization-based (not path-traced) — fast but lower photorealism
+- v4.0: multithreaded shader compilation (Vulkan, Metal), advanced particle systems
+- MIT license
+
+**Used by**: Gazebo (primary renderer)
+
+**Category**: OSS (community-driven) — independent project, MIT license
+
+**Lock-in risk**: Low (open, multi-platform) — but photorealism gap is a **technical risk** for sim-to-real transfer of vision-based policies
+
+#### Filament: Mobile-First PBR Renderer
+
+**URL**: [github.com/google/filament](https://github.com/google/filament)
+
+**Description**: Google's physically-based rendering engine targeting mobile and embedded platforms. Supports OpenGL ES 3.0+, Vulkan, Metal, and WebGL2. Smallest footprint of the tracked renderers — designed for Android/iOS first, now also used in automotive (Toyota Fluorite engine). Not currently used by any major robotics simulator but relevant as a lightweight rendering option for edge/embedded robot visualization.
+
+**Acceleration**: Vulkan, OpenGL ES, Metal, WebGL2
+
+**Key Features**:
+
+- Physically-based rendering (PBR) with accurate lighting
+- Minimal footprint — designed for mobile/embedded
+- Runtime material compiler (GLSL/SPIR-V)
+- Toyota Fluorite engine adoption (FOSDEM 2026) for automotive HMI
+- Apache 2.0 licensed
+
+**Used by**: Android AR, Toyota Fluorite (automotive), web 3D viewers
+
+**Category**: OSS (single-vendor) — Google controls roadmap
+
+**Lock-in risk**: Low — multi-platform, Apache 2.0; but no robotics simulator integration yet
+
+---
+
+## Evaluation & Benchmarking
+
+*Frameworks and benchmark suites for evaluating robot policies, world models, and simulation quality. An emerging platform capability — standardized evaluation is becoming as critical as training infrastructure.*
+
+### Isaac Lab-Arena: Scalable Robot Policy Evaluation in Sim
+
+**URL**: [developer.nvidia.com/blog/simplify-generalist-robot-policy-evaluation-in-simulation-with-nvidia-isaac-lab-arena/](https://developer.nvidia.com/blog/simplify-generalist-robot-policy-evaluation-in-simulation-with-nvidia-isaac-lab-arena/)
+
+**Description**: NVIDIA's open-source framework for scalable robot policy evaluation in simulation, built as an extension to Isaac Lab. Integrated with HuggingFace LeRobot Environment Hub. 250+ tasks available via Lightwheel co-developed suites (RoboCasa-Tasks, LIBERO-Tasks). Becoming the de facto sim eval layer for GR00T, pi0, and SmolVLA.
+
+**Tech Stack**: Python, Isaac Lab, PhysX 5, CUDA
+
+**Key Features**:
+
+- 250+ evaluation tasks via Lightwheel-RoboCasa-Tasks and Lightwheel-LIBERO-Tasks
+- LeRobot Environment Hub integration — register custom environments, share via HuggingFace
+- Supports evaluation of GR00T N, pi0, SmolVLA policies
+- Sim-to-real validated evaluation methods and datasets
+- Open source
+
+**Status**: Active
+
+**Stats**: NVIDIA + Lightwheel
+
+**Last Updated**: 2026-06
+
+**Building block(s)**: [Evaluation & Benchmarking](building-blocks.md#evaluation--benchmarking), [Simulation Engines](building-blocks.md#simulation-engines)
+
+**Maturity**: Early OSS
+
+**Competes with**: RoboVerse, MolmoSpaces-Bench
+
+**Complements**: LeRobot eval harness, Isaac Lab, LIBERO, RoboCasa
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+### RoboArena: Distributed Real-World Robot Policy Evaluation
+
+**URL**: [github.com/robo-arena/roboarena](https://github.com/robo-arena/roboarena)
+
+**Description**: Framework for crowd-sourced real-world evaluation of generalist robot policies. Instead of standardizing on fixed tasks, evaluators freely choose tasks and environments but perform double-blind pairwise comparisons — producing ELO-style rankings for VLA/WAM policies. Built on the DROID platform. Published at CoRL 2025.
+
+**Tech Stack**: Python, DROID hardware platform
+
+**Key Features**:
+
+- Real-world evaluation (not sim) — captures deployment-relevant failure modes
+- Double-blind pairwise comparison methodology
+- ELO-style leaderboard for generalist robot policies
+- Distributed evaluator network — scales diversity without fixed infrastructure
+- Integrates with openpi for policy training
+
+**Status**: Active
+
+**Stats**: (early-stage, CoRL 2025 publication)
+
+**Last Updated**: 2026-06
+
+**Building block(s)**: [Evaluation & Benchmarking](building-blocks.md#evaluation--benchmarking)
+
+**Maturity**: Research
+
+**Competes with**: MolmoSpaces-Bench (sim-based), Isaac Lab-Arena (sim-based)
+
+**Complements**: OpenPI, DROID dataset, LeRobot
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+### LeRobot Eval Harness: Unified Robot Policy Evaluation CLI
+
+**URL**: [github.com/huggingface/lerobot](https://github.com/huggingface/lerobot) (eval module)
+
+**Description**: HuggingFace's unified `lerobot-eval` CLI for evaluating robot policies across benchmarks. Standard Gymnasium interface wrapping third-party simulators (LIBERO, Meta-World, RoboTwin 2.0, Isaac Lab-Arena) behind a common `gym.Env` API. Becoming the integration layer between benchmarks and policies — the "pytest for robot policies."
+
+**Tech Stack**: Python, PyTorch, Gymnasium
+
+**Key Features**:
+
+- Unified `lerobot-eval` CLI across all supported benchmarks
+- Standardized metrics: `pc_success`, `avg_sum_reward`, `avg_max_reward`
+- Hierarchical aggregation: episode → task → suite → overall
+- Supported benchmarks: LIBERO, Meta-World, RoboTwin 2.0, Isaac Lab-Arena
+- Supported policies: ACT, Diffusion, VQ-BeT, TDMPC, pi0-FAST, pi0.5, GR00T N1.5, SmolVLA, XVLA
+- Apache 2.0 licensed
+
+**Status**: Active
+
+**Stats**: Part of LeRobot (23.5K stars)
+
+**Last Updated**: 2026-06
+
+**Building block(s)**: [Evaluation & Benchmarking](building-blocks.md#evaluation--benchmarking), [Model Serving for Physical AI](building-blocks.md#model-serving-for-physical-ai)
+
+**Maturity**: Early OSS
+
+**Competes with**: Custom per-benchmark eval scripts
+
+**Complements**: Isaac Lab-Arena, MolmoSpaces, LIBERO, OpenPI, GR00T
+
+**Openness assessment**: Part of LeRobot — (to be assessed by oss-health skill)
+
+### RoboVerse: Unified Cross-Benchmark Evaluation Platform
+
+**URL**: [roboverse.wiki](https://roboverse.wiki/)
+
+**Description**: Unified platform, dataset, and benchmark for scalable robot learning across previously fragmented evaluation ecosystems. Supports ManiSkill, RLBench, CALVIN, Meta-World, Robosuite, LIBERO, SimplerEnv, and others under a common evaluation interface. Enables cross-benchmark comparison of policies — a direct response to the fragmentation problem in robotics evaluation.
+
+**Tech Stack**: Python, multiple simulator backends
+
+**Key Features**:
+
+- Cross-benchmark evaluation: test one policy across LIBERO, RLBench, Robosuite, etc.
+- Unified data format and task specification across simulators
+- Addresses reproducibility issues from simulator-specific rendering and physics differences
+- Multi-institutional (SJTU, Tsinghua, UC Berkeley, etc.)
+
+**Status**: Active
+
+**Last Updated**: 2026-03
+
+**Building block(s)**: [Evaluation & Benchmarking](building-blocks.md#evaluation--benchmarking)
+
+**Maturity**: Research
+
+**Competes with**: LeRobot eval harness (different approach — RoboVerse unifies simulators, LeRobot unifies the eval API)
+
+**Complements**: All supported benchmarks (LIBERO, RLBench, CALVIN, etc.)
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+### RLBench: Large-Scale Robot Learning Benchmark
+
+**URL**: [github.com/stepjam/RLBench](https://github.com/stepjam/RLBench)
+
+**Description**: 80 task categories for robot manipulation learning built on CoppeliaSim/PyRep. Widely used for evaluating VLA models (BridgeVLA at 88.2%, InternVLA at 95%+ on subsets). Mature benchmark but coupled to CoppeliaSim — increasingly accessed through RoboVerse rather than directly.
+
+**Tech Stack**: Python, CoppeliaSim, PyRep
+
+**Key Features**:
+
+- 80 diverse manipulation task categories
+- ~150K demonstration trajectories
+- Franka Emika Panda arm in single-scene setup
+- Widely cited in VLA evaluation literature
+
+**Status**: Maintained
+
+**Stats**: ~2.6K stars (Imperial College London)
+
+**Last Updated**: 2025
+
+**Building block(s)**: [Evaluation & Benchmarking](building-blocks.md#evaluation--benchmarking)
+
+**Maturity**: Production-ready
+
+**Competes with**: LIBERO, MolmoSpaces-Bench, Robosuite
+
+**Complements**: RoboVerse (as backend), CoppeliaSim
+
+**Openness assessment**: Coupled to CoppeliaSim (source-available, $3K+ commercial); being accessed via RoboVerse as intermediary
+
+### Robosuite: MuJoCo-Based Simulation Framework for Robot Learning
+
+**URL**: [github.com/ARISE-Initiative/robosuite](https://github.com/ARISE-Initiative/robosuite)
+
+**Description**: Modular simulation framework for robot learning built on MuJoCo. Provides standardized manipulation tasks with 10 robot models, domain randomization, and teleoperation interfaces. Foundation for the LIBERO benchmark. Active community with regular releases.
+
+**Tech Stack**: Python, MuJoCo
+
+**Key Features**:
+
+- 10 robots out of the box (Franka, Sawyer, IIWA, UR5e, etc.)
+- Modular task design with configurable environments
+- Domain randomization and procedural generation
+- Teleoperation interfaces for demonstration collection
+- Foundation for LIBERO benchmark
+- MIT licensed
+
+**Status**: Active
+
+**Stats**: ~1.8K stars (Stanford ARISE Initiative)
+
+**Last Updated**: 2026-03
+
+**Building block(s)**: [Evaluation & Benchmarking](building-blocks.md#evaluation--benchmarking), [Simulation Engines](building-blocks.md#simulation-engines)
+
+**Maturity**: Production-ready
+
+**Competes with**: ManiSkill, RLBench
+
+**Complements**: MuJoCo, LIBERO, RoboVerse
 
 **Openness assessment**: (to be assessed by oss-health skill)
 

@@ -158,6 +158,19 @@
 
 **What it does**: Physics simulation environments for training robot policies, validating autonomous systems, and creating digital twins. Generate synthetic experience at scale.
 
+**Dependency layers**: Simulation platforms compose a physics engine (dynamics) and a rendering engine (visuals). Lock-in risk and technical capability propagate from these layers:
+
+| Simulation Platform | Physics Engine     | Rendering Engine | Compute Acceleration           |
+| ------------------- | ------------------ | ---------------- | ------------------------------ |
+| Isaac Sim / Lab     | PhysX 5            | OptiX / RTX      | CUDA only                      |
+| Gazebo (Harmonic)   | Custom (DART/ODE)  | OGRE-Next        | OpenGL, Vulkan; CPU fallback   |
+| Genesis World       | Custom (Quadrants) | Nyx              | CUDA, ROCm, Metal, Vulkan, CPU |
+| Newton              | MuJoCo Warp        | (via OpenUSD)    | CUDA only                      |
+| SAPIEN / ManiSkill  | PhysX 5            | Vulkan           | CUDA, CPU                      |
+| Webots              | ODE (custom fork)  | WREN (custom)    | OpenGL; CPU only               |
+| MuJoCo Playground   | MuJoCo / MJX       | MuJoCo built-in  | CUDA (via JAX), CPU            |
+| Genie 3             | Learned            | Learned          | Google TPU/GPU (proprietary)   |
+
 **Use-case demand**:
 
 | Technical Use Case    | Demand    |
@@ -172,21 +185,22 @@
 
 **Solution landscape**:
 
-| Category               | Solutions                             | Maturity         | Notes                                                                    |
-| ---------------------- | ------------------------------------- | ---------------- | ------------------------------------------------------------------------ |
-| OSS (community-driven) | Gazebo, MuJoCo, Genesis World         | Production-ready | Gazebo: OSRA governance; MuJoCo: Google; Genesis: Apache 2.0, 29K stars  |
-| OSS (single-vendor)    | PhysicsNeMo                           | Production-ready | NVIDIA; physics-ML surrogates                                            |
-| Proprietary            | Isaac Sim, Omniverse, Simulink, Unity | Production-ready | NVIDIA (CUDA-locked), MathWorks, Unity                                   |
+| Category               | Solutions                                      | Maturity         | Notes                                                         |
+| ---------------------- | ---------------------------------------------- | ---------------- | ------------------------------------------------------------- |
+| OSS (community-driven) | Gazebo, MuJoCo, Genesis World, Webots          | Production-ready | Gazebo: OSRA; MuJoCo: Google; Genesis: Apache 2.0, 29K stars  |
+| OSS (multi-vendor)     | Newton                                         | Early OSS        | Linux Foundation; NVIDIA + Google DeepMind + Disney Research  |
+| OSS (single-vendor)    | PhysicsNeMo, SAPIEN/ManiSkill, MuJoCo Playgnd  | Production-ready | NVIDIA; Google DeepMind; UC San Diego                         |
+| Proprietary            | Isaac Sim, Omniverse, Simulink, Genie 3        | Production-ready | NVIDIA (CUDA-locked), MathWorks, Google DeepMind              |
 
-**Key trade-offs**: Fidelity vs. speed — physics engines (MuJoCo, Isaac Sim) are accurate but slow; learned surrogates (PhysicsNeMo) are fast but approximate. Hardware portability: Isaac Sim requires NVIDIA GPUs; Genesis World compiles to CUDA, ROCm, Metal, Vulkan.
+**Key trade-offs**: Fidelity vs. speed — physics engines (MuJoCo, PhysX) are accurate but slow; learned surrogates (PhysicsNeMo, Genie 3) are fast but approximate. Hardware portability: Isaac Sim and Newton require NVIDIA GPUs; Genesis World compiles to CUDA, ROCm, Metal, Vulkan. Rendering realism: OptiX/RTX (photorealistic, CUDA-locked) vs. OGRE-Next (functional, hardware-portable but limited photorealism) vs. Nyx (photorealistic, multi-backend). The rendering engine is the critical risk factor for sim-to-real transfer of vision-based policies.
 
 **Platform fit**: `Partner` / `Integrate`
 
-- **Rationale**: Platform should run simulation workloads (GPU scheduling, multi-node) but not build simulation engines. Genesis World's hardware portability makes it a strong integration candidate.
-- **Partnership surface**: NVIDIA (Omniverse/Isaac Sim), Genesis AI (Genesis World), Open Robotics (Gazebo).
+- **Rationale**: Platform should run simulation workloads (GPU scheduling, multi-node) but not build simulation engines. Genesis World's hardware portability makes it a strong integration candidate. Newton's Linux Foundation governance is attractive but CUDA-only limits hardware flexibility.
+- **Partnership surface**: NVIDIA (Omniverse/Isaac Sim), Genesis AI (Genesis World), Open Robotics (Gazebo), Linux Foundation (Newton).
 
-**Related blocks**: [Sim-to-Real Transfer Pipeline](#sim-to-real-transfer-pipeline), [Post-Training Pipeline](#post-training--fine-tuning-pipeline), [Digital Twin Runtime](#digital-twin-runtime)
-**Key ecosystem players**: [NVIDIA](ecosystem.md#nvidia), [Genesis AI](ecosystem.md#genesis-ai), Open Robotics
+**Related blocks**: [Sim-to-Real Transfer Pipeline](#sim-to-real-transfer-pipeline), [Post-Training Pipeline](#post-training--fine-tuning-pipeline), [Digital Twin Runtime](#digital-twin-runtime), [Evaluation & Benchmarking](#evaluation--benchmarking)
+**Key ecosystem players**: [NVIDIA](ecosystem.md#nvidia), [Genesis AI](ecosystem.md#genesis-ai), [Google DeepMind](ecosystem.md#google-deepmind), Open Robotics
 **Relevant research**: (to be populated)
 
 ---
@@ -505,6 +519,45 @@
 **Related blocks**: [Sensor Data Ingestion](#sensor-data-ingestion), [Post-Training Pipeline](#post-training--fine-tuning-pipeline)
 **Key ecosystem players**: HuggingFace
 **Relevant research**: (to be populated)
+
+---
+
+## Evaluation & Benchmarking
+
+**What it does**: Standardized frameworks for evaluating robot policies, world models, and simulation quality. Includes benchmark task suites, evaluation harnesses, leaderboards, and sim-to-real correlation validation. Emerging as a standalone platform capability — analogous to software QA/CI for robot policies.
+
+**Use-case demand**:
+
+| Technical Use Case    | Demand    |
+| --------------------- | --------- |
+| Robotics              | required  |
+| Digital Twins         | important |
+| Autonomous Vehicles   | required  |
+| Quality Control       | important |
+| Medical Diagnostics   | optional  |
+| Scientific Simulation | important |
+| Autonomous Agents     | required  |
+
+**Solution landscape**:
+
+| Category               | Solutions                               | Maturity  | Notes                                                 |
+| ---------------------- | --------------------------------------- | --------- | ----------------------------------------------------- |
+| OSS (community-driven) | MolmoSpaces-Bench, RoboArena, RoboVerse | Early OSS | Ai2, CoRL community, multi-institutional              |
+| OSS (single-vendor)    | Isaac Lab-Arena, LeRobot eval harness   | Early OSS | NVIDIA + Lightwheel; HuggingFace emerging std APIs    |
+| Proprietary            | (none identified as standalone)         | -         | Evaluation typically bundled with sim platforms       |
+
+**Dependency on simulation stack**: Evaluation frameworks inherit the physics engine and rendering engine of their underlying simulator. A benchmark running on Isaac Lab (PhysX/OptiX) tests different physics than one on MuJoCo — results are not directly comparable across simulators. RoboVerse and MolmoSpaces address this by supporting multiple backends.
+
+**Key trade-offs**: Sim-based eval scales but recent audits ([arxiv.org/html/2606.04233](https://arxiv.org/html/2606.04233)) expose shortcut solvability and overfitting in popular benchmarks (LIBERO, CALVIN). Real-world eval (RoboArena) captures deployment-relevant failures but is expensive and slow to scale. The field is converging on a layered approach: fast sim screening → selective real-world validation.
+
+**Platform fit**: `Build`
+
+- **Rationale**: Evaluation pipelines are CI/CD for robot policies — scheduling sim eval jobs, aggregating results, gating deployments. Natural extension of existing MLOps infrastructure (KubeFlow, Tekton). Platform can provide the orchestration and compute scheduling; benchmark content comes from partners and community.
+- **Partnership surface**: HuggingFace (LeRobot eval hub), NVIDIA (Isaac Lab-Arena), Ai2 (MolmoSpaces), benchmark authors.
+
+**Related blocks**: [Simulation Engines](#simulation-engines), [Robot Foundation Models](#robot-foundation-models), [Post-Training Pipeline](#post-training--fine-tuning-pipeline), [Safety & Validation Frameworks](#safety-validation--certification-frameworks)
+**Key ecosystem players**: HuggingFace, [NVIDIA](ecosystem.md#nvidia), [Allen Institute for AI](ecosystem.md)
+**Relevant research**: [publications](publications.md)
 
 ---
 
