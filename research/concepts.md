@@ -147,11 +147,12 @@ World models are internal representations of environment dynamics that enable ag
 3. **RL-based** (DreamerV3, Optimistic World Models): Task-optimized world models trained within RL loops. Optimistic World Models integrate classical adaptive control (RBMLE) with deep RL for efficient exploration. RLVR-World applies RL post-training to optimize for transition quality rather than maximum likelihood.
 4. **Object-centric** (Causal-JEPA): Operate on object-level representations rather than pixel patches. Enable compositional reasoning and causal understanding. Causal-JEPA achieves comparable planning with 1% of the latent features required by patch-based models.
 
-**Integration paradigms** with action systems (VLA survey):
+**Integration paradigms** with action systems (VLA survey + Qwen-Robot):
 
 - **Modular**: World model and policy as separate modules (interpretable but error-propagating)
 - **Sequential**: Plan-then-execute hierarchical workflows (latency overhead)
 - **Unified**: End-to-end fusion of prediction and action (ACT-JEPA, harder to debug)
+- **Composable/tool-use**: VLM orchestrator invokes specialized world model and policy models as tools via language interface ([Alibaba](ecosystem.md#alibaba-tongyi-lab) Qwen-RobotClaw). Trades end-to-end optimization for modularity and cross-domain transfer
 
 **Classification axes** (from survey analysis, complementary to the four-branch taxonomy above):
 
@@ -232,6 +233,8 @@ The a16z "Frontier Systems for the Physical World" essay proposes a three-way cl
 - ARM-EBM bijection suggests autoregressive and energy-based approaches are theoretically unified
 - MoT convergence: Mixture-of-Transformers emerging as the dominant architecture for both VLAs (Pi-0, Pi-0.5) and WAMs (LingBot-VA, Fast-WAM) — modality-specific experts with shared attention as the practical compromise between modularity and coupling
 - WAM+VLA hybrids predicted as the next generation: Pi-0.7 BAGEL subgoals, [Sereact](ecosystem.md#sereact) Cortex 2.0 planning-by-foresight, [Being-H0.7](ecosystem.md#beingbeyond) latent bridge
+- Chinese Big Tech entering Physical AI: [Alibaba](ecosystem.md#alibaba-tongyi-lab) Qwen-Robot suite introduces language-as-action-interface paradigm (composable tool-use rather than monolithic VLA/WAM), trained on 8.6M video-text pairs across 20+ embodiments
+- VLA field exploding: 18x growth in ICLR submissions (9 at ICLR 2025 → 164 at ICLR 2026), but frontier gap persists between closed-weight (Gemini, Pi-0.5) and open-weight VLAs on zero-shot open-world behavior
 - Counterfactual reasoning emerging as new frontier (CWMDT combines digital twins + diffusion + LLM causal reasoning)
 
 **Domain expansion beyond vision/robotics**:

@@ -2220,12 +2220,8 @@
 
 ## Recent Additions
 
-*Last synthesized: 2026-05-21*
+*Last synthesized: 2026-06-16*
 
-- DINOv3 (Foundational / Theory)
-- Introducing Gemini Omni (Strategy)
-- Google's Gemini Omni Turns Images, Audio, and Text into Video (Strategy)
-- Google I/O 2026: Gemini Omni and the Rise of World Modeling (Strategy)
 - Cosmos 3: Omnimodal World Models for Physical AI (World Models)
 - Develop Physical AI with NVIDIA Cosmos 3 (World Models)
 - DLLM-JEPA (JEPA)

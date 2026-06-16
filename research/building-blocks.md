@@ -2,7 +2,7 @@
 
 > Platform capability map for Physical AI — the building blocks a platform needs to support
 
-**Last Updated**: 2026-06-15
+**Last Updated**: 2026-06-16
 
 ---
 
@@ -38,7 +38,7 @@
 - **Partnership surface**: Model providers (Meta/AMI Labs, research groups); platform provides serving infrastructure (vLLM-Omni) and post-training pipelines.
 
 **Related blocks**: [Video Generation Models](#video-generation--prediction-models), [Robot Foundation Models](#robot-foundation-models), [Simulation Engines](#simulation-engines)
-**Key ecosystem players**: [Meta AI](ecosystem.md#meta-ai-fair), [AMI Labs](ecosystem.md#ami-labs)
+**Key ecosystem players**: [Meta AI](ecosystem.md#meta-ai-fair), [AMI Labs](ecosystem.md#ami-labs), [BeingBeyond](ecosystem.md#beingbeyond), [Sereact](ecosystem.md#sereact)
 **Relevant research**: [JEPA concepts](concepts.md#jepa-joint-embedding-predictive-architecture), [publications](publications.md#jepa-joint-embedding-predictive-architecture)
 
 ---
@@ -61,21 +61,21 @@
 
 **Solution landscape**:
 
-| Category               | Solutions                             | Maturity         | Notes                                     |
-| ---------------------- | ------------------------------------- | ---------------- | ----------------------------------------- |
-| OSS (community-driven) | (none identified)                     | —                | —                                         |
-| OSS (single-vendor)    | Cosmos-Predict2.5, Cosmos-Transfer2.5 | Production-ready | NVIDIA controls; open weights, permissive |
-| Proprietary            | Sora (discontinued), GAIA-3, Genie 3  | Production-ready | Wayve, Google DeepMind                    |
+| Category               | Solutions                             | Maturity         | Notes                                       |
+| ---------------------- | ------------------------------------- | ---------------- | ------------------------------------------- |
+| OSS (community-driven) | (none identified)                     | -                | -                                           |
+| OSS (single-vendor)    | Cosmos-Predict2.5, Cosmos-Transfer2.5 | Production-ready | NVIDIA controls; open weights, permissive   |
+| Proprietary            | Qwen-RobotWorld, GAIA-3, Genie 3      | Early OSS        | Alibaba, Wayve, Google DeepMind             |
 
-**Key trade-offs**: High visual fidelity enables downstream policy training but at significant compute cost. Autoregressive generation drifts over long horizons. Hardware acceleration (CUDA) creates vendor lock-in.
+**Key trade-offs**: High visual fidelity enables downstream policy training but at significant compute cost (~51 ZFLOPs for full WAM stack vs ~6.9 ZFLOPs for VLA stack). Autoregressive generation drifts over long horizons. Hardware acceleration (CUDA) creates vendor lock-in. Fast-WAM finding suggests video generation may be skippable at inference — pending real-robot validation.
 
 **Platform fit**: `Partner`
 
-- **Rationale**: Extremely compute-intensive; model providers (NVIDIA, Google) have the training infrastructure. Platform provides serving.
-- **Partnership surface**: NVIDIA Cosmos (strongest partner — open weights, CUDA-dependent); inference via vLLM-Omni.
+- **Rationale**: Extremely compute-intensive; model providers (NVIDIA, Google, Alibaba) have the training infrastructure. Platform provides serving.
+- **Partnership surface**: NVIDIA Cosmos (strongest partner — open weights, CUDA-dependent); Qwen-RobotWorld (language-conditioned, multi-embodiment); inference via vLLM-Omni.
 
 **Related blocks**: [Latent World Models](#latent-world-models), [Sim-to-Real Transfer Pipeline](#sim-to-real-transfer-pipeline), [Simulation Engines](#simulation-engines)
-**Key ecosystem players**: [NVIDIA](ecosystem.md#nvidia), [Google DeepMind](ecosystem.md#google-deepmind), [Wayve](ecosystem.md#wayve)
+**Key ecosystem players**: [NVIDIA](ecosystem.md#nvidia), [Google DeepMind](ecosystem.md#google-deepmind), [Wayve](ecosystem.md#wayve), [Alibaba](ecosystem.md#alibaba-tongyi-lab)
 **Relevant research**: [publications](publications.md#world-models--model-based-rl)
 
 ---
@@ -98,21 +98,21 @@
 
 **Solution landscape**:
 
-| Category               | Solutions                                                    | Maturity  | Notes                                    |
-| ---------------------- | ------------------------------------------------------------ | --------- | ---------------------------------------- |
-| OSS (community-driven) | (none identified)                                            | —         | —                                        |
-| OSS (single-vendor)    | GR00T N1.7, OpenPI (pi0/pi0.5/pi0.7), DreamZero, LingBot-VA  | Early OSS | NVIDIA, Physical Intelligence, Ant Group |
-| Proprietary            | Gemini Robotics, GEN-1                                       | Early OSS | Google DeepMind, Generalist AI           |
+| Category               | Solutions                                                          | Maturity  | Notes                                                |
+| ---------------------- | ------------------------------------------------------------------ | --------- | ---------------------------------------------------- |
+| OSS (community-driven) | OpenVLA, SmolVLA                                                   | Early OSS | Community-driven open VLA baselines                  |
+| OSS (single-vendor)    | GR00T N1.7, OpenPI (pi0/pi0.5/pi0.7), DreamZero, LingBot-VA        | Early OSS | NVIDIA, Physical Intelligence, Ant Group             |
+| Proprietary            | Gemini Robotics, GEN-1, Qwen-RobotManip, Being-H0.7, Cortex 2.0    | Early OSS | Google, Generalist AI, Alibaba, BeingBeyond, Sereact |
 
-**Key trade-offs**: VLAs (pi0) leverage internet-scale pretraining but lack physics understanding. WAMs (DreamZero) learn dynamics from video but need more robot data. Single-backbone vs. MoE architectures trade simplicity for specialization.
+**Key trade-offs**: VLAs (pi0) leverage internet-scale pretraining but lack physics understanding. WAMs (DreamZero) learn dynamics from video but cost ~7.4x more to train. MoT emerging as dominant architecture for both VLAs and WAMs. VLA+WAM hybrids (Being-H0.7, Cortex 2.0, Pi-0.7) converging. Frontier gap: closed-weight VLAs (Gemini, Pi-0.5) exhibit zero-shot open-world behavior that open-weight models cannot yet match.
 
 **Platform fit**: `Partner`
 
 - **Rationale**: Rapidly evolving; platform provides serving (vLLM-Omni) and fine-tuning infrastructure, not the models themselves.
-- **Partnership surface**: NVIDIA (GR00T), Physical Intelligence (OpenPI); LeRobot as integration framework.
+- **Partnership surface**: NVIDIA (GR00T), Physical Intelligence (OpenPI), Alibaba (Qwen-Robot suite); LeRobot as integration framework.
 
 **Related blocks**: [Latent World Models](#latent-world-models), [Model Serving for Physical AI](#model-serving-for-physical-ai), [Edge AI Inference Runtime](#edge-ai-inference-runtime)
-**Key ecosystem players**: [NVIDIA](ecosystem.md#nvidia), [Physical Intelligence](ecosystem.md#physical-intelligence-π), [Google DeepMind](ecosystem.md#google-deepmind)
+**Key ecosystem players**: [NVIDIA](ecosystem.md#nvidia), [Physical Intelligence](ecosystem.md#physical-intelligence-π), [Google DeepMind](ecosystem.md#google-deepmind), [Alibaba](ecosystem.md#alibaba-tongyi-lab), [BeingBeyond](ecosystem.md#beingbeyond)
 **Relevant research**: [publications](publications.md#robot-foundation-models)
 
 ---
@@ -548,7 +548,7 @@
 
 **Dependency on simulation stack**: Evaluation frameworks inherit the physics engine and rendering engine of their underlying simulator. A benchmark running on Isaac Lab (PhysX/OptiX) tests different physics than one on MuJoCo — results are not directly comparable across simulators. RoboVerse and MolmoSpaces address this by supporting multiple backends.
 
-**Key trade-offs**: Sim-based eval scales but recent audits ([arxiv.org/html/2606.04233](https://arxiv.org/html/2606.04233)) expose shortcut solvability and overfitting in popular benchmarks (LIBERO, CALVIN). Real-world eval (RoboArena) captures deployment-relevant failures but is expensive and slow to scale. The field is converging on a layered approach: fast sim screening → selective real-world validation.
+**Key trade-offs**: Sim-based eval scales but recent audits ([arxiv.org/html/2606.04233](https://arxiv.org/html/2606.04233)) expose shortcut solvability and overfitting in popular benchmarks (LIBERO, CALVIN) — both are "basically solved" with marginal differences (98% vs 99%) uninformative (Reuss 2025). Real-world eval (RoboArena, RoboChallenge Table30) captures deployment-relevant failures but is expensive and slow to scale. World model evaluation is fragmenting across domain-specific benchmarks (EWMBench, DreamGen Bench, WorldModelBench, PBench) with no cross-domain standard. The field is converging on a layered approach: fast sim screening → selective real-world validation.
 
 **Platform fit**: `Build`
 
