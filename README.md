@@ -1,6 +1,6 @@
-# Physical AI Platform Intelligence Notebook
+# Physical AI & World Model Research Notebook
 
-A research notebook for understanding the Physical AI ecosystem — architectures, building blocks, players, and platforms — from an enterprise platform vendor perspective. Tracks both foundational research and applied systems to inform Build vs. Partner vs. Integrate decisions. Guided by my own interests, with no claim to be representative, state-of-the-art, or correct. Content is curated through an AI-assisted workflow: I provide URLs or search terms, and AI extracts information, fills templates, and updates documents. Just markdown files and AI assistance — no external tools required.
+A research notebook for understanding the Physical AI and World Model ecosystem (architectures, building blocks, players, and platforms). Tracks both foundational research and applied systems. Guided by my own interests, with no claim to be representative, state-of-the-art, or correct. Content is curated through an AI-assisted workflow: I provide URLs, search terms, or ask the AI to scan reputable sources for new content, the AI extracts information, I curate the findings, the AI fills templates and updates documents. Just markdown files and AI assistance, no external tools required.
 
 ## What Is Physical AI?
 
@@ -11,8 +11,6 @@ Physical AI refers to AI systems that perceive, reason about, and interact with 
 - **Reason and plan** about actions in a physical space
 - **Control** actuators (robot arms, wheels, drones) with precision
 - **Learn from interaction** in the real world or high-fidelity simulation
-
-**Why it matters for enterprise platforms**: Physical AI is emerging as a platform opportunity — similar to how cloud platforms enabled web/mobile apps, Physical AI platforms could enable a new generation of robotics, industrial automation, and embodied AI applications. Understanding the ecosystem is critical for Build vs. Partner vs. Integrate decisions.
 
 ## What Are World Models?
 
