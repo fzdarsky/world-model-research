@@ -49,8 +49,9 @@ research/library/
 # Superpowers planning/specs
 docs/superpowers/
 
-# Claude Code local settings
-.claude/
+# Claude Code local settings (keep skills tracked)
+.claude/*
+!.claude/skills/
 
 # Local environment
 .env

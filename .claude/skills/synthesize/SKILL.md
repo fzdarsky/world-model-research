@@ -1,20 +1,14 @@
 ---
 name: synthesize
-description: Review recent additions, identify patterns, organize entries
+description: Review recent additions, identify patterns, update building-block assessments, organize entries
 user-invocable: true
 ---
 
-# Synthesize Research Insights
+# Synthesize Insights
 
-Review recent additions and synthesize insights into key concepts.
+Review recent additions, identify patterns, update building-block assessments, and organize entries.
 
 ## Usage
-
-```text
-/synthesize
-```
-
-## Examples
 
 ```text
 /synthesize
@@ -27,113 +21,130 @@ When this command is invoked:
 1. **Review recent additions**:
    - Read `research/publications.md` "Recent Additions" section
    - Identify papers added in last 30 days (check dates)
-   - Also scan topic sections for recent entries (look for recent dates)
+   - Scan `research/ecosystem.md` for recently added players/solutions
+   - Scan `research/projects.md` for recently added projects
 
 2. **Identify patterns and themes**:
    - Common methods across papers
-   - Emerging trends (e.g., "shift toward predictive vs. contrastive")
-   - Technical innovations (new architectures, regularization techniques)
-   - Connections between concepts (how JEPA relates to EBM, etc.)
-   - Open problems or debates in the literature
+   - Emerging trends (new architectures, convergent approaches)
+   - Technical innovations
+   - Connections between concepts
+   - Open problems or debates
    - Surprising results or contradictions
 
-3. **Update concepts.md**:
+3. **Update building-block assessments** (`research/building-blocks.md`):
+   - New solutions identified → add to Solution landscape tables
+   - Maturity changes → update maturity ratings (e.g., project moved from Early OSS to Production-ready)
+   - New ecosystem players → add to Key ecosystem players
+   - Use-case demand shifts → update demand ratings if evidence supports
+   - Platform fit reassessment → flag if new evidence suggests reclassification
+
+4. **Surface competitive shifts** in ecosystem:
+   - New entrants to a building block space
+   - Positioning changes (player pivoted, acquired, launched new product)
+   - Lock-in vector changes (license change, new hardware requirement)
+   - Partnership/acquisition signals
+
+5. **Flag stale assessments**:
+   - Openness assessments older than 6 months → flag for `/oss-health` re-evaluation
+   - Ecosystem entries with no solution updates in 3+ months → flag for review
+   - Building block solution landscapes not updated in 3+ months → flag
+
+6. **Update concepts.md**:
    - Read current state of `research/concepts.md`
-   - For each major concept (JEPA, EBM, World Models):
-     - Add new technical details learned from recent papers
-     - Update "Current State" sections with latest developments
-     - Add equations/architectures if referenced in papers
-     - Update "How It Differs" with new comparisons
-     - Note open questions discovered
-   - Add connections in "Related Concepts" section
+   - Add new technical details learned from recent papers
+   - Update "Current State" sections with latest developments
+   - Add connections in "Related Concepts"
    - Preserve existing content (don't delete, only add/update)
 
-4. **Move entries from "Recent Additions"**:
-   - After synthesizing, move entries from "Recent Additions" in publications.md
-   - Place each entry under appropriate topic section
-   - Preserve all entry content
+7. **Move entries from "Recent Additions"**:
+   - Move entries from "Recent Additions" in publications.md to appropriate topic sections
    - Update "Recent Additions" to note: "Last synthesized: YYYY-MM-DD"
 
-5. **Generate synthesis summary**:
-   - Provide user with summary of what was synthesized:
-     - Number of papers reviewed
-     - Key themes identified
-     - What was added to concepts.md
-     - Entries moved to topic sections
+8. **Generate synthesis summary**
 
 ## Synthesis Focus Areas
 
-Look for:
-
 **Technical Patterns**:
+
 - Common architectural components across papers
-- Shared regularization or training techniques
+- Shared training techniques
 - Convergent vs. divergent approaches
 
-**Trends**:
-- What's gaining momentum (more recent papers)
-- What's being abandoned or superseded
-- New application areas emerging
+**Platform Intelligence**:
 
-**Relationships**:
-- How JEPA papers build on each other
-- Connections between JEPA and EBM approaches
-- Links to broader world models literature
+- Which building blocks have increasing demand
+- Where OSS alternatives are gaining on proprietary solutions
+- New Build/Partner/Integrate opportunities
+- Vendor lock-in changes
+
+**Ecosystem Dynamics**:
+
+- Startup funding and growth signals
+- Big Tech strategic moves (acquisitions, open-sourcing, product launches)
+- OSS community health trends
+- Partnership announcements
 
 **Open Questions**:
+
 - Explicitly stated limitations in papers
-- Inconsistent results across studies
-- Gaps identified by researchers
+- Gaps between research and production deployment
+- Unmet building-block needs
 
 ## Output Format
 
 ```text
 Synthesis Complete (YYYY-MM-DD)
 
-📊 Papers Reviewed: 12 recent additions
+Papers Reviewed: 12 recent additions
 
-🔍 Key Themes Identified:
-1. Variance regularization: All recent JEPA papers use VICReg-style losses to prevent collapse
-2. Shift to latent prediction: Moving from pixel-space to abstract representation prediction
-3. Scaling laws: Larger encoders (ViT-H) show better downstream performance
-4. Multimodal extension: JEPA being applied to text-image, video-audio pairs
+Key Themes Identified:
+1. Robot foundation models converging on VLA architecture
+2. Sim-to-real transfer improving via video generation (Cosmos-Transfer)
+3. ROS2 ecosystem maturing — OSRA governance strengthening
 
-📝 Updated concepts.md:
-- JEPA section: Added technical details on VICReg regularization, masking strategies
-- EBM section: Added connection to JEPA (both avoid contrastive negatives)
-- World Models section: Updated with recent robotics applications
+Building Block Updates:
+- Robot Foundation Models: Added OpenPI 0.7 to solution landscape, maturity → Early OSS
+- Simulation Engines: Genesis World now Production-ready (v0.8 release)
+- Model Serving: vLLM-Omni added DiT serving support
 
-📁 Organized publications.md:
+Competitive Shifts:
+- Physical Intelligence open-sourced pi0.7 — challenges NVIDIA GR00T on openness
+- Foxglove acquired by [company] — fleet management consolidating
+
+Stale Assessments Flagged:
+- 3 projects need /oss-health re-evaluation (last assessed >6 months ago)
+- Sensor Data Ingestion block still unpopulated — needs research
+
+Updated concepts.md:
+- Added VLA vs. WAM comparison
+- Updated JEPA section with V-JEPA 2.1 temporal coherence improvements
+
+Organized publications.md:
 - Moved 12 entries from "Recent Additions" to topic sections
-- JEPA: 5 papers
-- EBM: 3 papers
-- Applications: 4 papers
-
-💡 Insights:
-- JEPA and EBM are converging: both use energy-based formulations for stability
-- Robotics applications showing 10x sample efficiency improvements
-- Open question: Optimal latent dimensionality still unclear across papers
 ```
 
 ## Style Guide Compliance
 
 All synthesis must follow style guide:
+
 - Sober, factual language (cite specific papers)
 - Concise summaries
 - Pattern-oriented (highlight connections)
-- Technical precision (specific methods, not vague descriptions)
-- Actionable insights
+- Technical precision
+- Use controlled vocabulary for any updated structured fields
 
 ## When to Synthesize
 
 Recommend running `/synthesize`:
-- After adding 10+ papers to "Recent Additions"
-- Monthly (per maintenance schedule in PLAN.md)
-- Before creating a deliverable (to ensure concepts.md is current)
-- When user notices patterns and wants them captured
+
+- After adding 10+ new items across any document
+- Bi-weekly (per maintenance schedule in PLAN.md)
+- Before creating a deliverable (to ensure all files are current)
+- When competitive landscape shifts are suspected
 
 ## Error Handling
 
-- If no recent additions found: "No new content in 'Recent Additions' to synthesize"
+- If no recent additions found: "No new content to synthesize"
 - If concepts.md is empty: Create initial structure with placeholders
-- If patterns unclear: Note in synthesis summary: "Limited patterns (only N papers)"
+- If patterns unclear: Note in summary: "Limited patterns (only N items reviewed)"

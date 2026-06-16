@@ -1,13 +1,13 @@
 ---
 name: add
-description: Add a paper, project, or other research content to the notebook from a URL
+description: Add a paper, project, ecosystem entry, or other content to the notebook from a URL
 user-invocable: true
 argument-hint: "<url>"
 ---
 
-# Add Research Content
+# Add Content
 
-Add a paper, project, or other research content to the notebook.
+Add a paper, project, ecosystem entry, or other content to the notebook.
 
 ## Usage
 
@@ -20,7 +20,8 @@ Add a paper, project, or other research content to the notebook.
 ```text
 /add https://arxiv.org/abs/2602.03604
 /add https://github.com/facebookresearch/jepa
-/add https://ai.meta.com/blog/yann-lecun-ai-model-i-jepa/
+/add https://developer.nvidia.com/isaac-ros
+/add https://www.physicalintelligence.company/blog/pi0
 ```
 
 ## Instructions
@@ -28,35 +29,37 @@ Add a paper, project, or other research content to the notebook.
 When this command is invoked:
 
 1. **Fetch the URL content** using WebFetch tool
-2. **Determine content type**:
-   - arXiv/paper/video URL → Use publication-entry template
-   - GitHub URL → Use project-entry template
-   - Researcher/institution page → Use player-entry template
-   - Blog post about use case → Use use-case-entry template
+2. **Determine content type and target**:
+   - arXiv/paper/video URL → publication-entry template → `research/publications.md`
+   - GitHub URL → project-entry template → `research/projects.md` (invoke `oss-health` specialist)
+   - Company/product page → ecosystem-entry + solution-entry templates → `research/ecosystem.md` (invoke `solution-analyzer` specialist)
+   - Researcher/institution page → ecosystem-entry template → `research/ecosystem.md`
+   - Blog post about use case → use-case-entry template → `research/use-cases.md`
 3. **Extract information** according to the template:
    - For publications: title, authors, date, summary, key points, relevance
-   - For projects: name, description, teck stack, features, status, stats, last update
-   - For players: name, type, focus areas, key work, key collaborators, links
-   - For use cases: industry, description, technical requirements, solutions, gaps
+   - For projects: name, description, tech stack, features, status, stats, building block(s), maturity, openness assessment
+   - For ecosystem entries: name, type, about, solutions (with competitive analysis), reference architecture, platform relevance
+   - For use cases: technical use case, verticals, building blocks, requirements, gaps
 4. **Fill the appropriate template** from `research/templates/`
-5. **Add to the correct document**:
-   - Publications → `research/publications.md` under appropriate topic section
-   - Projects → `research/projects.md` under appropriate category
-   - Players → `research/players.md` under appropriate type
-   - Use cases → `research/use-cases.md` under appropriate industry
-6. **Download PDF to library** (for arXiv and other paper URLs):
-   - Download the PDF to `research/library/` using curl
-   - Naming convention: `{arxiv-id}-{slugified-short-title}.pdf` (e.g., `2508.10104-dinov3.pdf`)
-   - For arXiv papers, the PDF URL is `https://arxiv.org/pdf/{id}.pdf`
-   - For non-arXiv papers with a direct PDF link, download using that link
-   - Verify the download is a valid PDF (check file size > 10KB)
-   - Skip this step for non-paper content (GitHub projects, player pages, etc.)
-7. **Cross-link** if needed:
-   - New researchers mentioned → add to players.md (only seminal contributors / thought leaders)
-   - New use cases identified → add to use-cases.md
-   - Related concepts → note in concepts.md
-   - If any authors/presenters already exist in players.md, link their names: `[Name](players.md#anchor)`
+5. **Add to the correct document** under appropriate section
+6. **Archive source material**:
+   - For arXiv papers: download PDF to `research/library/papers/` using naming convention `{arxiv-id}-{slugified-short-title}.pdf`
+   - For vendor/product pages: capture screenshot to `research/library/screenshots/` if feasible
+   - For non-arXiv papers with direct PDF link: download to `research/library/papers/`
+   - Verify downloads are valid (file size > 10KB)
+7. **Cross-link**:
+   - New ecosystem players → add to `research/ecosystem.md` (only seminal contributors / thought leaders)
+   - New use cases identified → add to `research/use-cases.md`
+   - Related concepts → note in `research/concepts.md`
+   - If authors/presenters already exist in ecosystem.md, link their names: `[Name](ecosystem.md#anchor)`
+   - Invoke `block-mapper` to update `research/building-blocks.md` cross-references
 8. **Confirm** with user what was added and where
+
+## Specialist Skill Dispatch
+
+- **GitHub projects**: After adding, invoke `/oss-health <github-url>` to generate the openness assessment table
+- **Company/product pages**: Invoke `/solution-analyzer <url>` to extract competitive intelligence for solution entries
+- **Any addition**: Invoke `block-mapper` (internal) to update building-blocks.md with new solutions, players, or demand evidence
 
 ## Style Guide Compliance
 
@@ -68,6 +71,7 @@ All extracted content must follow the style guide in CLAUDE.md:
 - Assume experienced audience
 - Technical precision
 - Actionable detail
+- Use controlled vocabulary for structured fields (Demand, Maturity, Platform fit, Openness)
 
 ## Error Handling
 
