@@ -1322,6 +1322,41 @@
 
 **Openness assessment**: (to be assessed by oss-health skill)
 
+### LIBERO: Lifelong Robot Learning Benchmark
+
+**URL**: [github.com/Lifelong-Robot-Learning/LIBERO](https://github.com/Lifelong-Robot-Learning/LIBERO)
+
+**Description**: Benchmark suite for lifelong robot learning and knowledge transfer, built on Robosuite/MuJoCo. 130 manipulation tasks across four suites (LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, LIBERO-100) with controlled distribution shifts testing declarative vs. procedural knowledge transfer. The most commonly reported benchmark for VLA evaluation — pi0.5, GR00T, OpenVLA, and LingBot-VA all cite LIBERO scores. NeurIPS 2023 Dataset & Benchmark Track.
+
+**Tech Stack**: Python, Robosuite, MuJoCo
+
+**Key Features**:
+
+- 130 tasks across 4 suites with controlled knowledge transfer requirements
+- ~50 demonstrations per task
+- Procedural generation pipeline for unlimited task variants
+- LIBERO-100: 100 entangled-knowledge tasks (LIBERO-90 pretrain + LIBERO-10 test)
+- HuggingFace fork (lerobot-libero) for LeRobot integration
+- MIT licensed
+
+**Validity concerns**: A June 2026 audit ("[What Are We Actually Benchmarking?](https://arxiv.org/abs/2606.04233)") found LIBERO fails multiple diagnostics — a 0.09B probe with no language encoder scores near reported SOTA, and models collapse from ~98% to 0-40% under moderate perturbations. Most reported gains are not statistically significant. Despite these issues, LIBERO remains the de facto VLA evaluation standard.
+
+**Status**: Active
+
+**Stats**: ~900 stars (UT Austin, Sony AI)
+
+**Last Updated**: 2026-05
+
+**Building block(s)**: [Evaluation & Benchmarking](building-blocks.md#evaluation--benchmarking)
+
+**Maturity**: Production-ready
+
+**Competes with**: MolmoSpaces-Bench, RLBench, CALVIN
+
+**Complements**: Robosuite, MuJoCo, LeRobot eval harness, RoboVerse
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
 ---
 
 ## Model Serving for Physical AI

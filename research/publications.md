@@ -2016,6 +2016,32 @@
 
 ---
 
+## Evaluation & Benchmarking
+
+*Benchmark validity, evaluation methodology, sim-to-real correlation*
+
+### What Are We Actually Benchmarking in Robot Manipulation? [![arXiv](templates/icons/arxiv.svg)](https://arxiv.org/abs/2606.04233)
+
+**Authors**: Tianchong Jiang, Xiangshan Tan, Samuel Wheeler, Luzhe Sun, Tewodros W. Ayalew, Matthew Walter
+
+**Date**: 2026-06
+
+**Summary**: Systematic audit of five prominent robot manipulation benchmarks (LIBERO, CALVIN, SimplerEnv, RoboCasa, RoboTwin 2.0) identifying four failure modes that undermine benchmark validity. Finds that the most commonly cited benchmarks (LIBERO, CALVIN) fail multiple diagnostics, while less-cited alternatives (RoboCasa, RoboTwin 2.0) fare better.
+
+**Key Findings**:
+
+- Four failure modes identified: shortcut solvability, lack of statistical significance, creeping overfitting, and data-source dependence
+- On LIBERO: a 0.09B probe with no language encoder scores at or near reported SOTA; most reported gains between methods are not statistically significant
+- SOTA models collapse from ~98% to 0-40% success under moderate perturbations (changed instructions, object poses, viewpoints)
+- RoboCasa and RoboTwin 2.0 fail fewer diagnostics despite being less frequently cited in progress claims
+- Releases diagnostic toolkit with reference implementations for community use
+
+**Code**: [ripl.github.io/manipulation_benchmark_audit/](https://ripl.github.io/manipulation_benchmark_audit/)
+
+**Relevance**: Directly impacts platform strategy for evaluation infrastructure — an eval pipeline relying solely on LIBERO or CALVIN gives false confidence. Supports the case for multi-benchmark evaluation (RoboVerse, LeRobot eval harness) and real-world validation (RoboArena) as complementary layers.
+
+---
+
 ## Physical AI Deployment
 
 *Edge inference, fleet management, production deployment of physical AI*
