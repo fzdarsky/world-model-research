@@ -1,8 +1,8 @@
 # Preferred Sources
 
-> Curated list of sources to monitor for world models research
+> Curated list of sources to monitor for Physical AI platform intelligence
 
-**Last Updated**: 2026-04-01
+**Last Updated**: 2026-06-16
 
 ---
 
@@ -32,6 +32,15 @@
 - **Telecommunications**: `"JEPA"` OR `"world models"` + (`"wireless"` OR `"communications"` OR `"5G"` OR `"6G"`)
 - **Scientific Discovery**: `"world models"` + (`"scientific discovery"` OR `"physics simulation"` OR `"molecular"`)
 - **Agentic AI**: `"world models"` + (`"agentic"` OR `"autonomous agent"` OR `"tool use"` OR `"planning"` OR `"web agent"`)
+
+**Physical AI Platform & Infrastructure** (search on arXiv + TechRxiv + Google Scholar):
+
+- `"physical AI" + ("platform" OR "infrastructure" OR "deployment")`
+- `"robot foundation model" + ("open source" OR "framework")`
+- `"digital twin" + ("open source" OR "platform" OR "runtime")`
+- `"sim-to-real" + ("transfer" OR "pipeline" OR "framework")`
+- `"ROS2" + ("production" OR "enterprise" OR "deployment")`
+- `"robot fleet" + ("management" OR "orchestration" OR "MLOps")`
 
 ### arXiv Categories
 
@@ -86,6 +95,10 @@
 - **OpenAI**: https://github.com/openai
 - **Stability AI**: https://github.com/Stability-AI
 - **NVIDIA Cosmos**: https://github.com/nvidia-cosmos
+- **Open Robotics**: https://github.com/ros2
+- **Genesis AI**: https://github.com/Genesis-Embodied-AI
+- **Physical Intelligence**: https://github.com/Physical-Intelligence
+- **HuggingFace (LeRobot)**: https://github.com/huggingface/lerobot
 
 ### GitHub Search Queries
 
@@ -119,6 +132,20 @@
 - **Waymo Research**: https://waymo.com/research/ — Autonomous driving, world models for planning
 - **Toyota Research Institute**: https://www.tri.global/research — Robotics, autonomous systems
 - **Siemens Technology**: https://www.siemens.com/global/en/company/stories.html — Digital twins, industrial AI
+
+### Company Blogs — Startups & Emerging Players
+
+- **Figure AI**: https://www.figure.ai/news — humanoid robotics
+- **Agility Robotics**: https://agilityrobotics.com/blog — warehouse/logistics robotics
+- **1X Technologies**: https://www.1x.tech/blog — humanoid robotics
+- **Unitree**: https://www.unitree.com/news — affordable quadruped/humanoid robots
+- **Physical Intelligence**: https://www.physicalintelligence.company/blog — robot foundation models
+- **Covariant**: https://covariant.ai/insights — warehouse manipulation AI
+- **Skild AI**: https://www.skild.ai/blog — general-purpose robot foundation models
+- **Intrinsic (Alphabet)**: https://intrinsic.ai/blog — industrial robotics software
+- **Foxglove**: https://foxglove.dev/blog — robot observability
+- **Formant**: https://formant.io/resources/ — robot fleet management
+- **MathWorks**: https://www.mathworks.com/company/newsletters/articles.html — Simulink, digital twins
 
 ### VC & Investor Perspectives
 
@@ -169,6 +196,33 @@ Useful for identifying emerging companies, investment signals, and market framin
 
 ---
 
+## Simulation & Digital Twin Ecosystem
+
+- **NVIDIA Omniverse / Isaac Sim**: Release notes, developer blog
+- **Open Robotics**: https://www.openrobotics.org/blog — Gazebo, ROS2 governance
+- **Gazebo Community**: https://community.gazebosim.org/
+
+---
+
+## Industry News & Startup Tracking
+
+- **The Robot Report**: https://www.therobotreport.com/ — robotics industry news, funding, product launches
+- **TechCrunch Robotics/AI**: https://techcrunch.com/category/robotics/ — startup funding, launches
+- **IEEE Spectrum Robotics**: https://spectrum.ieee.org/topic/robotics/ — technical industry coverage
+- **Crunchbase** (via WebSearch): Funding signals for Physical AI startups
+- **ROS Discourse**: https://discourse.ros.org/ — ROS2 community discussions, REPs
+
+---
+
+## Standards & Governance
+
+- **ROS Enhancement Proposals (REPs)**: https://ros.org/reps/rep-0000.html
+- **CHAOSS Project**: https://chaoss.community/ — OSS health metrics
+- **OpenSSF Scorecard**: https://scorecard.dev/ — automated OSS security assessment
+- **Open Source Robotics Alliance**: https://osralliance.org/
+
+---
+
 ## Social Media & Communities
 
 ### Twitter/X Lists
@@ -197,16 +251,20 @@ Key researchers to follow:
 
 ## Monitoring Strategy
 
-When `/sources` is run, check:
+When `/sources` is run, check in priority order:
 
-1. **Preprint searches** (last 30 days) - Search both arXiv and TechRxiv for papers matching architecture AND application queries
-2. **GitHub organizations** - Check for new repos or major releases
-3. **Company blogs — research labs** - Scan for world models/JEPA/EBM/BDH mentions
-4. **Company blogs — applied & industry** - Scan for world model applications, digital twins, Physical AI deployments
-5. **Researcher pages** - Check for new publications from key researchers
-6. **YouTube videos** - Look for talks from / interviews with / news about key players on world models/JEPA/EBM/BDH
+1. **Preprint searches** (last 30 days) — arXiv + TechRxiv for architecture, application, AND platform/infrastructure queries
+2. **GitHub organizations** — New repos or major releases from tracked orgs
+3. **Company blogs — research labs** — World models, JEPA, robot foundation model announcements
+4. **Company blogs — applied & industry** — Product launches, platform updates, Physical AI deployments
+5. **Company blogs — startups** — Funding, product launches, technical posts
+6. **Industry news** — The Robot Report, TechCrunch, IEEE Spectrum for funding and product signals
+7. **Simulation & digital twin ecosystem** — Omniverse, Gazebo, Eclipse Ditto releases
+8. **Standards & governance** — REPs, OSRA, CHAOSS, OpenSSF updates
+9. **Researcher pages** — New publications from key researchers
+10. **YouTube videos** — Talks, interviews, news about key players
 
-Present top 5-10 most relevant findings and ask which to add. Balance foundational research and applied/engineering content.
+Present top 5-10 most relevant findings and ask which to add. Balance foundational research, platform intelligence, and ecosystem dynamics.
 
 ---
 
