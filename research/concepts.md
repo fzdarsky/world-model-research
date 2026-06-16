@@ -200,6 +200,27 @@ The a16z "Frontier Systems for the Physical World" essay proposes a three-way cl
 
 *Key insight*: WAMs represent a fusion of world models and policy learning — treating video generation as an implicit visual planner that guides action production. Cosmos 3 takes this further: its three action modes (forward dynamics, inverse dynamics, policy) make a single model simultaneously a VLM, WAM, and VLA depending on input-output configuration — collapsing the a16z taxonomy's first two categories.
 
+**WAM three-axis taxonomy** (Reuss 2026, complementary to a16z paradigm-level framing):
+
+1. **Paradigm** — what the model predicts:
+   - *Inverse Dynamics*: Generate future video/latents, then infer actions from predicted transitions (UniPi, [LingBot-VA](ecosystem.md#robbyant-ant-group), [DVA](ecosystem.md#rhoda-ai))
+   - *Joint Prediction*: Predict video and actions together in one pass (GR-1, DreamZero, Cosmos Policy)
+   - *Representation-Only*: Use video backbone as learned representation; skip video generation at inference (Fast-WAM — arXiv:2603.16666)
+
+2. **Action Integration** — how actions enter the model:
+   - *Action Tokens*: Actions as continuous/discrete tokens alongside video tokens (most WAMs)
+   - *Action as Image*: Actions encoded as visual targets the model denoises (GENIMA, Cosmos Policy)
+   - *Latent Actions/Plans*: Behavior compressed into latent variables from trajectories or unlabeled video (Play-LMP, Genie, [Being-H0.7](ecosystem.md#beingbeyond))
+
+3. **Architecture** — how components are composed:
+   - *Hierarchical*: Separate video prediction and action stages connected one-way (UniPi, Pi-0.7 BAGEL subgoals)
+   - *Monolithic Transformer*: Single transformer jointly denoises video and actions (DreamZero, Cosmos Policy)
+   - *Mixture-of-Transformers (MoT)*: Modality-specific experts with shared self-attention (LingBot-VA, Fast-WAM, Pi-0, Pi-0.5) — predicted to become dominant
+
+**Fast-WAM representation-only finding**: Fast-WAM (arXiv:2603.16666) demonstrates that a WAM can skip video generation entirely at inference and still match full video-generating WAMs on simulation benchmarks. This cuts inference from 590-800ms (full video generation) to sub-200ms per action chunk, eliminating the 3-4x WAM inference penalty versus VLAs. However, current evidence is simulation-only — real-robot validation is pending. If confirmed, this collapses the WAM deployment cost objection: WAMs would train on video (learning physical dynamics priors) but deploy as fast as VLAs. Both DreamZero and Fast-WAM found that action learning still benefits from co-training with a video-prediction objective during robot fine-tuning.
+
+**WAM compute cost profile**: Full WAM training stack costs ~7.4x more than VLA stack (51 vs 6.9 ZFLOPs), dominated by video backbone pretraining (e.g., Wan-14B). This means WAM adoption depends on the availability of open, pre-trained video backbones (Wan, Cosmos) that amortize the pretraining cost across the community. 1 ZFLOP ~ 936 H100-hours at ~30% utilization.
+
 **Emerging alternative paradigm**: [Active Inference](concepts.md#active-inference) ([Verses AI](ecosystem.md#verses-ai) AXIOM) — unifies perception, planning, and control via the Free Energy Principle. Object-centric, hierarchical agent structure. Theoretically distinct from all three paradigms above but with potential complementarity. See dedicated Active Inference section below.
 
 **Convergence signals**:
@@ -209,6 +230,8 @@ The a16z "Frontier Systems for the Physical World" essay proposes a three-way cl
 - RL post-training applicable to both paradigms
 - Physical reasoning (Cosmos-Reason) could enhance either approach; Cosmos 3 subsumes Cosmos-Reason into its reasoner tower
 - ARM-EBM bijection suggests autoregressive and energy-based approaches are theoretically unified
+- MoT convergence: Mixture-of-Transformers emerging as the dominant architecture for both VLAs (Pi-0, Pi-0.5) and WAMs (LingBot-VA, Fast-WAM) — modality-specific experts with shared attention as the practical compromise between modularity and coupling
+- WAM+VLA hybrids predicted as the next generation: Pi-0.7 BAGEL subgoals, [Sereact](ecosystem.md#sereact) Cortex 2.0 planning-by-foresight, [Being-H0.7](ecosystem.md#beingbeyond) latent bridge
 - Counterfactual reasoning emerging as new frontier (CWMDT combines digital twins + diffusion + LLM causal reasoning)
 
 **Domain expansion beyond vision/robotics**:

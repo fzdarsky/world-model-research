@@ -683,6 +683,27 @@
 
 *Papers on world models, DreamerV3, latent models, etc.*
 
+### Qwen-RobotWorld: Unifying Embodied World Modeling through Language-Conditioned Video Generation [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2606.17030)
+
+**Authors/Presenters**: Jie Zhang, Xiaoyue Chen, Anzhe Chen, Chenxu Lv, Deqing Li et al. (38 authors, Alibaba Tongyi Lab)
+
+**Date**: 2026-06
+
+**Summary**: Language-conditioned video world model that uses natural language as a unified action interface to predict physically grounded future visual trajectories across manipulation, driving, navigation, and human-to-robot transfer. Built on a 60-layer double-stream MMDiT coupling frozen Qwen2.5-VL semantics with video-VAE latents, trained on an 8.6M video-text corpus (200M+ frames) spanning 20+ embodiments and 500+ action categories.
+
+**Key Findings**:
+
+- 60-layer double-stream diffusion transformer with layer-wise joint attention between frozen Qwen2.5-VL language/vision features and video-VAE latent representations
+- Embodied World Knowledge (EWK) corpus: 8.6M video-text pairs, 200M+ frames, 20+ embodiments, 500+ action categories — language-annotated action mapping enables cross-domain transfer
+- Two-stage progressive curriculum: general visual priors first, then embodied specialization under shared language interface
+- Ranks 1st overall on EWMBench and DreamGen Bench; outperforms all open-source models on WorldModelBench and PBench
+- Zero-shot generalization on RoboTwin-IF benchmark with multi-view consistency
+- Three downstream applications: synthetic data augmentation for policy training, scalable virtual evaluation environments, language-guided planning signals
+
+**Relevance to World Models**: First major Chinese Big Tech entry into video world models for robotics. The language-conditioned approach is architecturally distinct from Cosmos (tokenized video + MoT) and DreamZero (video diffusion + joint action prediction) — Qwen-RobotWorld uses language as the action interface rather than native action tokens, enabling cross-embodiment transfer via natural language descriptions. Part of the broader Qwen-Robot suite (RobotManip VLA + RobotNav VLN + RobotWorld + RobotClaw agent framework). The 8.6M video corpus across 20+ embodiments is a significant data asset. Pilot testing with Alibaba Cloud enterprise clients signals commercial deployment intent. [Local copy](library/papers/2026-06-15-qwen-robotworld.pdf).
+
+---
+
 ### DreamZero: World Action Models are Zero-shot Policies [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2602.15922)
 
 **Authors/Presenters**: Seonghyeon Ye, Yunhao Ge, Jim Fan, Yuke Zhu ([NVIDIA](ecosystem.md#nvidia) GEAR Lab)
@@ -1995,6 +2016,155 @@
 ## Robot Foundation Models
 
 *VLA, WAM, and policy learning architectures*
+
+### State of Vision-Language-Action (VLA) Research at ICLR 2026 [<img src="templates/icons/website.svg" alt="website" height="16">](https://mbreuss.github.io/blog_post_iclr_26_vla.html)
+
+**Authors/Presenters**: Moritz Reuss (NVIDIA)
+
+**Date**: 2025-10
+
+**Type**: Blog Post
+
+**Summary**: Practitioner's survey of the VLA research landscape based on ICLR 2026 submissions. Quantifies the field's explosive growth (1 → 9 → 164 submissions across ICLR 2024-2026), identifies nine research trends, and flags a significant hidden gap between closed-weight frontier VLAs and open-weight academic VLAs.
+
+**Key Findings**:
+
+- VLA submissions to ICLR grew 18x in one year (9 at ICLR 2025 → 164 at ICLR 2026)
+- LIBERO is "basically solved" and CALVIN "almost saturated" — marginal differences (98% vs 99%) are uninformative, reinforcing the benchmark audit findings
+- Nine research trends: discrete diffusion VLAs, reasoning/ECoT, new tokenizers, efficient VLAs, RL for VLAs, video prediction, evaluation/benchmarking, cross-action-space learning, and others (memory, policy composition)
+- Significant frontier gap: closed-weight VLAs (Gemini-Robotics, Pi-0.5) exhibit zero-shot open-world behavior that open-weight models cannot match — simulation benchmarks obscure this difference
+- Critically under-explored areas: data quality/curation and in-context learning for VLAs
+
+**Relevance to World Models**: The 18x growth rate quantifies VLA as the dominant robot foundation model paradigm. The frontier gap finding is a key platform strategy input — it means open-weight VLAs are not yet competitive for production deployment despite strong benchmark scores, creating a dependency on proprietary providers. The LIBERO/CALVIN saturation finding directly supports our benchmark audit tracking and the case for multi-benchmark evaluation infrastructure. The video prediction trend (trend 6) documents VLA→WAM convergence from the VLA side.
+
+---
+
+### OpenVLA: An Open-Source Vision-Language-Action Model [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2406.09246)
+
+**Authors/Presenters**: Moo Jin Kim, Karl Pertsch, Siddharth Karamcheti, Ted Xiao, Ashwin Balakrishna, Suraj Nair, Rafael Rafailov, Ethan Foster, Grace Lam, Pannag Sanketi, Quan Vuong, Thomas Kollar, Benjamin Burchfiel, Russ Tedrake, Dorsa Sadigh, [Sergey Levine](ecosystem.md#sergey-levine), Percy Liang, [Chelsea Finn](ecosystem.md#stanford-svl--sail)
+
+**Date**: 2024-06
+
+**Summary**: Open-source 7B-parameter VLA trained on 970K real-world robot demonstrations from the Open X-Embodiment dataset. Combines Llama 2 backbone with fused DINOv2 + SigLIP visual encoders. Outperforms the closed 55B RT-2-X model by 16.5% in absolute success rate across 29 tasks with 7x fewer parameters.
+
+**Key Findings**:
+
+- Outperforms RT-2-X (55B) by 16.5% and Diffusion Policy by 20.4% in absolute success rate
+- Fine-tunable on consumer GPUs via LoRA; quantizable without performance loss
+- Open X-Embodiment training enables cross-embodiment generalization
+- Established OpenVLA as the de facto open-source VLA baseline for the field
+
+**Relevance to World Models**: OpenVLA demonstrates that open-weight VLAs can match or exceed proprietary alternatives, paralleling the Llama moment for LLMs. As a policy model (not a world model), it consumes world model outputs for action generation. The architecture — VLM backbone with tokenized actions — became the template for subsequent VLAs (SmolVLA, GR00T N1). Code at [github.com/openvla/openvla](https://github.com/openvla/openvla).
+
+### OpenVLA-OFT: Optimized Fine-Tuning for VLAs [<img src="templates/icons/website.svg" alt="website" height="16">](https://openvla-oft.github.io/)
+
+**Authors/Presenters**: Moo Jin Kim, Karl Pertsch, [Chelsea Finn](ecosystem.md#stanford-svl--sail), [Sergey Levine](ecosystem.md#sergey-levine) et al.
+
+**Date**: 2025-03
+
+**Summary**: Optimized fine-tuning recipe for VLAs achieving 25-50x faster inference than OpenVLA while improving task success. Uses continuous action outputs (not discrete tokens) for higher model quality, supporting multi-image inputs and high-frequency bimanual control. Achieves 97.1% average success on LIBERO across 4 task suites.
+
+**Key Findings**:
+
+- 97.1% on LIBERO — outperforms π0, MDT, Seer, DiT Policy, Octo, and Diffusion Policy
+- 25-50x faster inference via continuous action representation (vs. discrete token decoding)
+- Supports multiple input images and bimanual robot control
+- FAST action tokenizer (Jan 2025) enables 15x inference speedup with discrete action compression
+
+**Relevance to World Models**: OFT demonstrates that the action representation choice (continuous vs. discrete) significantly impacts both speed and quality. The continuous approach contrasts with the tokenization strategy used in Cosmos 3's unified action representation. Positions OpenVLA as a competitive open alternative to proprietary VLAs for real-time robot control.
+
+### Helix: A Vision-Language-Action Model for Generalist Humanoid Control [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.figure.ai/helix)
+
+**Authors/Presenters**: [Figure AI](ecosystem.md#figure-ai)
+
+**Date**: 2025-02 (Helix), 2026-01 (Helix 02)
+
+**Summary**: VLA with a three-tier System 0/1/2 architecture for full-body humanoid control. System 2 (VLM, 7-9Hz) handles scene understanding and language comprehension; System 1 (visuomotor policy, 200Hz) translates perception to precise actions; System 0 (kHz-rate, added in Helix 02) provides learned balance and coordination from 1000+ hours of human motion data. First VLA to output continuous control of entire humanoid upper body including individual fingers.
+
+**Key Findings**:
+
+- First VLA with simultaneous upper-body control (wrists, torso, head, fingers) at 200Hz
+- First VLA demonstrated on two robots solving shared, long-horizon manipulation tasks with unseen objects
+- Helix 02 (Jan 2026): extends to full-body control — walking, manipulation, and balance as one continuous system
+- System 0 replaces hand-engineered controllers with learned balance prior from large-scale simulation + human motion capture
+- 4-minute autonomous task sequences (dishwasher unload/reload across full kitchen) with no resets
+
+**Relevance to World Models**: The three-tier architecture (System 0/1/2) extends the dual-system pattern seen in GR00T N1 and Gemini Robotics by adding a dedicated sub-neural motor layer (System 0) for balance — functionally similar to the cerebellum vs. cortex separation in biological systems. System 0 can be seen as an implicit dynamics model: it predicts the body's response to actions and corrects in real-time. Tightly coupled to Figure hardware, limiting platform generality.
+
+### SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2506.01844)
+
+**Authors/Presenters**: Mustafa Shukor, Dana Aubakirova, Francesco Capuano, Pepijn Kooijmans, Steven Palma, Adil Zouitine, Michel Aractingi, Caroline Pascal, Martino Russi, Andres Marafioti, Simon Alibert, Matthieu Cord, Thomas Wolf, Remi Cadene ([HuggingFace](ecosystem.md#huggingface))
+
+**Date**: 2025-06
+
+**Summary**: Compact 450M-parameter open-source VLA from HuggingFace built on SmolVLM-2 (SigLIP + SmolLM2) with a lightweight flow-matching action expert. Trained on a single GPU using <30K episodes of community-collected LeRobot data. Achieves performance competitive with models 10x larger through asynchronous inference decoupling perception from action execution.
+
+**Key Findings**:
+
+- 450M parameters — trainable on a single GPU, deployable on consumer GPUs or CPUs
+- Competitive with OpenVLA (7B), Octo, and π0 on LIBERO and Meta-World benchmarks despite 10x fewer params
+- Asynchronous inference stack enables real-time control even on resource-constrained hardware
+- Fully open: code, weights, and training data released via LeRobot (github.com/huggingface/lerobot)
+- Community-driven: trained exclusively on compatibly-licensed, community-shared datasets
+
+**Relevance to World Models**: SmolVLA represents the efficiency frontier for VLAs — analogous to Phi/SmolLM in the language model space. The flow-matching action expert mirrors π0's approach but at 15x smaller scale, suggesting that flow matching may be more parameter-efficient than autoregressive token prediction for action generation. The LeRobot ecosystem (datasets + models + serving) is emerging as the open alternative to proprietary VLA stacks.
+
+### pi0.5: Cross-Embodiment Generalization Without Per-Robot Fine-Tuning [<img src="templates/icons/website.svg" alt="website" height="16">](https://www.pi.website/blog)
+
+**Authors/Presenters**: [Physical Intelligence](ecosystem.md#physical-intelligence-pi)
+
+**Date**: 2026-04
+
+**Summary**: Claims the first robotics foundation model that generalizes across embodiments without per-robot fine-tuning. Also introduces MEM (Multi-Scale Embodied Memory) for long-horizon tasks exceeding 10 minutes, and RL Token for extracting online RL signals from VLA representations to improve precision with few hours of data.
+
+**Key Findings**:
+
+- Cross-embodiment generalization without per-robot fine-tuning — a step toward truly general robot policies
+- MEM (Multi-Scale Embodied Memory): long-term and short-term memory enabling complex tasks >10 minutes
+- RL Token: extracts reinforcement learning signals from VLA latent representations for fast online fine-tuning on precise manipulation
+- Builds on π0/π0-FAST architecture with flow matching action generation at 50Hz
+
+**Relevance to World Models**: MEM addresses a fundamental limitation of current VLAs — episodic memory. World models predict future states; MEM provides past-state retrieval, complementing forward prediction with backward context. The RL Token approach suggests that VLA representations already encode dynamics information useful for RL, blurring the line between policy models and implicit world models.
+
+### Gemini Robotics 1.5: Pushing the Frontier of Generalist Robot Policies [<img src="templates/icons/filetype-pdf.svg" alt="pdf" height="16">](https://storage.googleapis.com/deepmind-media/gemini-robotics/Gemini-Robotics-1-5-Tech-Report.pdf)
+
+**Authors/Presenters**: [Google DeepMind](ecosystem.md#google-deepmind)
+
+**Date**: 2025-03
+
+**Summary**: Technical report for Gemini Robotics 1.5, the VLA component of Google's robotics stack. Built on Gemini 2.0 with physical actions as a new output modality. More than doubles performance on comprehensive generalization benchmarks compared to other SOTA VLAs. On-Device variant achieves <10ms inference, learns from 50 demonstrations, and transfers across embodiments.
+
+**Key Findings**:
+
+- 2x improvement over SOTA VLAs on comprehensive generalization benchmark
+- Cross-embodiment: single model controls ALOHA 2, Franka arms, and Apptronik Apollo humanoid
+- Gemini Robotics On-Device: <10ms inference, 50-demo task learning, fully on-robot
+- Outperforms π0 re-implementation on deformable object manipulation and long-horizon tasks
+- Dexterous capabilities including origami folding and real-time conversational control
+
+**Relevance to World Models**: Gemini Robotics-ER (embodied reasoning) provides planning and spatial understanding without explicit state prediction — a reasoning model, not a world model. But the On-Device variant's <10ms latency makes it viable for closed-loop reactive control where world model prediction would be too slow. The tech report provides detailed ablations useful for benchmarking against GR00T N1 and π0 architectures.
+
+### The Rise of World-Action Models [<img src="templates/icons/website.svg" alt="website" height="16">](https://developer.nvidia.com/blog/pretrained-to-imagine-fine-tuned-to-act-the-rise-of-world-action-models/)
+
+**Authors/Presenters**: Moritz Reuss (NVIDIA)
+
+**Date**: 2026-06
+
+**Type**: Blog Post
+
+**Summary**: Landscape survey of World-Action Models (WAMs) as the emerging second recipe for robot foundation models alongside VLAs. Introduces a three-axis WAM taxonomy (paradigm x action integration x architecture), provides the first quantified compute cost comparison (ZFLOPs) across VLA and WAM training stacks, and predicts WAM+VLA hybrid convergence via Mixture-of-Transformers.
+
+**Key Findings**:
+
+- Three-axis WAM taxonomy: paradigm (inverse dynamics / joint prediction / representation-only), action integration (tokens / image / latent plans), architecture (hierarchical / monolithic / MoT)
+- Full WAM training stack costs ~7.4x more than VLA stack (51 vs 6.9 ZFLOPs) due to video backbone pretraining — the key infrastructure sizing input
+- Fast-WAM (arXiv:2603.16666) shows representation-only mode matches full video-generating WAMs on simulation benchmarks while cutting inference from 590-800ms to sub-200ms per action chunk — eliminates the 3-4x WAM inference penalty if validated on real robots
+- [DreamZero](ecosystem.md#nvidia) reaches 1750 Elo on [RoboArena](../projects.md#roboarena) trained only on DROID, without large-scale cross-embodiment pretraining
+- [Being-H0.7](ecosystem.md#beingbeyond) combines V-JEPA 2.1 + InternVL3.5 + Qwen3 with Play-LMP-style prior/posterior latent interface — best current example of VLA+WAM hybrid
+- MoT predicted to become the dominant WAM architecture (already default in Pi-0, Pi-0.5, LingBot-VA, Fast-WAM)
+- New ecosystem players: [Sereact](ecosystem.md#sereact) Cortex 2.0 (deployed industrial WAM), [Rhoda AI](ecosystem.md#rhoda-ai) DVA (inverse-dynamics WAM)
+
+**Relevance to World Models**: Primary value is the compute normalization table — enables apples-to-apples infrastructure sizing between VLA and WAM training pipelines. The 7.4x gap means WAM adoption depends on open video backbones (Wan, Cosmos) eliminating the pretraining cost. The Fast-WAM representation-only finding, if validated, would collapse WAM inference costs to VLA levels, removing the remaining deployment objection. The three-axis taxonomy provides a structured framework for tracking the WAM landscape.
 
 ---
 

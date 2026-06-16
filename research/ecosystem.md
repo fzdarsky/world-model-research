@@ -2,7 +2,7 @@
 
 > Players in Physical AI — their solutions, reference architectures, and platform relevance
 
-**Last Updated**: 2026-06-15
+**Last Updated**: 2026-06-16
 
 ---
 
@@ -165,8 +165,8 @@
 
 - **What it does**: VLA foundation model for robot control — translates visual observations and language instructions into robot actions with embodied reasoning capabilities.
 - **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
-- **Key features (functional)**: Gemini Robotics 1.5/On-Device (VLA), Gemini Robotics-ER 1.6 (embodied reasoning, spatial understanding, instrument reading), action chunking for high-frequency control
-- **Key features (non-functional)**: ~250ms latency, 50Hz via action chunking, on-device deployment option
+- **Key features (functional)**: Gemini Robotics 1.5/On-Device (VLA), Gemini Robotics-ER 1.6 (embodied reasoning, spatial understanding, instrument reading), action chunking for high-frequency control, cross-embodiment (ALOHA 2, Franka, Apptronik Apollo)
+- **Key features (non-functional)**: Cloud: ~250ms latency, 50Hz via action chunking; On-Device: <10ms inference, learns from 50 demos, cross-embodiment transfer
 - **Competes with**: GR00T N1, pi0/pi0.5, GEN-1 — on generalist robot control
 - **Complements**: Gemini Omni (reasoning backbone), Newton (physics simulation)
 - **Openness**: `Proprietary` (API access)
@@ -204,6 +204,60 @@
 - **Partnership surface**: Newton physics engine (potential open collaboration), Gemini Robotics-ER for industrial inspection
 - **Competitive surface**: Full-stack AI platform ambition overlaps broadly with any Physical AI platform
 - **What they need from a platform**: Hardware-agnostic deployment (beyond Google Cloud), integration with diverse robot ecosystems, industrial certification
+
+---
+
+### Alibaba (Tongyi Lab)
+
+**Type**: `Big Tech`
+**About**: Alibaba's AI research unit Tongyi Lab entered the Physical AI space with the Qwen-Robot suite (June 2026) — a composable set of embodied intelligence models covering world modeling, manipulation, navigation, and agentic orchestration. Builds on the Qwen foundation model family. Pilot testing with Alibaba Cloud enterprise clients.
+
+**Solutions**:
+
+#### Qwen-RobotWorld
+
+- **What it does**: Language-conditioned video world model predicting physically grounded future visual trajectories across manipulation, driving, navigation, and human-to-robot transfer. Uses natural language as the unified action interface.
+- **Building blocks covered**: [Video Generation / Prediction Models](building-blocks.md#video-generation--prediction-models), [Latent World Models](building-blocks.md#latent-world-models)
+- **Key features (functional)**: 60-layer double-stream MMDiT coupling frozen Qwen2.5-VL with video-VAE latents, 8.6M video-text corpus (200M+ frames, 20+ embodiments, 500+ action categories), progressive curriculum training
+- **Key features (non-functional)**: 1st on EWMBench and DreamGen Bench, outperforms all open-source models on WorldModelBench and PBench
+- **Competes with**: Cosmos (NVIDIA), Genie 3 (Google DeepMind), DreamZero — on video world models for robotics
+- **Complements**: Qwen-RobotManip (VLA), Qwen-RobotNav (VLN), Qwen-RobotClaw (agent framework)
+- **Openness**: (to be confirmed — technical report published, weights TBD)
+- **Source**: [arXiv:2606.17030](https://arxiv.org/abs/2606.17030)
+
+#### Qwen-RobotManip
+
+- **What it does**: Generalist VLA model for robotic manipulation built on Qwen3.5-4B, with 80-dimensional unified action representation and relative perception for cross-hardware adaptation.
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
+- **Key features (functional)**: 80-dim unified action representation, relative perception for cross-hardware transfer, dexterous manipulation
+- **Key features (non-functional)**: Top 2 on RoboChallenge Table30 v1 benchmark (30 real-world tasks, 4 robot platforms)
+- **Competes with**: pi0/pi0.5, GR00T N1, OpenVLA — on generalist VLA manipulation
+- **Openness**: (to be confirmed)
+
+#### Qwen-RobotNav
+
+- **What it does**: Vision-language navigation model unifying instruction following, goal navigation, object tracking, and autonomous driving under controllable observation encoding and tool interfaces.
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
+- **Competes with**: Gemini Robotics (navigation), specialized VLN models
+- **Openness**: (to be confirmed)
+
+#### Qwen-RobotClaw
+
+- **What it does**: Robotic agent framework enabling Qwen VLM agents to invoke the Qwen-Robot Suite models as tools for physical world interaction, with context and memory management for long-horizon tasks.
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
+- **Key features (functional)**: Compositional model invocation via language, long-horizon task memory, tool-use interface connecting VLM reasoning to physical execution
+- **Competes with**: Isaac Lab agent pipelines, custom VLA orchestration frameworks
+- **Openness**: (to be confirmed)
+
+**Implied reference architecture**: VLM-as-orchestrator pattern — general-purpose Qwen VLM reasons and plans, then invokes specialized robot models (world model, manipulation, navigation) as tools via RobotClaw. Distinct from monolithic VLA/WAM approaches. Deployed on Alibaba Cloud.
+
+**Platform relevance**:
+
+- **Partnership surface**: Full model suite needs deployment infrastructure, edge serving, cross-cloud portability
+- **Competitive surface**: Alibaba Cloud as deployment platform competes with other cloud-based Physical AI offerings
+- **What they need from a platform**: Hardware-agnostic deployment beyond Alibaba Cloud, integration with global robot ecosystems, industrial certification for Chinese-origin models
+
+**Links**: [Qwen-Robot Blog](https://qwen.ai/blog?id=qwen-robotworld), [arXiv:2606.17030](https://arxiv.org/abs/2606.17030)
 
 ---
 
@@ -325,8 +379,8 @@
 ### Physical Intelligence (pi)
 
 **Type**: `Startup`
-**Stage/Scale**: $400M+ raised
-**About**: Robotics foundation model company building vision-language-action (VLA) models for general-purpose robot manipulation. Co-founded by [Sergey Levine](#sergey-levine) and [Chelsea Finn](#chelsea-finn). pi0/pi0.5 are policy models (not dynamics predictors) that represent a key consumer of world model outputs.
+**Stage/Scale**: $400M+ raised. Investors: Bezos Expeditions, Khosla Ventures, OpenAI Fund
+**About**: Robotics foundation model company building vision-language-action (VLA) models for general-purpose robot manipulation. Co-founded by [Sergey Levine](#sergey-levine) and [Chelsea Finn](#chelsea-finn). pi0/pi0.5 are policy models (not dynamics predictors) that represent a key consumer of world model outputs. pi0.5 (Apr 2026) claims first cross-embodiment generalization without per-robot fine-tuning.
 
 **Solutions**:
 
@@ -334,8 +388,8 @@
 
 - **What it does**: VLA foundation models that translate visual observations and language instructions into dexterous robot actions. pi0.5 enables open-world generalization.
 - **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
-- **Key features (functional)**: Cross-embodiment transfer, bimanual manipulation, open-world generalization (pi0.5), multi-task learning
-- **Key features (non-functional)**: (to be populated)
+- **Key features (functional)**: Cross-embodiment transfer, bimanual manipulation, open-world generalization (pi0.5), multi-task learning, MEM (multi-scale embodied memory for 10+ min tasks), RL Token for online RL fine-tuning
+- **Key features (non-functional)**: 50Hz action generation via flow matching, trained on 10K+ hours robot data across 7 platforms
 - **Competes with**: GR00T N1, Gemini Robotics, GEN-1 — on generalist robot policy
 - **Complements**: World models (upstream perception), simulation platforms (training)
 - **Openness**: `OSS-single-vendor` (via OpenPI)
@@ -407,16 +461,32 @@
 ### Figure AI
 
 **Type**: `Startup`
-**Stage/Scale**: (to be researched)
-**About**: Humanoid robotics company building general-purpose humanoid robots (Figure 01, Figure 02) for manufacturing and logistics. Uses visuomotor transformers combining conversational AI with bimanual manipulation. Adopter of NVIDIA Cosmos and GR00T N1.
+**Stage/Scale**: $2.6B+ raised across three rounds. Valuation $39B (Sep 2025). Investors: Brookfield, Intel, NVIDIA, Qualcomm, Salesforce, T-Mobile, Microsoft, OpenAI
+**About**: Humanoid robotics company building general-purpose humanoid robots (Figure 02, Figure 03) with in-house VLA models (Helix). Developing dedicated manufacturing facility (BotQ) targeting 100K robots over four years. Figure 03 ($20K, Oct 2025) designed for home and enterprise deployment.
 
-**Focus Areas**: Humanoid robotics, visuomotor transformers, bimanual manipulation, manufacturing automation
+**Solutions**:
 
-**Key Work**: Figure 01/02 humanoid robots, conversational AI + manipulation integration
+#### Helix / Helix 02
 
-**Collaborations**: [NVIDIA](#nvidia) (Cosmos, GR00T N1 adopter), OpenAI (conversational AI integration)
+- **What it does**: VLA foundation model with a three-tier "System 0/1/2" architecture for full-body humanoid control. System 2 (VLM, 7-9Hz) handles scene understanding and language; System 1 (visuomotor policy, 200Hz) translates perception to actions; System 0 (kilohertz-rate) provides learned balance and coordination.
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
+- **Key features (functional)**: Full-body humanoid control (walking + manipulation as one system), dual-robot coordination on shared tasks, dexterous manipulation (pill extraction, syringe dispensing), 1000+ hours human motion data for System 0
+- **Key features (non-functional)**: System 1 at 200Hz, System 0 at kHz rates, 4-minute autonomous task sequences (dishwasher unload/reload) with no resets
+- **Competes with**: pi0/pi0.5, GR00T N1, Gemini Robotics — on dexterous humanoid control
+- **Complements**: Figure 03 hardware (embedded tactile sensing, palm cameras), NVIDIA Cosmos (training data)
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: Tightly coupled to Figure hardware (tactile sensing, palm cameras)
+- **Source**: [Helix](https://www.figure.ai/helix), [Helix 02](https://www.figure.ai/news/helix-02)
 
-**Links**: [Website](https://www.figure.ai/)
+**Platform relevance**:
+
+- **Partnership surface**: Potential consumer of simulation and synthetic data pipelines; Figure 03 as hardware target for third-party policies
+- **Competitive surface**: Vertically integrated (model + hardware + manufacturing) — limited platform play
+- **What they need from a platform**: Sim-to-real pipelines, synthetic data at scale, edge deployment infrastructure
+
+**Collaborations**: [NVIDIA](#nvidia) (Cosmos, GR00T N1 adopter)
+
+**Links**: [Website](https://www.figure.ai/), [Helix](https://www.figure.ai/helix), [Helix 02](https://www.figure.ai/news/helix-02)
 
 ---
 
@@ -534,6 +604,141 @@
 
 ---
 
+### Skild AI
+
+**Type**: `Startup`
+**Stage/Scale**: Series B — $1.7B+ raised ($14.5M seed 2023, $300M Series A July 2024, $1.4B Series B Jan 2026). Valuation >$14B. Investors: SoftBank (lead), NVIDIA NVentures, Macquarie Capital, Bezos Expeditions, Lightspeed, Coatue
+**About**: Building the first omni-bodied robotics foundation model (Skild Brain) — a single model that controls any robot form factor without prior knowledge of embodiment. Founded 2023 as CMU spinout. Offices in Pittsburgh, San Francisco, and Bengaluru. Revenue ~$30M in first months of commercial deployment (2025).
+
+**Solutions**:
+
+#### Skild Brain
+
+- **What it does**: Omni-bodied robot foundation model pre-trained on large-scale simulation and internet video, post-trained with targeted real-world data. Controls quadrupeds, humanoids, tabletop arms, and mobile manipulators without embodiment-specific retraining.
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
+- **Key features (functional)**: Cross-embodiment generalization (zero/few-shot to new robot forms), spatial reasoning, real-time adaptation, internet-video affordance extraction (treats humans as "biological robots")
+- **Key features (non-functional)**: Handles 1.5x body-weight payloads, 10x reduction in total cost of ownership ($4K-$15K vs $250K+ conventional)
+- **Competes with**: pi0/pi0.5, GR00T N1, Gemini Robotics — on generalist cross-embodiment robot control
+- **Complements**: NVIDIA Isaac Lab (simulation), Cosmos (data augmentation), Omniverse (rendering)
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: Proprietary model, NVIDIA infrastructure dependency
+- **Source**: [Skild Brain Blog](https://www.skild.ai/blogs/building-the-general-purpose-robotic-brain)
+
+**Implied reference architecture**: Software-only play — Skild Brain as a universal policy layer deployed on third-party robot hardware. Pre-training loop: simulation (Isaac Lab) + internet video → omni-bodied foundation model → post-training with customer-specific real-world data → deployment on customer robots.
+
+**Platform relevance**:
+
+- **Partnership surface**: Robot policy layer that needs deployment infrastructure, model serving, and sim-to-real pipelines
+- **Competitive surface**: Minimal — focuses on brain, not platform or hardware
+- **What they need from a platform**: Model hosting, edge deployment on diverse robot compute (not just Jetson), data pipelines for post-training
+
+**Links**: [Website](https://www.skild.ai/), [NVIDIA Case Study](https://www.nvidia.com/en-us/case-studies/skild-ai/)
+
+---
+
+### Covariant
+
+**Type**: `Startup`
+**Stage/Scale**: (to be researched — multiple rounds raised). Co-founded by [Pieter Abbeel](#pieter-abbeel)
+**About**: Robotics AI company building foundation models for industrial manipulation. RFM-1 is deployed on 100+ warehouse robot arms generating subscription revenue. Differentiator: years of real-world pick trajectory data from commercial deployments, enabling a data flywheel that internet-pretrained models lack.
+
+**Solutions**:
+
+#### RFM-1
+
+- **What it does**: 8B-parameter multimodal any-to-any robotics foundation model. Tokenizes text, images, video, robot actions, and physical measurements into a common space for next-token prediction. Enables language-guided programming, physics world model prediction, and in-context learning.
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models), [Latent World Models](building-blocks.md#latent-world-models)
+- **Key features (functional)**: Physics world model (predicts action outcomes via generated video), language-guided task specification, in-context learning (adapts grasping strategy on-the-fly from recent failures), any-to-any modality mapping
+- **Key features (non-functional)**: Deployed on 100+ warehouse arms, subscription revenue model
+- **Competes with**: pi0/pi0.5, GR00T N1, Gemini Robotics — on industrial manipulation (warehouse picking)
+- **Complements**: Third-party robot arms (hardware-agnostic), warehouse management systems
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: Proprietary model, subscription model, proprietary pick data
+- **Source**: [RFM-1](https://covariant.ai/rfm/)
+
+**Platform relevance**:
+
+- **Partnership surface**: Industrial manipulation policy that upgrades existing robot arms — software subscription on commodity hardware
+- **Competitive surface**: Owns the warehouse picking niche; data moat from years of deployed trajectories
+- **What they need from a platform**: Integration with warehouse robotics middleware, edge serving for low-latency pick loops
+
+**Links**: [Website](https://covariant.ai/), [RFM-1](https://covariant.ai/rfm/), [IEEE Spectrum](https://spectrum.ieee.org/covariant-foundation-model)
+
+---
+
+### BeingBeyond
+
+**Type**: `Startup`
+**Stage/Scale**: (to be researched)
+**About**: Building a series of robot foundation models that combine VLA and WAM approaches. The Being-H family progresses from VLA-only (H0.5) to VLA+WAM hybrid (H0.7), demonstrating a clear path from language-grounded control to world-model-augmented planning.
+
+**Solutions**:
+
+#### Being-H0.5 / Being-H0.7
+
+- **What it does**: Being-H0.5 is a VLM-based VLA for cross-embodiment generalization. Being-H0.7 adds a latent world-action model using V-JEPA 2.1 encodings with a Play-LMP-style prior/posterior latent interface, trained on 200K hours of egocentric human video + 15K hours of robot demonstrations.
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models), [Latent World Models](building-blocks.md#latent-world-models)
+- **Key features (functional)**: V-JEPA 2.1 visual encoder with Perceiver resampler, InternVL3.5 understanding expert, Qwen3 action expert with flow-matching policy, MoT transformer backbone
+- **Key features (non-functional)**: Fast inference via posterior branch removal at test time (latent interface without full video regeneration)
+- **Competes with**: pi0/pi0.5/pi0.7, GR00T N1, LingBot-VA — on VLA+WAM hybrid robot foundation models
+- **Complements**: V-JEPA 2.1 (visual backbone), Cosmos (data augmentation)
+- **Openness**: `Proprietary`
+- **Source**: [Being-H0.5](https://arxiv.org/abs/2601.12993), [Being-H0.7](https://arxiv.org/abs/2605.00078)
+
+**Platform relevance**:
+
+- **Partnership surface**: Hybrid VLA+WAM architecture needs model serving, edge deployment, V-JEPA integration
+- **Competitive surface**: Minimal — focuses on model, not platform
+- **What they need from a platform**: Model hosting, V-JEPA 2.1 serving, edge inference for latent planning
+
+---
+
+### Rhoda AI
+
+**Type**: `Startup`
+**Stage/Scale**: (to be researched)
+**About**: Building Direct Video Action (DVA) models — inverse-dynamics WAMs that leverage causal video models as data-efficient robot policy learners. DVA leans on generated or predicted future rollouts to derive actions.
+
+**Solutions**:
+
+#### DVA (Direct Video Action)
+
+- **What it does**: Inverse-dynamics WAM that generates future video rollouts then infers actions from predicted transitions. Positions causal video models as a data-efficient path to robot policies.
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models), [Video Generation / Prediction Models](building-blocks.md#video-generation--prediction-models)
+- **Key features (functional)**: Causal video model backbone, inverse-dynamics action inference, data-efficient robot policy learning
+- **Competes with**: DreamZero (joint prediction WAM), pi0/pi0.5 (VLA), LingBot-VA
+- **Openness**: (to be researched)
+- **Source**: [Research blog](https://rhoda.ai/research/direct-video-action)
+
+---
+
+### Sereact
+
+**Type**: `Startup`
+**Stage/Scale**: (to be researched) — deployed in industrial manipulation
+**About**: Industrial robotics company that has added WAM-style foresight as a planning layer inside deployed manipulation systems. Cortex 2.0 represents an industry signal for WAM adoption in production, not just research.
+
+**Solutions**:
+
+#### Cortex 2.0
+
+- **What it does**: WAM-style planning system that generates candidate future trajectories in visual latent space, scores them for expected progress, risk, and efficiency, and conditions execution on the best-scored rollout. Described in "Grounding World Models in Real-World Industrial Deployment" (arXiv:2604.20246).
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models), [Latent World Models](building-blocks.md#latent-world-models)
+- **Key features (functional)**: Visual latent space trajectory generation, multi-criteria scoring (progress, risk, efficiency), best-rollout conditioned execution
+- **Key features (non-functional)**: Deployed in real industrial manipulation environments
+- **Competes with**: pi0/pi0.5, GR00T N1 — on deployed robotic manipulation
+- **Complements**: Simulation engines (for trajectory pre-training)
+- **Openness**: `Proprietary`
+- **Source**: [Project page](https://cortex2.sereact.ai), [Paper](https://arxiv.org/abs/2604.20246)
+
+**Platform relevance**:
+
+- **Partnership surface**: Industrial WAM deployment needs edge inference, model serving, safety certification
+- **Competitive surface**: Minimal — niche industrial manipulation focus
+- **What they need from a platform**: Edge deployment for real-time trajectory scoring, safety-certified runtimes
+
+---
+
 ### Logical Intelligence
 
 **Type**: `Startup`
@@ -647,6 +852,365 @@
 - **Source**: [Website](https://openai.com)
 
 **Links**: [Website](https://openai.com), [Research](https://openai.com/research)
+
+---
+
+### Intrinsic (Google)
+
+**Type**: `Big Tech`
+**Stage/Scale**: Alphabet X graduate (2021); folded into Google Feb 2026. Foxconn JV (Oct 2025)
+**About**: Robotics software platform building the "Android for industrial robots." Flowstate dev environment + Intrinsic Vision Model (IVM) + Model M behavioral AI. Only ~10% of factories are fully automated; Intrinsic targets the other 90% by making robot programming accessible to non-experts. Now operates under Google alongside DeepMind, leveraging Gemini models and Google Cloud.
+
+**Solutions**:
+
+#### Flowstate
+
+- **What it does**: Hardware-agnostic, drag-and-drop developer environment for building and deploying AI-powered robot applications — from design through deployment, including sim-to-real.
+- **Building blocks covered**: [Robot Middleware](building-blocks.md#robot-middleware), [Sim-to-Real Transfer Pipeline](building-blocks.md#sim-to-real-transfer-pipeline)
+- **Key features (functional)**: Visual workflow builder, modular AI capabilities (perception, motion planning, sensor-based control), hardware-agnostic (any robot/camera/sensor manufacturer)
+- **Key features (non-functional)**: Web-based, sim-to-real with "a few clicks"
+- **Competes with**: ROS2/MoveIt (on ease of use), NVIDIA Isaac (on platform completeness) — differentiates on accessibility for non-roboticists
+- **Complements**: NVIDIA Isaac Sim/Omniverse (rendering/physics via GTC 2025 partnership), Google Gemini (reasoning), Google Cloud (infrastructure)
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: Google Cloud dependency (post-integration), Flowstate workflow format, Intrinsic API
+- **Source**: [Flowstate](https://www.intrinsic.ai/flowstate)
+
+#### Intrinsic Vision Model (IVM)
+
+- **What it does**: Industrial perception foundation model — AI-powered pose estimation achieving sub-millimeter precision with standard RGB cameras and zero application-specific training.
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
+- **Key features (functional)**: Sub-mm pose estimation, zero-shot (no per-application training), standard RGB camera input
+- **Key features (non-functional)**: 1st place in 7/11 ICCV 2025 benchmarks
+- **Competes with**: Custom perception pipelines, Isaac Perceptor — on industrial pose estimation
+- **Complements**: Flowstate (integrated perception capability)
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: Intrinsic platform dependency
+- **Source**: [Intrinsic AI](https://www.intrinsic.ai/capabilities)
+
+**Implied reference architecture**: Flowstate as the developer layer, IVM for perception, Model M for behavior, running on Google Cloud with Gemini for reasoning. NVIDIA Omniverse/Isaac Sim for digital twins and simulation. Foxconn JV as the manufacturing integration partner for electronics assembly.
+
+**Platform relevance**:
+
+- **Partnership surface**: Potential integration partner — Flowstate could consume platform services (model serving, data pipelines, fleet management)
+- **Competitive surface**: Direct competitor for "robot platform" positioning; Google backing makes this a serious threat
+- **What they need from a platform**: Vendor-neutral deployment (beyond Google Cloud), safety certification, multi-vendor fleet orchestration
+
+**Links**: [Website](https://www.intrinsic.ai/), [TechCrunch (Google integration)](https://techcrunch.com/2026/02/25/alphabet-owned-robotics-software-company-intrinsic-joins-google/), [Foxconn JV](https://siliconangle.com/2025/11/20/alphabets-intrinsic-foxconn-plan-accelerate-factory-automation-smarter-robots/)
+
+---
+
+### Liquid AI
+
+**Type**: `Startup`
+**Stage/Scale**: $250M raised (Dec 2024). MIT CSAIL spinout. Cambridge, MA
+**About**: Building edge-optimized Liquid Foundation Models (LFMs) using a novel "liquid neural network" architecture rooted in dynamical systems theory. Models from 350M–24B params run on GPUs, CPUs, or NPUs across phones, cars, wearables, and robots. Differentiates from cloud-centric AI companies by targeting on-device inference with frontier-grade performance at a fraction of the compute. Liquid Nanos (350M–2.6B) claim GPT-4o-class performance on specialized agentic tasks while running under 1GB.
+
+**Solutions**:
+
+#### Liquid Foundation Models (LFMs)
+
+- **What it does**: General-purpose AI models purpose-built for edge deployment — text, vision-language, audio, and embedding models using proprietary device-aware architecture search.
+- **Building blocks covered**: [Edge AI Inference Runtime](building-blocks.md#edge-ai-inference-runtime), [Robot Foundation Models](building-blocks.md#robot-foundation-models)
+- **Key features (functional)**: Multi-modal (text, vision-language, audio, embedding), Liquid Nanos (350M–2.6B for on-device), MoE architectures, LEAP fine-tuning/deployment platform
+- **Key features (non-functional)**: Sub-1GB models, sub-20ms latency (Shopify deployment), runs on GPU/CPU/NPU across wearables to robots
+- **Competes with**: Qualcomm AI Engine, MediaTek NeuroPilot, NVIDIA Jetson stack — on edge AI inference; also competes with Mistral/Llama on small efficient models
+- **Complements**: AMD (hardware partnership), robot platforms (on-board inference)
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: Proprietary architecture, LEAP deployment platform, model format
+- **Source**: [Website](https://www.liquid.ai/), [Models](https://www.liquid.ai/models)
+
+**Platform relevance**:
+
+- **Partnership surface**: LFMs as on-device inference layer for robot perception/control; LEAP as deployment target for platform-managed models
+- **Competitive surface**: Edge inference runtime overlaps with platform edge deployment
+- **What they need from a platform**: Model lifecycle management, fleet-wide model updates, integration with robot middleware
+
+**Collaborations**: Mercedes-Benz (in-car intelligence), Shopify (sub-20ms models), AMD (hardware), Insilico Medicine (drug discovery), Robotec.ai (robotics demo)
+
+**Links**: [Website](https://www.liquid.ai/), [Funding announcement](https://www.liquid.ai/blog/we-raised-250m-to-scale-capable-and-efficient-general-purpose-ai), [McKinsey analysis](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-case-for-liquid-foundation-models)
+
+---
+
+### Staer AI
+
+**Type**: `Startup`
+**Stage/Scale**: Pre-seed — €3.5M raised (Oct 2025, Pale Blue Dot, LDV Capital). Preparing €4.3M follow-on. Malmö, Sweden (fully remote)
+**About**: Building spatial intelligence software for autonomous mobile robot fleets in warehouse and logistics environments. Founded by Jan Erik Solem (previous exits to Apple in 2010 and Meta in 2020) with team from Apple, Mapillary, and Meta with 15+ years computer vision experience. Sensor- and robot-agnostic platform solving multi-vendor fleet coordination.
+
+**Solutions**:
+
+#### Staer Platform
+
+- **What it does**: Spatial intelligence + fleet orchestration for autonomous mobile robots — semantic 3D mapping, real-time activity monitoring, and multi-robot coordination from existing sensors.
+- **Building blocks covered**: [Robot Middleware](building-blocks.md#robot-middleware), [Digital Twin Runtime](building-blocks.md#digital-twin-runtime)
+- **Key features (functional)**: Semantic 3D facility maps, continuous cycle counts, multi-vendor robot coordination, sensor-agnostic (works with any robot's existing sensors), real-time congestion/bottleneck detection
+- **Key features (non-functional)**: Cloud-based map service, continuous updates as robots traverse facility
+- **Competes with**: 6 River Systems, Locus Robotics, Fetch Robotics — on warehouse fleet orchestration; differentiates on vendor-agnostic spatial intelligence layer
+- **Complements**: Any mobile robot hardware (sensor-agnostic), warehouse management systems
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: Cloud service dependency, proprietary spatial intelligence models
+- **Source**: [Website](https://staer.ai/), [Platform](https://staer.ai/platform/)
+
+**Platform relevance**:
+
+- **Partnership surface**: Spatial intelligence as a building block for robot fleet management; vendor-agnostic approach aligns with platform philosophy
+- **Competitive surface**: Fleet orchestration overlaps with platform fleet management capabilities
+- **What they need from a platform**: Edge deployment for on-premise spatial processing, integration with broader robot middleware, scale beyond warehouses
+
+**Links**: [Website](https://staer.ai/), [Funding](https://startupmafia.eu/malmo-based-robotics-startup-staer-raised-e3-5m-pre-seed-for-ai-driven-autonomous-robot-fleets), [Pale Blue Dot thesis](https://palebluedotvc.substack.com/p/why-spatial-intelligence-will-power)
+
+---
+
+### LiveKit
+
+**Type**: `Startup`
+**Stage/Scale**: $183M total raised. $1B valuation (Series C, Jan 2026, Index Ventures). San Francisco
+**About**: Open-source (Apache 2.0) real-time media framework for voice, video, and physical AI agents. Built on WebRTC. 200K+ developers. Powers ChatGPT Advanced Voice Mode (OpenAI), used by xAI, Meta, Spotify. Positioned as the real-time communication infrastructure layer for AI agents — including robots that need cloud-based reasoning with low-latency media streaming.
+
+**Solutions**:
+
+#### LiveKit Agents Framework
+
+- **What it does**: Open-source Python framework for building real-time voice/video AI agents with STT-LLM-TTS pipeline, turn detection, interruption handling, multi-agent handoff, and native MCP tool support.
+- **Building blocks covered**: [Model Serving for Physical AI](building-blocks.md#model-serving-for-physical-ai), [Robot Middleware](building-blocks.md#robot-middleware)
+- **Key features (functional)**: Voice/video/text multimodal agents, native MCP support, multi-agent handoff, tool use with any LLM, adaptive interruption handling
+- **Key features (non-functional)**: 11K GitHub stars (agents), 19.3K stars (server), Apache 2.0, Python 1.5.x, sub-second latency
+- **Competes with**: Daily.co, Twilio — on real-time media; Rasa, Voiceflow — on voice agents
+- **Complements**: Any LLM (OpenAI, Anthropic, etc.), robot platforms (cloud brain connectivity), MCP servers
+- **Openness**: `OSS-single-vendor`
+- **Lock-in vectors**: LiveKit Cloud for managed deployment, proprietary cloud features beyond OSS
+- **Source**: [Website](https://livekit.com/), [GitHub (agents)](https://github.com/livekit/agents), [GitHub (server)](https://github.com/livekit/livekit)
+
+**Platform relevance**:
+
+- **Partnership surface**: Real-time media layer for robot teleoperation, cloud-brain architectures, and voice-controlled robotics
+- **Competitive surface**: Minimal — infrastructure layer, not a robot platform
+- **What they need from a platform**: Integration with robot middleware (ROS2), edge-to-cloud media routing, fleet-scale agent orchestration
+
+**Links**: [Website](https://livekit.com/), [Docs](https://docs.livekit.io/agents/), [Series C](https://siliconangle.com/2026/01/22/livekit-raises-100m-1b-valuation-scale-real-time-ai-media-platform/)
+
+---
+
+### Field AI
+
+**Type**: `Startup`
+**Stage/Scale**: $405M raised across two rounds ($314M co-led by Bezos Expeditions, Prysm Capital, Temasek). $2B valuation. Irvine, CA
+**About**: Building "physics-first" Field Foundation Models (FFMs) — embodiment-agnostic autonomy software enabling robots to navigate dynamic unstructured environments without maps, GPS, or predefined trajectories. Founded by Ali Agha (ex-NASA JPL robotics technologist). Team from DeepMind, Google Brain, Tesla Autopilot, JPL, SpaceX, Zoox, Cruise. Proven across quadrupeds, humanoids, wheeled robots, and passenger-scale vehicles.
+
+**Solutions**:
+
+#### Field Foundation Models (FFMs)
+
+- **What it does**: Physics-first foundation models for embodied intelligence in unstructured environments — designed from the ground up for uncertainty, risk, and physical constraints rather than retrofitted from vision/language models.
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models), [Sim-to-Real Transfer Pipeline](building-blocks.md#sim-to-real-transfer-pipeline)
+- **Key features (functional)**: Hardware-agnostic (quadrupeds, humanoids, wheeled, vehicles), GPS/map-free navigation, dynamic environment adaptation without reprogramming, NVIDIA Cosmos world model integration for training
+- **Key features (non-functional)**: Operates in unstructured/dynamic conditions, safety-aware decision-making
+- **Competes with**: Skild Brain, Boston Dynamics (navigation), Waymo (AV segment) — on autonomous navigation in unstructured environments
+- **Complements**: NVIDIA Cosmos (training data), Isaac Sim (simulation), any robot hardware (embodiment-agnostic)
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: Proprietary FFMs, NVIDIA infrastructure for training
+- **Source**: [Website](https://www.fieldai.com/), [Funding](https://www.fieldai.com/news/fieldai-announces-over-400m-in-funds-raised-to-advance-embodied-ai-at-scale)
+
+**Platform relevance**:
+
+- **Partnership surface**: FFMs as autonomy layer for platform-managed robots; needs deployment infrastructure, fleet management
+- **Competitive surface**: Minimal — focused on autonomy software, not platform
+- **What they need from a platform**: Model hosting, edge deployment across diverse hardware, data pipelines, safety certification
+
+**Links**: [Website](https://www.fieldai.com/), [The Robot Report](https://www.therobotreport.com/fieldai-raises-405m-scales-physics-first-foundation-models-robots/)
+
+---
+
+### Agility Robotics
+
+**Type**: `Startup`
+**Stage/Scale**: ~$683M total raised. $2.1B valuation (Series C, $400M, March 2025, WP Global Partners, SoftBank, Amazon). Oregon State University spinout (2015). Salem, OR
+**About**: Only humanoid robot company with meaningful commercial deployments. Digit robot (5'9", 35 lb lift capacity) operating in Amazon, GXO, Schaeffler, Spanx, and Mercado Libre facilities — 100K+ totes moved. RoboFab manufacturing facility (70K sq ft) in Salem, OR. Robot-as-a-Service at $30/hr. Multi-year commercial agreement with GXO (industry first). Powered by NVIDIA Jetson AGX Thor.
+
+**Solutions**:
+
+#### Digit
+
+- **What it does**: Bipedal humanoid robot purpose-built for logistics — tote handling, conveyor loading, warehouse traversal including ramps, curbs, and dock plates that stop wheeled robots.
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models), [Edge AI Inference Runtime](building-blocks.md#edge-ai-inference-runtime)
+- **Key features (functional)**: Bipedal locomotion, 35 lb payload, 360° vision (cameras + lidar + IMU), human-scale environment navigation, tote handling
+- **Key features (non-functional)**: $30/hr RaaS model, 100+ units deployed, RBR50 Robot of the Year (2023, 2024)
+- **Competes with**: Figure AI, Apptronik Apollo, Tesla Optimus, 1X — on humanoid logistics
+- **Complements**: NVIDIA Jetson AGX Thor (compute), Agility Arc (fleet orchestration platform)
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: Vertically integrated (hardware + software + manufacturing + fleet management)
+- **Source**: [Website](https://www.agilityrobotics.com/), [Digit](https://www.agilityrobotics.com/digit)
+
+**Platform relevance**:
+
+- **Partnership surface**: Potential consumer of sim-to-real and training infrastructure; Agility Arc fleet platform could integrate with broader fleet management
+- **Competitive surface**: Vertically integrated — limited platform interop by design
+- **What they need from a platform**: Sim-to-real training infrastructure at scale, safety certification frameworks, multi-site fleet management
+
+**Collaborations**: Amazon (investor + pilot customer), GXO (multi-year commercial deployment), NVIDIA (Jetson AGX Thor), Schaeffler, Mercado Libre
+
+**Links**: [Website](https://www.agilityrobotics.com/), [GXO agreement](https://www.agilityrobotics.com/content/gxo-signs-industry-first-multi-year-agreement-with-agility-robotics), [Contrary Research profile](https://research.contrary.com/company/agility-robotics)
+
+---
+
+### Foxglove
+
+**Type**: `Startup`
+**Stage/Scale**: $58.7M total (Series B $40M, Nov 2025, led by Bessemer). 88 employees. San Francisco
+**About**: Multimodal data and observability platform for robotics — the "Datadog for robots." Co-founded by Adrian Macneil and Roman Shtylman (both ex-Cruise). MCAP open-source logging format adopted as standard in ROS 2 and NVIDIA Isaac. Customers include NVIDIA, Amazon, Anduril, Wayve, Dexterity.
+
+**Solutions**:
+
+#### Foxglove Platform
+
+- **What it does**: Full-stack observability for robotics — unified visualization and debugging of 3D, video, audio, GPS, and time-series sensor data. Combines data collection, analysis, and fleet-level insights.
+- **Building blocks covered**: [Data Annotation & Curation for Physical AI](building-blocks.md#data-annotation--curation-for-physical-ai), [Evaluation & Benchmarking Infrastructure](building-blocks.md#evaluation--benchmarking-infrastructure)
+- **Key features (functional)**: Multimodal data visualization (3D, video, audio, GPS, time-series), fleet-level observability, event/incident debugging, data pipeline for training
+- **Key features (non-functional)**: Dexterity reports 20% dev time savings and $150K annual savings in tooling
+- **Competes with**: Custom internal tools, Webviz (predecessor) — on robotics observability
+- **Complements**: ROS 2, NVIDIA Isaac, any robot middleware (via MCAP format)
+- **Openness**: `OSS-single-vendor` (MCAP format is open-source; platform is proprietary)
+- **Lock-in vectors**: Foxglove Cloud for fleet-level features, MCAP format adoption (though open)
+- **Source**: [Website](https://foxglove.dev/), [MCAP](https://mcap.dev/)
+
+#### MCAP
+
+- **What it does**: Open-source container file format for multimodal robotics data — stores heterogeneous sensor data (images, point clouds, poses, time-series) in a single file with efficient random access.
+- **Building blocks covered**: [Data Annotation & Curation for Physical AI](building-blocks.md#data-annotation--curation-for-physical-ai)
+- **Key features (functional)**: Multi-topic, multi-format, efficient seeking, append-only writing
+- **Key features (non-functional)**: Adopted by ROS 2 and NVIDIA Isaac as standard logging format
+- **Competes with**: ROS bags (legacy), custom formats — on robotics data serialization
+- **Openness**: `OSS-community` (MIT license)
+- **Lock-in vectors**: Minimal — open format
+- **Source**: [MCAP](https://mcap.dev/), [GitHub](https://github.com/foxglove/mcap)
+
+**Platform relevance**:
+
+- **Partnership surface**: Observability layer that any robot platform needs; MCAP as data format standard
+- **Competitive surface**: Data pipeline overlaps with platform data management
+- **What they need from a platform**: Integration with model training pipelines, fleet management, deployment infrastructure
+
+**Links**: [Website](https://foxglove.dev/), [Funding](https://www.therobotreport.com/foxglove-raises-40m-scale-data-platform-roboticists/), [Foxglove 2.0](https://foxglove.dev/blog/foxglove-2-0-unifying-robotics-observability)
+
+---
+
+### Eka Robotics
+
+**Type**: `Startup`
+**Stage/Scale**: $13M raised (E14 Fund). Founded 2025. Cambridge, MA
+**About**: Building Vision-Force-Action (VFA) foundation models — argues that language is a "helpful crutch" that misses the fundamental reality of force. Robots learn mass, friction, and inertia through sim-to-real RL rather than human imitation. Co-founded by MIT professor Pulkit Agrawal (Improbable AI Lab, IEEE Early Academic Career Award 2024) and ex-DeepMind researcher Tuomas Haarnoja (co-creator of SAC/Soft Actor-Critic). Team from MIT, Berkeley, Harvard, DeepMind, Boston Dynamics.
+
+**Solutions**:
+
+#### VFA Foundation Model
+
+- **What it does**: Vision-Force-Action model that learns dexterous manipulation through self-supervised learning in high-fidelity simulation, then transfers to real-world via proprietary sim-to-real algorithms. Emphasizes force/torque sensing over language conditioning.
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models), [Sim-to-Real Transfer Pipeline](building-blocks.md#sim-to-real-transfer-pipeline)
+- **Key features (functional)**: Force-based manipulation learning (not language-conditioned), self-supervised sim-to-real transfer, claims to bridge sim-to-real gap without human-in-the-loop
+- **Key features (non-functional)**: Targets "superhuman" performance rather than human imitation
+- **Competes with**: pi0/pi0.5 (VLA), GR00T N1 (VLA), GEN-1 (native embodied) — differentiates on force-first approach
+- **Complements**: High-fidelity simulation (training environment), force/torque sensors (hardware)
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: Proprietary sim-to-real algorithms, proprietary VFA model
+- **Source**: [Website](https://ekarobotics.com/)
+
+**Platform relevance**:
+
+- **Partnership surface**: VFA model needs simulation infrastructure, model serving, edge deployment
+- **Competitive surface**: Minimal — focused on model, not platform
+- **What they need from a platform**: High-fidelity simulation at scale, model lifecycle management, edge deployment for force control loops
+
+**Links**: [Website](https://ekarobotics.com/), [Humanoids Daily profile](https://www.humanoidsdaily.com/news/the-era-of-eka-new-startup-unveils-vision-force-action-model-to-crack-dexterity)
+
+---
+
+### ANYbotics
+
+**Type**: `Startup`
+**Stage/Scale**: $150M+ total raised (Series B €127M, Sep 2025). Investors: Bessemer, Aramco Ventures, NGP Capital, Qualcomm Ventures, Climate Investment. Zurich, Switzerland. ETH Zurich spinout
+**About**: Autonomous legged robots for industrial inspection in hazardous environments — oil/gas, power, mining, chemicals. 200+ ANYmal units shipped, conducting thousands of inspections weekly. ANYmal X (2026 launch) is world's first Ex-certified legged robot (approved for explosive atmospheres). Customers: bp, Equinor, ENI, Petrobras, SLB, Siemens Energy, GE Vernova, AWS, SAP.
+
+**Solutions**:
+
+#### ANYmal
+
+- **What it does**: Quadruped inspection robot with onboard AI for autonomous navigation, stair climbing, and anomaly detection in industrial facilities. Patrols refineries, chemical plants, power stations, and mines.
+- **Building blocks covered**: [Robot Foundation Models](building-blocks.md#robot-foundation-models), [Edge AI Inference Runtime](building-blocks.md#edge-ai-inference-runtime)
+- **Key features (functional)**: Autonomous patrol, stair climbing, anomaly detection, CO₂ monitoring (Northern Lights CCS facility), automatic analysis and reporting
+- **Key features (non-functional)**: 200+ units deployed, Ex-certified (ANYmal X), operates in hazardous/uncrewed facilities
+- **Competes with**: Boston Dynamics Spot, Ghost Robotics — on industrial quadruped inspection
+- **Complements**: NVIDIA (partner), SAP/AWS (enterprise integration), industrial IoT systems
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: Vertically integrated (hardware + software), proprietary fleet management
+- **Source**: [Website](https://www.anybotics.com/)
+
+**Platform relevance**:
+
+- **Partnership surface**: Industrial inspection needs fleet management, data analytics, integration with industrial IoT/digital twin platforms
+- **Competitive surface**: Minimal — niche vertical player
+- **What they need from a platform**: Fleet orchestration across sites, integration with industrial digital twins (Siemens Xcelerator, Omniverse), safety certification frameworks
+
+**Links**: [Website](https://www.anybotics.com/), [Climate Investment](https://theaiinsider.tech/2025/09/23/anybotics-total-funding-at-150-million-after-climate-investments-joins-to-scale-autonomous-inspection-in-hazardous-sites/)
+
+---
+
+### Zeromatter
+
+**Type**: `Startup`
+**Stage/Scale**: $45M raised (Seed). Investors: Bessemer, Spark Capital, Brighton Park Capital, Linse Capital, AE Ventures. Founded 2021. Mountain View, CA. 87 employees
+**About**: High-performance simulation platform — "one platform to build, test, and train anything." Founded by Ian Glow (ex-Tesla simulation team pioneer). Team from NVIDIA, Tesla, Cruise. Focuses on physics-based sensor simulation (cameras, LiDAR, radar, ultrasonics) producing virtual sensor data indistinguishable from reality. Serves autonomy, aerospace, automotive, agriculture, drones, and energy.
+
+**Solutions**:
+
+#### Zeromatter Simulation Platform
+
+- **What it does**: Unified simulation environment with photorealistic sensor simulation, automatic environment generation, and multi-agent co-simulation for autonomous systems development.
+- **Building blocks covered**: [Simulation Engines](building-blocks.md#simulation-engines), [Sim-to-Real Transfer Pipeline](building-blocks.md#sim-to-real-transfer-pipeline)
+- **Key features (functional)**: Physics-based sensor models (camera, LiDAR, radar, ultrasonics), photorealistic rendering, automatic environment generation, multi-agent co-simulation, flight dynamics simulation
+- **Key features (non-functional)**: Enterprise-grade, cross-domain (ground, air, sea)
+- **Competes with**: Isaac Sim, Gazebo, Genesis World, Applied Intuition — on high-fidelity simulation for autonomous systems
+- **Complements**: Any autonomy stack (sensor simulation input), ML training pipelines (synthetic data output)
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: Proprietary simulation engine, proprietary sensor models
+- **Source**: [Website](https://zeromatter.com/)
+
+**Platform relevance**:
+
+- **Partnership surface**: Simulation layer that platform could integrate for synthetic data generation and policy evaluation
+- **Competitive surface**: Simulation capabilities overlap with platform simulation offerings
+- **What they need from a platform**: Integration with training pipelines, model evaluation frameworks, cloud/on-prem deployment options
+
+**Links**: [Website](https://zeromatter.com/), [Linse Capital](https://www.linsecapital.com/portfolio/zeromatter)
+
+---
+
+### NODA AI
+
+**Type**: `Startup`
+**Stage/Scale**: $28.9M total ($25M Series A, Feb 2026, led by Bessemer). Strategic investment from Booz Allen Ventures (Apr 2026). Founded 2024. Austin, TX
+**About**: Building vendor-agnostic, cross-platform orchestration layer for mixed-fleet autonomous operations in defense. Founded by Global War on Terrorism veterans. Coordinates manned and unmanned systems across domains (air, ground, sea) without building the vehicles themselves. Integrated with 30+ autonomous platforms. Selected by DoW to lead multi-domain collaborative autonomy orchestration.
+
+**Solutions**:
+
+#### NODA Orchestration Platform
+
+- **What it does**: AI-powered reasoning engine for multi-domain autonomous systems orchestration — coordinates mixed fleets of manned and unmanned vehicles across air, ground, and maritime domains.
+- **Building blocks covered**: [Robot Middleware](building-blocks.md#robot-middleware)
+- **Key features (functional)**: Vendor-agnostic (30+ platform integrations), cross-domain orchestration (air/ground/sea), algorithmic warfare tactics, multi-agent coordination
+- **Key features (non-functional)**: DoW and UK MoD customers, interoperable with major defense contractor systems
+- **Competes with**: Anduril Lattice, Shield AI Hivemind — on autonomous systems orchestration
+- **Complements**: Defense hardware platforms (any vendor), command and control systems (Booz Allen)
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: Defense procurement cycles, classified integrations
+- **Source**: [Morningstar press release](https://www.morningstar.com/news/pr-newswire/20260226ny96396/noda-ai-raises-25-million-in-series-a-led-by-bessemer-venture-partners-to-accelerate-development-of-ai-powered-orchestration-platform-and-autonomous-plays-for-department-of-war-dow-and-intelligence-community)
+
+**Platform relevance**:
+
+- **Partnership surface**: Multi-domain orchestration patterns applicable to industrial multi-robot coordination
+- **Competitive surface**: Defense-specific — no direct overlap with industrial platform
+- **What they need from a platform**: Cross-vendor interoperability standards, real-time communication infrastructure, safety-certified runtimes
+
+**Links**: [Bessemer funding](https://ventureburn.com/noda-ai-raises-25m-series-a-to-advance-defense-ai-platform/), [Booz Allen investment](https://investors.boozallen.com/news-releases/news-release-details/booz-allen-expands-autonomy-ecosystem-noda-ai-investment)
 
 ---
 

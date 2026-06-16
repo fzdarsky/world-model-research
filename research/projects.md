@@ -511,7 +511,8 @@
 - Adopted by 1X, Agility, Figure AI, Boston Dynamics, Unitree, Sanctuary AI, Humanoid, LG Electronics, NEURA, Noble Machines
 - LeRobot integration: NVIDIA + HuggingFace collaboration integrating Isaac/GR00T into LeRobot framework
 - Big 4 industrial robotics (ABB, FANUC, YASKAWA, KUKA) integrating Omniverse + Isaac for virtual commissioning
-- NVIDIA Open Model License (commercial use permitted)
+- N1.7 (April 2026): Apache 2.0 licensed — fully commercially licensable
+- Prior versions: NVIDIA Open Model License (commercial use permitted)
 
 **Status**: Active
 
@@ -626,6 +627,72 @@
 **Competes with**: OpenPI, Isaac-GR00T, DreamZero
 
 **Complements**: Simulation engines, robotics hardware platforms
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+### OpenVLA: Open-Source Vision-Language-Action Model
+
+**URL**: [github.com/openvla/openvla](https://github.com/openvla/openvla)
+
+**Description**: Open-source 7B-parameter VLA from Stanford, trained on 970K real-world demonstrations from the Open X-Embodiment dataset. Combines Llama 2 backbone with fused DINOv2 + SigLIP visual encoders. Outperforms closed 55B RT-2-X by 16.5% with 7x fewer parameters. OFT update (March 2025) achieves 97.1% on LIBERO with 25-50x faster inference.
+
+**Tech Stack**: Python, PyTorch, Transformers (HuggingFace)
+
+**Key Features**:
+
+- 7B-param VLA outperforming RT-2-X (55B) by 16.5% across 29 tasks
+- OFT (Optimized Fine-Tuning, Mar 2025): continuous actions for 25-50x faster inference, 97.1% LIBERO
+- FAST action tokenizer (Jan 2025): 15x inference speedup via action chunk compression
+- Fine-tunable on consumer GPUs via LoRA; quantizable without quality loss
+- Open X-Embodiment training enables cross-embodiment generalization
+- De facto open VLA baseline — referenced by GR00T, π0, SmolVLA, Cosmos-RL
+
+**Status**: Active
+
+**Stats**: 3,200+ stars, 400+ forks (Stanford, UC Berkeley)
+
+**Last Updated**: 2025-03
+
+**Building block(s)**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
+
+**Maturity**: `Production-ready`
+
+**Competes with**: OpenPI, Isaac-GR00T — on open-source robot manipulation policy
+
+**Complements**: Cosmos-RL (training), LeRobot (serving), LIBERO/SimplerEnv (evaluation)
+
+**Openness assessment**: (to be assessed by oss-health skill)
+
+### SmolVLA: Compact Vision-Language-Action Model
+
+**URL**: [github.com/huggingface/lerobot](https://github.com/huggingface/lerobot) (integrated into LeRobot)
+
+**Description**: HuggingFace's 450M-parameter compact VLA built on SmolVLM-2 (SigLIP + SmolLM2) with flow-matching action expert. Trainable on a single GPU, deployable on consumer GPUs or CPUs. Competitive with models 10x larger on LIBERO and Meta-World benchmarks. Fully open-source with community-collected LeRobot training data.
+
+**Tech Stack**: Python, PyTorch, Transformers (HuggingFace), LeRobot
+
+**Key Features**:
+
+- 450M params — 15x smaller than OpenVLA, trainable on single GPU
+- Flow-matching action expert with asynchronous inference for real-time control
+- Competitive with OpenVLA (7B), Octo, π0 on LIBERO and Meta-World
+- Community-driven: trained exclusively on compatibly-licensed, community-shared datasets (<30K episodes)
+- Integrated into LeRobot framework with PolicyServer/RobotClient serving
+- Fully open: code, weights, and training data under permissive licenses
+
+**Status**: Active
+
+**Stats**: (part of LeRobot — 12K+ stars)
+
+**Last Updated**: 2025-06
+
+**Building block(s)**: [Robot Foundation Models](building-blocks.md#robot-foundation-models)
+
+**Maturity**: `Research`
+
+**Competes with**: OpenVLA, OpenPI — on accessible open-source VLA
+
+**Complements**: LeRobot (hosting framework), Isaac Lab-Arena (evaluation)
 
 **Openness assessment**: (to be assessed by oss-health skill)
 
