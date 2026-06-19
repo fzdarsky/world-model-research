@@ -683,6 +683,23 @@
 
 *Papers on world models, DreamerV3, latent models, etc.*
 
+### Introducing Agora-1: Multi-Agent World Models [<img src="templates/icons/website.svg" alt="website" height="16">](https://odyssey.ml/introducing-agora-1)
+
+**Authors/Presenters**: Oliver Cameron, Aravind Kaimal, James Grieve, Sirish Srinivasan, Vinh-Dieu Lam, Zygmunt Łenyk et al. ([Odyssey](ecosystem.md#odyssey))
+
+**Date**: 2026-05
+
+**Summary**: Introduces Agora-1, a multi-agent world model that decouples simulation from rendering — a world state model learns dynamics from internal game state while a DiT-based rendering model generates consistent visuals from multiple viewpoints conditioned on shared state. Demonstrated on GoldenEye with up to 4 players interacting in a shared world simultaneously. First world model to support multi-agent interaction in a shared simulation.
+
+**Key Findings**:
+
+- Decoupling simulation (state model) from rendering (DiT conditioned on state) enables multi-agent scaling without frame concatenation; architecturally distinct from Multiverse (split-screen), Solaris (sequence concatenation), and MultiGen (different state/rendering coupling)
+- Shared state representation allows direct manipulation — generating entirely new levels while preserving learned dynamics, without retraining
+- Multi-agent world models enable training data generation for collaborative robotics, fleet coordination, and adversarial scenarios that single-agent models (Cosmos, Genie 3, GameNGen) cannot produce
+- PROWL adversarial RL framework extends to multi-agent settings: agents co-evolve with the world model, exposing failures in increasingly difficult regimes
+
+**Relevance to World Models**: Addresses a fundamental gap in current world models — all major systems (Cosmos, Genie 3, Marble, DreamerV3) support only single-agent interaction. The decoupled state/rendering architecture mirrors traditional game engine structure (physics + renderer) but with entirely learned components, pointing toward a "learned simulation engine" paradigm. Target use cases — multi-robot coordination, AV multi-agent scenarios, defense wargaming — require exactly this multi-agent capability. Architecturally orthogonal to the latent-space (JEPA/Dreamer) vs. pixel-space (Cosmos) debate; the key innovation is in the state representation, not the generation mechanism.
+
 ### Qwen-RobotWorld: Unifying Embodied World Modeling through Language-Conditioned Video Generation [<img src="templates/icons/arxiv.svg" alt="arxiv" height="16">](https://arxiv.org/abs/2606.17030)
 
 **Authors/Presenters**: Jie Zhang, Xiaoyue Chen, Anzhe Chen, Chenxu Lv, Deqing Li et al. (38 authors, Alibaba Tongyi Lab)

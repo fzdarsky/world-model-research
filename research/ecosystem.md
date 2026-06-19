@@ -2,7 +2,7 @@
 
 > Players in Physical AI — their solutions, reference architectures, and platform relevance
 
-**Last Updated**: 2026-06-16
+**Last Updated**: 2026-06-18
 
 ---
 
@@ -101,14 +101,23 @@
 - **Lock-in vectors**: NVIDIA GPU required, integration with NVIDIA stack
 - **Source**: [PhysicsNeMo](https://developer.nvidia.com/physicsnemo), [GitHub](https://github.com/NVIDIA/physicsnemo)
 
+#### NVIDIA AI Enterprise (NVAIE)
+
+NVAIE is NVIDIA's end-to-end enterprise AI software platform, licensed per-GPU ($4,500/GPU/year, or bundled with H100/B200 purchases). Two layers:
+
+- **Infrastructure Layer**: GPU Operator, Network Operator, NIM Operator, Run:ai (self-hosted + SaaS), Container Toolkit, GPU drivers, vGPU
+- **Application Layer**: NIM (inference microservices), NeMo (Customizer, Evaluator, Guardrails), Omniverse, Cosmos WFMs, Isaac Sim/Lab, GR00T, Blueprints
+
+- **Sources**: [NVAIE Software Stack](https://docs.nvidia.com/ai-enterprise/reference-architecture/latest/software-stack.html), [NVAIE Components](https://docs.nvidia.com/ai-enterprise/release-4/4.4/overview/whats-included.html), [NIM on OpenShift AI](https://developers.redhat.com/articles/2025/03/26/generative-ai-nvidia-nim-openshift-ai), [NIM Operator 3.0](https://developer.nvidia.com/blog/deploy-scalable-ai-inference-with-nvidia-nim-operator-3-0-0/)
+
 **Implied reference architecture**: Full vertical integration from silicon (Jetson) through simulation (Isaac Sim/Omniverse) to foundation models (Cosmos/GR00T). Envisions a loop: Cosmos generates synthetic data, Isaac Sim provides simulation, GR00T trains robot policies, Jetson deploys at the edge, and Omniverse orchestrates digital twins. PhysicsNeMo handles physics-informed components. Every layer is GPU-accelerated and optimized for NVIDIA hardware.
 
 - **Source**: [NVIDIA Physical AI Platform](https://www.nvidia.com/en-us/ai/)
 
 **Platform relevance**:
 
-- **Partnership surface**: Middleware layer (Isaac ROS extends ROS2), model serving, fleet management, safety/certification — areas NVIDIA does not fully own
-- **Competitive surface**: Simulation, edge inference, digital twins — wherever NVIDIA's stack overlaps with platform capabilities
+- **Partnership surface**: Middleware layer (Isaac ROS extends ROS2), simulation engines and models as workloads, GPU telemetry (DCGM), edge hardware (Jetson/IGX) — areas where NVIDIA complements without overlapping
+- **Competitive surface**: Several NVAIE components target the same platform functions as existing enterprise Kubernetes AI stacks (inference serving, GPU scheduling, training orchestration, model routing)
 - **What they need from a platform**: Standards-based interoperability beyond their ecosystem, fleet-level orchestration, safety certification frameworks, vendor-neutral model serving
 
 ---
@@ -1211,6 +1220,58 @@
 - **What they need from a platform**: Cross-vendor interoperability standards, real-time communication infrastructure, safety-certified runtimes
 
 **Links**: [Bessemer funding](https://ventureburn.com/noda-ai-raises-25m-series-a-to-advance-defense-ai-platform/), [Booz Allen investment](https://investors.boozallen.com/news-releases/news-release-details/booz-allen-expands-autonomy-ecosystem-noda-ai-investment)
+
+---
+
+### Odyssey
+
+**Type**: `Startup`
+**Stage/Scale**: ~$340M+ total. $310M Series B (Jun 2026, AMD Ventures, AWS, IQT) + $18M Series A (Nov 2024, EQT, GV) + $9M seed (Jul 2024, GV, DCVC). NVentures/Samsung strategic investment (Feb 2026), but Series B pivoted to AMD/AWS. ~55 staff across London, Zurich, Palo Alto. Notable angels: Jeff Dean, Garry Tan, Kyle Vogt, Elad Gil, Guillermo Rauch
+**About**: World model research lab building general-purpose learned simulation engines. Founded late 2023 by Oliver Cameron (ex-Cruise/Voyage CEO) and Jeff Hawke (founding engineer at Wayve). Positions as a learned simulation layer upstream of VLA policy training — multi-agent world models that generate training scenarios rather than outputting robot actions directly. PROWL adversarial RL framework and founders' AV pedigree hint at potential scope expansion into policy training. Notable for AWS/AMD pivot away from NVIDIA ecosystem after taking NVentures money. IQT (CIA-affiliated) backing signals defense as a target domain.
+
+**Solutions**:
+
+#### Agora-1
+
+- **What it does**: Multi-agent world model that decouples simulation from rendering. World state model learns game dynamics directly from internal state; DiT-based rendering model generates consistent visuals from multiple independent viewpoints conditioned on shared state. Enables up to 4 agents interacting in a shared world simultaneously.
+- **Building blocks covered**: [Latent World Models](building-blocks.md#latent-world-models), [Simulation Engines](building-blocks.md#simulation-engines)
+- **Key features (functional)**: Multi-agent shared simulation (up to 4 agents), decoupled state/rendering architecture, direct state manipulation for novel scenario generation, consistent multi-viewpoint rendering, PROWL adversarial RL integration
+- **Key features (non-functional)**: Real-time generation, scalable state representation (architecturally unbounded agent count)
+- **Competes with**: Cosmos (NVIDIA), Genie 3 (Google DeepMind), Marble (World Labs), GameNGen — differentiates on multi-agent shared simulation; all competitors are single-agent
+- **Complements**: VLA policies (pi0, GR00T, Helix) as downstream consumers of generated training data
+- **Openness**: `Proprietary`
+- **Lock-in vectors**: AWS/Trainium compute dependency, proprietary state representation format
+- **Source**: [Agora-1 blog post](https://odyssey.ml/introducing-agora-1)
+
+#### Odyssey-2 Max
+
+- **What it does**: Physics-accurate world generation model for realistic environment simulation.
+- **Building blocks covered**: [Latent World Models](building-blocks.md#latent-world-models)
+- **Key features (functional)**: Accurate physics simulation in generated worlds
+- **Competes with**: Cosmos-Predict2.5 — on physics-faithful video world generation
+- **Openness**: `Proprietary`
+- **Source**: [TechCrunch coverage](https://techcrunch.com/2025/05/28/odysseys-new-ai-model-streams-3d-interactive-worlds/)
+
+#### Starchild-1
+
+- **What it does**: Real-time multimodal world model — first model to generate interactive worlds in real time across multiple modalities.
+- **Building blocks covered**: [Latent World Models](building-blocks.md#latent-world-models)
+- **Key features (functional)**: Real-time generation, multimodal output
+- **Competes with**: Genie 3 — on real-time interactive world generation
+- **Openness**: `Proprietary`
+- **Source**: [Odyssey website](https://odyssey.ml)
+
+**Implied reference architecture**: Learned simulation engine that replaces or augments hand-authored simulators (Isaac Sim, MuJoCo) in the robot training pipeline. Odyssey world models generate diverse multi-agent training scenarios; downstream VLA/policy models consume these for training. PROWL framework creates a co-evolutionary loop where agents stress-test world models and world models challenge agents. Does not own the policy layer or hardware — expects partners for downstream deployment.
+
+**Platform relevance**:
+
+- **Partnership surface**: Learned simulation as a service — could complement platform-hosted robot training pipelines. Multi-agent coordination scenarios for fleet robotics. Defense simulation for multi-domain autonomous operations.
+- **Competitive surface**: Overlaps with simulation & synthetic data building block; competes for the "world model as training data generator" role that Cosmos fills in NVIDIA's stack.
+- **What they need from a platform**: Scalable compute infrastructure (AWS/Trainium currently), data pipelines for training data ingestion, deployment infrastructure for serving world models to downstream policy training.
+
+**Collaborations**: AWS (preferred cloud, Trainium compute), AMD Ventures (GPU alternative), IQT (defense applications)
+
+**Links**: [Website](https://odyssey.ml), [Agora-1](https://odyssey.ml/introducing-agora-1), [Series B coverage](https://techfundingnews.com/odyssey-310m-series-b-nvidia-amazon-amd-ai-world-models/)
 
 ---
 
